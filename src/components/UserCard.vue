@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="link"
-    :to="{ name: 'user-edit',params:{id: user.id}}"
+    :to="{ name: 'user-edit', params: { id: user.id } }"
   >
     <div class="user__card">
       <div class="user__card__center">
@@ -24,9 +24,9 @@
 
 <script>
 export default {
-    props: {
-        user: Object
-    },
+  props: {
+    user: Object
+  }
 };
 </script>
 

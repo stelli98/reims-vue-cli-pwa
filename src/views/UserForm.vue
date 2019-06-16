@@ -1,18 +1,12 @@
 <template>
   <div class="user-form">
     <div class="user-form__header">
-      <div
-        class="user-form__close"
-        @click="moveTo"
-      >
+      <div class="user-form__close" @click="moveTo">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
-      <div
-        class="title--menu user-form__next"
-        @click="submitForm"
-      >
+      <div class="title--menu user-form__next" @click="submitForm">
         SAVE
       </div>
     </div>
@@ -22,10 +16,7 @@
       </div>
       <form class="user-form__form">
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Username
           </label>
           <input
@@ -34,21 +25,15 @@
             name="type"
             class="form__input"
             @blur="$v.user.username.$touch()"
-          >
+          />
           <div v-if="$v.user.username.$error">
-            <p
-              v-if="!$v.user.username.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.username.required" class="input__error-message">
               Name must be filled
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Password
           </label>
           <input
@@ -57,29 +42,20 @@
             name="type"
             class="form__input"
             @blur="$v.user.password.$touch()"
-          >
+          />
           <div v-if="$v.user.password.$error">
-            <p
-              v-if="!$v.user.password.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.password.required" class="input__error-message">
               Password must be filled
             </p>
           </div>
           <div v-if="$v.user.password.$error">
-            <p
-              v-if="!$v.user.password.minLength"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.password.minLength" class="input__error-message">
               Password must have at least 6 characters
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Role
           </label>
           <select
@@ -97,10 +73,7 @@
             </option>
           </select>
           <div v-if="$v.user.role.$error">
-            <p
-              v-if="!$v.user.role.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.role.required" class="input__error-message">
               Role must be filled
             </p>
           </div>
@@ -111,13 +84,13 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-import { minLength, required } from 'vuelidate/lib/validators';
+import { mapActions, mapState } from "vuex";
+import { minLength, required } from "vuelidate/lib/validators";
 
 const user = {
-  username: '',
-  password: '',
-  role: ''
+  username: "",
+  password: "",
+  role: ""
 };
 
 export default {
@@ -128,44 +101,41 @@ export default {
       role: { required }
     }
   },
-  data () {
+  data() {
     return {
-      roles: [
-        'ADMIN',
-        'MEMBER'
-      ],
+      roles: ["ADMIN", "MEMBER"]
     };
   },
   computed: {
-    ...mapState('user', ['user']),
-    userId () {
-      return this.$route.params.id | '';
+    ...mapState("user", ["user"]),
+    userId() {
+      return this.$route.params.id | "";
     }
   },
   methods: {
-    ...mapActions('user', ['updateUser', 'createUser', 'getUser', 'emptyUser']),
-    moveTo () {
+    ...mapActions("user", ["updateUser", "createUser", "getUser", "emptyUser"]),
+    moveTo() {
       this.$router.go(-1);
     },
-    submitForm () {
+    submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.sendForm();
-        this.$router.push({ name: 'user' });
+        this.$router.push({ name: "user" });
       } else {
-        console.log('error');
+        console.log("error");
       }
     },
-    checkActionForm () {
+    checkActionForm() {
       this.userId ? this.getUser(this.userId) : this.emptyUser(user);
     },
-    sendForm () {
+    sendForm() {
       this.userId ? this.updateUser(this.user) : this.createUser(this.user);
     }
   },
-  mounted () {
+  mounted() {
     this.checkActionForm();
-  },
+  }
 };
 </script>
 

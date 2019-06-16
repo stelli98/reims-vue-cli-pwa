@@ -1,20 +1,14 @@
 <template>
-  <div
-    v-show="paging.totalPage>1"
-    class="pagination"
-  >
-    <div
-      class="first"
-      @click="moveTo(1)"
-    >
+  <div v-show="paging.totalPage > 1" class="pagination">
+    <div class="first" @click="moveTo(1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
     </div>
     <div
-      v-show="paging.pageNumber!=1"
+      v-show="paging.pageNumber != 1"
       class="prev"
-      @click="moveTo(paging.pageNumber-1)"
+      @click="moveTo(paging.pageNumber - 1)"
     >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-prev" />
@@ -29,32 +23,23 @@
           name=""
           min="1"
           :max="paging.totalPage"
-        >
-        <h2 class="pagination__text">
-          / {{ paging.totalPage }}
-        </h2>
+        />
+        <h2 class="pagination__text">/ {{ paging.totalPage }}</h2>
       </div>
-      <button
-        class="pagination__button"
-        @click="moveTo(parseInt(inputPage))"
-      >
+      <button class="pagination__button" @click="moveTo(parseInt(inputPage))">
         Go
       </button>
     </div>
     <div
-      v-show="
-        paging.pageNumber!=paging.totalPage"
+      v-show="paging.pageNumber != paging.totalPage"
       class="next"
-      @click="moveTo((paging.pageNumber+1))"
+      @click="moveTo(paging.pageNumber + 1)"
     >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div
-      class="last"
-      @click="moveTo(paging.totalPage)"
-    >
+    <div class="last" @click="moveTo(paging.totalPage)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
@@ -67,24 +52,25 @@ export default {
   props: {
     paging: Object
   },
-  data () {
+  data() {
     return {
       currentPage: this.$route.query.page || 1
     };
-  }, computed: {
+  },
+  computed: {
     inputPage: {
-      set (value) {
+      set(value) {
         this.currentPage = value;
       },
-      get () {
+      get() {
         return this.currentPage;
       }
     }
   },
   methods: {
-    moveTo (toPage) {
+    moveTo(toPage) {
       this.inputPage = toPage;
-      this.$emit('changePage', toPage);
+      this.$emit("changePage", toPage);
     }
   }
 };

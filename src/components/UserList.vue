@@ -1,22 +1,18 @@
 <template>
   <div class="user__list">
-    <UserCard
-      v-for="user in users"
-      :key="user.id"
-      :user="user"
-    />
+    <UserCard v-for="user in users" :key="user.id" :user="user" />
   </div>
 </template>
 
 <script>
-import UserCard from '@/components/UserCard.vue';
+import UserCard from "@/components/UserCard.vue";
 export default {
-    components: {
-        UserCard
-    },
-    props: {
-        users: Array
-    }
+  components: {
+    UserCard
+  },
+  props: {
+    users: Array
+  }
 };
 </script>
 

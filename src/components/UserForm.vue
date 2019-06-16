@@ -1,10 +1,7 @@
 <template>
   <form class="create-user__form">
     <div class="form__child">
-      <label
-        class="input__label title--medium-form"
-        for="type"
-      >
+      <label class="input__label title--medium-form" for="type">
         Username
       </label>
       <input
@@ -13,21 +10,15 @@
         name="type"
         class="form__input"
         @blur="$v.user.username.$touch()"
-      >
+      />
       <div v-if="$v.user.username.$error">
-        <p
-          v-if="!$v.user.username.required"
-          class="input__error-message"
-        >
+        <p v-if="!$v.user.username.required" class="input__error-message">
           Name must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label
-        class="input__label title--medium-form"
-        for="type"
-      >
+      <label class="input__label title--medium-form" for="type">
         Password
       </label>
       <input
@@ -36,29 +27,20 @@
         name="type"
         class="form__input"
         @blur="$v.user.password.$touch()"
-      >
+      />
       <div v-if="$v.user.password.$error">
-        <p
-          v-if="!$v.user.password.required"
-          class="input__error-message"
-        >
+        <p v-if="!$v.user.password.required" class="input__error-message">
           Password must be filled
         </p>
       </div>
       <div v-if="$v.user.password.$error">
-        <p
-          v-if="!$v.user.password.minLength"
-          class="input__error-message"
-        >
+        <p v-if="!$v.user.password.minLength" class="input__error-message">
           Password must have at least 6 characters
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label
-        class="input__label title--medium-form"
-        for="type"
-      >
+      <label class="input__label title--medium-form" for="type">
         Role
       </label>
       <select
@@ -76,10 +58,7 @@
         </option>
       </select>
       <div v-if="$v.user.role.$error">
-        <p
-          v-if="!$v.user.role.required"
-          class="input__error-message"
-        >
+        <p v-if="!$v.user.role.required" class="input__error-message">
           Role must be filled
         </p>
       </div>
@@ -88,57 +67,55 @@
 </template>
 
 <script>
-import { minLength, required } from 'vuelidate/lib/validators';
+import { minLength, required } from "vuelidate/lib/validators";
 
 export default {
-    validations: {
-        user: {
-            username: { required },
-            password: { required, minLength: minLength(6) },
-            role: { required }
-        }
-    },
-    props: {
-        user: {
-            type: Object,
-            default: () => ({
-                username: '',
-                password: '',
-                role: ''
-            })
-        },
-    },
-    data () {
-        return {
-            roles: [
-                'ADMIN',
-                'MEMBER'
-            ],
-        };
-    },
-    methods: {
-        moveTo () {
-            this.$router.go(-1);
-        },
-        getUserDetail () {
-            this.$route.params.id ?
-                Object.assign(this.user, this.getUser(this.$route.params.id)) : '';
-        },
-        submitForm () {
-            this.$v.user.$touch();
-            if (!this.$v.user.$invalid) {
-                console.log(this.user);
-                // this.createUser(this.user);
-                // this.$router.push({ name: 'user' });
-            } else {
-                console.log('error');
-            }
-        }
+  validations: {
+    user: {
+      username: { required },
+      password: { required, minLength: minLength(6) },
+      role: { required }
     }
+  },
+  props: {
+    user: {
+      type: Object,
+      default: () => ({
+        username: "",
+        password: "",
+        role: ""
+      })
+    }
+  },
+  data() {
+    return {
+      roles: ["ADMIN", "MEMBER"]
+    };
+  },
+  methods: {
+    moveTo() {
+      this.$router.go(-1);
+    },
+    getUserDetail() {
+      this.$route.params.id
+        ? Object.assign(this.user, this.getUser(this.$route.params.id))
+        : "";
+    },
+    submitForm() {
+      this.$v.user.$touch();
+      if (!this.$v.user.$invalid) {
+        console.log(this.user);
+        // this.createUser(this.user);
+        // this.$router.push({ name: 'user' });
+      } else {
+        console.log("error");
+      }
+    }
+  }
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .form {
   &__child {
     margin-bottom: 1.5rem;

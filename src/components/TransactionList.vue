@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import TransactionCard from '@/components/TransactionCard.vue';
+import TransactionCard from "@/components/TransactionCard.vue";
 export default {
   components: {
     TransactionCard
   },
   props: {
-    transactions: Array,
+    transactions: Array
   }
 };
 </script>

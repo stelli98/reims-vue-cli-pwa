@@ -21,17 +21,15 @@
 
 <script>
 export default {
-    props: {
-        transaction: Object
-    },
-    computed: {
-        totalPrice () {
-            return this.transaction.unitPrice * this.transaction.volume;
-        }
+  props: {
+    transaction: Object
+  },
+  computed: {
+    totalPrice() {
+      return this.transaction.unitPrice * this.transaction.volume;
     }
-
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

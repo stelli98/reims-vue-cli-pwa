@@ -29,12 +29,10 @@
 
 <script>
 export default {
-    props: {
-        transaction: Object
-    }
-
+  props: {
+    transaction: Object
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
