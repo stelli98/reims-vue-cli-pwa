@@ -1,0 +1,39 @@
+/*
+320 - 360 - 375  -> small-phone
+412 - 414 - 480  -> medium-phone
+600
+800
+768
+1024
+1280
+
+375 - 480  -> small phone  start : >375 
+480 - 600  -> medium phone start : >480 
+600 - 800  -> large phone start : >600
+800 - 1024 -> tab         start : >800
+1024 -1440 -> desktop     start : >1024
+*/
+
+@mixin respond($breakpoint) {
+
+    @if $breakpoint == small-phone {
+        @media only screen and (min-width:23.5rem) {  @content};
+    }
+
+    @if $breakpoint == medium-phone {
+        @media only screen and (min-width:30rem) { @content };
+    }
+    
+    @if $breakpoint == large-phone {
+        @media only screen and (min-width:37.5rem) { @content };
+    }
+    
+    @if $breakpoint == tab {
+        @media only screen and (min-width:50rem) { @content }; 
+    }
+
+    @if $breakpoint == desktop {
+        @media only screen and (min-width:64rem) { @content }; 
+    }
+
+}

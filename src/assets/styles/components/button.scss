@@ -1,0 +1,53 @@
+  .btn-white {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    font-family: "Metropolis-Medium";
+    white-space: nowrap;
+    color: $color-green;
+    font-family: "Nunito-Extrabold";
+    background-color: $color-white;
+    font-size: 1.3rem;
+  }
+  
+  .btn-green {
+    padding: .5rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    font-family: "Metropolis-Medium";
+    white-space: nowrap;
+    background: $color-green;
+    color: $color-white;
+    font-family: "Nunito-Regular";
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+  @include respond(tab) {
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  }
+
+
+  .btn-white:hover,
+  .btn-green:hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 7px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+  
+  .btn-white:focus,
+  .btn-green:focus {
+    outline: 0;
+    cursor: pointer;
+  }
+  

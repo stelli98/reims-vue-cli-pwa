@@ -1,0 +1,47 @@
+.icon{
+    fill: $color-white;
+    margin-right: .5rem;
+
+    &-small{
+        width: 1.5rem; 
+        height: 1.5rem;
+    }
+
+    &-small-green{
+        width: 1.5rem; 
+        height: 1.5rem;
+        fill: $color-green;
+    }
+
+    &-medium-green{
+        width: 2rem; 
+        height: 2rem;
+        fill: $color-green;
+    }
+
+    &-big{
+        width: 3rem; 
+        height: 3rem;
+        margin: 1.5rem;
+
+        @include respond(large-phone) {
+            width: 3.5rem; 
+            height: 3.5rem;
+        }
+
+        @include respond(tab) {
+            width: 4rem; 
+            height: 4rem;
+        }
+    }
+
+    &-green{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0;
+        width: 1.5rem; 
+        height: 1.5rem;
+        fill: $color-green;
+    }
+}
