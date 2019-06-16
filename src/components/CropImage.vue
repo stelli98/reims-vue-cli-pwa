@@ -14,7 +14,7 @@
         @click="flipXImage"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-flip-x" />
+          <use xlink:href="icons.svg#icon-flip-x" />
         </svg>
         <span>Flip Horizontally</span>
       </div>
@@ -23,7 +23,7 @@
         @click="flipYImage"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-flip-y" />
+          <use xlink:href="icons.svg#icon-flip-y" />
         </svg>
         <span>Flip Vertically</span>
       </div>
@@ -32,7 +32,7 @@
         @click="rotateRight"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-circular-clockwise" />
+          <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>
         <span>Rotate Right</span>
       </div>
@@ -41,7 +41,7 @@
         @click="rotateLeft"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-circular-counter-clockwise" />
+          <use xlink:href="icons.svg#icon-circular-counter-clockwise" />
         </svg>
         <span>Rotate Left</span>
       </div>
@@ -52,36 +52,36 @@
 <script>
 import { mapState } from 'vuex';
 export default {
-    name: 'App',
-    data () {
-        return {
-            myCroppa: null,
-            image: '',
-            filterFunctions: null,
-            width: 0,
-            height: 0
-        };
+  name: 'App',
+  data () {
+    return {
+      myCroppa: null,
+      image: '',
+      filterFunctions: null,
+      width: 0,
+      height: 0
+    };
+  },
+  methods: {
+    generateImage () {
+      if (this.myCroppa.hasImage()) {
+        return this.myCroppa.generateDataUrl('image/webp', 0.7);
+      }
     },
-    methods: {
-        generateImage () {
-            if (this.myCroppa.hasImage()) {
-                return this.myCroppa.generateDataUrl('image/webp', 0.7);
-            }
-        },
-        flipXImage () {
-            this.myCroppa.flipX();
-        },
-        flipYImage () {
-            this.myCroppa.flipY();
-        },
-        rotateRight () {
-            this.myCroppa.rotate(1);
-        },
-        rotateLeft () {
-            this.myCroppa.rotate(-1);
-        }
+    flipXImage () {
+      this.myCroppa.flipX();
     },
-    computed: mapState([ 'transaction' ])
+    flipYImage () {
+      this.myCroppa.flipY();
+    },
+    rotateRight () {
+      this.myCroppa.rotate(1);
+    },
+    rotateLeft () {
+      this.myCroppa.rotate(-1);
+    }
+  },
+  computed: mapState(['transaction'])
 };
 </script>
 

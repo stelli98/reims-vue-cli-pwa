@@ -8,7 +8,7 @@
       @click="moveTo(1)"
     >
       <svg class="icon-green">
-        <use xlink:href="@/assets/icons/icons.svg#icon-arrow-first" />
+        <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
     </div>
     <div
@@ -17,7 +17,7 @@
       @click="moveTo(paging.pageNumber-1)"
     >
       <svg class="icon-green">
-        <use xlink:href="@/assets/icons/icons.svg#icon-arrow-prev" />
+        <use xlink:href="icons.svg#icon-arrow-prev" />
       </svg>
     </div>
     <div class="pagination__go-to">
@@ -48,7 +48,7 @@
       @click="moveTo((paging.pageNumber+1))"
     >
       <svg class="icon-green">
-        <use xlink:href="@/assets/icons/icons.svg#icon-arrow-next" />
+        <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
     <div
@@ -56,7 +56,7 @@
       @click="moveTo(paging.totalPage)"
     >
       <svg class="icon-green">
-        <use xlink:href="@/assets/icons/icons.svg#icon-arrow-last" />
+        <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
     </div>
   </div>
@@ -64,29 +64,29 @@
 
 <script>
 export default {
-    props: {
-        paging: Object
-    },
-    data () {
-        return {
-            currentPage: this.$route.query.page || 1
-        };
-    }, computed: {
-        inputPage: {
-            set (value) {
-                this.currentPage = value;
-            },
-            get () {
-                return this.currentPage;
-            }
-        }
-    },
-    methods: {
-        moveTo (toPage) {
-            this.inputPage = toPage;
-            this.$emit('changePage', toPage);
-        }
+  props: {
+    paging: Object
+  },
+  data () {
+    return {
+      currentPage: this.$route.query.page || 1
+    };
+  }, computed: {
+    inputPage: {
+      set (value) {
+        this.currentPage = value;
+      },
+      get () {
+        return this.currentPage;
+      }
     }
+  },
+  methods: {
+    moveTo (toPage) {
+      this.inputPage = toPage;
+      this.$emit('changePage', toPage);
+    }
+  }
 };
 </script>
 

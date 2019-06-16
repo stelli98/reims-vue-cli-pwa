@@ -9,7 +9,7 @@ import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
 
-// require('@mock-api');
+require("@mock-api");
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });

@@ -6,13 +6,13 @@
     <div class="transaction__actions">
       <div class="btn-green transaction__filter">
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-filter" />
+          <use xlink:href="icons.svg#icon-filter" />
         </svg>
         <span>Filter and Sort</span>
       </div>
       <div class="btn-green transaction__download">
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-download" />
+          <use xlink:href="icons.svg#icon-download" />
         </svg>
         <span>Download Report</span>
       </div>
@@ -30,12 +30,12 @@
 <script>
 import TransactionCard from '@/components/TransactionCard.vue';
 export default {
-    components: {
-        TransactionCard
-    },
-    props: {
-        transactions: Array,
-    }
+  components: {
+    TransactionCard
+  },
+  props: {
+    transactions: Array,
+  }
 };
 </script>
 

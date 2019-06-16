@@ -6,7 +6,7 @@
         @click="moveTo"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-cancel" />
+          <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
       <div
@@ -115,61 +115,61 @@ import { mapActions, mapState } from 'vuex';
 import { minLength, required } from 'vuelidate/lib/validators';
 
 const user = {
-    username: '',
-    password: '',
-    role: ''
+  username: '',
+  password: '',
+  role: ''
 };
 
 export default {
-    validations: {
-        user: {
-            username: { required },
-            password: { required, minLength: minLength(6) },
-            role: { required }
-        }
+  validations: {
+    user: {
+      username: { required },
+      password: { required, minLength: minLength(6) },
+      role: { required }
+    }
+  },
+  data () {
+    return {
+      roles: [
+        'ADMIN',
+        'MEMBER'
+      ],
+    };
+  },
+  computed: {
+    ...mapState('user', ['user']),
+    userId () {
+      return this.$route.params.id | '';
+    }
+  },
+  methods: {
+    ...mapActions('user', ['updateUser', 'createUser', 'getUser', 'emptyUser']),
+    moveTo () {
+      this.$router.go(-1);
     },
-    data () {
-        return {
-            roles: [
-                'ADMIN',
-                'MEMBER'
-            ],
-        };
+    submitForm () {
+      this.$v.user.$touch();
+      if (!this.$v.user.$invalid) {
+        this.sendForm();
+        this.$router.push({ name: 'user' });
+      } else {
+        console.log('error');
+      }
     },
-    computed: {
-        ...mapState('user', [ 'user' ]),
-        userId () {
-            return this.$route.params.id | '';
-        }
+    checkActionForm () {
+      this.userId ? this.getUser(this.userId) : this.emptyUser(user);
     },
-    methods: {
-        ...mapActions('user', [ 'updateUser', 'createUser', 'getUser', 'emptyUser' ]),
-        moveTo () {
-            this.$router.go(-1);
-        },
-        submitForm () {
-            this.$v.user.$touch();
-            if (!this.$v.user.$invalid) {
-                this.sendForm();
-                this.$router.push({ name: 'user' });
-            } else {
-                console.log('error');
-            }
-        },
-        checkActionForm () {
-            this.userId ? this.getUser(this.userId) : this.emptyUser(user);
-        },
-        sendForm () {
-            this.userId ? this.updateUser(this.user) : this.createUser(this.user);
-        }
-    },
-    mounted () {
-        this.checkActionForm();
-    },
+    sendForm () {
+      this.userId ? this.updateUser(this.user) : this.createUser(this.user);
+    }
+  },
+  mounted () {
+    this.checkActionForm();
+  },
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .user-form {
   &__header {
     display: flex;

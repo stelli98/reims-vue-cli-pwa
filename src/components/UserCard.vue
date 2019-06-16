@@ -15,7 +15,7 @@
 
       <div class="user__card__right">
         <svg class="icon icon-medium-green">
-          <use xlink:href="@/assets/icons/icons.svg#icon-dustbin" />
+          <use xlink:href="icons.svg#icon-dustbin" />
         </svg>
       </div>
     </div>

@@ -6,7 +6,7 @@
         @click="moveTo"
       >
         <svg class="icon icon-small">
-          <use xlink:href="@/assets/icons/icons.svg#icon-cancel" />
+          <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
       <div

@@ -6,7 +6,7 @@
     <div class="transaction__card">
       <div class="transaction__card__left">
         <svg class="icon icon-big">
-          <use v-bind="{ 'xlink:href': 'src/assets/icons/icons.svg#icon-' + transaction.category }" />
+          <use v-bind="{ 'xlink:href': 'icons.svg#icon-' + transaction.category }" />
         </svg>
       </div>
       <div class="transaction__card__center">
@@ -23,7 +23,7 @@
 
       <div class="transaction__card__right">
         <svg class="icon icon-medium-green">
-          <use xlink:href="@/assets/icons/icons.svg#icon-dustbin" />
+          <use xlink:href="icons.svg#icon-dustbin" />
         </svg>
       </div>
     </div>
@@ -32,9 +32,9 @@
 
 <script>
 export default {
-    props: {
-        transaction: Object
-    },
+  props: {
+    transaction: Object
+  }
 };
 </script>
 
