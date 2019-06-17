@@ -3,13 +3,22 @@
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
-          <img src="../assets/images/logo.png" class="logo__small" />
+          <img
+            src="../assets/images/logo.png"
+            class="logo__small"
+          />
         </div>
         <div class="home__header__upper__right">
-          <div class="home__header__nav__user" @click="moveTo('user')">
+          <div
+            class="home__header__nav__user"
+            @click="moveTo('user')"
+          >
             Manage User
           </div>
-          <div class="home__header__nav__password" @click="moveTo('change')">
+          <div
+            class="home__header__nav__password"
+            @click="moveTo('change')"
+          >
             Change Password
           </div>
           <div class="home__header__nav__logout">
@@ -23,8 +32,16 @@
             Make Reimbursement Reporting Become Easier
           </div>
           <div class="home__header__footer__button">
-            <input id="file" type="file" name="file" @change="onFileChange" />
-            <label for="file" class="btn-white">
+            <input
+              id="file"
+              type="file"
+              name="file"
+              @change="onFileChange"
+            />
+            <label
+              for="file"
+              class="btn-white"
+            >
               Upload Receipt
             </label>
           </div>
@@ -32,7 +49,10 @@
       </div>
     </header>
     <TransactionList :transactions="transactions" />
-    <Pagination :paging="pagination" @changePage="changePage" />
+    <Pagination
+      :paging="pagination"
+      @changePage="changePage"
+    />
   </div>
 </template>
 
@@ -45,17 +65,12 @@ export default {
     TransactionList,
     Pagination
   },
-  created() {
-    // if ('serviceWorker' in navigator) {
-    //     window.addEventListener('load', () => {
-    //         navigator.serviceWorker.register('./service-worker.js');
-    //     });
-    // }
+  created () {
     this.updateTransaction();
   },
   computed: {
     ...mapState("transaction", ["transactions", "pagination"]),
-    options() {
+    options () {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
@@ -65,7 +80,7 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
-    onFileChange(e) {
+    onFileChange (e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
       this.$router.push({
@@ -73,21 +88,21 @@ export default {
         params: { step: 1 }
       });
     },
-    changePage(toPage) {
+    changePage (toPage) {
       this.options.page = parseInt(toPage);
       this.$router.push({ name: "home", query: this.options });
       this.getTransactions(this.options);
     },
-    updateTransaction() {
+    updateTransaction () {
       this.getTransactions(this.options);
       // this.$store.dispatch("transaction/getTransactions");
     },
-    moveTo(toPage) {
+    moveTo (toPage) {
       this.$router.push({ name: toPage });
     }
   },
   watch: {
-    options() {
+    options () {
       this.updateTransaction();
     }
   }

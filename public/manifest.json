@@ -3,10 +3,10 @@
   "short_name": "reims",
   "theme_color": "#49a969",
   "background_color": "#49a969",
-  "display": "browser",
   "orientation": "portrait",
+  "start_url": "./index.html",
+  "display": "standalone",
   "Scope": "/",
-  "start_url": "/home",
   "icons": [
     {
       "src": "img/icons/icon-72x72.png",
