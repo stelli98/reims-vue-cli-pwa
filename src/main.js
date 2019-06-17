@@ -18,8 +18,19 @@ Vue.filter("priceFormatter", PriceFilter);
 Vue.filter("textFormatter", TextFilter);
 
 Vue.config.productionTip = false;
-new Vue({
+var vm = new Vue({
   router,
   store,
+  data: {
+    onLine: navigator.onLine // initial status
+  },
   render: h => h(App)
 }).$mount("#app");
+
+window.addEventListener('online',  function(){
+  vm.onLine = true;
+});
+
+window.addEventListener('offline',  function(){
+  vm.onLine = false;
+});

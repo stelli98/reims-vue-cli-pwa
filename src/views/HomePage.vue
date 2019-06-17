@@ -48,6 +48,7 @@
         </div>
       </div>
     </header>
+    {{isOnline}}
     <TransactionList :transactions="transactions" />
     <Pagination
       :paging="pagination"
@@ -60,14 +61,17 @@
 import TransactionList from "@/components/TransactionList";
 import Pagination from "@/components/Pagination.vue";
 import { mapActions, mapState } from "vuex";
+import { DetectOnlineMixin } from "@/mixins/DetectOnlineMixin";
+
 export default {
   components: {
     TransactionList,
     Pagination
   },
-  created () {
+  created () { 
     this.updateTransaction();
   },
+  mixins: [DetectOnlineMixin],
   computed: {
     ...mapState("transaction", ["transactions", "pagination"]),
     options () {
@@ -76,6 +80,9 @@ export default {
         size: parseInt(this.$route.query.size) || 5,
         sort_by: "created_at"
       };
+    },
+    test(){
+      return this.$root.$data.onLine
     }
   },
   methods: {
