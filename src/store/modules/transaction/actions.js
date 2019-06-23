@@ -1,10 +1,10 @@
 import transactionApi from "@/api/transaction";
 
 export default {
-  setImage ({ commit }, img) {
+  setImage({ commit }, img) {
     commit("SET_IMAGE", img);
   },
-  setOCRResultType ({ commit }, data) {
+  setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
   createTransaction: async ({ commit }, image) => {
@@ -23,5 +23,8 @@ export default {
   },
   saveTransaction: ({ commit }, transaction) => {
     transactionApi.saveTransaction(transaction);
+  },
+  deleteTransaction: ({ commit }, id) => {
+    transactionApi.deleteTransaction(id);
   }
 };
