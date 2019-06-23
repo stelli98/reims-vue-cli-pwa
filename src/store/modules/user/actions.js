@@ -18,5 +18,8 @@ export default {
   },
   updateUser: ({}, data) => {
     userApi.updateUser(data.id, data);
+  },
+  deleteUser: ({}, id) => {
+    userApi.deleteUser(id);
   }
 };
