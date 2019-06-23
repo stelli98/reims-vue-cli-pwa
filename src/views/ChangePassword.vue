@@ -11,6 +11,9 @@
       </div>
     </div>
     <div class="change-password__content">
+      <div class="change-password__heading">
+        Change Password
+      </div>
       <form class="change-password__form">
         <div class="form__child">
           <label class="input__label title--medium-form" for="type">
@@ -129,8 +132,19 @@ export default {
       width: 40vw;
     }
 
-    & > form {
+    & > div {
       margin: 2rem 0;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    font-size: 1.5rem;
+    font-family: "Nunito-Bold";
+    margin-bottom: 1rem;
+
+    @include respond(tab) {
+      font-size: 1.8rem;
     }
   }
 }
