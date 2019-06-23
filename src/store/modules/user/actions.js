@@ -18,5 +18,8 @@ export default {
   },
   updateUser: ({}, data) => {
     userApi.updateUser(data.id, data);
+  },
+  changePassword: ({}, data) => {
+    userApi.changePassword(data);
   }
 };
