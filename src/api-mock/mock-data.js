@@ -8,7 +8,7 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sort_by: "created_at"
+      sortBy: "created_at"
     },
     status: "OK",
     data: [
@@ -62,7 +62,7 @@ export default [
     params: {
       page: 2,
       size: 5,
-      sort_by: "created_at"
+      sortBy: "created_at"
     },
     status: "OK",
     data: [
@@ -107,6 +107,50 @@ export default [
       pageSize: 5,
       totalPage: 2,
       totalRecords: 10
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction,
+    params: {
+      page: 1,
+      size: 5,
+      sortBy: "title",
+      search: "Parkir",
+      category: "",
+      startDate: "",
+      endDate: ""
+    },
+    status: "OK",
+    data: [
+      {
+        id: 1,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        price: 25000
+      },
+      {
+        id: 3,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        price: 25000
+      },
+      {
+        id: 5,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        price: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPage: 1,
+      totalRecords: 3
     }
   },
   // {

@@ -6,7 +6,7 @@
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
-      <div class="title--menu user-form__next">
+      <div class="title--menu user-form__next" @click="resetFilter">
         RESET
       </div>
     </div>
@@ -24,7 +24,6 @@
             type="text"
             name="type"
             class="form__input"
-            @blur="$v.options.search.$touch()"
           />
         </div>
         <div class="form__child">
@@ -35,7 +34,6 @@
           <select
             v-model="options.sortBy"
             class="form__input form__input__select"
-            @blur="$v.options.sortBy.$touch()"
           >
             <option
               v-for="option in sortByOptions"
@@ -43,7 +41,7 @@
               :value="option"
               :selected="options.sortBy"
             >
-              {{ option }}
+              {{ option | textFormatter }}
             </option>
           </select>
         </div>
@@ -60,7 +58,6 @@
           <select
             v-model="options.category"
             class="form__input form__input__select"
-            @blur="$v.options.category.$touch()"
           >
             <option
               v-for="option in categoryOptions"
@@ -68,7 +65,7 @@
               :value="option"
               :selected="options.category"
             >
-              {{ option }}
+              {{ option | textFormatter }}
             </option>
           </select>
         </div>
@@ -81,7 +78,6 @@
             type="datetime"
             class="form__input"
             :max-datetime="options.endDate"
-            @close="$v.options.startDate.$touch()"
           />
         </div>
         <div class="form__child">
@@ -93,12 +89,11 @@
             :min-datetime="options.startDate"
             type="datetime"
             class="form__input"
-            @close="$v.options.endDate.$touch()"
           />
         </div>
       </form>
     </div>
-    <div class="sort-filter__button">
+    <div class="sort-filter__button" @click="applyFilter">
       <div class="btn-green ">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-filter" />
@@ -115,20 +110,30 @@ export default {
   components: { Datetime },
   data() {
     return {
-      options: {
-        search: "",
-        sortBy: "",
-        category: "",
-        startDate: "",
-        endDate: ""
-      },
-      sortByOptions: ["Date", "Title", "Category"],
-      categoryOptions: ["Fuel", "Parking"]
+      options: this.emptyOptions(),
+      sortByOptions: ["date", "category", "title"],
+      categoryOptions: ["FUEL", "PARKING"]
     };
   },
   methods: {
     moveTo() {
       this.$emit("closeFilter", false);
+    },
+    applyFilter() {
+      this.$emit("applyFilter", this.options);
+      this.moveTo();
+    },
+    emptyOptions() {
+      return {
+        search: "",
+        sortBy: "",
+        category: "",
+        startDate: "",
+        endDate: ""
+      };
+    },
+    resetFilter() {
+      this.options = this.emptyOptions();
     }
   }
 };
