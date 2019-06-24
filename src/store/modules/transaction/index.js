@@ -9,7 +9,7 @@ const state = {
   parking: {
     in: "",
     out: "",
-    price: "",
+    price: 0,
     title: "",
     vehicle: "",
     license: "",
@@ -18,8 +18,8 @@ const state = {
   fuel: {
     date: "",
     type: "",
-    volume: "",
-    unitPrice: "",
+    volume: 0,
+    unitPrice: 0,
     title: ""
   },
   transactions: [],
