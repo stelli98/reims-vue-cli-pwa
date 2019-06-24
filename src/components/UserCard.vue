@@ -31,6 +31,8 @@ export default {
   computed: {
     userName() {
       return this.$options.filters.trimTextFormatter(this.user.username, 10);
+    }
+  },
   methods: {
     ...mapActions("user", ["deleteUser"]),
     removeUser(id) {
