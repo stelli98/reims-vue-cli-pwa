@@ -3,13 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Croppa from "vue-croppa";
+import "./registerServiceWorker";
 import "vue-croppa/dist/vue-croppa.css";
 import Vuelidate from "vuelidate";
 import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
 
-require("@mock-api");
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });

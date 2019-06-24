@@ -23,7 +23,10 @@
         </div>
       </div>
 
-      <div class="transaction__card__right">
+      <div
+        class="transaction__card__right"
+        @click="removeTransaction(transaction.id)"
+      >
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-dustbin" />
         </svg>
@@ -33,9 +36,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     transaction: Object
+  },
+  methods: {
+    ...mapActions("transaction", ["deleteTransaction"]),
+    removeTransaction(id) {
+      this.deleteTransaction(id);
+    }
   }
 };
 </script>

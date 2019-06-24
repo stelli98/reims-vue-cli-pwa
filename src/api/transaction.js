@@ -3,6 +3,8 @@ import config from "@/config";
 
 const api = config.api.transactions;
 
+process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+
 export default {
   getTransaction(id) {
     const path = api.transaction;
@@ -19,5 +21,10 @@ export default {
   saveTransaction(data) {
     const path = api.transaction;
     return axios.put(path, data);
+  },
+  deleteTransaction(id) {
+    const path = api.transaction;
+    console.log("delete id :" + id);
+    return axios.delete(`${path}/${id}`);
   }
 };

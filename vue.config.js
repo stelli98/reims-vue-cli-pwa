@@ -28,11 +28,12 @@ module.exports = {
         }
       };
     }
+  },
+  pwa: {
+    workboxPluginMode: "InjectManifest",
+    workboxOptions: {
+      swSrc: "src/service-worker.js",
+      exclude: [/manifest\.json$/]
+    }
   }
-  // pwa: {
-  //   workboxPluginMode: "InjectManifest",
-  //   workboxOptions: {
-  //     swSrc: "src/service-worker.js"
-  //   }
-  // }
 };
