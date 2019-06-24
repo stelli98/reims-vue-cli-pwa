@@ -3,9 +3,10 @@ import Router from "vue-router";
 import LoginPage from "./views/LoginPage";
 import HomePage from "./views/HomePage";
 import CreateTransaction from "./views/CreateTransaction";
+import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
 import UserForm from "./views/UserForm";
-import TransactionDetail from "./views/TransactionDetail";
+import ChangePassword from "./views/ChangePassword";
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ const router = new Router({
       component: CreateTransaction
     },
     {
+      path: "/transaction/:id",
+      name: "transaction-detail",
+      component: TransactionDetail
+    },
+    {
       path: "/users",
       name: "user",
       component: ManageUser
@@ -43,9 +49,9 @@ const router = new Router({
       component: UserForm
     },
     {
-      path: "/transaction/:id",
-      name: "transaction-detail",
-      component: TransactionDetail
+      path: "/users/change-password",
+      name: "change-password",
+      component: ChangePassword
     },
     {
       path: "*",
