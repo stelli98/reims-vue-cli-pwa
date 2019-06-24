@@ -47,6 +47,8 @@ export default {
         this.transaction.title,
         20
       );
+    }
+  },
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
