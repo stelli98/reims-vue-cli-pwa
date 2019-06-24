@@ -16,7 +16,7 @@
           {{ transaction.date | dateFormatter }}
         </div>
         <div class="title--big transaction__title">
-          {{ transaction.title }}
+          {{ transactionTitle }}
         </div>
         <div class="title--small transaction__price">
           {{ transaction.price | priceFormatter }}
@@ -41,6 +41,12 @@ export default {
   props: {
     transaction: Object
   },
+  computed: {
+    transactionTitle() {
+      return this.$options.filters.trimTextFormatter(
+        this.transaction.title,
+        20
+      );
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {

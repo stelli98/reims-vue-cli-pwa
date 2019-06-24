@@ -21,13 +21,6 @@
       <label class="input__label title--medium-form" for="date">
         Date
       </label>
-      <Datetime
-        v-model="fuel.date"
-        type="datetime"
-        class="form__input"
-        @close="$v.fuel.date.$touch()"
-      />
-
       <div v-if="$v.fuel.date.$error">
         <p v-if="!$v.fuel.date.required" class="input__error-message">
           Date must be filled
