@@ -4,17 +4,7 @@
   </div>
 </template>
 
-<script>
-import UserCard from "@/components/UserCard.vue";
-export default {
-  components: {
-    UserCard
-  },
-  props: {
-    users: Array
-  }
-};
-</script>
+<script src="./js/user-list.js"></script>
 
 <style lang="scss" scoped>
 .user {

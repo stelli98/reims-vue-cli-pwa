@@ -27,22 +27,7 @@
   </div>
 </template>
 
-<script>
-import TransactionCard from "@/components/TransactionCard.vue";
-export default {
-  components: {
-    TransactionCard
-  },
-  props: {
-    transactions: Array
-  },
-  methods: {
-    openFilter() {
-      this.$emit("openFilter", true);
-    }
-  }
-};
-</script>
+<script src="./js/transaction-list.js"></script>
 
 <style lang="scss" scoped>
 .transaction {

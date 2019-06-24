@@ -35,28 +35,7 @@
   </router-link>
 </template>
 
-<script>
-import { mapActions } from "vuex";
-export default {
-  props: {
-    transaction: Object
-  },
-  computed: {
-    transactionTitle() {
-      return this.$options.filters.trimTextFormatter(
-        this.transaction.title,
-        20
-      );
-    }
-  },
-  methods: {
-    ...mapActions("transaction", ["deleteTransaction"]),
-    removeTransaction(id) {
-      this.deleteTransaction(id);
-    }
-  }
-};
-</script>
+<script src="./js/transaction-card.js"></script>
 
 <style lang="scss">
 .transaction__card {

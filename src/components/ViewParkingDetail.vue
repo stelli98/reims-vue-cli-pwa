@@ -27,12 +27,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    transaction: Object
-  }
-};
-</script>
+<script src="./js/view-parking-detail.js"></script>
 
 <style lang="scss" scoped></style>

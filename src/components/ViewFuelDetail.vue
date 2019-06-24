@@ -19,17 +19,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    transaction: Object
-  },
-  computed: {
-    totalPrice() {
-      return this.transaction.unitPrice * this.transaction.volume;
-    }
-  }
-};
-</script>
+<script src="./js/view-fuel-detail.js"></script>
 
 <style lang="scss" scoped></style>

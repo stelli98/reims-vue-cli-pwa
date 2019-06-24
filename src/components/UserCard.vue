@@ -22,25 +22,7 @@
   </router-link>
 </template>
 
-<script>
-import { mapActions } from "vuex";
-export default {
-  props: {
-    user: Object
-  },
-  computed: {
-    userName() {
-      return this.$options.filters.trimTextFormatter(this.user.username, 10);
-    }
-  },
-  methods: {
-    ...mapActions("user", ["deleteUser"]),
-    removeUser(id) {
-      this.deleteUser(id);
-    }
-  }
-};
-</script>
+<script src="./js/user-card.js"></script>
 
 <style lang="scss" scoped>
 .user {
