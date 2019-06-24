@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="user__card__right">
+      <div class="user__card__right" @click="removeUser(user.id)">
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-dustbin" />
         </svg>
@@ -23,9 +23,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     user: Object
+  },
+  methods: {
+    ...mapActions("user", ["deleteUser"]),
+    removeUser(id) {
+      this.deleteUser(id);
+    }
   }
 };
 </script>
