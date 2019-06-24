@@ -34,22 +34,31 @@
         </div>
       </div>
     </header>
-    <TransactionList :transactions="transactions" />
+    <TransactionList :transactions="transactions" @applyFilter="applyFilter" />
     <Pagination :paging="pagination" @changePage="changePage" />
+    <SortFilter v-show="showFilter" @closeFilter="applyFilter"> </SortFilter>
   </div>
 </template>
 
 <script>
 import TransactionList from "@/components/TransactionList";
 import Pagination from "@/components/Pagination.vue";
+import SortFilter from "@/components/SortFilter.vue";
+
 import { mapActions, mapState } from "vuex";
 export default {
   components: {
     TransactionList,
-    Pagination
+    Pagination,
+    SortFilter
   },
   created() {
     this.updateTransaction();
+  },
+  data() {
+    return {
+      showFilter: false
+    };
   },
   computed: {
     ...mapState("transaction", ["transactions", "pagination"]),
@@ -76,9 +85,11 @@ export default {
       this.$router.push({ name: "home", query: this.options });
       this.getTransactions(this.options);
     },
+    applyFilter(value) {
+      this.showFilter = value;
+    },
     updateTransaction() {
       this.getTransactions(this.options);
-      // this.$store.dispatch("transaction/getTransactions");
     },
     moveTo(toPage) {
       this.$router.push({ name: toPage });

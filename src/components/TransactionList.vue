@@ -4,7 +4,7 @@
       Transaction List
     </div>
     <div class="transaction__actions">
-      <div class="btn-green transaction__filter">
+      <div class="btn-green transaction__filter" @click="applyingFilter">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-filter" />
         </svg>
@@ -35,6 +35,11 @@ export default {
   },
   props: {
     transactions: Array
+  },
+  methods: {
+    applyingFilter() {
+      this.$emit("applyFilter", true);
+    }
   }
 };
 </script>
