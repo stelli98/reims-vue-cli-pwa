@@ -21,5 +21,8 @@ export default {
   },
   changePassword: ({}, data) => {
     userApi.changePassword(data);
+  },
+  deleteUser: ({}, id) => {
+    userApi.deleteUser(id);
   }
 };

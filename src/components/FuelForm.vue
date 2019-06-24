@@ -180,6 +180,7 @@ export default {
       if (!this.$v.fuel.$invalid) {
         this.reformatUnitPrice();
         this.saveTransaction(this.fuel);
+        console.log(this.fuel);
         this.$router.push({ name: "home" });
       } else {
         console.log("error");

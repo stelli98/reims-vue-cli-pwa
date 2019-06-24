@@ -185,6 +185,7 @@ export default {
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
         this.saveTransaction(this.parking);
+        console.log(this.parking);
         this.$router.push({ name: "home" });
       } else {
         console.log("error");
