@@ -6,7 +6,7 @@
     <div class="user__card">
       <div class="user__card__center">
         <div class="title--big user__username">
-          {{ user.username }}
+          {{ userName }}
         </div>
         <div class="title--small user__role">
           {{ user.role | textFormatter }}
@@ -26,6 +26,11 @@
 export default {
   props: {
     user: Object
+  },
+  computed: {
+    userName() {
+      return this.$options.filters.trimTextFormatter(this.user.username, 10);
+    }
   }
 };
 </script>

@@ -9,13 +9,14 @@ import Vuelidate from "vuelidate";
 import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
-
+import TrimTextFilter from "./filters/trimText";
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });
 Vue.filter("dateFormatter", DateFilter);
 Vue.filter("priceFormatter", PriceFilter);
 Vue.filter("textFormatter", TextFilter);
+Vue.filter("trimTextFormatter", TrimTextFilter);
 
 Vue.config.productionTip = false;
 new Vue({
