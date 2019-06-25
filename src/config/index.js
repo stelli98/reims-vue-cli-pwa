@@ -6,5 +6,6 @@ module.exports = {
     users: {
       user: "api/admin/users"
     }
-  }
+  },
+  baseUrl: `http://localhost:9095`
 };
