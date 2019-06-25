@@ -21,4 +21,4 @@
 
 <script src="./js/view-fuel-detail.js"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" ></style>

@@ -29,7 +29,7 @@ body {
   font-family: "Nunito Regular", sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  // color: $color-black;
+  color: $color-black;
   height: 100vh;
   position: relative;
   z-index: 1;

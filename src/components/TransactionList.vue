@@ -1,10 +1,13 @@
 <template>
   <div class="transaction">
-    <div class="transaction__heading">
+    <div class="heading transaction__heading">
       Transaction List
     </div>
     <div class="transaction__actions">
-      <div class="btn-green transaction__filter" @click="openFilter">
+      <div
+        class="btn-green transaction__filter"
+        @click="openFilter"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-filter" />
         </svg>
@@ -29,7 +32,7 @@
 
 <script src="./js/transaction-list.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .transaction {
   display: flex;
   flex-direction: column;
@@ -44,16 +47,6 @@
   @include respond(large-phone) {
     width: 50vw;
     margin: 2rem 25vw;
-  }
-  &__heading {
-    display: flex;
-    font-size: 1.5rem;
-    font-family: "Nunito-Bold";
-    margin-bottom: 1rem;
-
-    @include respond(tab) {
-      font-size: 1.8rem;
-    }
   }
 
   &__actions {

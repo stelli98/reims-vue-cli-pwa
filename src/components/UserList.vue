@@ -1,12 +1,16 @@
 <template>
   <div class="user__list">
-    <UserCard v-for="user in users" :key="user.id" :user="user" />
+    <UserCard
+      v-for="user in users"
+      :key="user.id"
+      :user="user"
+    />
   </div>
 </template>
 
 <script src="./js/user-list.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .user {
   &__list {
     display: grid;

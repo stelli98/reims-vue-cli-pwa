@@ -1,7 +1,10 @@
 <template>
   <div class="manage-user">
-    <div class="manage-user__header">
-      <div class="manage-user__close" @click="moveTo">
+    <div class="header manage-user__header">
+      <div
+        class="manage-user__close"
+        @click="moveTo"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
@@ -9,11 +12,14 @@
       <div class="title--menu manage-user__next" />
     </div>
     <div class="manage-user__content">
-      <div class="manage-user__heading">
+      <div class="heading manage-user__heading">
         List of User
       </div>
       <div class="manage-user__action">
-        <div class="manage-user__create" @click="routeTo">
+        <div
+          class="manage-user__create"
+          @click="routeTo"
+        >
           <div class="btn-green">
             <svg class="icon icon-small">
               <use xlink:href="icons.svg#icon-plus" />
@@ -32,25 +38,22 @@
           />
         </div>
       </div>
-      <UserList v-if="users.length" :users="users" />
-      <Pagination :paging="pagination" @changePage="changePage" />
+      <UserList
+        v-if="users.length"
+        :users="users"
+      />
+      <Pagination
+        :paging="pagination"
+        @changePage="changePage"
+      />
     </div>
   </div>
 </template>
 
 <script src="./js/manage-user.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .manage-user {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: $color-green-gradient;
-    height: 5rem;
-    padding: 0 1.5rem;
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -65,17 +68,6 @@
     @include respond(large-phone) {
       width: 50vw;
       margin: 2rem 25vw;
-    }
-  }
-
-  &__heading {
-    display: flex;
-    font-size: 1.5rem;
-    font-family: "Nunito-Bold";
-    margin-bottom: 1rem;
-
-    @include respond(tab) {
-      font-size: 1.8rem;
     }
   }
 
@@ -102,44 +94,5 @@
       width: 100%;
     }
   }
-
-  // &__tab {
-  //   margin-right: 1rem;
-  //   font-size: 1.2rem;
-  // }
-
-  // &__card {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   grid-column: span 1;
-  //   background-color: $color-grey;
-  //   -webkit-transition: all 0.2s linear;
-  //   transition: all 0.2s linear;
-
-  //   @include respond(tab) {
-  //     // margin: 2.5rem 0;
-  //   }
-
-  //   &:hover {
-  //     transform: scale(1.01);
-  //     box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2),
-  //       0 1px 15px 0 rgba(0, 0, 0, 0.19);
-  //   }
-
-  //   &__center {
-  //     flex-grow: 1;
-  //     margin-left: 1rem;
-  //   }
-
-  //   &__right {
-  //     padding: 2rem;
-  //   }
-  // }
-}
-.active {
-  color: $color-green;
-  font-weight: 550;
-  border-bottom: solid 0.15rem $color-green;
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="transaction-detail__header">
-      <div class="transaction-detail__close" @click="moveTo">
+    <div class="header transaction-detail__header">
+      <div
+        class="transaction-detail__close"
+        @click="moveTo"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-back" />
         </svg>
@@ -15,8 +18,14 @@
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <img class="transaction-detail__image" :src="transaction.image" />
-      <Component :is="activeComponent" :transaction="transaction" />
+      <img
+        class="transaction-detail__image"
+        :src="transaction.image"
+      />
+      <Component
+        :is="activeComponent"
+        :transaction="transaction"
+      />
     </div>
   </div>
 </template>
@@ -25,19 +34,6 @@
 
 <style lang="scss">
 .transaction-detail {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: $color-green-gradient;
-    height: 5rem;
-    padding: 0 1.5rem;
-
-    & > div {
-      cursor: pointer;
-    }
-  }
-
   &__image {
     margin: 1.2rem auto;
     display: flex;

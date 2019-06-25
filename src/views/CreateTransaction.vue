@@ -1,7 +1,10 @@
 <template>
   <div class="create-transaction">
-    <div class="create-transaction__header">
-      <div class="create-transaction__close" @click="moveTo">
+    <div class="header create-transaction__header">
+      <div
+        class="create-transaction__close"
+        @click="moveTo"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
@@ -96,19 +99,6 @@
 
 <style lang="scss">
 .create-transaction {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: $color-green-gradient;
-    height: 5rem;
-    padding: 0 1.5rem;
-
-    & > div {
-      cursor: pointer;
-    }
-  }
-
   &__order {
     width: 70vw;
     margin: 1.5rem auto;

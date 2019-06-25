@@ -3,10 +3,16 @@
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
-          <img src="../assets/images/logo.png" class="logo__small" />
+          <img
+            src="../assets/images/logo.png"
+            class="logo__small"
+          />
         </div>
         <div class="home__header__upper__right">
-          <div class="home__header__nav__user" @click="moveTo('user')">
+          <div
+            class="home__header__nav__user"
+            @click="moveTo('user')"
+          >
             Manage User
           </div>
           <div
@@ -22,20 +28,34 @@
       </div>
       <div class="home__header__footer">
         <div class="home__header__footer__container">
-          <div class="home__header__footer__heading">
+          <div class="heading home__header__footer__heading">
             Make Reimbursement Reporting Become Easier
           </div>
           <div class="home__header__footer__button">
-            <input id="file" type="file" name="file" @change="onFileChange" />
-            <label for="file" class="btn-white">
+            <input
+              id="file"
+              type="file"
+              name="file"
+              @change="onFileChange"
+            />
+            <label
+              for="file"
+              class="btn-white"
+            >
               Upload Receipt
             </label>
           </div>
         </div>
       </div>
     </header>
-    <TransactionList :transactions="transactions" @openFilter="toogleFilter" />
-    <Pagination :paging="pagination" @changePage="changePage" />
+    <TransactionList
+      :transactions="transactions"
+      @openFilter="toogleFilter"
+    />
+    <Pagination
+      :paging="pagination"
+      @changePage="changePage"
+    />
     <SortFilter
       v-show="showFilter"
       @closeFilter="toogleFilter"

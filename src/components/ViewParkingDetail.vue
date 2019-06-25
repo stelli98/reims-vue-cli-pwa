@@ -29,4 +29,4 @@
 
 <script src="./js/view-parking-detail.js"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" ></style>

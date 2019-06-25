@@ -13,7 +13,10 @@
         </div>
       </div>
 
-      <div class="user__card__right" @click="removeUser(user.id)">
+      <div
+        class="user__card__right"
+        @click="removeUser(user.id)"
+      >
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-dustbin" />
         </svg>
@@ -24,7 +27,7 @@
 
 <script src="./js/user-card.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .user {
   &__card {
     display: flex;

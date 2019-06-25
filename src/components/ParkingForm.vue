@@ -142,7 +142,7 @@
 
 <script src="./js/parking-form.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .form {
   &__child {
     margin-bottom: 1.5rem;
