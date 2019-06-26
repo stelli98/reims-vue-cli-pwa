@@ -2,16 +2,25 @@ import axios from "axios";
 import config from "@/config";
 
 const api = config.api.users;
-const token =
-  " eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdGVsbGkiLCJyb2xlIjoiVVNFUiIsImV4cGlyZSI6MTU2MTQ3NDIxN30.ehz5hUy7h_886mo2CGue9dcPXQeETa3eAgXYhXXXzbJSOJoNnNceuaK6o-Jgmw2-OzMXd1lqmR7R_qRplXKe5w";
 
-const apiClient = axios.create({
-  baseURL: config.baseURL,
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-});
-process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+// const token =
+//   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdGVsbGkiLCJyb2xlIjoiVVNFUiIsImV4cGlyZSI6MTU2MTUxNTY4NX0.5o15pkpzL_qwMMXCvr-_SJUwl32U6M7tUvQNGInAKe9AM1YNqQqWI8gSf8trtji_mht_uVAsNfT97wJzsdgVjw";
+// const apiClient = axios.create({
+//   baseURL: `http://localhost:9095`,
+//   headers: {
+//     "Access-Control-Allow-Origin": "http://localhost:9095",
+//     "Access-Control-Allow-Methods":
+//       "GET, POST, PUT, PATCH, POST, DELETE, OPTIONS",
+
+//     "Access-Control-Allow-Credentials": "true",
+//     "Access-Control-Allow-Headers": "Content-Type",
+//     Authorization: `Bearer ${token}`
+//   }
+// });
+
+const apiClient = axios;
+
+// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
   getUser(id) {

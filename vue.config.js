@@ -1,5 +1,8 @@
 const path = require("path");
 module.exports = {
+  devServer: {
+    proxy: "http://localhost:9095"
+  },
   css: {
     loaderOptions: {
       sass: {
