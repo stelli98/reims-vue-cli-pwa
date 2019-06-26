@@ -5,19 +5,47 @@
         <img src="../assets/images/logo.png" class="logo__big" />
       </div>
       <p class="login__slogan">Make Reimbursement Reporting Become Easier</p>
-      <form class="login__form" action="./home.html">
-        <div class="login__input">
-          <label for="email" class="title--medium-form">Email</label>
+      <form class="login__form" @submit.prevent="submitLoginForm">
+        <div
+          class="
+        login__input"
+        >
+          <label for="username" class="title--medium-form">Username</label>
           <input
+            v-model="user.username"
             type="text"
-            name="email"
-            id="login__email"
+            name="username"
+            id="login__username"
             autocomplete="off"
+            @blur="$v.user.username.$touch()"
           />
+          <div v-if="$v.user.username.$error">
+            <p v-if="!$v.user.username.required" class="input__error-message">
+              Username must be filled
+            </p>
+          </div>
         </div>
         <div class="login__input">
           <label for="password" class="title--medium-form">Password</label>
-          <input type="password" name="password" id="login__password" />
+          <input
+            type="password"
+            v-model="user.password"
+            name="password"
+            id="login__password"
+            @blur="$v.user.password.$touch()"
+          />
+
+          <div v-if="$v.user.password.$error">
+            <p v-if="!$v.user.password.required" class="input__error-message">
+              Password must be filled
+            </p>
+          </div>
+
+          <div v-if="$v.user.password.$error">
+            <p v-if="!$v.user.password.minLength" class="input__error-message">
+              Password must have at least 6 characters
+            </p>
+          </div>
         </div>
         <div class="login__button">
           <input type="submit" class="btn-white" value="Login" />
@@ -26,6 +54,8 @@
     </div>
   </div>
 </template>
+
+<script src="./js/login-page.js"></script>
 
 <style lang="scss">
 .login {
@@ -94,7 +124,7 @@
   height: 6.5rem;
 }
 
-#login__email,
+#login__username,
 #login__password {
   border: none;
   background: transparent;
@@ -104,7 +134,7 @@
   font-size: 105%;
 }
 
-#login__email:focus,
+#login__username:focus,
 #login__password:focus {
   outline: none;
 }

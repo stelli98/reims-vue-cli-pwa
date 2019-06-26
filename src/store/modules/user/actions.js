@@ -1,6 +1,9 @@
 import userApi from "@/api/user";
 
 export default {
+  login: ({}, data) => {
+    userApi.login(data);
+  },
   createUser: ({ commit }, data) => {
     userApi.createUser(data);
   },

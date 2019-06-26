@@ -4,7 +4,8 @@ module.exports = {
       transaction: "/api/transactions"
     },
     users: {
-      user: "api/admin/users"
+      user: "api/admin/users",
+      login: "api/login"
     }
   },
   baseUrl: `http://localhost:9095`
