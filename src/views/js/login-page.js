@@ -16,7 +16,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("user", ["login"]),
+    ...mapActions("auth", ["login"]),
     submitLoginForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
