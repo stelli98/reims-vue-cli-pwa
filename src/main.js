@@ -22,5 +22,8 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  data: {
+    onLine: navigator.onLine 
+  },
   render: h => h(App)
 }).$mount("#app");
