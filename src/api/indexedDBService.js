@@ -3,7 +3,7 @@ const dbPromise = () => {
   if (!("indexedDB" in window)) {
     throw new Error("Browser does not support IndexedDB");
   }
-  return openDb("VueTodoDB", 1, upgradeDb => {
+  return window.indexedDB.open("ReimsDB", 1, upgradeDb => {
     if (!upgradeDb.objectStoreNames.contains("todos")) {
       upgradeDb.createObjectStore("todos");
     }

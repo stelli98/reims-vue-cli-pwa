@@ -1,4 +1,6 @@
 import { mapActions } from "vuex";
+import idbs from '@/api/indexedDBService';
+
 export default {
   name: "App",
   props: {
@@ -20,6 +22,7 @@ export default {
     }
   },
   created() {
+    this.save();
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
@@ -78,6 +81,14 @@ export default {
     },
     uploadImageOCR(resultImage) {
       this.createTransaction(resultImage);
+    },
+    save(){
+      try {
+      idbs.saveToStorage('images','HAII')
+      }
+      catch(e){
+        console.log(e)
+      }
     }
   }
 };
