@@ -1,14 +1,13 @@
-import { openDb } from "idb";
 const dbPromise = () => {
   if (!("indexedDB" in window)) {
     throw new Error("Browser does not support IndexedDB");
   }
   return window.indexedDB.open("ReimsDB", 1, upgradeDb => {
-    if (!upgradeDb.objectStoreNames.contains("todos")) {
-      upgradeDb.createObjectStore("todos");
+    if (!upgradeDb.objectStoreNames.contains("images")) {
+      upgradeDb.createObjectStore("images");
     }
-    if (!upgradeDb.objectStoreNames.contains("completed")) {
-      upgradeDb.createObjectStore("completed");
+    if (!upgradeDb.objectStoreNames.contains("transactions")) {
+      upgradeDb.createObjectStore("transactions");
     }
   });
 };
