@@ -1,5 +1,5 @@
 import { mapActions } from "vuex";
-import idbs from '@/api/indexedDBService';
+import { detectOnlineMixin } from "@/mixins/detectOnlineMixin";
 
 export default {
   name: "App",
@@ -9,6 +9,7 @@ export default {
       required: true
     }
   },
+  mixins: [detectOnlineMixin],
   data() {
     return {
       filterFunctions: null,
@@ -22,14 +23,13 @@ export default {
     }
   },
   created() {
-    this.save();
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction"]),
+    ...mapActions("transaction", ["createTransaction", "setImageOffline"]),
     makeFilter(filterSet) {
       if (!filterSet) {
         filterSet = this.filterFunctions;
@@ -80,15 +80,8 @@ export default {
       return resultImage;
     },
     uploadImageOCR(resultImage) {
+      this.isOnline ? this.setImageOffline(resultImage) : "";
       this.createTransaction(resultImage);
-    },
-    save(){
-      try {
-      idbs.saveToStorage('images','HAII')
-      }
-      catch(e){
-        console.log(e)
-      }
     }
   }
 };

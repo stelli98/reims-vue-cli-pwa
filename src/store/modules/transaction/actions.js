@@ -1,8 +1,14 @@
 import transactionApi from "@/api/transaction";
+import idbs from "@/api/indexedDBService";
 
 export default {
   setImage({ commit }, img) {
     commit("SET_IMAGE", img);
+  },
+  setImageOffline({ commit, dispatch }, img) {
+    console.log(img);
+    commit("SET_IMAGE_OFFLINE", img);
+    dispatch("storeToIndexedDB", "offlineImages");
   },
   setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
@@ -21,10 +27,21 @@ export default {
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },
-  saveTransaction: ({ commit }, transaction) => {
+  saveTransaction: ({}, transaction) => {
     transactionApi.saveTransaction(transaction);
   },
-  deleteTransaction: ({ commit }, id) => {
+  deleteTransaction: ({}, id) => {
     transactionApi.deleteTransaction(id);
+  },
+  async storeToIndexedDB({ state }, storeName) {
+    try {
+      await Promise.all(
+        state[storeName].map(item => {
+          idbs.saveToStorage(storeName, item);
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
 };

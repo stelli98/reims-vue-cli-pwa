@@ -237,8 +237,7 @@ export default [
       category: "FUEL",
       title: "Bensin PP untuk TownHall",
       date: "2018-05-12T17:19:06.151Z",
-      image:
-        "https://i.ibb.co/CH1BZGh/0-214a0b28-8817-4f97-9f18-8933fb3a4b92-700-1045.jpg",
+      image: "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=372",
       unitPrice: 90000,
       volume: 23.5,
       type: "Premium",
