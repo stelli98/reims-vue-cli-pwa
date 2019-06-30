@@ -16,22 +16,22 @@ const dbPromise = () => {
   });
 };
 
-const checkStorage = async () => {
+const getAllData = async storeName => {
   try {
     const db = await dbPromise();
-    const tx = db.transaction("offlineImages", "readonly");
-    const store = tx.objectStore("offlineImages");
+    const tx = db.transaction(storeName, "readonly");
+    const store = tx.objectStore(storeName);
     return store.getAll();
   } catch (error) {
     return error;
   }
 };
 
-const saveToStorage = async (storeName, data) => {
+const saveData = async (storeName, data) => {
   try {
     const db = await dbPromise();
-    const tx = db.transaction("offlineImages", "readwrite");
-    const store = tx.objectStore("offlineImages");
+    const tx = db.transaction(storeName, "readwrite");
+    const store = tx.objectStore(storeName);
     store.put(data);
     return tx.complete;
   } catch (error) {
@@ -41,6 +41,6 @@ const saveToStorage = async (storeName, data) => {
 
 export default {
   dbPromise,
-  checkStorage,
-  saveToStorage
+  getAllData,
+  saveData
 };

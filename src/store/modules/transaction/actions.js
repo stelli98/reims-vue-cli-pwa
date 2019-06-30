@@ -5,10 +5,6 @@ export default {
   setImage({ commit }, img) {
     commit("SET_IMAGE", img);
   },
-  setImageOffline({ commit, dispatch }, img) {
-    commit("SET_IMAGE_OFFLINE", img);
-    dispatch("storeToIndexedDB");
-  },
   setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
@@ -31,20 +27,5 @@ export default {
   },
   deleteTransaction: ({}, id) => {
     transactionApi.deleteTransaction(id);
-  },
-  async storeToIndexedDB({ state }) {
-    try {
-      const data = {
-        id: Date.now(),
-        image: state.offlineImages
-      };
-      idbs.saveToStorage("images", data);
-    } catch (e) {
-      console.log(e);
-    }
-  },
-  async getAllData() {
-    const data = await idbs.checkStorage();
-    console.log(data);
   }
 };
