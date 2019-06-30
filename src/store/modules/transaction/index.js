@@ -25,8 +25,8 @@ const state = {
   transactions: [],
   transaction: {},
   pagination: {},
-  offlineImages: [],
-  offlineForms: []
+  offlineImages: {},
+  offlineForms: {}
 };
 
 export default { state, actions, mutations, getters, namespaced };

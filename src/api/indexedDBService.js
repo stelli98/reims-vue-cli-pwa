@@ -7,22 +7,21 @@ const dbPromise = () => {
 
   return openDb("ReimsDB", 1, upgradeDb => {
     if (!upgradeDb.objectStoreNames.contains("offlineImages")) {
-      upgradeDb.createObjectStore("offlineImages");
+      upgradeDb.createObjectStore("offlineImages", { keyPath: "id" });
     }
 
     if (!upgradeDb.objectStoreNames.contains("offlineForms")) {
-      upgradeDb.createObjectStore("offlineForms");
+      upgradeDb.createObjectStore("offlineForms", { keyPath: "id" });
     }
   });
 };
 
-const checkStorage = async storeName => {
+const checkStorage = async () => {
   try {
     const db = await dbPromise();
-    const tx = db.transaction(storeName, "readonly");
-    const store = tx.objectStore(storeName);
-
-    return store.get(storeName);
+    const tx = db.transaction("offlineImages", "readonly");
+    const store = tx.objectStore("offlineImages");
+    return store.getAll();
   } catch (error) {
     return error;
   }
@@ -31,9 +30,9 @@ const checkStorage = async storeName => {
 const saveToStorage = async (storeName, data) => {
   try {
     const db = await dbPromise();
-    const tx = db.transaction(storeName, "readwrite");
-    const store = tx.objectStore(storeName);
-    store.put(data, storeName);
+    const tx = db.transaction("offlineImages", "readwrite");
+    const store = tx.objectStore("offlineImages");
+    store.put(data);
     return tx.complete;
   } catch (error) {
     return error;

@@ -29,7 +29,11 @@ export default {
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction", "setImageOffline"]),
+    ...mapActions("transaction", [
+      "createTransaction",
+      "setImageOffline",
+      "getAllData"
+    ]),
     makeFilter(filterSet) {
       if (!filterSet) {
         filterSet = this.filterFunctions;
@@ -81,6 +85,7 @@ export default {
     },
     uploadImageOCR(resultImage) {
       this.isOnline ? this.setImageOffline(resultImage) : "";
+      this.getAllData();
       this.createTransaction(resultImage);
     }
   }

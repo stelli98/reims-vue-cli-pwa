@@ -6,9 +6,8 @@ export default {
     commit("SET_IMAGE", img);
   },
   setImageOffline({ commit, dispatch }, img) {
-    console.log(img);
     commit("SET_IMAGE_OFFLINE", img);
-    dispatch("storeToIndexedDB", "offlineImages");
+    dispatch("storeToIndexedDB");
   },
   setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
@@ -33,15 +32,19 @@ export default {
   deleteTransaction: ({}, id) => {
     transactionApi.deleteTransaction(id);
   },
-  async storeToIndexedDB({ state }, storeName) {
+  async storeToIndexedDB({ state }) {
     try {
-      await Promise.all(
-        state[storeName].map(item => {
-          idbs.saveToStorage(storeName, item);
-        })
-      );
+      const data = {
+        id: Date.now(),
+        image: state.offlineImages
+      };
+      idbs.saveToStorage("images", data);
     } catch (e) {
       console.log(e);
     }
+  },
+  async getAllData() {
+    const data = await idbs.checkStorage();
+    console.log(data);
   }
 };

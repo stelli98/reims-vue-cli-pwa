@@ -18,6 +18,6 @@ export default {
     state.pagination = paging;
   },
   SET_IMAGE_OFFLINE(state, image) {
-    state.offlineImages.push(image);
+    state.offlineImages = image;
   }
 };
