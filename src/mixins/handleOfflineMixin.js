@@ -1,8 +1,10 @@
 import idbs from "@/api/indexedDBService";
-export const handleOfflineMixin = {
+export default {
   computed: {
     isOnline() {
-      return this.$root.$data.onLine;
+      // eslint-disable-next-line
+      console.log(navigator.onLine)
+      return navigator.onLine;
     }
   },
   methods: {
@@ -14,13 +16,18 @@ export const handleOfflineMixin = {
         };
         idbs.saveData(storeName, data);
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     },
     async getAllDataFromIndexedDB(storeName) {
       const data = await idbs.getAllData(storeName);
-      console.log(data);
+      alert(data);
     }
   },
-  created() {}
+  watch: {
+    isOnline() {
+      // eslint-disable-next-line
+      console.log("TEST");
+    }
+  }
 };

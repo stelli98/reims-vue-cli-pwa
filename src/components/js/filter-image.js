@@ -1,5 +1,4 @@
 import { mapActions } from "vuex";
-import { handleOfflineMixin } from "@/mixins/handleOfflineMixin";
 
 export default {
   name: "App",
@@ -9,7 +8,6 @@ export default {
       required: true
     }
   },
-  mixins: [handleOfflineMixin],
   data() {
     return {
       filterFunctions: null,
@@ -84,8 +82,8 @@ export default {
       return resultImage;
     },
     uploadImageOCR(resultImage) {
-      this.isOnline ? this.storeToIndexedDB("offlineImages", resultImage) : "";
-      this.getAllDataFromIndexedDB("offlineImages");
+      // this.isOnline ? this.storeToIndexedDB("offlineImages", resultImage) : "";
+      // this.getAllDataFromIndexedDB("offlineImages");
       this.createTransaction(resultImage);
     }
   }

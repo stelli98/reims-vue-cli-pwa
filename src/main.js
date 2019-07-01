@@ -10,6 +10,7 @@ import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
 import TrimTextFilter from "./filters/trimText";
+import handleOfflineMixin from "./mixins/handleOfflineMixin";
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });
@@ -22,8 +23,16 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  data: {
-    onLine: navigator.onLine 
-  },
+  mixins: [handleOfflineMixin],
   render: h => h(App)
 }).$mount("#app");
+
+// window.addEventListener("online", function() {
+//   alert("App become online");
+//   vm.onLine = true;
+// });
+
+// window.addEventListener("online", function() {
+//   alert("App become offline ");
+//   vm.onLine = false;
+// });

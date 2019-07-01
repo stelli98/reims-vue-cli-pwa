@@ -8,7 +8,6 @@
         :style="filters"
       />
     </div>
-
     <div class="filter-image__option">
       <div>
         <label class="filter-image__label">
