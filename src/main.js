@@ -18,21 +18,11 @@ Vue.filter("dateFormatter", DateFilter);
 Vue.filter("priceFormatter", PriceFilter);
 Vue.filter("textFormatter", TextFilter);
 Vue.filter("trimTextFormatter", TrimTextFilter);
+Vue.mixin(handleOfflineMixin);
 
 Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  mixins: [handleOfflineMixin],
   render: h => h(App)
 }).$mount("#app");
-
-// window.addEventListener("online", function() {
-//   alert("App become online");
-//   vm.onLine = true;
-// });
-
-// window.addEventListener("online", function() {
-//   alert("App become offline ");
-//   vm.onLine = false;
-// });

@@ -2,8 +2,6 @@ import idbs from "@/api/indexedDBService";
 export default {
   computed: {
     isOnline() {
-      // eslint-disable-next-line
-      console.log(navigator.onLine)
       return navigator.onLine;
     }
   },
@@ -22,12 +20,14 @@ export default {
     async getAllDataFromIndexedDB(storeName) {
       const data = await idbs.getAllData(storeName);
       alert(data);
+    },
+    checkConnectivityStatus() {
+      setInterval(() => {
+        //checkIDB
+      }, 10000);
     }
   },
-  watch: {
-    isOnline() {
-      // eslint-disable-next-line
-      console.log("TEST");
-    }
+  created() {
+    // this.checkConnectivityStatus();
   }
 };
