@@ -82,8 +82,12 @@ export default {
       return resultImage;
     },
     uploadImageOCR(resultImage) {
+      this.deleteAllDataFromIndexedDB("offlineImages");
       // this.isOnline ? this.storeToIndexedDB("offlineImages", resultImage) : "";
       // this.getAllDataFromIndexedDB("offlineImages");
+      // this.getLastIndexIDFromIndexedDB("offlineImages");
+      // const key = await this.getLastIndexIDFromIndexedDB("offlineImages");
+      // this.deleteDataByKeyFromIndexedDB("offlineImages", key);
       this.createTransaction(resultImage);
     }
   }

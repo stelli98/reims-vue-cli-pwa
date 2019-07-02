@@ -18,8 +18,16 @@ export default {
       }
     },
     async getAllDataFromIndexedDB(storeName) {
-      const data = await idbs.getAllData(storeName);
-      alert(data);
+      return await idbs.getAllData(storeName);
+    },
+    async getLastIndexIDFromIndexedDB(storeName) {
+      return await idbs.getLastIndexData(storeName);
+    },
+    async deleteDataByKeyFromIndexedDB(storeName, key) {
+      await idbs.deleteDataByKey(storeName, key);
+    },
+    async deleteAllDataFromIndexedDB(storeName) {
+      await idbs.deleteAllData(storeName);
     },
     checkConnectivityStatus() {
       setInterval(() => {
