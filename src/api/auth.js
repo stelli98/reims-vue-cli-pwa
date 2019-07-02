@@ -9,7 +9,7 @@ const apiClient = axios;
 
 export default {
   login(data) {
-    const path = api.user.login;
+    const path = api.login;
     return apiClient.post(path, data);
   }
 };

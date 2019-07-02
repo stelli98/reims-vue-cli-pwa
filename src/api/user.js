@@ -23,10 +23,6 @@ const apiClient = axios;
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  login(data) {
-    const path = api.user.login;
-    return apiClient.post(path, data);
-  },
   getUser(id) {
     const path = api.user;
     return apiClient.get(`${path}/${id}`);
