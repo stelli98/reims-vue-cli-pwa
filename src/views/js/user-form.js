@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      roles: ["ADMIN", "MEMBER"]
+      roles: ["ADMIN", "USER"]
     };
   },
   computed: {

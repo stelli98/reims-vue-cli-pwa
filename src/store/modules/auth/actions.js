@@ -5,6 +5,6 @@ export default {
     const data = await authApi.login(user);
     commit("SET_TOKEN", data.headers.authorization);
     commit("SET_ACTIVE_USER", data.data);
-    document.cookie = `token=${data.headers.authorization}`;
+    document.cookie = data.headers.authorization;
   }
 };

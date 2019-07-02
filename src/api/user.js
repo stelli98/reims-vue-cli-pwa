@@ -5,20 +5,13 @@ const api = config.api.users;
 
 // const token =
 //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdGVsbGkiLCJyb2xlIjoiVVNFUiIsImV4cGlyZSI6MTU2MTUxNTY4NX0.5o15pkpzL_qwMMXCvr-_SJUwl32U6M7tUvQNGInAKe9AM1YNqQqWI8gSf8trtji_mht_uVAsNfT97wJzsdgVjw";
-// const apiClient = axios.create({
-//   baseURL: `http://localhost:9095`,
-//   headers: {
-//     "Access-Control-Allow-Origin": "http://localhost:9095",
-//     "Access-Control-Allow-Methods":
-//       "GET, POST, PUT, PATCH, POST, DELETE, OPTIONS",
+const apiClient = axios.create({
+  headers: {
+    Authorization: document.cookie
+  }
+});
 
-//     "Access-Control-Allow-Credentials": "true",
-//     "Access-Control-Allow-Headers": "Content-Type",
-//     Authorization: `Bearer ${token}`
-//   }
-// });
-
-const apiClient = axios;
+// const apiClient = axios;
 
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
