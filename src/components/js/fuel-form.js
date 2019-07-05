@@ -60,6 +60,7 @@ export default {
       } else {
         console.log("error");
       }
+      console.log(this.fuel);
     },
     formatUnitPrice() {
       this.$v.fuel.unitPrice.$touch();

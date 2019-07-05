@@ -4,9 +4,7 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script src="./mixins/handleOfflineMixin.js"></script>
 
 <style lang="scss">
 * {

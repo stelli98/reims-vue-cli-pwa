@@ -1,5 +1,4 @@
 import transactionApi from "@/api/transaction";
-import idbs from "@/api/indexedDBService";
 
 export default {
   setImage({ commit }, img) {

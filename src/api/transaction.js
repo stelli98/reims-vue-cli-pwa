@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "@/config";
+import offlineService from "@/api/transaction-offline";
 
 const api = config.api.transactions;
 
@@ -15,16 +16,31 @@ export default {
     return axios.get(path, { params: options });
   },
   createTransaction(data) {
-    const path = api.transaction;
-    return axios.post(path, data);
+    if (this.isOnline()) {
+      const path = api.transaction;
+      return axios.post(path, data).catch(() => {
+        return offlineService.storeImageOffline(data);
+      });
+    } else {
+      return offlineService.storeImageOffline(data);
+    }
   },
   saveTransaction(data) {
-    const path = api.transaction;
-    return axios.put(path, data);
+    if (this.isOnline()) {
+      const path = api.transaction;
+      return axios.put(path, data).catch(() => {
+        offlineService.storeFormOffline(data);
+      });
+    } else {
+      offlineService.storeFormOffline(data);
+    }
   },
   deleteTransaction(id) {
     const path = api.transaction;
     console.log("delete id :" + id);
     return axios.delete(`${path}/${id}`);
+  },
+  isOnline() {
+    return navigator.onLine;
   }
 };

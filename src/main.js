@@ -10,7 +10,6 @@ import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
 import TrimTextFilter from "./filters/trimText";
-import handleOfflineMixin from "./mixins/handleOfflineMixin";
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });
@@ -18,7 +17,6 @@ Vue.filter("dateFormatter", DateFilter);
 Vue.filter("priceFormatter", PriceFilter);
 Vue.filter("textFormatter", TextFilter);
 Vue.filter("trimTextFormatter", TrimTextFilter);
-Vue.mixin(handleOfflineMixin);
 
 Vue.config.productionTip = false;
 new Vue({
@@ -26,3 +24,10 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
+
+window.addEventListener("online", function(e) {
+  store.dispatch("offline/setConnected", true);
+});
+window.addEventListener("offline", function(e) {
+  store.dispatch("offline/setConnected", false);
+});

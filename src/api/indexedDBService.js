@@ -1,4 +1,4 @@
-import { openDb, deleteDb } from "idb";
+import { openDb } from "idb";
 
 const dbPromise = () => {
   if (!("indexedDB" in window)) {
@@ -56,6 +56,17 @@ const getAllKeys = async storeName => {
   }
 };
 
+const findDatabyKey = async (storeName, key) => {
+  try {
+    const db = await dbPromise();
+    const tx = db.transaction(storeName, "readonly");
+    const store = tx.objectStore(storeName);
+    return store.get(key);
+  } catch (error) {
+    console.log("File Not Found");
+  }
+};
+
 const getTotalData = async storeName => {
   try {
     const db = await dbPromise();
@@ -84,6 +95,7 @@ const deleteDataByKey = async (storeName, key) => {
     const db = await dbPromise();
     const tx = db.transaction(storeName, "readwrite");
     const store = tx.objectStore(storeName);
+    console.log("delete idb storename " + storeName + " with key " + key);
     await store.delete(key);
     return tx.complete;
   } catch (error) {
@@ -92,6 +104,7 @@ const deleteDataByKey = async (storeName, key) => {
 };
 
 export default {
+  findDatabyKey,
   getAllData,
   saveData,
   getLastIndexData,
