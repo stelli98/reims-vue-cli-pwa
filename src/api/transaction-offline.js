@@ -55,6 +55,12 @@ export default {
   async deleteDataByKeyFromIndexedDB(storeName, key) {
     await idbs.deleteDataByKey(storeName, key);
   },
+  async deleteLastDataFromIndexedDB(storeName) {
+    await this.deleteDataByKeyFromIndexedDB(
+      storeName,
+      this.getLastIndexIDFromIndexedDB(storeName)
+    );
+  },
   async deleteAllDataFromIndexedDB(storeName) {
     await idbs.deleteAllData(storeName);
   },

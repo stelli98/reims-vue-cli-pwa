@@ -1,6 +1,7 @@
 import CropImage from "@/components/CropImage.vue";
 import FilterImage from "@/components/FilterImage.vue";
 import TransactionForm from "@/components/TransactionForm.vue";
+import offlineService from "@/api/transaction-offline";
 import { mapActions } from "vuex";
 export default {
   components: {
@@ -71,6 +72,7 @@ export default {
       }
     },
     fromStepThree() {
+      this.deleteDataFromIDB();
       this.$router.push({ name: "create", params: { step: 2 } });
     },
     toStepThree() {
@@ -90,7 +92,25 @@ export default {
       return this.activeTab == clickedTab;
     },
     moveTo() {
+      this.deleteDataFromIDB();
       this.$router.push({ name: "home" });
+    },
+    deleteDataFromIDB() {
+      try {
+        offlineService.deleteLastDataFromIndexedDB("offlineImages");
+      } catch (e) {
+        return e;
+      }
+    }
+  },
+  watch: {
+    $route() {
+      if (
+        !this.$route.path.contains("/transaction/create/") &&
+        this.activeTab == 3
+      ) {
+        this.deleteDataFromIDB();
+      }
     }
   }
 };
