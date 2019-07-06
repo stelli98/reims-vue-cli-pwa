@@ -1,25 +1,17 @@
 <template>
   <div class="manage-user">
     <div class="header manage-user__header">
-      <div
-        class="manage-user__close"
-        @click="moveTo"
-      >
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-cancel" />
-        </svg>
+      <div class="title--menu manage-user__title"></div>
+      <div class="title--menu manage-user__title" @click="doLogout">
+        Logout
       </div>
-      <div class="title--menu manage-user__next" />
     </div>
     <div class="manage-user__content">
       <div class="heading manage-user__heading">
         List of User
       </div>
       <div class="manage-user__action">
-        <div
-          class="manage-user__create"
-          @click="routeTo"
-        >
+        <div class="manage-user__create" @click="routeTo">
           <div class="btn-green">
             <svg class="icon icon-small">
               <use xlink:href="icons.svg#icon-plus" />
@@ -38,21 +30,15 @@
           />
         </div>
       </div>
-      <UserList
-        v-if="users.length"
-        :users="users"
-      />
-      <Pagination
-        :paging="pagination"
-        @changePage="changePage"
-      />
+      <UserList v-if="users.length" :users="users" />
+      <Pagination :paging="pagination" @changePage="changePage" />
     </div>
   </div>
 </template>
 
 <script src="./js/manage-user.js"></script>
 
-<style lang="scss" >
+<style lang="scss">
 .manage-user {
   &__content {
     display: flex;

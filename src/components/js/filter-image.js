@@ -77,7 +77,10 @@ export default {
       return resultImage;
     },
     uploadImageOCR(resultImage) {
-      this.createTransaction(resultImage);
+      const image = {
+        image: resultImage
+      };
+      this.createTransaction(image);
     }
   }
 };

@@ -3,6 +3,6 @@ export default {
     state.token = token;
   },
   SET_ACTIVE_USER(state, { data }) {
-    state.user = data;
+    Object.assign(state.authUser, data);
   }
 };

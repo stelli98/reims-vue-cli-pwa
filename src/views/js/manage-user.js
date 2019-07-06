@@ -24,8 +24,9 @@ export default {
   },
   methods: {
     ...mapActions("user", ["getUsers"]),
+    ...mapActions("auth", ["logout"]),
     moveTo() {
-      this.$router.go(-1);
+      this.$router.push({ name: "home" });
     },
     changeTab() {
       this.isActiveTab = !this.isActiveTab;
@@ -45,6 +46,11 @@ export default {
       this.options.search = event.target.value;
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
+    },
+    doLogout() {
+      this.logout().then(() => {
+        this.$router.push({ name: "login" });
+      });
     }
   },
   watch: {

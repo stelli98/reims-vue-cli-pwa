@@ -15,6 +15,9 @@ export default {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
       this.deleteTransaction(id);
+    }, 
+    moveTo(transactionId){
+      this.$router.push({name:'transaction-detail', params:{id:transactionId}})
     }
   }
 };

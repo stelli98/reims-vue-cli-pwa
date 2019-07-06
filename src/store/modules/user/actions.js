@@ -17,7 +17,9 @@ export default {
     commit("SET_PAGINATION", data);
   },
   updateUser: ({}, data) => {
-    userApi.updateUser(data.id, data);
+    console.log(data);
+    const { response } = userApi.updateUser(data.id, data);
+    console.log(response);
   },
   changePassword: ({}, data) => {
     userApi.changePassword(data);

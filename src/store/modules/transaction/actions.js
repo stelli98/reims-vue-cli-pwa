@@ -9,6 +9,7 @@ export default {
   },
   createTransaction: async ({ commit }, image) => {
     const { data } = await transactionApi.createTransaction(image);
+    console.log(data);
     commit("SET_OCR_RESULT", data);
     commit("SET_OCR_RESULT_TYPE", data.data.category);
   },

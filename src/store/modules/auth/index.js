@@ -4,9 +4,8 @@ import getters from "./getters";
 
 const namespaced = true;
 const state = {
-  user: {
+  authUser: {
     id: "",
-    username: "",
     role: ""
   },
   token: document.cookie

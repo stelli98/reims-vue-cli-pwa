@@ -34,7 +34,6 @@ export default {
   },
   deleteUser(id) {
     const path = api.user;
-    console.log("deleted user id : ", id);
     return apiClient.delete(`${path}/${id}`);
   }
 };

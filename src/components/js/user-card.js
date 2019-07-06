@@ -12,6 +12,12 @@ export default {
     ...mapActions("user", ["deleteUser"]),
     removeUser(id) {
       this.deleteUser(id);
+    },
+    moveTo(userId) {
+      this.$router.push({
+        name: "user-edit",
+        params: { id: userId }
+      });
     }
   }
 };

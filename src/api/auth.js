@@ -3,13 +3,19 @@ import config from "@/config";
 
 const api = config.api.auth;
 
-const apiClient = axios;
-
-// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+const apiClient = axios.create({
+  headers: {
+    Authorization: document.cookie
+  }
+});
 
 export default {
   login(data) {
     const path = api.login;
-    return apiClient.post(path, data);
+    return axios.post(path, data);
+  },
+  logout() {
+    const path = api.logout;
+    return apiClient.get(path);
   }
 };

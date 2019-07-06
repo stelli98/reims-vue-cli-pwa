@@ -1,9 +1,6 @@
 <template>
-  <router-link
-    class="link"
-    :to="{ name: 'transaction-detail', params: { id: transaction.id } }"
-  >
-    <div class="transaction__card">
+  <div class="transaction__card">
+    <div @click="moveTo(transaction.id)">
       <div class="transaction__card__left">
         <svg class="icon icon-big">
           <use
@@ -22,17 +19,17 @@
           {{ transaction.price | priceFormatter }}
         </div>
       </div>
-
-      <div
-        class="transaction__card__right"
-        @click="removeTransaction(transaction.id)"
-      >
-        <svg class="icon icon-medium-green">
-          <use xlink:href="icons.svg#icon-dustbin" />
-        </svg>
-      </div>
     </div>
-  </router-link>
+
+    <div
+      class="transaction__card__right"
+      @click="removeTransaction(transaction.id)"
+    >
+      <svg class="icon icon-medium-green" id="delete">
+        <use xlink:href="icons.svg#icon-dustbin" />
+      </svg>
+    </div>
+  </div>
 </template>
 
 <script src="./js/transaction-card.js"></script>
@@ -50,12 +47,6 @@
   @include respond(tab) {
     margin: 2.5rem 0;
   }
-
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2),
-      0 1px 15px 0 rgba(0, 0, 0, 0.19);
-  }
 }
 
 .transaction__card__left {
@@ -69,6 +60,11 @@
 
 .transaction__card__right {
   padding: 2rem;
+  &:hover {
+    #delete {
+      fill: $color-red;
+    }
+  }
 }
 
 .link {

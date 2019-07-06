@@ -23,12 +23,13 @@ export default {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: "created_at"
+        sortBy: "createdAt"
       };
     }
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
+    ...mapActions("auth", ["logout"]),
     onFileChange(e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
@@ -56,6 +57,11 @@ export default {
       this.options.page = 1;
       const allOptions = { ...this.options, ...options };
       this.updateTransaction(allOptions);
+    },
+    doLogout() {
+      this.logout().then(() => {
+        this.$router.push({ name: "login" });
+      });
     }
   },
   watch: {

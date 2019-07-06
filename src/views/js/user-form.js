@@ -29,7 +29,7 @@ export default {
   methods: {
     ...mapActions("user", ["updateUser", "createUser", "getUser", "emptyUser"]),
     moveTo() {
-      this.$router.go(-1);
+      this.$router.push({ name: "user" });
     },
     submitForm() {
       this.$v.user.$touch();
