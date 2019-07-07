@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script src="./mixins/handleOfflineMixin.js"></script>
+<script src="./lib/syncTransactions.js"></script>
 
 <style lang="scss">
 * {

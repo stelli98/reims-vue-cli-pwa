@@ -24,10 +24,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
-
-window.addEventListener("online", function(e) {
-  store.dispatch("offline/setConnected", true);
-});
-window.addEventListener("offline", function(e) {
-  store.dispatch("offline/setConnected", false);
-});

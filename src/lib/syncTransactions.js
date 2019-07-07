@@ -34,6 +34,7 @@ const transactionSync = {
     async sendOnlyFormToServer(forms) {
       forms.map(data => {
         transactionApi.saveTransaction(data).then(() => {
+          offlineService.deleteDataByKeyFromIndexedDB("offlineForms", data.id);
           this.isSending = false;
         });
       });
