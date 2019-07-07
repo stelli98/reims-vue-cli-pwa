@@ -4,6 +4,7 @@ import config from "@/config";
 const api = config.api.auth;
 
 const apiClient = axios.create({
+  // baseURL: "http://localhost:9095",
   headers: {
     Authorization: document.cookie
   }
