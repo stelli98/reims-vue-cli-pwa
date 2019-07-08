@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1562601155850" clover="3.2.0">
+  <project timestamp="1562601155851" name="All files">
+    <metrics statements="383" coveredstatements="24" conditionals="78" coveredconditionals="3" methods="25" coveredmethods="3" elements="486" coveredelements="30" complexity="0" loc="383" ncloc="383" packages="10" files="41" classes="41">
+      <package name="src">
+        <metrics statements="46" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="main.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\main.js">
+          <metrics statements="21" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+        </file>
+        <file name="registerServiceWorker.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\registerServiceWorker.js">
+          <metrics statements="10" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+        </file>
+        <file name="router.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\router.js">
+          <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+        </file>
+        <file name="service-worker.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\service-worker.js">
+          <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="13" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.api">
+        <metrics statements="54" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <file name="indexedDBService.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\api\indexedDBService.js">
+          <metrics statements="24" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+        </file>
+        <file name="transaction.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\api\transaction.js">
+          <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+        <file name="user.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\api\user.js">
+          <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.api-mock">
+        <metrics statements="10" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="index.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\api-mock\index.js">
+          <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+        </file>
+        <file name="mock-data.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\api-mock\mock-data.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="5" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components.js">
+        <metrics statements="115" coveredstatements="3" conditionals="22" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="crop-image.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\crop-image.js">
+          <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+        </file>
+        <file name="filter-image.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\filter-image.js">
+          <metrics statements="31" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="80" count="0" type="stmt"/>
+        </file>
+        <file name="fuel-form.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\fuel-form.js">
+          <metrics statements="26" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+        </file>
+        <file name="pagination.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\pagination.js">
+          <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+        </file>
+        <file name="parking-form.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\parking-form.js">
+          <metrics statements="18" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+        </file>
+        <file name="sort-filter.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\sort-filter.js">
+          <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+        </file>
+        <file name="transaction-card.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\transaction-card.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+        </file>
+        <file name="transaction-form.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\transaction-form.js">
+          <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+        </file>
+        <file name="transaction-list.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\transaction-list.js">
+          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+        </file>
+        <file name="user-card.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\user-card.js">
+          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+        </file>
+        <file name="user-list.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\user-list.js">
+          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+        </file>
+        <file name="view-fuel-detail.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\components\js\view-fuel-detail.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="7" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.config">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\config\index.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="5" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.filters">
+        <metrics statements="6" coveredstatements="3" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <file name="date.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\filters\date.js">
+          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+        </file>
+        <file name="price.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\filters\price.js">
+          <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="0" type="stmt"/>
+        </file>
+        <file name="text.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\filters\text.js">
+          <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+          <line num="2" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="2" type="stmt"/>
+        </file>
+        <file name="trimText.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\filters\trimText.js">
+          <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="2" count="1" type="cond" truecount="1" falsecount="1"/>
+        </file>
+      </package>
+      <package name="src.store">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\index.js">
+          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.store.modules.transaction">
+        <metrics statements="25" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <file name="actions.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\transaction\actions.js">
+          <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+        <file name="getters.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\transaction\getters.js">
+          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\transaction\index.js">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+        </file>
+        <file name="mutations.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\transaction\mutations.js">
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.store.modules.user">
+        <metrics statements="21" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <file name="actions.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\user\actions.js">
+          <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+        </file>
+        <file name="getters.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\user\getters.js">
+          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\user\index.js">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+        </file>
+        <file name="mutations.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\store\modules\user\mutations.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.views.js">
+        <metrics statements="99" coveredstatements="6" conditionals="32" coveredconditionals="1" methods="3" coveredmethods="0"/>
+        <file name="change-password.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\change-password.js">
+          <metrics statements="10" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+        </file>
+        <file name="create-transaction.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\create-transaction.js">
+          <metrics statements="29" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="78" count="0" type="stmt"/>
+          <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="80" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+        </file>
+        <file name="home-page.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\home-page.js">
+          <metrics statements="22" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+        </file>
+        <file name="manage-user.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\manage-user.js">
+          <metrics statements="17" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+        </file>
+        <file name="transaction-detail.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\transaction-detail.js">
+          <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="21" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
+        </file>
+        <file name="user-form.js" path="C:\Users\stell\Music\reims-vue-cli-pwa\src\views\js\user-form.js">
+          <metrics statements="14" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="51" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
