@@ -1,11 +1,11 @@
 <template>
   <div id="app">
+    <NotificationContainer></NotificationContainer>
     <router-view />
   </div>
 </template>
 
-<script src="./lib/syncTransactions.js"></script>
-
+<script src="./lib/syncTransactions.js" />
 <style lang="scss">
 * {
   margin: 0;

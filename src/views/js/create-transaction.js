@@ -106,7 +106,7 @@ export default {
   watch: {
     $route() {
       if (
-        !this.$route.path.contains("/transaction/create/") &&
+        !this.$route.path.includes("/transaction/create/") &&
         this.activeTab == 3
       ) {
         this.deleteDataFromIDB();

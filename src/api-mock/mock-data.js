@@ -199,6 +199,7 @@ export default [
       id: 500000026,
       image:
         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
+      title: "Form Parkir 20",
       location: "Graha Niaga Thamrin",
       category: "PARKING",
       license: "BL 6728 POW",

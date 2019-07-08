@@ -4,7 +4,7 @@ import offlineService from "@/api/transaction-offline";
 
 const api = config.api.transactions;
 
-process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
   getTransaction(id) {

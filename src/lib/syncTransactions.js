@@ -1,18 +1,24 @@
 import transactionApi from "@/api/transaction";
 import offlineService from "@/api/transaction-offline";
 import { mapActions } from "vuex";
+import NotificationContainer from "@/components/NotificationContainer.vue";
 
 const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
-const transactionSync = {
+export default {
   data() {
     return {
       isSending: false
     };
   },
+  components: {
+    NotificationContainer
+  },
   methods: {
     ...mapActions("transaction", ["createTransaction"]),
     checkConnectivityStatus() {
+      console.log("B", navigator.onLine);
+      console.log("C", this.isSending);
       setInterval(() => {
         navigator.onLine && !this.isSending ? this.sendDataToServer() : "";
       }, 10000);
@@ -77,8 +83,7 @@ const transactionSync = {
     }
   },
   created() {
+    console.log("A");
     this.checkConnectivityStatus();
   }
 };
-
-export default transactionSync;

@@ -1,5 +1,13 @@
 import transactionApi from "@/api/transaction";
 
+const response = {
+  category: "FUEL",
+  date: "",
+  type: "",
+  volume: 0,
+  unitPrice: 0,
+  title: ""
+};
 export default {
   setImage({ commit }, img) {
     commit("SET_IMAGE", img);
@@ -21,8 +29,15 @@ export default {
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },
-  saveTransaction: ({}, transaction) => {
-    transactionApi.saveTransaction(transaction);
+  saveTransaction: async ({ dispatch }, transaction) => {
+    const { data } = await transactionApi.saveTransaction(transaction);
+
+    const notification = {
+      type: "success",
+      message: `'${data.title}' form has been submitted.`
+    };
+    console.log("X", data);
+    dispatch("notification/addNotification", notification, { root: true });
   },
   deleteTransaction: ({}, id) => {
     transactionApi.deleteTransaction(id);

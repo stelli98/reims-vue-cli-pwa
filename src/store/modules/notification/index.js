@@ -3,9 +3,7 @@ import mutations from "./mutations";
 
 const namespaced = true;
 const state = {
-  users: [],
-  user: {},
-  pagination: {}
+  notifications: []
 };
 
 export default { state, actions, mutations, namespaced };
