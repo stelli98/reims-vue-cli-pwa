@@ -1,10 +1,11 @@
 import { mapActions } from "vuex";
 export default {
+  name: "TransactionCard",
   props: {
     transaction: Object
   },
   computed: {
-    transactionTitle() {
+    transactionTitle () {
       return this.$options.filters.trimTextFormatter(
         this.transaction.title,
         20
@@ -13,7 +14,7 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
-    removeTransaction(id) {
+    removeTransaction (id) {
       this.deleteTransaction(id);
     }
   }

@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/9</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/7</span>
+        <span class='fraction'>0/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -80,8 +80,10 @@
 35
 36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -90,15 +92,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,15 +110,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
 // import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
-const ViewFuelDetail = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import("@/components/ViewFuelDetail.vue")</span>
-const ViewParkingDetail = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >import("@/components/ViewParkingDetail.vue")</span>
+const ViewFuelDetail = <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; import(</span>"@/components/ViewFuelDetail.vue")</span></span>
+const ViewParkingDetail = <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; import(</span>"@/components/ViewParkingDetail.vue")</span></span>
 &nbsp;
-import { mapActions, mapState } from "vuex";
+<span class="cstat-no" title="statement not covered" >import { mapActions, mapState } from "vuex";</span>
 export default {
   components: {
     ViewFuelDetail,
@@ -127,25 +127,25 @@ export default {
   computed: {
     ...mapState("transaction", ["transaction"]),
     transactionId () {
-      return this.$route.params.id;
+<span class="cstat-no" title="statement not covered" >      return this.$route.params.id;</span>
     },
     transactionCategory () {
-      return this.$options.filters.textFormatter(this.transaction.category);
+<span class="cstat-no" title="statement not covered" >      return this.$options.filters.textFormatter(this.transaction.category);</span>
     },
     activeComponent () {
-      return this.transactionCategory
+<span class="cstat-no" title="statement not covered" >      return this.transactionCategory</span>
         ? `View${this.transactionCategory}Detail`
-        : <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
+        : "";
     }
   },
   methods: {
     ...mapActions("transaction", ["getTransaction"]),
     moveTo () {
-<span class="cstat-no" title="statement not covered" >      this.$router.go(-1);</span>
+<span class="cstat-no" title="statement not covered" >      this.$router.push({ name: 'home' });</span>
     }
   },
   mounted () {
-    this.getTransaction(this.transactionId);
+<span class="cstat-no" title="statement not covered" >    this.getTransaction(this.transactionId);</span>
   }
 };
 &nbsp;</pre></td></tr>
@@ -154,7 +154,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 11:28:05 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 19:29:08 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -489,7 +489,7 @@ export default [
     "status": "OK",
     "data": {
       "id": 1559058600,
-      "username": "Hefriza Munaf",
+      "username": "Munawan Sadakh",
       "password": "Test123",
       "role": "ADMIN",
       "created_at": 1559058410

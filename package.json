@@ -91,10 +91,10 @@
     "resolver": null,
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/src/**.js",
-      "!**/node_modules/**",
-      "!**.config.**",
-      "!**/src/{config,api,api-mock}/**"
+      "src/components/**/*.vue",
+      "src/views/**/*.vue",
+      "src/store/**/*.js",
+      "!**/node_modules/**"
     ]
   }
 }

@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import ViewFuelDetail from "@/components/js/view-fuel-detail.js";
+import ViewFuelDetail from "@/components/ViewFuelDetail"
+import priceFilter from "@/filters/price";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
@@ -16,6 +17,7 @@ describe("TransactionDetail.vue", () => {
 
     function generateLocalVue () {
         const lv = createLocalVue();
+        lv.filter("priceFormatter", priceFilter);
         return lv;
     }
 

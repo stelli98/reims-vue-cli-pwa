@@ -1,6 +1,9 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import UserCard from "@/components/js/user-card.js";
-import TrimTextFilter from "@/filters/trimText";
+import UserCard from "@/components/UserCard";
+import trimTextFilter from "@/filters/trimText";
+import dateFilter from "@/filters/date";
+import priceFilter from "@/filters/price";
+import textFilter from "@/filters/text";
 import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
@@ -38,7 +41,10 @@ describe("UserCard.vue", () => {
     function generateLocalVue () {
         const lv = createLocalVue();
         lv.use(Vuex);
-        lv.filter("trimTextFormatter", TrimTextFilter);
+        lv.filter("dateFormatter", dateFilter);
+        lv.filter("priceFormatter", priceFilter);
+        lv.filter("trimTextFormatter", trimTextFilter);
+        lv.filter("textFormatter", textFilter);
         return lv;
     }
 
@@ -46,6 +52,7 @@ describe("UserCard.vue", () => {
         return shallowMount(UserCard, {
             store,
             localVue,
+            stubs: ['router-link'],
             propsData: {
                 user: userData.data[1]
             }

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for views/HomePage.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">views</a> HomePage.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/22</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import TransactionList from "@/components/TransactionList";</span>
+<span class="cstat-no" title="statement not covered" >import Pagination from "@/components/Pagination.vue";</span>
+<span class="cstat-no" title="statement not covered" >import SortFilter from "@/components/SortFilter.vue";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { mapActions, mapState } from "vuex";</span>
+export default {
+  components: {
+    TransactionList,
+    Pagination,
+    SortFilter
+  },
+  created () {
+<span class="cstat-no" title="statement not covered" >    this.updateTransaction(this.options);</span>
+  },
+  data () {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      showFilter: false
+    };
+  },
+  computed: {
+    ...mapState("transaction", ["transactions", "pagination"]),
+    options () {
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        page: parseInt(this.$route.query.page) || 1,
+        size: parseInt(this.$route.query.size) || 5,
+        sortBy: "createdAt"
+      };
+    }
+  },
+  methods: {
+    ...mapActions("transaction", ["setImage", "getTransactions"]),
+    onFileChange (e) {
+<span class="cstat-no" title="statement not covered" >      const file = URL.createObjectURL(e.target.files[0]);</span>
+<span class="cstat-no" title="statement not covered" >      this.setImage(file);</span>
+<span class="cstat-no" title="statement not covered" >      this.$router.push({</span>
+        name: "create",
+        params: { step: 1 }
+      });
+    },
+    changePage (toPage) {
+<span class="cstat-no" title="statement not covered" >      this.options.page = parseInt(toPage);</span>
+<span class="cstat-no" title="statement not covered" >      const allOptions = { ...this.$route.query, ...this.options };</span>
+<span class="cstat-no" title="statement not covered" >      this.$router.push({ name: "home", query: allOptions });</span>
+<span class="cstat-no" title="statement not covered" >      this.getTransactions(allOptions);</span>
+    },
+    toogleFilter (value) {
+<span class="cstat-no" title="statement not covered" >      this.showFilter = value;</span>
+    },
+    updateTransaction (options) {
+<span class="cstat-no" title="statement not covered" >      this.getTransactions(options);</span>
+    },
+    moveTo (toPage) {
+<span class="cstat-no" title="statement not covered" >      this.$router.push({ name: toPage });</span>
+    },
+    applyFilter (options) {
+<span class="cstat-no" title="statement not covered" >      this.options.page = 1;</span>
+<span class="cstat-no" title="statement not covered" >      const allOptions = { ...this.options, ...options };</span>
+<span class="cstat-no" title="statement not covered" >      this.updateTransaction(allOptions);</span>
+    }
+  },
+  watch: {
+    options () {
+<span class="cstat-no" title="statement not covered" >      const allOptions = { ...this.options, ...this.$route.query };</span>
+<span class="cstat-no" title="statement not covered" >      this.updateTransaction(allOptions);</span>
+    }
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 19:32:55 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>

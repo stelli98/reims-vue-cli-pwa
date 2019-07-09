@@ -1,6 +1,9 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import TransactionCard from "@/components/js/transaction-card.js";
-import TrimTextFilter from "@/filters/trimText";
+import TransactionCard from "@/components/TransactionCard";
+import trimTextFilter from "@/filters/trimText";
+import dateFilter from "@/filters/date";
+import priceFilter from "@/filters/price";
+import textFilter from "@/filters/text";
 import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
@@ -40,7 +43,10 @@ describe("TransactionCard.vue", () => {
     function generateLocalVue () {
         const lv = createLocalVue();
         lv.use(Vuex);
-        lv.filter("trimTextFormatter", TrimTextFilter);
+        lv.filter("trimTextFormatter", trimTextFilter);
+        lv.filter("dateFormatter", dateFilter);
+        lv.filter("priceFormatter", priceFilter);
+        lv.filter("textFormatter", textFilter);
         return lv;
     }
 
@@ -51,6 +57,7 @@ describe("TransactionCard.vue", () => {
             propsData: {
                 transaction: transactionData.data[1]
             },
+            stubs: ['router-link'],
             sync: false
         });
     }

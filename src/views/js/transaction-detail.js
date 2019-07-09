@@ -26,7 +26,7 @@ export default {
   methods: {
     ...mapActions("transaction", ["getTransaction"]),
     moveTo () {
-      this.$router.go(-1);
+      this.$router.push({ name: 'home' });
     }
   },
   mounted () {
