@@ -23,7 +23,7 @@ export default {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: "created_at"
+        sortBy: "createdAt"
       };
     }
   },

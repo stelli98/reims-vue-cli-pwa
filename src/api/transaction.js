@@ -6,23 +6,23 @@ const api = config.api.transactions;
 process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getTransaction(id) {
+  getTransaction (id) {
     const path = api.transaction;
     return axios.get(`${path}/${id}`);
   },
-  getTransactions(options) {
+  getTransactions (options) {
     const path = api.transaction;
     return axios.get(path, { params: options });
   },
-  createTransaction(data) {
+  createTransaction (data) {
     const path = api.transaction;
     return axios.post(path, data);
   },
-  saveTransaction(data) {
+  saveTransaction (data) {
     const path = api.transaction;
     return axios.put(path, data);
   },
-  deleteTransaction(id) {
+  deleteTransaction (id) {
     const path = api.transaction;
     console.log("delete id :" + id);
     return axios.delete(`${path}/${id}`);

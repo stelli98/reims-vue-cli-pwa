@@ -93,7 +93,8 @@
     "collectCoverageFrom": [
       "**/src/**.js",
       "!**/node_modules/**",
-      "!**.config.**"
+      "!**.config.**",
+      "!**/src/{config,api,api-mock}/**"
     ]
   }
 }
