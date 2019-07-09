@@ -9,16 +9,21 @@ const response = {
   title: ""
 };
 export default {
-  setImage({ commit }, img) {
+  setImage ({ commit }, img) {
     commit("SET_IMAGE", img);
   },
-  setOCRResultType({ commit }, data) {
+  setOCRResultType ({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
   createTransaction: async ({ commit }, image) => {
-    const { data } = await transactionApi.createTransaction(image);
-    commit("SET_OCR_RESULT", data);
-    commit("SET_OCR_RESULT_TYPE", data.data.category);
+    try {
+      const { data } = await transactionApi.createTransaction(image);
+      commit("SET_OCR_RESULT", data);
+      commit("SET_OCR_RESULT_TYPE", data.data.category);
+    } catch (e) {
+      return e;
+      console.log(e);
+    }
   },
   getTransaction: async ({ commit }, id) => {
     const { data } = await transactionApi.getTransaction(id);
@@ -39,7 +44,7 @@ export default {
     console.log("X", data);
     dispatch("notification/addNotification", notification, { root: true });
   },
-  deleteTransaction: ({}, id) => {
+  deleteTransaction: ({ }, id) => {
     transactionApi.deleteTransaction(id);
   }
 };

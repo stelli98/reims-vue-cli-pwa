@@ -22,7 +22,10 @@ export default {
         return offlineService.storeImageOffline(data);
       });
     } else {
-      return offlineService.storeImageOffline(data);
+      offlineService.storeImageOffline(data);
+      return new Promise((resolve, reject) => {
+        reject(new Exception("image will be stored offline"));
+      });
     }
   },
   saveTransaction(data) {

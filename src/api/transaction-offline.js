@@ -3,12 +3,7 @@ import idbs from "@/api/indexedDBService";
 const response = {
   data: {
     data: {
-      category: "FUEL",
-      date: "",
-      type: "",
-      volume: 0,
-      unitPrice: 0,
-      title: ""
+      category: ""
     }
   }
 };

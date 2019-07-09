@@ -93,6 +93,8 @@
     "watchPlugins": [
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
-    ]
+    ],
+    "resolver": null,
+    "collectCoverage": true
   }
 }
