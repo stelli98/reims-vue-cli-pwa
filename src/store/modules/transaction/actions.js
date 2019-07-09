@@ -1,16 +1,16 @@
 import transactionApi from "@/api/transaction";
 
 export default {
-  setImage({ commit }, img) {
+  setImage ({ commit }, img) {
     commit("SET_IMAGE", img);
   },
-  setOCRResultType({ commit }, data) {
+  setOCRResultType ({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
   createTransaction: async ({ commit }, image) => {
     const { data } = await transactionApi.createTransaction(image);
     commit("SET_OCR_RESULT", data);
-    commit("SET_OCR_RESULT_TYPE", data.data.category);
+    commit("SET_OCR_RESULT_TYPE", data.category);
   },
   getTransaction: async ({ commit }, id) => {
     const { data } = await transactionApi.getTransaction(id);

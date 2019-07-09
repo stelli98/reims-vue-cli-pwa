@@ -1,7 +1,7 @@
 import userApi from "@/api/user";
 
 export default {
-  createUser: ({ commit }, data) => {
+  createUser: ({ }, data) => {
     userApi.createUser(data);
   },
   emptyUser: ({ commit }, data) => {
@@ -16,13 +16,13 @@ export default {
     commit("SET_USERS", data);
     commit("SET_PAGINATION", data);
   },
-  updateUser: ({}, data) => {
+  updateUser: ({ }, data) => {
     userApi.updateUser(data.id, data);
   },
-  changePassword: ({}, data) => {
+  changePassword: ({ }, data) => {
     userApi.changePassword(data);
   },
-  deleteUser: ({}, id) => {
+  deleteUser: ({ }, id) => {
     userApi.deleteUser(id);
   }
 };

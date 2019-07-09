@@ -8,7 +8,7 @@ export default [
     "params": {
       "page": 1,
       "size": 5,
-      "sortBy": "created_at"
+      "sortBy": "createdAt"
     },
     "status": "OK",
     "data": [
@@ -62,7 +62,7 @@ export default [
     "params": {
       "page": 2,
       "size": 5,
-      "sortBy": "created_at"
+      "sortBy": "createdAt"
     },
     "status": "OK",
     "data": [

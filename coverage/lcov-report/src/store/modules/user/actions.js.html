@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>10/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -71,60 +71,60 @@
 26
 27
 28
-29</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+29</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import userApi from "@/api/user";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import userApi from "@/api/user";
 &nbsp;
 export default {
-  createUser: <span class="fstat-no" title="function not covered" >({</span> commit }, data) =&gt; {
-<span class="cstat-no" title="statement not covered" >    userApi.createUser(data);</span>
+  createUser: ({ }, data) =&gt; {
+    userApi.createUser(data);
   },
-  emptyUser: <span class="fstat-no" title="function not covered" >({</span> commit }, data) =&gt; {
-<span class="cstat-no" title="statement not covered" >    commit("SET_USER_EMPTY", data);</span>
+  emptyUser: ({ commit }, data) =&gt; {
+    commit("SET_USER_EMPTY", data);
   },
-  getUser: <span class="fstat-no" title="function not covered" >async (</span>{ commit }, id) =&gt; {
-    const { data } = <span class="cstat-no" title="statement not covered" >await userApi.getUser(id);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_USER", data);</span>
+  getUser: async ({ commit }, id) =&gt; {
+    const { data } = await userApi.getUser(id);
+    commit("SET_USER", data);
   },
-  getUsers: <span class="fstat-no" title="function not covered" >async (</span>{ commit }, options) =&gt; {
-    const { data } = <span class="cstat-no" title="statement not covered" >await userApi.getUsers(options);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_USERS", data);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_PAGINATION", data);</span>
+  getUsers: async ({ commit }, options) =&gt; {
+    const { data } = await userApi.getUsers(options);
+    commit("SET_USERS", data);
+    commit("SET_PAGINATION", data);
   },
-  updateUser: <span class="fstat-no" title="function not covered" >({</span>}, data) =&gt; {
-<span class="cstat-no" title="statement not covered" >    userApi.updateUser(data.id, data);</span>
+  updateUser: ({ }, data) =&gt; {
+    userApi.updateUser(data.id, data);
   },
-  changePassword: <span class="fstat-no" title="function not covered" >({</span>}, data) =&gt; {
-<span class="cstat-no" title="statement not covered" >    userApi.changePassword(data);</span>
+  changePassword: ({ }, data) =&gt; {
+    userApi.changePassword(data);
   },
-  deleteUser: <span class="fstat-no" title="function not covered" >({</span>}, id) =&gt; {
-<span class="cstat-no" title="statement not covered" >    userApi.deleteUser(id);</span>
+  deleteUser: ({ }, id) =&gt; {
+    userApi.deleteUser(id);
   }
 };
 &nbsp;</pre></td></tr>
@@ -133,7 +133,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 08 2019 22:52:35 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 10:18:49 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>
