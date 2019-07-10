@@ -1,6 +1,12 @@
 <template>
   <div class="user__list">
-    <UserCard v-for="user in users" :key="user.id" :user="user" />
+    <UserCard
+      v-for="(user,index) in users"
+      :key="user.id"
+      :user="user"
+      :index="index"
+      @updateUserList="updateUsers"
+    />
   </div>
 </template>
 

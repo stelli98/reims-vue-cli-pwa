@@ -19,15 +19,15 @@ export default {
   },
   methods: {
     ...mapActions("user", ["changePassword"]),
-    moveTo() {
+    moveTo () {
       this.$router.go(-1);
     },
-    getUserDetail() {
+    getUserDetail () {
       this.$route.params.id
         ? Object.assign(this.user, this.getUser(this.$route.params.id))
         : "";
     },
-    submitForm() {
+    submitForm () {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         console.log(this.user);

@@ -20,7 +20,7 @@ export default {
       location: { required }
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -34,32 +34,44 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendParkingForm() {
+    sendParkingForm () {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
         this.saveTransaction(this.parking);
         console.log(this.parking);
+        this.clearParkingForm();
         this.$router.push({ name: "home" });
       } else {
         console.log("error");
       }
     },
-    formatPrice() {
+    formatPrice () {
       this.$v.parking.price.$touch();
       this.parking.price = this.parking.price
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatPrice() {
+    reformatPrice () {
       this.parking.price = parseInt(this.parking.price.split(".").join(""));
+    },
+    clearParkingForm () {
+      this.parking = {
+        in: "",
+        out: "",
+        price: 0,
+        title: "",
+        vehicle: "",
+        license: "",
+        location: ""
+      }
     }
   },
-  mounted() {
+  mounted () {
     this.formatPrice();
   }
 };

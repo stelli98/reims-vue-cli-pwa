@@ -19,7 +19,7 @@ export default {
       title: { required }
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -30,14 +30,14 @@ export default {
   },
   computed: {
     ...mapState("transaction", ["fuel"]),
-    totalPrice() {
+    totalPrice () {
       const value = (this.unitPrice * this.fuel.volume).toString();
       if (value.includes("e")) {
         return value;
       }
       return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    unitPrice() {
+    unitPrice () {
       if (typeof this.fuel.unitPrice === "string") {
         return parseInt(this.fuel.unitPrice.split(".").join(""));
       } else {
@@ -47,32 +47,42 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendFuelForm() {
+    sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.reformatUnitPrice();
         this.saveTransaction(this.fuel);
         console.log(this.fuel);
+        this.clearFuelForm();
         this.$router.push({ name: "home" });
       } else {
         console.log("error");
       }
     },
-    formatUnitPrice() {
+    formatUnitPrice () {
       this.$v.fuel.unitPrice.$touch();
       this.fuel.unitPrice = this.fuel.unitPrice
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatUnitPrice() {
+    reformatUnitPrice () {
       this.fuel.unitPrice = parseInt(this.fuel.unitPrice.split(".").join(""));
+    },
+    clearFuelForm () {
+      this.fuel = {
+        date: "",
+        type: "",
+        volume: 0,
+        unitPrice: 0,
+        title: ""
+      }
     }
   },
-  mounted() {
+  mounted () {
     this.formatUnitPrice();
   }
 };

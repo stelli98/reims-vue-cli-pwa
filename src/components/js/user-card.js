@@ -1,23 +1,27 @@
 import { mapActions } from "vuex";
 export default {
   props: {
-    user: Object
+    user: Object,
+    index: 0,
   },
   computed: {
-    userName() {
+    userName () {
       return this.$options.filters.trimTextFormatter(this.user.username, 10);
     }
   },
   methods: {
-    ...mapActions("user", ["deleteUser"]),
-    removeUser(id) {
-      this.deleteUser(id);
+    ...mapActions("user", ["deleteUser", "getUser"]),
+    removeUser (id) {
+      this.deleteUser(id).then(() => {
+        this.$emit('updateUserList');
+      })
     },
-    moveTo(userId) {
-      this.$router.push({
-        name: "user-edit",
-        params: { id: userId }
-      });
+    moveTo (userId) {
+      this.getUser(userId),
+        this.$router.push({
+          name: "user-edit",
+          params: { id: userId }
+        });
     }
   }
 };

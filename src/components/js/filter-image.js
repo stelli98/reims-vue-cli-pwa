@@ -7,7 +7,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       filterFunctions: null,
       width: 0,
@@ -15,11 +15,11 @@ export default {
     };
   },
   computed: {
-    filters() {
+    filters () {
       return this.makeFilter();
     }
   },
-  created() {
+  created () {
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["createTransaction"]),
-    makeFilter(filterSet) {
+    makeFilter (filterSet) {
       if (!filterSet) {
         filterSet = this.filterFunctions;
       }
@@ -42,27 +42,27 @@ export default {
       }
       return { filter: filterString };
     },
-    setToDefault() {
+    setToDefault () {
       this.filterFunctions = this.defaultValues();
     },
-    defaultValues() {
+    defaultValues () {
       return {
         grayscale: 1,
         brightness: 1.1,
         contrast: 1
       };
     },
-    changeImage() {
+    changeImage () {
       this.$store.dispatch("setImage", "").then(() => {
         this.$router.push({ name: "crop-image" });
       });
     },
-    fillForm() {
+    fillForm () {
       this.$router.push({
         name: "add"
       });
     },
-    generateImage() {
+    generateImage () {
       const canvas = document.createElement("canvas");
       canvas.width = document.getElementById("image").clientWidth;
       canvas.height = document.getElementById("image").clientHeight;
@@ -76,10 +76,11 @@ export default {
       this.uploadImageOCR(resultImage);
       return resultImage;
     },
-    uploadImageOCR(resultImage) {
+    uploadImageOCR (resultImage) {
       const image = {
         image: resultImage
       };
+      console.log(resultImage)
       this.createTransaction(image);
     }
   }

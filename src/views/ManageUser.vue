@@ -2,7 +2,10 @@
   <div class="manage-user">
     <div class="header manage-user__header">
       <div class="title--menu manage-user__title"></div>
-      <div class="title--menu manage-user__title" @click="doLogout">
+      <div
+        class="title--menu manage-user__title"
+        @click="doLogout"
+      >
         Logout
       </div>
     </div>
@@ -11,7 +14,10 @@
         List of User
       </div>
       <div class="manage-user__action">
-        <div class="manage-user__create" @click="routeTo">
+        <div
+          class="manage-user__create"
+          @click="routeTo"
+        >
           <div class="btn-green">
             <svg class="icon icon-small">
               <use xlink:href="icons.svg#icon-plus" />
@@ -30,8 +36,15 @@
           />
         </div>
       </div>
-      <UserList v-if="users.length" :users="users" />
-      <Pagination :paging="pagination" @changePage="changePage" />
+      <UserList
+        v-if="users.length"
+        :users="users"
+        @updateUsers="updateUser"
+      />
+      <Pagination
+        :paging="pagination"
+        @changePage="changePage"
+      />
     </div>
   </div>
 </template>

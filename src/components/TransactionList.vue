@@ -25,6 +25,7 @@
         v-for="transaction in transactions"
         :key="transaction.id"
         :transaction="transaction"
+        @updateTransactionList="updateTransactions"
       />
     </div>
   </div>

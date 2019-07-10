@@ -1,11 +1,12 @@
 <template>
   <div class="user__card">
-    <div class="user__card__center" @click="moveTo(user.id)">
-      <div
-        class="
+    <div
+      class="user__card__center"
+      @click="moveTo(user.id)"
+    >
+      <div class="
       title--big
-      user__username"
-      >
+      user__username">
         {{ userName }}
       </div>
       <div class="title--small user__role">
@@ -13,8 +14,14 @@
       </div>
     </div>
 
-    <div class="user__card__right" @click="removeUser(user.id)">
-      <svg class="icon icon-medium-green" id="delete">
+    <div
+      class="user__card__right"
+      @click="removeUser(user.id)"
+    >
+      <svg
+        class="icon icon-medium-green"
+        id="delete"
+      >
         <use xlink:href="icons.svg#icon-dustbin" />
       </svg>
     </div>
