@@ -1,26 +1,19 @@
 import idbs from "@/api/indexedDBService";
 
-const response = {
-  data: {
-    data: {
-      category: ""
-    }
-  }
-};
-
 const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
 
 export default {
-  storeImageOffline(image) {
-    const data = {
-      id: Date.now(),
-      image: image
-    };
+  storeImageOffline (data) {
+    console.log(data)
+    data.id = Date.now();
     this.storeToIndexedDB(imageIdb, data);
-    return response;
+    this.throwError();
   },
-  async storeFormOffline(form) {
+  throwError () {
+    return Promise.reject(new Error('Offline. Fail to send data to server'))
+  },
+  async storeFormOffline (form) {
     const id = this.isTransactionCreated(form)
       ? form.id
       : await this.getLastIndexIDFromIndexedDB(imageIdb);
@@ -30,36 +23,37 @@ export default {
       //add user data
     };
     this.storeToIndexedDB(formIdb, data);
+    this.throwError();
   },
-  isTransactionCreated(form) {
+  isTransactionCreated (form) {
     return !!form.id;
   },
-  async storeToIndexedDB(storeName, data) {
+  async storeToIndexedDB (storeName, data) {
     try {
       await idbs.saveData(storeName, data);
     } catch (e) {
       alert(e);
     }
   },
-  async getLastIndexIDFromIndexedDB(storeName) {
+  async getLastIndexIDFromIndexedDB (storeName) {
     return await idbs.getLastIndexData(storeName);
   },
-  async getAllDataFromIndexedDB(storeName) {
+  async getAllDataFromIndexedDB (storeName) {
     return await idbs.getAllData(storeName);
   },
-  async deleteDataByKeyFromIndexedDB(storeName, key) {
+  async deleteDataByKeyFromIndexedDB (storeName, key) {
     await idbs.deleteDataByKey(storeName, key);
   },
-  async deleteLastDataFromIndexedDB(storeName) {
+  async deleteLastDataFromIndexedDB (storeName) {
     await this.deleteDataByKeyFromIndexedDB(
       storeName,
       this.getLastIndexIDFromIndexedDB(storeName)
     );
   },
-  async deleteAllDataFromIndexedDB(storeName) {
+  async deleteAllDataFromIndexedDB (storeName) {
     await idbs.deleteAllData(storeName);
   },
-  async findDataByKeyFromIndexedDB(storeName, key) {
+  async findDataByKeyFromIndexedDB (storeName, key) {
     return await idbs.findDatabyKey(storeName, key);
   }
 };

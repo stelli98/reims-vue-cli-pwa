@@ -19,7 +19,7 @@ export default {
       title: { required }
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -30,50 +30,74 @@ export default {
   },
   computed: {
     ...mapState("transaction", ["fuel"]),
-    totalPrice() {
+    totalPrice () {
       const value = (this.unitPrice * this.fuel.volume).toString();
       if (value.includes("e")) {
         return value;
       }
       return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    unitPrice() {
+    unitPrice () {
       if (typeof this.fuel.unitPrice === "string") {
         return parseInt(this.fuel.unitPrice.split(".").join(""));
       } else {
         return this.fuel.unitPrice;
       }
+    },
+    fuelTemplate () {
+      return {
+        data: {
+          date: "",
+          type: "",
+          volume: 0,
+          unitPrice: 0,
+          title: "",
+          category: "FUEL"
+        }
+      }
     }
   },
   methods: {
-    ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
+    ...mapActions("notification", [
+      "addNotification",
+    ]),
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendFuelForm() {
+    sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.reformatUnitPrice();
-        this.saveTransaction(this.fuel);
-        console.log(this.fuel);
-        this.$router.push({ name: "home" });
+        return this.saveTransaction(this.fuel).then(() => {
+          const notification = {
+            type: "success",
+            message: "Fuel form has been submitted."
+          };
+          this.addNotification(notification)
+        }).catch(() => {
+          const notification = {
+            type: "error",
+            message: "Oops ! You're offline. We will send it back as soon as you're online."
+          };
+          this.addNotification(notification)
+        })
       } else {
         console.log("error");
       }
-      console.log(this.fuel);
     },
-    formatUnitPrice() {
+    formatUnitPrice () {
       this.$v.fuel.unitPrice.$touch();
       this.fuel.unitPrice = this.fuel.unitPrice
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatUnitPrice() {
+    reformatUnitPrice () {
       this.fuel.unitPrice = parseInt(this.fuel.unitPrice.split(".").join(""));
     }
   },
-  mounted() {
+  mounted () {
     this.formatUnitPrice();
   }
 };

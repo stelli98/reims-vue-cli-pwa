@@ -6,7 +6,7 @@ import NotificationContainer from "@/components/NotificationContainer.vue";
 const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
 export default {
-  data() {
+  data () {
     return {
       isSending: false
     };
@@ -16,56 +16,67 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["createTransaction"]),
-    checkConnectivityStatus() {
-      console.log("B", navigator.onLine);
-      console.log("C", this.isSending);
+    ...mapActions("notification", [
+      "addNotification",
+    ]),
+    checkConnectivityStatus () {
       setInterval(() => {
         navigator.onLine && !this.isSending ? this.sendDataToServer() : "";
       }, 10000);
     },
-    async sendDataToServer() {
+    async sendDataToServer () {
       this.isSending = true;
       const images = await offlineService.getAllDataFromIndexedDB(imageIdb);
+      // console.log(offlineService.getAllDataFromIndexedDB(imageIdb))
       if (images.length > 0) {
+        // console.log('ADA IMAGE')
         this.checkImageHasForm(images);
       } else {
         const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
         if (forms.length > 0) {
+          // console.log('CUMA ADA FORM')
           this.sendOnlyFormToServer(forms);
         } else {
           this.isSending = false;
         }
       }
     },
-    async sendOnlyFormToServer(forms) {
+    async sendOnlyFormToServer (forms) {
       forms.map(data => {
         transactionApi.saveTransaction(data).then(() => {
           offlineService.deleteDataByKeyFromIndexedDB("offlineForms", data.id);
+          this.addSuccessFormNotification();
           this.isSending = false;
         });
       });
     },
-    async checkImageHasForm(images) {
+    async checkImageHasForm (images) {
       const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
       if (forms.length > 0) {
         forms.map(form => {
           this.sendImageAndFormToServer(form.id);
         });
       } else {
+        console.log(images[0])
         this.createTransaction(images[0]).then(() => {
           offlineService.deleteDataByKeyFromIndexedDB(
-            "offlineImages",
+            imageIdb,
             images[0].id
           );
+          this.addSuccessImageNotification();
         });
       }
     },
-    sendImageAndFormToServer(formId) {
-      transactionApi.createTransaction(formId).then(response => {
-        this.sendFormAfterImageToServer(formId, response);
+    sendImageAndFormToServer (imageId) {
+      const image = offlineService.findDataByKeyFromIndexedDB(imageIdb, imageId)
+      console.log(image)
+      transactionApi.createTransaction(image).then(response => {
+        offlineService.deleteDataByKeyFromIndexedDB(imageIdb, imageId);
+        this.addSuccessImageNotification();
+        this.sendFormAfterImageToServer(imageId, response);
       });
     },
-    async sendFormAfterImageToServer(formId, response) {
+    async sendFormAfterImageToServer (formId, response) {
       const form = await offlineService.findDataByKeyFromIndexedDB(
         formIdb,
         formId
@@ -74,16 +85,28 @@ export default {
       form.id = response.data.id;
       transactionApi
         .saveTransaction(form)
-        .then(() => this.deleteSuccessData(formId));
+        .then(() => {
+          offlineService.deleteDataByKeyFromIndexedDB("offlineForms", formId);
+          this.isSending = false;
+          this.addSuccessFormNotification()
+        });
     },
-    deleteSuccessData(id) {
-      offlineService.deleteDataByKeyFromIndexedDB("offlineImages", id);
-      offlineService.deleteDataByKeyFromIndexedDB("offlineForms", id);
-      this.isSending = false;
+    addSuccessFormNotification () {
+      const notification = {
+        type: "success",
+        message: "You're back online. Your form has been submitted."
+      };
+      this.addNotification(notification)
+    },
+    addSuccessImageNotification () {
+      const notification = {
+        type: "success",
+        message: "You're back online. Your image has been submitted."
+      };
+      this.addNotification(notification)
     }
   },
-  created() {
-    console.log("A");
+  created () {
     this.checkConnectivityStatus();
   }
 };

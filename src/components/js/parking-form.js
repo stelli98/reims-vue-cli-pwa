@@ -20,7 +20,7 @@ export default {
       location: { required }
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -30,36 +30,63 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking"])
+    ...mapState("transaction", ["parking"]),
+    parkingTemplate () {
+      return {
+        data: {
+          in: "",
+          out: "",
+          price: 0,
+          title: "",
+          vehicle: "",
+          license: "",
+          location: "",
+          category: "PARKING"
+        }
+      }
+    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    ...mapActions("notification", [
+      "addNotification",
+    ]),
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendParkingForm() {
+    async sendParkingForm () {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
-        this.saveTransaction(this.parking);
-        console.log(this.parking);
-        this.$router.push({ name: "home" });
+        return this.saveTransaction(this.parking).then(() => {
+          const notification = {
+            type: "success",
+            message: "Parking form has been submitted."
+          };
+          this.addNotification(notification)
+        }).catch(() => {
+          const notification = {
+            type: "error",
+            message: "Oops ! You're offline. We will send it back as soon as you're online."
+          };
+          this.addNotification(notification)
+        })
       } else {
-        console.log("error");
+        alert("error");
       }
     },
-    formatPrice() {
+    formatPrice () {
       this.$v.parking.price.$touch();
       this.parking.price = this.parking.price
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatPrice() {
+    reformatPrice () {
       this.parking.price = parseInt(this.parking.price.split(".").join(""));
     }
   },
-  mounted() {
+  mounted () {
     this.formatPrice();
   }
 };

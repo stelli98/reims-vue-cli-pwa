@@ -4,46 +4,44 @@ import offlineService from "@/api/transaction-offline";
 
 const api = config.api.transactions;
 
-// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getTransaction(id) {
+  getTransaction (id) {
     const path = api.transaction;
     return axios.get(`${path}/${id}`);
   },
-  getTransactions(options) {
+  getTransactions (options) {
     const path = api.transaction;
     return axios.get(path, { params: options });
   },
-  createTransaction(data) {
+  createTransaction (data) {
     if (this.isOnline()) {
       const path = api.transaction;
-      return axios.post(path, data).catch(() => {
-        return offlineService.storeImageOffline(data);
-      });
+      return axios.post(path, data)
+        .catch(() => {
+          return offlineService.storeImageOffline(data);
+        });
     } else {
-      offlineService.storeImageOffline(data);
-      return new Promise((resolve, reject) => {
-        reject(new Exception("image will be stored offline"));
-      });
+      return offlineService.storeImageOffline(data);
     }
   },
-  saveTransaction(data) {
+  saveTransaction (data) {
     if (this.isOnline()) {
       const path = api.transaction;
       return axios.put(path, data).catch(() => {
-        offlineService.storeFormOffline(data);
+        return offlineService.storeFormOffline(data);
       });
     } else {
-      offlineService.storeFormOffline(data);
+      return offlineService.storeFormOffline(data);
     }
   },
-  deleteTransaction(id) {
+  deleteTransaction (id) {
     const path = api.transaction;
     console.log("delete id :" + id);
     return axios.delete(`${path}/${id}`);
   },
-  isOnline() {
+  isOnline () {
     return navigator.onLine;
   }
 };

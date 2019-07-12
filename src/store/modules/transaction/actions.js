@@ -1,13 +1,5 @@
 import transactionApi from "@/api/transaction";
 
-const response = {
-  category: "FUEL",
-  date: "",
-  type: "",
-  volume: 0,
-  unitPrice: 0,
-  title: ""
-};
 export default {
   setImage ({ commit }, img) {
     commit("SET_IMAGE", img);
@@ -15,15 +7,14 @@ export default {
   setOCRResultType ({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
+  setFormEmpty ({ commit }, data) {
+    commit("SET_OCR_RESULT", data);
+  },
   createTransaction: async ({ commit }, image) => {
-    try {
-      const { data } = await transactionApi.createTransaction(image);
-      commit("SET_OCR_RESULT", data);
-      commit("SET_OCR_RESULT_TYPE", data.data.category);
-    } catch (e) {
-      return e;
-      console.log(e);
-    }
+    const { data } = await transactionApi.createTransaction(image)
+    commit("SET_OCR_RESULT", data);
+    commit("SET_OCR_RESULT_TYPE", data.data.category);
+    return data;
   },
   getTransaction: async ({ commit }, id) => {
     const { data } = await transactionApi.getTransaction(id);
@@ -34,15 +25,9 @@ export default {
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },
-  saveTransaction: async ({ dispatch }, transaction) => {
+  saveTransaction: async ({ }, transaction) => {
     const { data } = await transactionApi.saveTransaction(transaction);
-
-    const notification = {
-      type: "success",
-      message: `'${data.title}' form has been submitted.`
-    };
-    console.log("X", data);
-    dispatch("notification/addNotification", notification, { root: true });
+    return data;
   },
   deleteTransaction: ({ }, id) => {
     transactionApi.deleteTransaction(id);

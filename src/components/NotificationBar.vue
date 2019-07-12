@@ -1,5 +1,8 @@
 <template>
-  <div class="notification-bar" :class="notificationTypeClass">
+  <div
+    class="notification-bar"
+    :class="notificationTypeClass"
+  >
     <p>{{ notification.message }}</p>
   </div>
 </template>
@@ -7,18 +10,18 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  data() {
+  data () {
     return {
       timeout: null
     };
   },
-  mounted() {
-    // this.timeout = setTimeout(
-    //   () => this.removeNotification(this.notification),
-    //   5000
-    // );
+  mounted () {
+    this.timeout = setTimeout(
+      () => this.removeNotification(this.notification),
+      5000
+    );
   },
-  beforeDestroy() {
+  beforeDestroy () {
     clearTimeout(this.timeout);
   },
   props: {
@@ -28,7 +31,7 @@ export default {
     }
   },
   computed: {
-    notificationTypeClass() {
+    notificationTypeClass () {
       return `-text-${this.notification.type}`;
     }
   },
