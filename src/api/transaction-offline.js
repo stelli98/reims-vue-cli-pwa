@@ -5,7 +5,6 @@ const formIdb = "offlineForms";
 
 export default {
   storeImageOffline (data) {
-    console.log(data)
     data.id = Date.now();
     this.storeToIndexedDB(imageIdb, data);
     this.throwError();
@@ -42,16 +41,13 @@ export default {
     return await idbs.getAllData(storeName);
   },
   async deleteDataByKeyFromIndexedDB (storeName, key) {
-    await idbs.deleteDataByKey(storeName, key);
+    return await idbs.deleteDataByKey(storeName, key);
   },
   async deleteLastDataFromIndexedDB (storeName) {
-    await this.deleteDataByKeyFromIndexedDB(
+    return await this.deleteDataByKeyFromIndexedDB(
       storeName,
       await this.getLastIndexIDFromIndexedDB(storeName)
     );
-  },
-  async deleteAllDataFromIndexedDB (storeName) {
-    await idbs.deleteAllData(storeName);
   },
   async findDataByKeyFromIndexedDB (storeName, key) {
     return await idbs.findDatabyKey(storeName, key);

@@ -8,7 +8,8 @@ const formIdb = "offlineForms";
 export default {
   data () {
     return {
-      isSending: false
+      isSending: false,
+      interval: null
     };
   },
   components: {
@@ -20,70 +21,76 @@ export default {
       "addNotification",
     ]),
     checkConnectivityStatus () {
-      setInterval(() => {
-        navigator.onLine && !this.isSending ? this.sendDataToServer() : "";
+      this.interval = setInterval(() => {
+        navigator.onLine && !this.isSending ? this.prepareSendingData() : "";
       }, 10000);
     },
+    setSendingData (value) {
+      this.isSending = value
+    },
+    prepareSendingData () {
+      this.setSendingData(true)
+      this.sendDataToServer()
+    },
     async sendDataToServer () {
-      this.isSending = true;
+      const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
       const images = await offlineService.getAllDataFromIndexedDB(imageIdb);
-      if (images.length > 0) {
-        this.checkImageHasForm(images);
+      if (images.length > 0 && forms.length > 0) {
+        this.sendImageAndFormToServer(images);
+      } else if (images.length > 0 && !forms.length > 0) {
+        this.sendOnlyImageToServer(images)
+      } else if (!images.length > 0 && forms.length > 0) {
+        this.sendOnlyFormToServer(forms);
       } else {
-        const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
-        if (forms.length > 0) {
-          this.sendOnlyFormToServer(forms);
-        } else {
-          this.isSending = false;
-        }
+        this.setSendingData(false)
+
       }
     },
-    async sendOnlyFormToServer (forms) {
+    sendOnlyFormToServer (forms) {
       forms.map(data => {
         transactionApi.saveTransaction(data).then(() => {
-          offlineService.deleteDataByKeyFromIndexedDB("offlineForms", data.id);
-          this.addSuccessFormNotification();
-          this.isSending = false;
+          offlineService.deleteDataByKeyFromIndexedDB(formIdb, data.id).then(() => {
+            this.addSuccessFormNotification();
+            this.setSendingData(false)
+          })
         });
       });
     },
-    async checkImageHasForm (images) {
-      const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
-      if (forms.length > 0) {
-        forms.map(form => {
-          this.sendImageAndFormToServer(form.id);
-        });
-      } else {
-        this.createTransaction(images[0]).then(() => {
-          offlineService.deleteDataByKeyFromIndexedDB(
-            imageIdb,
-            images[0].id
-          );
+    sendOnlyImageToServer (images) {
+      this.createTransaction(images[0]).then(() => {
+        offlineService.deleteDataByKeyFromIndexedDB(
+          imageIdb,
+          images[0].id
+        ).then(() => {
           this.addSuccessImageNotification();
-        });
-      }
-    },
-    sendImageAndFormToServer (imageId) {
-      const image = offlineService.findDataByKeyFromIndexedDB(imageIdb, imageId)
-      transactionApi.createTransaction(image).then(response => {
-        offlineService.deleteDataByKeyFromIndexedDB(imageIdb, imageId);
-        this.sendFormAfterImageToServer(imageId, response);
+          this.setSendingData(false)
+        })
       });
     },
-    async sendFormAfterImageToServer (formId, response) {
-      const form = await offlineService.findDataByKeyFromIndexedDB(
+    sendImageAndFormToServer (images) {
+      images.map(image => {
+        transactionApi.createTransaction(image).then(response => {
+          offlineService.deleteDataByKeyFromIndexedDB(imageIdb, image.id)
+          this.sendFormAfterImageToServer(image.id, response);
+        });
+      })
+    },
+    async findFormByImageID (id) {
+      return await offlineService.findDataByKeyFromIndexedDB(
         formIdb,
-        formId
+        id
       );
-
+    },
+    sendFormAfterImageToServer (formId, response) {
+      const form = this.findFormByImageID(formId)
       form.id = response.data.id;
       transactionApi
         .saveTransaction(form)
         .then(() => {
-          offlineService.deleteDataByKeyFromIndexedDB("offlineForms", formId);
-          this.isSending = false;
+          offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId)
           this.addSuccessImageNotification();
-          this.addSuccessFormNotification()
+          this.addSuccessFormNotification();
+          this.setSendingData(false)
         });
     },
     addSuccessFormNotification () {
@@ -103,5 +110,8 @@ export default {
   },
   created () {
     this.checkConnectivityStatus();
+  },
+  beforeDestroy () {
+    clearTimeout(this.interval);
   }
 };

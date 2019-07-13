@@ -1,5 +1,8 @@
 <template>
   <div
+    transition="fade"
+    enter-stagger="50"
+    leave-stagger="0"
     class="notification-bar"
     :class="notificationTypeClass"
   >
