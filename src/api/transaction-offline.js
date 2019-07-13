@@ -47,7 +47,7 @@ export default {
   async deleteLastDataFromIndexedDB (storeName) {
     await this.deleteDataByKeyFromIndexedDB(
       storeName,
-      this.getLastIndexIDFromIndexedDB(storeName)
+      await this.getLastIndexIDFromIndexedDB(storeName)
     );
   },
   async deleteAllDataFromIndexedDB (storeName) {

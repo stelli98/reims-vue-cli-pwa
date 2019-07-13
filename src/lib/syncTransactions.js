@@ -27,14 +27,11 @@ export default {
     async sendDataToServer () {
       this.isSending = true;
       const images = await offlineService.getAllDataFromIndexedDB(imageIdb);
-      // console.log(offlineService.getAllDataFromIndexedDB(imageIdb))
       if (images.length > 0) {
-        // console.log('ADA IMAGE')
         this.checkImageHasForm(images);
       } else {
         const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
         if (forms.length > 0) {
-          // console.log('CUMA ADA FORM')
           this.sendOnlyFormToServer(forms);
         } else {
           this.isSending = false;
@@ -57,7 +54,6 @@ export default {
           this.sendImageAndFormToServer(form.id);
         });
       } else {
-        console.log(images[0])
         this.createTransaction(images[0]).then(() => {
           offlineService.deleteDataByKeyFromIndexedDB(
             imageIdb,
@@ -69,10 +65,8 @@ export default {
     },
     sendImageAndFormToServer (imageId) {
       const image = offlineService.findDataByKeyFromIndexedDB(imageIdb, imageId)
-      console.log(image)
       transactionApi.createTransaction(image).then(response => {
         offlineService.deleteDataByKeyFromIndexedDB(imageIdb, imageId);
-        this.addSuccessImageNotification();
         this.sendFormAfterImageToServer(imageId, response);
       });
     },
@@ -88,6 +82,7 @@ export default {
         .then(() => {
           offlineService.deleteDataByKeyFromIndexedDB("offlineForms", formId);
           this.isSending = false;
+          this.addSuccessImageNotification();
           this.addSuccessFormNotification()
         });
     },

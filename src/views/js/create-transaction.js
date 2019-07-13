@@ -55,6 +55,9 @@ export default {
       this[function_name]();
     },
     toStepOne () {
+      if (this.activeTab == 3) {
+        this.deleteDataFromIDB();
+      }
       this.$router.push({ name: "create", params: { step: 1 } });
     },
     toStepTwo () {
