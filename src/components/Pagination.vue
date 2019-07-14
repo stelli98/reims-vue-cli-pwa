@@ -1,12 +1,6 @@
 <template>
-  <div
-    v-show="paging.totalPage > 1"
-    class="pagination"
-  >
-    <div
-      class="first"
-      @click="moveTo(1)"
-    >
+  <div v-show="paging.totalPages > 1" class="pagination">
+    <div class="first" @click="moveTo(1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -28,19 +22,16 @@
           type="number"
           name=""
           min="1"
-          :max="paging.totalPage"
+          :max="paging.totalPages"
         />
-        <h2 class="pagination__text">/ {{ paging.totalPage }}</h2>
+        <h2 class="pagination__text">/ {{ paging.totalPages }}</h2>
       </div>
-      <button
-        class="pagination__button"
-        @click="moveTo(parseInt(inputPage))"
-      >
+      <button class="pagination__button" @click="moveTo(parseInt(inputPage))">
         Go
       </button>
     </div>
     <div
-      v-show="paging.pageNumber != paging.totalPage"
+      v-show="paging.pageNumber != paging.totalPages"
       class="next"
       @click="moveTo(paging.pageNumber + 1)"
     >
@@ -48,10 +39,7 @@
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div
-      class="last"
-      @click="moveTo(paging.totalPage)"
-    >
+    <div class="last" @click="moveTo(paging.totalPages)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
@@ -60,7 +48,7 @@
 </template>
 
 <script src="./js/pagination.js"></script>
-<style lang="scss" >
+<style lang="scss">
 .pagination {
   display: flex;
   justify-content: center;

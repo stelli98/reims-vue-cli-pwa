@@ -18,7 +18,7 @@
     </div>
     <div class="user-form__content">
       <div class="heading user-form__heading">
-        Edit User
+        {{formTitle}}
       </div>
       <form class="user-form__form">
         <div class="form__child">

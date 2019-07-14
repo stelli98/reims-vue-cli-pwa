@@ -84,6 +84,17 @@ export default {
     },
     reformatPrice () {
       this.parking.price = parseInt(this.parking.price.split(".").join(""));
+    },
+    clearParkingForm () {
+      this.parking = {
+        in: "",
+        out: "",
+        price: 0,
+        title: "",
+        vehicle: "",
+        license: "",
+        location: ""
+      }
     }
   },
   mounted () {

@@ -1,15 +1,13 @@
 <template>
   <div class="manage-user">
     <div class="header manage-user__header">
+      <div class="title--menu manage-user__title"></div>
       <div
-        class="manage-user__close"
-        @click="moveTo"
+        class="title--menu manage-user__title"
+        @click="doLogout"
       >
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-cancel" />
-        </svg>
+        Logout
       </div>
-      <div class="title--menu manage-user__next" />
     </div>
     <div class="manage-user__content">
       <div class="heading manage-user__heading">
@@ -41,6 +39,7 @@
       <UserList
         v-if="users.length"
         :users="users"
+        @updateUsers="updateUser"
       />
       <Pagination
         :paging="pagination"
@@ -52,7 +51,7 @@
 
 <script src="./js/manage-user.js"></script>
 
-<style lang="scss" >
+<style lang="scss">
 .manage-user {
   &__content {
     display: flex;

@@ -95,6 +95,15 @@ export default {
     },
     reformatUnitPrice () {
       this.fuel.unitPrice = parseInt(this.fuel.unitPrice.split(".").join(""));
+    },
+    clearFuelForm () {
+      this.fuel = {
+        date: "",
+        type: "",
+        volume: 0,
+        unitPrice: 0,
+        title: ""
+      }
     }
   },
   mounted () {

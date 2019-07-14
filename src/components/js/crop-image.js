@@ -13,7 +13,7 @@ export default {
   methods: {
     generateImage() {
       if (this.myCroppa.hasImage()) {
-        return this.myCroppa.generateDataUrl("image/webp", 0.7);
+        return this.myCroppa.generateDataUrl("image/jpg", 0.7);
       }
     },
     flipXImage() {

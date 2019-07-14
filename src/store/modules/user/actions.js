@@ -1,8 +1,9 @@
 import userApi from "@/api/user";
 
 export default {
-  createUser: ({ commit }, data) => {
-    userApi.createUser(data);
+  createUser: async ({ }, data) => {
+    const response = await userApi.createUser(data);
+    return response
   },
   emptyUser: ({ commit }, data) => {
     commit("SET_USER_EMPTY", data);
@@ -16,13 +17,15 @@ export default {
     commit("SET_USERS", data);
     commit("SET_PAGINATION", data);
   },
-  updateUser: ({}, data) => {
-    userApi.updateUser(data.id, data);
+  updateUser: async ({ }, data) => {
+    const response = await userApi.updateUser(data.id, data);
+    return response
   },
-  changePassword: ({}, data) => {
+  changePassword: ({ }, data) => {
     userApi.changePassword(data);
   },
-  deleteUser: ({}, id) => {
-    userApi.deleteUser(id);
+  deleteUser: async ({ }, id) => {
+    const response = userApi.deleteUser(id);
+    return response;
   }
 };

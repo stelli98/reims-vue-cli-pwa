@@ -9,27 +9,28 @@ export default {
     Pagination,
     SortFilter
   },
-  created() {
+  created () {
     this.updateTransaction(this.options);
   },
-  data() {
+  data () {
     return {
       showFilter: false
     };
   },
   computed: {
     ...mapState("transaction", ["transactions", "pagination"]),
-    options() {
+    options () {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: "created_at"
+        sortBy: "createdAt"
       };
     }
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
-    onFileChange(e) {
+    ...mapActions("auth", ["logout"]),
+    onFileChange (e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
       this.$router.push({
@@ -37,29 +38,34 @@ export default {
         params: { step: 1 }
       });
     },
-    changePage(toPage) {
+    changePage (toPage) {
       this.options.page = parseInt(toPage);
       const allOptions = { ...this.$route.query, ...this.options };
       this.$router.push({ name: "home", query: allOptions });
       this.getTransactions(allOptions);
     },
-    toogleFilter(value) {
+    toogleFilter (value) {
       this.showFilter = value;
     },
-    updateTransaction(options) {
+    updateTransaction (options) {
       this.getTransactions(options);
     },
-    moveTo(toPage) {
+    moveTo (toPage) {
       this.$router.push({ name: toPage });
     },
-    applyFilter(options) {
+    applyFilter (options) {
       this.options.page = 1;
       const allOptions = { ...this.options, ...options };
       this.updateTransaction(allOptions);
+    },
+    doLogout () {
+      this.logout().then(() => {
+        this.$router.push({ name: "login" });
+      });
     }
   },
   watch: {
-    options() {
+    options () {
       const allOptions = { ...this.options, ...this.$route.query };
       this.updateTransaction(allOptions);
     }
