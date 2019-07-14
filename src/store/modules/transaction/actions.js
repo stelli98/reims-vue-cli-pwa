@@ -13,7 +13,7 @@ export default {
   createTransaction: async ({ commit }, image) => {
     const { data } = await transactionApi.createTransaction(image);
     commit("SET_OCR_RESULT", data);
-    commit("SET_OCR_RESULT_TYPE", data.data.category);
+    commit("SET_OCR_RESULT_TYPE", data.category);
     return data;
   },
   getTransaction: async ({ commit }, id) => {

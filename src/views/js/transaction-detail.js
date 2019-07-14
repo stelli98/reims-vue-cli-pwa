@@ -1,5 +1,8 @@
-import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
-import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
+// import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
+// import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
+const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue")
+const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue")
+
 import { mapActions, mapState } from "vuex";
 export default {
   components: {
@@ -8,13 +11,13 @@ export default {
   },
   computed: {
     ...mapState("transaction", ["transaction"]),
-    transactionId() {
+    transactionId () {
       return this.$route.params.id;
     },
-    transactionCategory() {
+    transactionCategory () {
       return this.$options.filters.textFormatter(this.transaction.category);
     },
-    activeComponent() {
+    activeComponent () {
       return this.transactionCategory
         ? `View${this.transactionCategory}Detail`
         : "";
@@ -22,11 +25,11 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["getTransaction"]),
-    moveTo() {
-      this.$router.go(-1);
+    moveTo () {
+      this.$router.push({ name: 'home' });
     }
   },
-  mounted() {
+  mounted () {
     this.getTransaction(this.transactionId);
   }
 };

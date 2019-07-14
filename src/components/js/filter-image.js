@@ -27,7 +27,6 @@ export default {
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-<<<<<<< HEAD
     ...mapActions("transaction", [
       "createTransaction",
       "setImageOffline",
@@ -36,9 +35,6 @@ export default {
     ...mapActions("notification", [
       "addNotification",
     ]),
-=======
-    ...mapActions("transaction", ["createTransaction"]),
->>>>>>> 9d2e88877c380de5591df90d16659e545232fae0
     makeFilter (filterSet) {
       if (!filterSet) {
         filterSet = this.filterFunctions;
