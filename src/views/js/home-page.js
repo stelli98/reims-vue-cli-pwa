@@ -9,7 +9,7 @@ export default {
     Pagination,
     SortFilter
   },
-  created () {
+  mounted () {
     this.updateTransaction(this.options);
   },
   data () {

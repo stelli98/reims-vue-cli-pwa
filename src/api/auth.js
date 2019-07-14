@@ -1,21 +1,22 @@
 import axios from "axios";
 import config from "@/config";
+import auth from "@/store/modules/auth";
 
 const api = config.api.auth;
 
 const apiClient = axios.create({
-  // baseURL: "http://localhost:9095",
   headers: {
-    Authorization: document.cookie
+    Authorization: document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+    // auth.state.token
   }
 });
 
 export default {
-  login(data) {
+  login (data) {
     const path = api.login;
     return axios.post(path, data);
   },
-  logout() {
+  logout () {
     const path = api.logout;
     return apiClient.get(path);
   }

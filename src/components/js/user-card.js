@@ -17,11 +17,10 @@ export default {
       })
     },
     moveTo (userId) {
-      this.getUser(userId),
-        this.$router.push({
-          name: "user-edit",
-          params: { id: userId }
-        });
+      this.$router.push({
+        name: "user-edit",
+        params: { id: userId }
+      });
     }
   }
 };

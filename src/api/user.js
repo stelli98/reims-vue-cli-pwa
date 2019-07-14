@@ -1,11 +1,12 @@
 import axios from "axios";
 import config from "@/config";
+import auth from "@/store/modules/auth"
 
 const api = config.api.users;
 
 const apiClient = axios.create({
   headers: {
-    Authorization: document.cookie
+    Authorization: auth.state.token
   }
 });
 

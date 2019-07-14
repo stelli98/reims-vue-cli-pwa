@@ -4,7 +4,7 @@ import config from '@/config'
 
 const url = config.api.transactions
 
-describe('mutations', () => {
+describe('mutations for transaction module', () => {
     test('SET_IMAGE sets state.image', () => {
         const expectedValue = "image.jpg"
         const state = {

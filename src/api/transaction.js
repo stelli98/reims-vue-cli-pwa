@@ -1,12 +1,13 @@
 import axios from "axios";
 import config from "@/config";
 import offlineService from "@/api/transaction-offline";
+import auth from "@/store/modules/auth";
 
 const api = config.api.transactions;
 
 const apiClient = axios.create({
   headers: {
-    Authorization: document.cookie
+    Authorization: auth.state.token
   }
 });
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";

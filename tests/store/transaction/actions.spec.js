@@ -22,6 +22,22 @@ describe('Actions for Transactions Module', () => {
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_TYPE', type)
     })
 
+    test('set form to be empty', () => {
+        const data = {
+            in: "",
+            out: "",
+            price: 0,
+            title: "",
+            vehicle: "",
+            license: "",
+            location: "",
+            category: "PARKING"
+        }
+        const commit = jest.fn()
+        actions.setFormEmpty({ commit }, data)
+        expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT', data)
+    })
+
     test('create Transaction for image, set ocr result and its type', async () => {
         api.createTransaction = jest.fn();
         const expectedValue = data.find(d => d.url === url.transaction && d.method == "POST")

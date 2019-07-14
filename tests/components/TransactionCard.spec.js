@@ -57,7 +57,6 @@ describe("TransactionCard.vue", () => {
             propsData: {
                 transaction: transactionData.data[1]
             },
-            stubs: ['router-link'],
             sync: false
         });
     }

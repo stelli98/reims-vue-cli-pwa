@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     ...mapActions("user", ["updateUser", "createUser", "getUser", "emptyUser"]),
-    // ...mapGetters("user", ["getUserDetail"]),
     moveTo () {
       this.$router.push({ name: "user" });
     },

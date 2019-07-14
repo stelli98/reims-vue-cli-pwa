@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/22</span>
       </div>
     </div>
   </div>
@@ -108,7 +108,45 @@
 63
 64
 65
-66</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -142,6 +180,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,13 +208,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,6 +232,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,7 +271,7 @@ export default {
       location: { required }
     }
   },
-  data() {
+  data () {
 <span class="cstat-no" title="statement not covered" >    return {</span>
       isSwitchOn: {
         type: Boolean,
@@ -205,36 +281,74 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking"])
+    ...mapState("transaction", ["parking"]),
+    parkingTemplate () {
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        data: {
+          in: "",
+          out: "",
+          price: 0,
+          title: "",
+          vehicle: "",
+          license: "",
+          location: "",
+          category: "PARKING"
+        }
+      }
+    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    ...mapActions("notification", [
+      "addNotification",
+    ]),
+    toggle () {
 <span class="cstat-no" title="statement not covered" >      this.isSwitchOn = !this.isSwitchOn;</span>
     },
-    sendParkingForm() {
+    async sendParkingForm () {
 <span class="cstat-no" title="statement not covered" >      this.$v.parking.$touch();</span>
 <span class="cstat-no" title="statement not covered" >      if (!this.$v.parking.$invalid) {</span>
 <span class="cstat-no" title="statement not covered" >        this.reformatPrice();</span>
-<span class="cstat-no" title="statement not covered" >        this.saveTransaction(this.parking);</span>
-<span class="cstat-no" title="statement not covered" >        console.log(this.parking);</span>
-<span class="cstat-no" title="statement not covered" >        this.$router.push({ name: "home" });</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.parking).then(() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          const notification = {</span>
+            type: "success",
+            message: "Parking form has been submitted."
+          };
+<span class="cstat-no" title="statement not covered" >          this.addNotification(notification)</span>
+<span class="fstat-no" title="function not covered" >        }).catch(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          const notification = {</span>
+            type: "error",
+            message: "Oops ! You're offline. We will send it back as soon as you're online."
+          };
+<span class="cstat-no" title="statement not covered" >          this.addNotification(notification)</span>
+        })
       } else {
-<span class="cstat-no" title="statement not covered" >        console.log("error");</span>
+<span class="cstat-no" title="statement not covered" >        alert("error");</span>
       }
     },
-    formatPrice() {
+    formatPrice () {
 <span class="cstat-no" title="statement not covered" >      this.$v.parking.price.$touch();</span>
 <span class="cstat-no" title="statement not covered" >      this.parking.price = this.parking.price</span>
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatPrice() {
+    reformatPrice () {
 <span class="cstat-no" title="statement not covered" >      this.parking.price = parseInt(this.parking.price.split(".").join(""));</span>
+    },
+    clearParkingForm () {
+<span class="cstat-no" title="statement not covered" >      this.parking = {</span>
+        in: "",
+        out: "",
+        price: 0,
+        title: "",
+        vehicle: "",
+        license: "",
+        location: ""
+      }
     }
   },
-  mounted() {
+  mounted () {
 <span class="cstat-no" title="statement not covered" >    this.formatPrice();</span>
   }
 };
@@ -244,7 +358,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 14 2019 09:03:54 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 14 2019 23:22:11 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

@@ -508,5 +508,19 @@ export default [
       "role": "ADMIN",
       "updated_at": 1559058410
     }
+  },
+  {
+    "code": 200,
+    "method": "POST",
+    "url": api.auth.login,
+    "status": "OK",
+    "headers": {
+      "authorization": "Bearer 123"
+    },
+    "data": {
+      "id": 1,
+      "username": "Hefriza Munaf",
+      "role": "ADMIN"
+    }
   }
 ];

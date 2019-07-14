@@ -13,7 +13,7 @@ export default {
       password: { required, minLength: minLength(6) }
     }
   },
-  data() {
+  data () {
     return {
       user: {
         username: "",
@@ -21,15 +21,16 @@ export default {
       }
     };
   },
-  computed: mapState("auth", ["authUser"]),
+  computed: mapState("auth", ["role"]),
   methods: {
     ...mapActions("auth", ["login"]),
-    submitLoginForm() {
+    submitLoginForm () {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
-        this.login(this.user).then(() => {
-          this.$router.push({ name: access[this.authUser.role] });
-        });
+        this.login(this.user)
+          .then(() => {
+            this.$router.push({ name: access[this.role] });
+          });
       } else {
         console.log("error");
       }

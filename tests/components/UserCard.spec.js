@@ -52,7 +52,6 @@ describe("UserCard.vue", () => {
         return shallowMount(UserCard, {
             store,
             localVue,
-            stubs: ['router-link'],
             propsData: {
                 user: userData.data[1]
             }
