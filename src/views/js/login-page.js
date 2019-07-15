@@ -1,10 +1,10 @@
 import { required, minLength } from "vuelidate/lib/validators";
 import { mapActions, mapState } from "vuex";
 
-const access = {
-  ADMIN: "user",
-  USER: "home"
-};
+// const access = {
+//   ADMIN: "user",
+//   USER: "home"
+// };
 
 export default {
   validations: {
@@ -18,6 +18,10 @@ export default {
       user: {
         username: "",
         password: ""
+      },
+      access: {
+        ADMIN: "user",
+        USER: "home"
       }
     };
   },

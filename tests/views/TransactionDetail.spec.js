@@ -98,16 +98,6 @@ describe("TransactionDetail.vue", () => {
     expect(wrapper.vm.transactionCategory).toBe("Parking");
   });
 
-  // test("activeComponent must be empty string", () => {
-  //   // wrapper.vm.$store.state.transaction = {
-  //   //   category: ''
-  //   // }
-  //   console.log('UAA',
-  //     wrapper.vm.store.state.transaction)
-  //   expect(wrapper.vm.activeComponent).toBe("");
-  // });
-
-
   test("activeComponent must be ViewParkingDetail", () => {
     var transactionID = {
       id: 1

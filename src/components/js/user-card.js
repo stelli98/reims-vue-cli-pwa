@@ -10,7 +10,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["deleteUser", "getUser"]),
+    ...mapActions("user", ["deleteUser"]),
     removeUser (id) {
       this.deleteUser(id).then(() => {
         this.$emit('updateUserList');
