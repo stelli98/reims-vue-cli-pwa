@@ -1,7 +1,10 @@
 <template>
   <form class="transaction-form__fuel">
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Title
       </label>
       <input
@@ -12,13 +15,19 @@
         @blur="$v.fuel.title.$touch()"
       />
       <div v-if="$v.fuel.title.$error">
-        <p v-if="!$v.fuel.title.required" class="input__error-message">
+        <p
+          v-if="!$v.fuel.title.required"
+          class="input__error-message"
+        >
           Title must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="date">
+      <label
+        class="input__label title--medium-form"
+        for="date"
+      >
         Date
       </label>
       <Datetime
@@ -29,13 +38,19 @@
         @close="$v.fuel.date.$touch()"
       />
       <div v-if="$v.fuel.date.$error">
-        <p v-if="!$v.fuel.date.required" class="input__error-message">
+        <p
+          v-if="!$v.fuel.date.required"
+          class="input__error-message"
+        >
           Date must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Fuel Type
       </label>
       <select
@@ -54,13 +69,19 @@
       </select>
 
       <div v-if="$v.fuel.type.$error">
-        <p v-if="!$v.fuel.type.required" class="input__error-message">
+        <p
+          v-if="!$v.fuel.type.required"
+          class="input__error-message"
+        >
           Fuel Type must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Volume
       </label>
       <input
@@ -72,18 +93,27 @@
         @blur="$v.fuel.volume.$touch()"
       />
       <div v-if="$v.fuel.volume.$error">
-        <p v-if="!$v.fuel.volume.float" class="input__error-message">
+        <p
+          v-if="!$v.fuel.volume.float"
+          class="input__error-message"
+        >
           Volume must be decimal ex: 100.34, 1.34, 1.00, 1
         </p>
       </div>
       <div v-if="$v.fuel.volume.$error">
-        <p v-if="!$v.fuel.volume.required" class="input__error-message">
+        <p
+          v-if="!$v.fuel.volume.required"
+          class="input__error-message"
+        >
           Volume must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Unit Price
       </label>
       <div class="form__currency">
@@ -91,26 +121,35 @@
           Rp.
         </p>
         <input
-          v-model="fuel.unitPrice"
+          v-model="fuel.amount"
           type="text"
           name="type"
           class="form__currency__input"
           @blur="formatUnitPrice"
         />
       </div>
-      <div v-if="$v.fuel.unitPrice.$error">
-        <p v-if="!$v.fuel.unitPrice.required" class="input__error-message">
+      <div v-if="$v.fuel.amount.$error">
+        <p
+          v-if="!$v.fuel.amount.required"
+          class="input__error-message"
+        >
           Unit Price must be filled
         </p>
       </div>
-      <div v-if="$v.fuel.unitPrice.$error">
-        <p v-if="!$v.fuel.unitPrice.currency" class="input__error-message">
+      <div v-if="$v.fuel.amount.$error">
+        <p
+          v-if="!$v.fuel.amount.currency"
+          class="input__error-message"
+        >
           Unit Price must be only filled in IDR currency format
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Total Price
       </label>
       <div class="form__currency">

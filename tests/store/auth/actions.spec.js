@@ -2,7 +2,6 @@ import actions from "@/store/modules/auth/actions";
 import api from "@/api/auth"
 import data from "@/api-mock/mock-data"
 import config from "@/config"
-
 const url = config.api.auth
 jest.mock("@/api/auth")
 
@@ -25,7 +24,12 @@ describe('Actions for Auth Module', () => {
     test('logout', async () => {
         api.logout = jest.fn()
         const commit = jest.fn()
-        await actions.logout({ commit })
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
+        await actions.logout({ commit, rootState })
         expect(commit).toHaveBeenCalledWith('SET_TOKEN', '')
         expect(commit).toHaveBeenCalledWith('SET_ROLE', '')
         expect(commit).toHaveBeenCalledWith('SET_ID', '')

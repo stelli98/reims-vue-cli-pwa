@@ -11,9 +11,9 @@ export default {
   components: { Datetime },
   validations: {
     parking: {
-      in: { required },
+      date: { required },
       out: { required },
-      price: { required, currency },
+      amount: { required, currency },
       title: { required },
       vehicle: { required },
       license: { required },
@@ -26,31 +26,25 @@ export default {
         type: Boolean,
         default: true
       },
-      vehicleType: ["Bus", "Car", "Motorcycle", "Van"]
+      vehicleType: ["Bus", "Car", "Motorcycle", "Van"],
+      // parking: {
+      //   category: "PARKING",
+      //   in: "",
+      //   out: "",
+      //   amount: 0,
+      //   title: "",
+      //   vehicle: "",
+      //   license: "",
+      //   location: ""
+      // }
     };
   },
   computed: {
     ...mapState("transaction", ["parking"]),
-    parkingTemplate () {
-      return {
-        data: {
-          in: "",
-          out: "",
-          price: 0,
-          title: "",
-          vehicle: "",
-          license: "",
-          location: "",
-          category: "PARKING"
-        }
-      }
-    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    ...mapActions("notification", [
-      "addNotification",
-    ]),
+    ...mapActions("notification", ["addNotification"]),
     toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
@@ -58,7 +52,8 @@ export default {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
-        return this.saveTransaction(this.parking).then(() => {
+        return this.saveTransaction(this.parking).then((response) => {
+          console.log(response)
           const notification = {
             type: "success",
             message: "Parking form has been submitted."
@@ -76,28 +71,19 @@ export default {
       }
     },
     formatPrice () {
-      this.$v.parking.price.$touch();
-      this.parking.price = this.parking.price
+      this.$v.parking.amount.$touch();
+      this.parking.amount = this.parking.amount
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     reformatPrice () {
-      this.parking.price = parseInt(this.parking.price.split(".").join(""));
-    },
-    clearParkingForm () {
-      this.parking = {
-        in: "",
-        out: "",
-        price: 0,
-        title: "",
-        vehicle: "",
-        license: "",
-        location: ""
-      }
+      this.parking.amount = parseInt(this.parking.amount.split(".").join(""));
     }
   },
-  mounted () {
+  created () {
+    console.log('mounted', this.parking)
+    // Object.assign(this.parking, this.getParkingTransaction)
     this.formatPrice();
   }
 };

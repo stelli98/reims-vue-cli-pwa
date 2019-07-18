@@ -15,7 +15,7 @@ export default {
       date: { required },
       type: { required },
       volume: { required, float },
-      unitPrice: { required, currency },
+      amount: { required, currency },
       title: { required }
     }
   },
@@ -31,17 +31,17 @@ export default {
   computed: {
     ...mapState("transaction", ["fuel"]),
     totalPrice () {
-      const value = (this.unitPrice * this.fuel.volume).toString();
+      const value = (this.amount * this.fuel.volume).toString();
       if (value.includes("e")) {
         return value;
       }
       return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     unitPrice () {
-      if (typeof this.fuel.unitPrice === "string") {
-        return parseInt(this.fuel.unitPrice.split(".").join(""));
+      if (typeof this.fuel.amount === "string") {
+        return parseInt(this.fuel.amount.split(".").join(""));
       } else {
-        return this.fuel.unitPrice;
+        return this.fuel.amount;
       }
     },
     fuelTemplate () {
@@ -88,13 +88,13 @@ export default {
     },
     formatUnitPrice () {
       this.$v.fuel.unitPrice.$touch();
-      this.fuel.unitPrice = this.fuel.unitPrice
+      this.fuel.amount = this.fuel.amount
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     reformatUnitPrice () {
-      this.fuel.unitPrice = parseInt(this.fuel.unitPrice.split(".").join(""));
+      this.fuel.amount = parseInt(this.fuel.amount.split(".").join(""));
     },
     clearFuelForm () {
       this.fuel = {
@@ -107,6 +107,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.fuel)
     this.formatUnitPrice();
   }
 };

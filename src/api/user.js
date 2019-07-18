@@ -1,36 +1,48 @@
 import axios from "axios";
 import config from "@/config";
-import auth from "@/store/modules/auth"
-
 const api = config.api.users;
-
-const apiClient = axios.create({
-  headers: {
-    Authorization: auth.state.token
-  }
-});
-
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getUser (id) {
+  getUser (id, token) {
     const path = api.user;
-    return apiClient.get(`${path}/${id}`);
+    return axios.get(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
   },
-  getUsers (options) {
+  getUsers (options, token) {
     const path = api.user;
-    return apiClient.get(path, { params: options });
+    return axios.get(path, {
+      params: options,
+      headers: {
+        Authorization: token
+      }
+    })
   },
-  createUser (data) {
+  createUser (data, token) {
     const path = api.user;
-    return apiClient.post(path, data);
+    return axios.post(path, data, {
+      headers: {
+        Authorization: token
+      }
+    });
   },
-  updateUser (id, data) {
+  updateUser (id, data, token) {
     const path = api.user;
-    return apiClient.put(`${path}/${id}`, data);
+    return axios.put(`${path}/${id}`, data, {
+      headers: {
+        Authorization: token
+      }
+    });
   },
-  deleteUser (id) {
+  deleteUser (id, token) {
     const path = api.user;
-    return apiClient.delete(`${path}/${id}`);
+    return axios.delete(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
   }
 };

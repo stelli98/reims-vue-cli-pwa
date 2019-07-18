@@ -1,31 +1,37 @@
 import userApi from "@/api/user";
 
 export default {
-  createUser: async ({ }, data) => {
-    const response = await userApi.createUser(data);
+  createUser: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.createUser(data, token);
     return response
   },
   emptyUser: ({ commit }, data) => {
     commit("SET_USER_EMPTY", data);
   },
-  getUser: async ({ commit }, id) => {
-    const { data } = await userApi.getUser(id);
+  getUser: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUser(id, token);
     commit("SET_USER", data);
   },
-  getUsers: async ({ commit }, options) => {
-    const { data } = await userApi.getUsers(options);
+  getUsers: async ({ commit, rootState }, options) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUsers(options, token);
     commit("SET_USERS", data);
     commit("SET_PAGINATION", data);
   },
-  updateUser: async ({ }, data) => {
-    const response = await userApi.updateUser(data.id, data);
+  updateUser: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.updateUser(data.id, data, token);
     return response
   },
-  changePassword: ({ }, data) => {
-    userApi.changePassword(data);
+  changePassword: ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    userApi.changePassword(data, token);
   },
-  deleteUser: async ({ }, id) => {
-    const response = userApi.deleteUser(id);
+  deleteUser: async ({ rootState }, id) => {
+    const { token } = rootState.auth;
+    const response = userApi.deleteUser(id, token);
     return response;
   }
 };

@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapState("transaction", ["parking", "fuel", "OCRResultType"]),
     currentComponent () {
-      return this.OCRResultType || "PARKING";
+      return this.OCRResultType || 'FUEL';
     },
     isSwitchOn () {
       return this.currentComponent

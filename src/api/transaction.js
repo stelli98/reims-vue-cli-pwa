@@ -1,30 +1,35 @@
 import axios from "axios";
 import config from "@/config";
 import offlineService from "@/api/transaction-offline";
-import auth from "@/store/modules/auth";
 
 const api = config.api.transactions;
-
-const apiClient = axios.create({
-  headers: {
-    Authorization: auth.state.token
-  }
-});
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getTransaction (id) {
+  getTransaction (id, token) {
     const path = api.transaction;
-    return apiClient.get(`${path}/${id}`);
+    return axios.get(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
   },
-  getTransactions (options) {
+  getTransactions (options, token) {
     const path = api.transaction;
-    return apiClient.get(path, { params: options });
+    return axios.get(path, {
+      params: options, headers: {
+        Authorization: token
+      }
+    })
   },
-  createTransaction (data) {
+  createTransaction (data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
-      return axios.post(path, data)
+      return axios.post(path, data, {
+        headers: {
+          Authorization: token
+        }
+      })
         .catch(() => {
           return offlineService.storeImageOffline(data);
         });
@@ -32,20 +37,28 @@ export default {
       return offlineService.storeImageOffline(data);
     }
   },
-  saveTransaction (data) {
+  saveTransaction (data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
-      return axios.put(path, data).catch(() => {
+      return axios.put(path, data, {
+        headers: {
+          Authorization: token
+        }
+      }).catch(() => {
         return offlineService.storeFormOffline(data);
       });
     } else {
       return offlineService.storeFormOffline(data);
     }
   },
-  deleteTransaction (id) {
+  deleteTransaction (id, token) {
     const path = api.transaction;
     console.log("delete id :" + id);
-    return axios.delete(`${path}/${id}`);
+    return axios.delete(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
   },
   isOnline () {
     return navigator.onLine;

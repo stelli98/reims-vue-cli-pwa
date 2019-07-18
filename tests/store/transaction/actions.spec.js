@@ -43,7 +43,12 @@ describe('Actions for Transactions Module', () => {
         const expectedValue = data.find(d => d.url === url.transaction && d.method == "POST")
         api.createTransaction.mockResolvedValue(expectedValue)
         const commit = jest.fn()
-        await actions.createTransaction({ commit }, image)
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
+        await actions.createTransaction({ commit, rootState }, image)
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT', expectedValue.data)
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_TYPE', expectedValue.data.category)
     })
@@ -53,7 +58,12 @@ describe('Actions for Transactions Module', () => {
         const expectedValue = data.find(d => d.url === url.transaction + "/1" && d.method == "GET")
         api.getTransaction.mockResolvedValue(expectedValue)
         const commit = jest.fn()
-        await actions.getTransaction({ commit }, id)
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
+        await actions.getTransaction({ commit, rootState }, id)
         expect(commit).toHaveBeenCalledWith('SET_TRANSACTION', expectedValue.data)
     })
 
@@ -67,14 +77,23 @@ describe('Actions for Transactions Module', () => {
         const expectedValue = data.find(d => d.url === url.transaction && d.method == "GET" && d.params.page === options.page)
         api.getTransactions.mockResolvedValue(expectedValue)
         const commit = jest.fn()
-        await actions.getTransactions({ commit }, options)
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
+        await actions.getTransactions({ commit, rootState }, options)
         expect(commit).toHaveBeenCalledWith('SET_TRANSACTIONS', expectedValue.data)
         expect(commit).toHaveBeenCalledWith('SET_PAGINATION', expectedValue.data)
     })
 
     test('save transaction form', () => {
         api.saveTransaction = jest.fn();
-        const commit = jest.fn()
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
         const transaction = {
             "id": 500000026,
             "image":
@@ -87,14 +106,18 @@ describe('Actions for Transactions Module', () => {
             "created_at": "2018-05-12T17:19:06.151Z",
             "modified_at": ""
         }
-        actions.saveTransaction({ commit }, transaction)
-        expect(api.saveTransaction).toHaveBeenCalledWith(transaction)
+        actions.saveTransaction({ rootState }, transaction)
+        expect(api.saveTransaction).toHaveBeenCalledWith(transaction, rootState.auth.token)
     })
 
     test('delete transaction', () => {
         api.deleteTransaction = jest.fn();
-        const commit = jest.fn()
-        actions.deleteTransaction({ commit }, id)
-        expect(api.deleteTransaction).toHaveBeenCalledWith(id)
+        const rootState = {
+            auth: {
+                token: 'Bearer 123'
+            }
+        }
+        actions.deleteTransaction({ rootState }, id)
+        expect(api.deleteTransaction).toHaveBeenCalledWith(id, rootState.auth.token)
     })
 })

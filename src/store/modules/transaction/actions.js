@@ -10,27 +10,33 @@ export default {
   setFormEmpty ({ commit }, data) {
     commit("SET_OCR_RESULT", data);
   },
-  createTransaction: async ({ commit }, image) => {
-    const { data } = await transactionApi.createTransaction(image);
+  createTransaction: async ({ commit, rootState }, image) => {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.createTransaction(image, token);
     commit("SET_OCR_RESULT", data);
-    commit("SET_OCR_RESULT_TYPE", data.category);
+    commit("SET_OCR_RESULT_TYPE", data.data.category);
     return data;
   },
-  getTransaction: async ({ commit }, id) => {
-    const { data } = await transactionApi.getTransaction(id);
+  getTransaction: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.getTransaction(id, token);
     commit("SET_TRANSACTION", data);
   },
-  getTransactions: async ({ commit }, options) => {
-    const { data } = await transactionApi.getTransactions(options);
+  getTransactions: async ({ commit, rootState }, options) => {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.getTransactions(options, token);
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },
-  saveTransaction: async ({ }, transaction) => {
-    const { data } = await transactionApi.saveTransaction(transaction);
+  saveTransaction: async ({ rootState }, transaction) => {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.saveTransaction(transaction, token);
     return data;
   },
-  deleteTransaction: ({ commit }, id) => {
-    const response = transactionApi.deleteTransaction(id);
+  deleteTransaction: ({ rootState }, id) => {
+    const { token } = rootState.auth;
+    const response = transactionApi.deleteTransaction(id, token);
+    console.log('delete', response)
     return response
   }
 };

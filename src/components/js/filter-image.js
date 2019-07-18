@@ -85,16 +85,18 @@ export default {
       return resultImage;
     },
     uploadImageOCR (resultImage) {
-      const data = {
+      const request = {
         image: resultImage
       }
-      this.createTransaction(data)
-        .then(() => {
+      this.createTransaction(request)
+        .then((response) => {
+          console.log('response', response)
           const notification = {
             type: "success",
             message: "Image has been submitted."
           };
           this.addNotification(notification)
+
         })
         .catch(() => {
           const notification = {
@@ -103,6 +105,7 @@ export default {
           };
           this.addNotification(notification)
         })
+      this.$router.push({ name: "create", params: { step: 3 } });
     }
   }
 };

@@ -83,7 +83,6 @@ export default {
         return;
       } else if (this.pictureUrl) {
         this.pictureUrl = this.$refs.generate.generateImage();
-        this.$router.push({ name: "create", params: { step: 3 } });
       } else {
         this.$router.push({ name: "create", params: { step: 1 } });
       }

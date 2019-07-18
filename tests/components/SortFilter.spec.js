@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import SortFilter from "@/components/SortFilter";
+import TextFilter from "@/filters/text";
 import DateTime from "vue-datetime";
 
 describe("UserCard.vue", () => {
@@ -9,6 +10,7 @@ describe("UserCard.vue", () => {
     function generateLocalVue () {
         const lv = createLocalVue();
         lv.use(DateTime)
+        lv.filter('textFormatter', TextFilter)
         return lv;
     }
 

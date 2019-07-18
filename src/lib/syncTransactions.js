@@ -1,6 +1,6 @@
 import transactionApi from "@/api/transaction";
 import offlineService from "@/api/transaction-offline";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import NotificationContainer from "@/components/NotificationContainer.vue";
 
 const imageIdb = "offlineImages";
@@ -48,7 +48,7 @@ export default {
     },
     sendOnlyFormToServer (forms) {
       forms.map(data => {
-        transactionApi.saveTransaction(data).then(() => {
+        transactionApi.saveTransaction(data, this.token).then(() => {
           offlineService.deleteDataByKeyFromIndexedDB(formIdb, data.id).then(() => {
             this.addSuccessFormNotification();
             this.setSendingData(false)
@@ -69,7 +69,7 @@ export default {
     },
     sendImageAndFormToServer (images) {
       images.map(image => {
-        transactionApi.createTransaction(image).then(response => {
+        transactionApi.createTransaction(image, this.token).then(response => {
           offlineService.deleteDataByKeyFromIndexedDB(imageIdb, image.id)
           this.sendFormAfterImageToServer(image.id, response);
         });
@@ -85,7 +85,7 @@ export default {
       const form = this.findFormByImageID(formId)
       form.id = response.data.id;
       transactionApi
-        .saveTransaction(form)
+        .saveTransaction(form, this.token)
         .then(() => {
           offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId)
           this.addSuccessImageNotification();
@@ -107,6 +107,9 @@ export default {
       };
       this.addNotification(notification)
     }
+  },
+  computed: {
+    ...mapState('auth', ['token'])
   },
   created () {
     this.checkConnectivityStatus();

@@ -1,12 +1,16 @@
 import idbs from "@/api/indexedDBService";
-
+import store from "@/store";
 const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
 
 export default {
   storeImageOffline (data) {
-    data.id = Date.now();
-    this.storeToIndexedDB(imageIdb, data);
+    const request = {
+      id: Date.now(),
+      userId: store.state.auth.id,
+      image: data.image
+    }
+    this.storeToIndexedDB(imageIdb, request);
     this.throwError();
   },
   throwError () {
@@ -18,8 +22,8 @@ export default {
       : await this.getLastIndexIDFromIndexedDB(imageIdb);
     const data = {
       id: id,
-      ...form
-      //add user data
+      ...form,
+      userId: store.state.auth.id
     };
     this.storeToIndexedDB(formIdb, data);
     this.throwError();

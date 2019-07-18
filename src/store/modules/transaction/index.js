@@ -6,19 +6,21 @@ const state = {
   image: "",
   OCRResultType: "",
   parking: {
+    category: "PARKING",
     in: "",
     out: "",
-    price: 0,
+    amount: 0,
     title: "",
     vehicle: "",
     license: "",
     location: ""
   },
   fuel: {
+    category: "FUEL",
     date: "",
     type: "",
     volume: 0,
-    unitPrice: 0,
+    amount: 0,
     title: ""
   },
   transactions: [],

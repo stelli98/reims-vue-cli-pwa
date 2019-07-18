@@ -3,7 +3,10 @@ export default {
     state.image = img;
   },
   SET_OCR_RESULT (state, { data }) {
-    Object.assign(state[data.category.toLowerCase()], data)
+    state[data.category.toLowerCase()] = {
+      ...state[data.category.toLowerCase()],
+      ...data
+    }
   },
   SET_OCR_RESULT_TYPE (state, data) {
     state.OCRResultType = data;

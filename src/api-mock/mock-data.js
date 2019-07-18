@@ -17,35 +17,35 @@ export default [
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 2,
         "category": "fuel",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Bensin PP Thamrin - GI",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 3,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 4,
         "category": "fuel",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Bensin PP Thamrin - GI",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 5,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       }
     ],
     "paging": {
@@ -71,35 +71,35 @@ export default [
         "category": "fuel",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Bensin PP Jakarta - Bandung",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 7,
         "category": "fuel",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Bensin Town Hall",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 8,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Bus Mini",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 9,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Motor GI",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 10,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 6",
-        "price": 25000
+        "amount": 25000
       }
     ],
     "paging": {
@@ -129,21 +129,21 @@ export default [
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 3,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       },
       {
         "id": 5,
         "category": "parking",
         "date": "2019-05-06T12:06:00.000Z",
         "title": "Parkir Tanggal 20",
-        "price": 25000
+        "amount": 25000
       }
     ],
     "paging": {
@@ -167,7 +167,7 @@ export default [
   //         "vehicle": "Motorcycle",
   //         "in": "2018-05-12T17:19:06.151Z",
   //         "out": "2018-05-12T17:19:06.151Z",
-  //         "price": 9000,
+  //         "amount": 9000,
   //         "created_at": "01:12:2007 03:06:10z",
   //         "modified_at": ",
   //     }
@@ -206,7 +206,7 @@ export default [
       "vehicle": "Motor",
       "in ": "2018-05-12T17:19:06.151Z",
       "out": "2018-05-12T17:19:06.151Z",
-      "price": 9000,
+      "amount": 9000,
       "created_at": "2018-05-12T17:19:06.151Z",
       "modified_at": "2018-05-12T17:19:06.151Z"
     }
@@ -223,7 +223,7 @@ export default [
   //         "category": "FUEL",
   //         "type": "premium",
   //         "volume": 5.00,
-  //         "price": 9000,
+  //         "amount": 9000,
   //         "created_at": "2018-05-12T17:19:06.151Z",
   //         "modified_at": "2018-05-12T17:19:06.151Z",
   //     }
@@ -262,7 +262,7 @@ export default [
       "vehicle": "Motor",
       "in": "2018-05-12T17:19:06.151Z",
       "out": "2018-05-12T17:19:06.151Z",
-      "price": 9000,
+      "amount": 9000,
       "created_at": "2018-05-12T17:19:06.151Z",
       "modified_at": "2018-05-12T17:19:06.151Z"
     }
