@@ -5,6 +5,7 @@ const namespaced = true;
 const state = {
   image: "",
   OCRResultType: "",
+  OCRResultImage: "",
   parking: {
     category: "PARKING",
     in: "",

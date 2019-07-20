@@ -40,7 +40,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking"]),
+    ...mapState("transaction", ["parking", "OCRResultImage"]),
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
@@ -52,6 +52,7 @@ export default {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
+        this.parking.image = this.OCRResultImage;
         return this.saveTransaction(this.parking).then((response) => {
           console.log(response)
           const notification = {

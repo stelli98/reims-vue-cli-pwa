@@ -186,7 +186,7 @@ export default [
       "date": "2018-05-12T17:19:06.151Z",
       "type": "Premium",
       "volume": 5.0,
-      "unitPrice": 9000,
+      "amount": 9000,
       "created_at": "2018-05-12T17:19:06.151Z",
       "modified_at": ""
     }

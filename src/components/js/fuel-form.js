@@ -2,7 +2,7 @@ import { helpers, numeric, required } from "vuelidate/lib/validators";
 import { mapActions, mapState } from "vuex";
 import { Datetime } from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
-const float = helpers.regex("numeric", /\d*\.?\d*$/);
+const float = helpers.regex("decimal", /^[0-9]+([.][0-9]+)?$/);
 const currency = helpers.regex(
   "numeric",
   /(\d{1,3}[.](\d{3}[.])*\d{3}|\d+)([,]\d{1,2})?$/
@@ -29,20 +29,13 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["fuel"]),
+    ...mapState("transaction", ["fuel", "OCRResultImage"]),
     totalPrice () {
-      const value = (this.amount * this.fuel.volume).toString();
+      const value = (this.amountInt * this.fuel.volume).toFixed(2);
       if (value.includes("e")) {
-        return value;
+        return value || 0
       }
-      return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
-    unitPrice () {
-      if (typeof this.fuel.amount === "string") {
-        return parseInt(this.fuel.amount.split(".").join(""));
-      } else {
-        return this.fuel.amount;
-      }
+      return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0
     },
     fuelTemplate () {
       return {
@@ -55,6 +48,9 @@ export default {
           category: "FUEL"
         }
       }
+    },
+    amountInt () {
+      return this.fuel.amount ? parseInt(this.fuel.amount.split(".").join("")) : ""
     }
   },
   methods: {
@@ -69,13 +65,16 @@ export default {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.reformatUnitPrice();
-        return this.saveTransaction(this.fuel).then(() => {
+        this.fuel.image = this.OCRResultImage;
+        return this.saveTransaction(this.fuel).then((response) => {
+          console.log('fuel', response)
           const notification = {
             type: "success",
             message: "Fuel form has been submitted."
           };
           this.addNotification(notification)
-        }).catch(() => {
+        }).catch((error) => {
+          console.log('error-fuel', response)
           const notification = {
             type: "error",
             message: "Oops ! You're offline. We will send it back as soon as you're online."
@@ -87,7 +86,7 @@ export default {
       }
     },
     formatUnitPrice () {
-      this.$v.fuel.unitPrice.$touch();
+      this.$v.fuel.amount.$touch();
       this.fuel.amount = this.fuel.amount
         .toString()
         .replace(/\D/g, "")
@@ -107,7 +106,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.fuel)
     this.formatUnitPrice();
   }
 };

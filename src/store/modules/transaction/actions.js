@@ -15,6 +15,7 @@ export default {
     const { data } = await transactionApi.createTransaction(image, token);
     commit("SET_OCR_RESULT", data);
     commit("SET_OCR_RESULT_TYPE", data.data.category);
+    commit("SET_OCR_RESULT_IMAGE", data.data.image);
     return data;
   },
   getTransaction: async ({ commit, rootState }, id) => {

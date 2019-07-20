@@ -11,6 +11,9 @@ export default {
   SET_OCR_RESULT_TYPE (state, data) {
     state.OCRResultType = data;
   },
+  SET_OCR_RESULT_IMAGE (state, data) {
+    state.OCRResultImage = data;
+  },
   SET_TRANSACTION (state, { data }) {
     state.transaction = data;
   },
