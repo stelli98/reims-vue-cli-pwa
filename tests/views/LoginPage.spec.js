@@ -37,11 +37,16 @@ describe("LoginPage.vue", () => {
             role: userData.data.role
         };
 
+        const getters = {
+            role: (state) => state.role
+        }
+
         const store = new Vuex.Store({
             modules: {
                 auth: {
                     actions,
                     state,
+                    getters,
                     namespaced: true
                 }
             }
@@ -50,7 +55,8 @@ describe("LoginPage.vue", () => {
         return {
             store,
             state,
-            actions
+            actions,
+            getters
         };
     }
 

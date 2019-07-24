@@ -13,10 +13,15 @@ describe("CropImage.vue", () => {
             image: ""
         };
 
+        const getters = {
+            image: (state) => state.image
+        }
+
         const store = new Vuex.Store({
             modules: {
                 transaction: {
                     state,
+                    getters,
                     namespaced: true
                 }
             }
@@ -24,7 +29,8 @@ describe("CropImage.vue", () => {
 
         return {
             store,
-            state
+            state,
+            getters
         };
     }
 
@@ -51,19 +57,19 @@ describe("CropImage.vue", () => {
         store = initializeStore();
     });
 
-    test("method rotateLeft", () => {
+    test("method generateImage", () => {
         const options = {
             data: () => {
                 return {
                     myCroppa: {
-                        hasImage: jest.fn(),
-                        generateDataUrl: jest.fn()
+                        hasImage: jest.fn().mockReturnValue(true),
+                        generateDataUrl: jest.fn().mockReturnValue("data/image.png")
                     }
                 }
             }
         }
         wrapper = createWrapper(store.store, options)
-        const spy1 = jest.spyOn(wrapper.vm.myCroppa, 'hasImage')
+        const spy1 = jest.spyOn(wrapper.vm.myCroppa, 'hasImage');
         wrapper.vm.generateImage();
         expect(spy1).toHaveBeenCalled();
         expect(wrapper.vm.generateImage()).toBe("data/image.png");

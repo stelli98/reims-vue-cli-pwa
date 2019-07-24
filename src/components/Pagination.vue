@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="paging.totalPage > 1"
+    v-show="paging.totalPages > 1"
     class="pagination"
   >
     <div

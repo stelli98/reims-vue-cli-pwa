@@ -52,6 +52,9 @@ describe("ManageUser.vue", () => {
             actions: {
                 user: user.actions,
                 auth: auth.actions
+            },
+            getters: {
+                user: user.getters
             }
         };
     }
@@ -74,8 +77,12 @@ describe("ManageUser.vue", () => {
             users: userData.data,
             pagination: userData.data.page
         }
+        const getters = {
+            users: (state) => state.users,
+            pagination: (state) => state.pagination
+        }
         const namespaced = true
-        return { state, actions, namespaced }
+        return { state, actions, getters, namespaced }
     }
 
     function generateLocalVue () {

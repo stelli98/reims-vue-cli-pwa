@@ -1,6 +1,6 @@
 import transactionApi from "@/api/transaction";
 import offlineService from "@/api/transaction-offline";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import NotificationContainer from "@/components/NotificationContainer.vue";
 
 const imageIdb = "offlineImages";
@@ -85,7 +85,6 @@ export default {
     },
     async sendFormAfterImageToServer (formId, response) {
       const form = await this.findFormByImageID(formId)
-      // form.id = response.data.id;
       form.image = response.data.data.image;
       console.log('before send', form)
       transactionApi
@@ -114,7 +113,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth', ['token'])
+    ...mapGetters('auth', ['token'])
   },
   created () {
     this.checkConnectivityStatus();

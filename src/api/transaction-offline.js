@@ -15,23 +15,21 @@ export default {
       this.throwError();
     }
   },
+  async storeFormOffline (form) {
+    if (!form.id) {
+      const id = await this.getLastIndexIDFromIndexedDB(imageIdb);
+      console.log('id form from idb', id)
+      const data = {
+        id: id,
+        ...form,
+        userId: store.state.auth.id
+      };
+      this.storeToIndexedDB(formIdb, data);
+      this.throwError();
+    }
+  },
   throwError () {
     return Promise.reject(new Error('Offline. Fail to send data to server'))
-  },
-  async storeFormOffline (form) {
-    const id = this.isTransactionCreated(form)
-      ? form.id
-      : await this.getLastIndexIDFromIndexedDB(imageIdb);
-    const data = {
-      id: id,
-      ...form,
-      userId: store.state.auth.id
-    };
-    this.storeToIndexedDB(formIdb, data);
-    this.throwError();
-  },
-  isTransactionCreated (form) {
-    return !!form.id;
   },
   async storeToIndexedDB (storeName, data) {
     try {

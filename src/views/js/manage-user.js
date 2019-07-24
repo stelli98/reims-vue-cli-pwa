@@ -1,13 +1,13 @@
 import UserList from "@/components/UserList.vue";
 import Pagination from "@/components/Pagination.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     UserList,
     Pagination
   },
   computed: {
-    ...mapState("user", ["users", "pagination"]),
+    ...mapGetters("user", ["users", "pagination"]),
     options () {
       return {
         page: parseInt(this.$route.query.page) || 1,

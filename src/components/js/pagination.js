@@ -2,23 +2,23 @@ export default {
   props: {
     paging: Object
   },
-  data() {
+  data () {
     return {
       currentPage: this.$route.query.page || 1
     };
   },
   computed: {
     inputPage: {
-      set(value) {
+      set (value) {
         this.currentPage = value;
       },
-      get() {
+      get () {
         return this.currentPage;
       }
     }
   },
   methods: {
-    moveTo(toPage) {
+    moveTo (toPage) {
       this.inputPage = toPage;
       this.$emit("changePage", toPage);
     }

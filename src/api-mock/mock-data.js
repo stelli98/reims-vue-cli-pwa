@@ -51,7 +51,7 @@ export default [
     "paging": {
       "pageNumber": 1,
       "pageSize": 5,
-      "totalPage": 2,
+      "totalPages": 2,
       "totalRecords": 10
     }
   },
@@ -105,7 +105,7 @@ export default [
     "paging": {
       "pageNumber": 1,
       "pageSize": 5,
-      "totalPage": 2,
+      "totalPages": 2,
       "totalRecords": 10
     }
   },
@@ -149,7 +149,7 @@ export default [
     "paging": {
       "pageNumber": 1,
       "pageSize": 5,
-      "totalPage": 1,
+      "totalPages": 1,
       "totalRecords": 3
     }
   },
@@ -343,7 +343,7 @@ export default [
     "paging": {
       "pageNumber": 1,
       "pageSize": 10,
-      "totalPage": 2,
+      "totalPages": 2,
       "totalRecords": 20
     }
   },
@@ -423,7 +423,7 @@ export default [
     "paging": {
       "pageNumber": 2,
       "pageSize": 10,
-      "totalPage": 2,
+      "totalPages": 2,
       "totalRecords": 20
     }
   },
@@ -479,7 +479,7 @@ export default [
     "paging": {
       "pageNumber": 1,
       "pageSize": 10,
-      "totalPage": 1,
+      "totalPages": 1,
       "totalRecords": 4
     }
   },

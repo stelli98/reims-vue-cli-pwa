@@ -1,5 +1,5 @@
 import { helpers, numeric, required } from "vuelidate/lib/validators";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
 const float = helpers.regex("decimal", /^[0-9]+([.][0-9]+)?$/);
@@ -29,7 +29,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["fuel", "OCRResultImage"]),
+    ...mapGetters("transaction", ["fuel", "OCRResultImage"]),
     totalPrice () {
       const value = (this.fuel.amount * this.fuel.volume).toFixed(2);
       if (value.includes("e")) {

@@ -1,4 +1,4 @@
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   data () {
@@ -16,7 +16,6 @@ export default {
       }
     },
     flipXImage () {
-      console.log(this.myCroppa)
       this.myCroppa.flipX();
     },
     flipYImage () {
@@ -29,5 +28,5 @@ export default {
       this.myCroppa.rotate(-1);
     }
   },
-  computed: mapState("transaction", ["image"])
+  computed: mapGetters("transaction", ["image"])
 };

@@ -1,4 +1,4 @@
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import ParkingForm from "@/components/ParkingForm.vue";
 import FuelForm from "@/components/FuelForm.vue";
 
@@ -36,7 +36,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking", "fuel", "OCRResultType"]),
+    ...mapGetters("transaction", ["parking", "fuel", "OCRResultType"]),
     currentComponent () {
       return this.OCRResultType;
     },

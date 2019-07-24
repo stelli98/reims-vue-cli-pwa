@@ -41,11 +41,16 @@ describe("UserForm.vue", () => {
             emptyUser: jest.fn()
         }
 
+        const getters = {
+            user: (state) => state.user
+        }
+
         const store = new Vuex.Store({
             modules: {
                 user: {
                     state,
                     actions,
+                    getters,
                     namespaced: true
                 }
             }
@@ -54,7 +59,8 @@ describe("UserForm.vue", () => {
         return {
             store,
             state,
-            actions
+            actions,
+            getters
         }
     }
     function generateLocalVue () {

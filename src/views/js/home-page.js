@@ -1,7 +1,7 @@
 import TransactionList from "@/components/TransactionList";
 import Pagination from "@/components/Pagination.vue";
 import SortFilter from "@/components/SortFilter.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -18,7 +18,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["transactions", "pagination"]),
+    ...mapGetters("transaction", ["transactions", "pagination"]),
     options () {
       return {
         page: parseInt(this.$route.query.page) || 1,

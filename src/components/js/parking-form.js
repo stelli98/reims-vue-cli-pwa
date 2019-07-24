@@ -1,5 +1,5 @@
 import { helpers, numeric, required } from "vuelidate/lib/validators";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
 const currency = helpers.regex(
@@ -30,7 +30,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking", "OCRResultImage"]),
+    ...mapGetters("transaction", ["parking", "OCRResultImage"]),
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),

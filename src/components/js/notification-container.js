@@ -1,8 +1,8 @@
 
 import NotificationBar from "@/components/NotificationBar";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
     components: { NotificationBar },
-    computed: mapState("notification", ["notifications"])
+    computed: mapGetters("notification", ["notifications"])
 };

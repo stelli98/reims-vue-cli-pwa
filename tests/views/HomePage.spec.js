@@ -51,6 +51,9 @@ describe("HomePage.vue", () => {
             actions: {
                 transaction: transaction.actions,
                 auth: auth.actions
+            },
+            getters: {
+                transaction: transaction.getters
             }
         };
     }
@@ -74,8 +77,12 @@ describe("HomePage.vue", () => {
             transactions: transactionData.data,
             pagination: transactionData.data.page
         }
+        const getters = {
+            transactions: (state) => state.transactions,
+            pagination: (state) => state.pagination
+        }
         const namespaced = true
-        return { state, actions, namespaced }
+        return { state, actions, getters, namespaced }
     }
 
     function generateLocalVue () {

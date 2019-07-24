@@ -1,4 +1,4 @@
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { minLength, required } from "vuelidate/lib/validators";
 
 export default {
@@ -15,7 +15,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("user", ["user"]),
+    ...mapGetters("user", ["user"]),
     userId () {
       return this.$route.params.id;
     },

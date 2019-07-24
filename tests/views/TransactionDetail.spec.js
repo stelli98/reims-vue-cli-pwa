@@ -33,6 +33,10 @@ describe("TransactionDetail.vue", () => {
       getTransaction: jest.fn()
     };
 
+    const getters = {
+      transaction: (state) => state.transaction
+    }
+
     const state = {
       transaction: transactionData.data
     };
@@ -42,6 +46,7 @@ describe("TransactionDetail.vue", () => {
         transaction: {
           actions,
           state,
+          getters,
           namespaced: true
         }
       }
@@ -50,7 +55,8 @@ describe("TransactionDetail.vue", () => {
     return {
       store,
       state,
-      actions
+      actions,
+      getters
     };
   }
 

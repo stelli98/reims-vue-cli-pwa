@@ -1,5 +1,5 @@
 import { required, minLength } from "vuelidate/lib/validators";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 const access = {
   ADMIN: "user",
@@ -25,7 +25,7 @@ export default {
       }
     };
   },
-  computed: mapState("auth", ["role"]),
+  computed: mapGetters("auth", ["role"]),
   methods: {
     ...mapActions("auth", ["login"]),
     submitLoginForm () {

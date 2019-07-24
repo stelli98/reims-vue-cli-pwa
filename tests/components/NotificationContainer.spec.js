@@ -23,10 +23,15 @@ describe('NotificationContainer.vue', () => {
             notifications: notificationsData
         }
 
+        const getters = {
+            notifications: (state) => state.notifications
+        }
+
         const store = new Vuex.Store({
             modules: {
                 notification: {
                     state,
+                    getters,
                     namespaced: true
                 }
             }
@@ -34,7 +39,8 @@ describe('NotificationContainer.vue', () => {
 
         return {
             store,
-            state
+            state,
+            getters
         }
     }
     function generateLocalVue () {

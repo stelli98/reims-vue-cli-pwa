@@ -1,16 +1,13 @@
-// import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
-// import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
-const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue")
-const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue")
-
-import { mapActions, mapState } from "vuex";
+import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
+import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ViewFuelDetail,
     ViewParkingDetail
   },
   computed: {
-    ...mapState("transaction", ["transaction"]),
+    ...mapGetters("transaction", ["transaction"]),
     transactionId () {
       return this.$route.params.id;
     },
