@@ -8,14 +8,6 @@
   </div>
 </template>
 
-<script>
-import NotificationBar from "./NotificationBar";
-import { mapState } from "vuex";
-
-export default {
-  components: { NotificationBar },
-  computed: mapState("notification", ["notifications"])
-};
-</script>
+<script src="./js/notification-container.js"></script>
 
 <style scoped></style>

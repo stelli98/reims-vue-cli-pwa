@@ -16,7 +16,7 @@
       <div class="manage-user__action">
         <div
           class="manage-user__create"
-          @click="routeTo"
+          @click="moveTo"
         >
           <div class="btn-green">
             <svg class="icon icon-small">

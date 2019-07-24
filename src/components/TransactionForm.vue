@@ -9,6 +9,7 @@
         :src="pictureUrl"
       />
     </div>
+
     <div class="transaction-form__menu">
       <div
         class="title--big"

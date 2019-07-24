@@ -1,8 +1,8 @@
 import TransactionList from "@/components/TransactionList";
 import Pagination from "@/components/Pagination.vue";
 import SortFilter from "@/components/SortFilter.vue";
-
 import { mapActions, mapState } from "vuex";
+
 export default {
   components: {
     TransactionList,

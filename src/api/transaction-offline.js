@@ -5,13 +5,15 @@ const formIdb = "offlineForms";
 
 export default {
   storeImageOffline (data) {
-    const request = {
-      id: Date.now(),
-      userId: store.state.auth.id,
-      image: data.image
+    if (!data.id) {
+      const request = {
+        id: Date.now(),
+        userId: store.state.auth.id,
+        image: data.image
+      }
+      this.storeToIndexedDB(imageIdb, request);
+      this.throwError();
     }
-    this.storeToIndexedDB(imageIdb, request);
-    this.throwError();
   },
   throwError () {
     return Promise.reject(new Error('Offline. Fail to send data to server'))

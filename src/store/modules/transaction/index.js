@@ -4,7 +4,7 @@ import mutations from "./mutations";
 const namespaced = true;
 const state = {
   image: "",
-  OCRResultType: "",
+  OCRResultType: "FUEL",
   OCRResultImage: "",
   parking: {
     category: "PARKING",

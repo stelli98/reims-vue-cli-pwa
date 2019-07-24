@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapState("transaction", ["parking", "fuel", "OCRResultType"]),
     currentComponent () {
-      return this.OCRResultType || 'FUEL';
+      return this.OCRResultType;
     },
     isSwitchOn () {
       return this.currentComponent
@@ -50,7 +50,7 @@ export default {
         data: {
           in: "",
           out: "",
-          price: 0,
+          amount: 0,
           title: "",
           vehicle: "",
           license: "",
@@ -65,7 +65,7 @@ export default {
           date: "",
           type: "",
           volume: 0,
-          unitPrice: 0,
+          amount: 0,
           title: "",
           category: "FUEL"
         }
@@ -91,6 +91,7 @@ export default {
         this.setFormEmpty(this.parkingTemplate);
         this.setFormEmpty(this.fuelTemplate);
         this.$router.push({ name: "home" });
+        console.log('selesai')
       })
     }
   }

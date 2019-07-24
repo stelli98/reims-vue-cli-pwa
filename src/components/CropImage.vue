@@ -5,29 +5,41 @@
         v-model="myCroppa"
         class="croppa-canvas"
         auto-sizing
-        :initial-image="transaction.image"
+        :initial-image="image"
       />
     </div>
     <div class="crop-image__button">
-      <div class="btn-green" @click="flipXImage">
+      <div
+        class="btn-green"
+        @click="flipXImage"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-flip-x" />
         </svg>
         <span>Flip Horizontally</span>
       </div>
-      <div class="btn-green" @click="flipYImage">
+      <div
+        class="btn-green"
+        @click="flipYImage"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-flip-y" />
         </svg>
         <span>Flip Vertically</span>
       </div>
-      <div class="btn-green" @click="rotateRight">
+      <div
+        class="btn-green"
+        @click="rotateRight"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>
         <span>Rotate Right</span>
       </div>
-      <div class="btn-green" @click="rotateLeft">
+      <div
+        class="btn-green"
+        @click="rotateLeft"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-circular-counter-clockwise" />
         </svg>

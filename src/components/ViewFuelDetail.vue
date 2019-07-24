@@ -10,7 +10,7 @@
     </div>
     <div class="transaction-detail__box">
       <h3>Unit Price</h3>
-      <p>{{ transaction.unitPrice | priceFormatter }}</p>
+      <p>{{ transaction.amount | priceFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Total Price</h3>

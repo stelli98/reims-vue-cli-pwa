@@ -41,15 +41,21 @@ describe('Actions for Transactions Module', () => {
     test('create Transaction for image, set ocr result and its type', async () => {
         api.createTransaction = jest.fn();
         const expectedValue = data.find(d => d.url === url.transaction && d.method == "POST")
-        api.createTransaction.mockResolvedValue(expectedValue)
+        api.createTransaction.mockResolvedValue(
+            {
+                data: expectedValue
+            }
+        )
         const commit = jest.fn()
         const rootState = {
             auth: {
                 token: 'Bearer 123'
             }
         }
+        console.log('test', expectedValue)
         await actions.createTransaction({ commit, rootState }, image)
-        expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT', expectedValue.data)
+        expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT', expectedValue)
+        expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_IMAGE', expectedValue.data.image)
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_TYPE', expectedValue.data.category)
     })
 

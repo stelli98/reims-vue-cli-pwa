@@ -6,11 +6,6 @@ export default {
     UserList,
     Pagination
   },
-  data () {
-    return {
-      isActiveTab: true
-    };
-  },
   computed: {
     ...mapState("user", ["users", "pagination"]),
     options () {
@@ -26,12 +21,6 @@ export default {
     ...mapActions("user", ["getUsers"]),
     ...mapActions("auth", ["logout"]),
     moveTo () {
-      this.$router.push({ name: "home" });
-    },
-    changeTab () {
-      this.isActiveTab = !this.isActiveTab;
-    },
-    routeTo () {
       this.$router.push({ name: "user-create" });
     },
     updateUser () {

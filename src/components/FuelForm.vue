@@ -126,7 +126,7 @@
           type="text"
           name="type"
           class="form__currency__input"
-          @blur="formatUnitPrice"
+          @blur="formatAmount"
         />
       </div>
       <div v-if="$v.fuel.amount.$error">

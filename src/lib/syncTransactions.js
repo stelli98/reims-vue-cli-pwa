@@ -69,7 +69,9 @@ export default {
     },
     sendImageAndFormToServer (images) {
       images.map(image => {
+        console.log('before send', image)
         transactionApi.createTransaction(image, this.token).then(response => {
+          console.log('post Trans', response)
           offlineService.deleteDataByKeyFromIndexedDB(imageIdb, image.id)
           this.sendFormAfterImageToServer(image.id, response);
         });
@@ -81,12 +83,15 @@ export default {
         id
       );
     },
-    sendFormAfterImageToServer (formId, response) {
-      const form = this.findFormByImageID(formId)
-      form.id = response.data.id;
+    async sendFormAfterImageToServer (formId, response) {
+      const form = await this.findFormByImageID(formId)
+      // form.id = response.data.id;
+      form.image = response.data.data.image;
+      console.log('before send', form)
       transactionApi
         .saveTransaction(form, this.token)
-        .then(() => {
+        .then((response) => {
+          console.log('put trans', response)
           offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId)
           this.addSuccessImageNotification();
           this.addSuccessFormNotification();

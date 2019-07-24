@@ -240,7 +240,7 @@ export default [
       "date": "2018-05-12T17:19:06.151Z",
       "image":
         "https://i.ibb.co/CH1BZGh/0-214a0b28-8817-4f97-9f18-8933fb3a4b92-700-1045.jpg",
-      "unitPrice": 9000,
+      "amount": 9000,
       "volume": 1.5,
       "type": "Premium",
       "created_at": "2018-05-12T17:19:06.151Z",

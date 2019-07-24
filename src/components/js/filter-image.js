@@ -96,7 +96,6 @@ export default {
             message: "Image has been submitted."
           };
           this.addNotification(notification)
-
         })
         .catch(() => {
           const notification = {

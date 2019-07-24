@@ -27,16 +27,6 @@ export default {
         default: true
       },
       vehicleType: ["Bus", "Car", "Motorcycle", "Van"],
-      // parking: {
-      //   category: "PARKING",
-      //   in: "",
-      //   out: "",
-      //   amount: 0,
-      //   title: "",
-      //   vehicle: "",
-      //   license: "",
-      //   location: ""
-      // }
     };
   },
   computed: {
@@ -84,7 +74,6 @@ export default {
   },
   created () {
     console.log('mounted', this.parking)
-    // Object.assign(this.parking, this.getParkingTransaction)
     this.formatPrice();
   }
 };

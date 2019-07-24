@@ -20,7 +20,7 @@ export default {
   methods: {
     ...mapActions("user", ["changePassword"]),
     moveTo () {
-      this.$router.go(-1);
+      this.$router.push({ name: "home" });
     },
     getUserDetail () {
       this.$route.params.id
@@ -32,7 +32,7 @@ export default {
       if (!this.$v.user.$invalid) {
         console.log(this.user);
         this.changePassword(this.user);
-        // this.$router.push({ name: 'user' });
+        this.moveTo()
       } else {
         console.log("error");
       }

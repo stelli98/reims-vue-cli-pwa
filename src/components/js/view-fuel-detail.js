@@ -3,8 +3,8 @@ export default {
     transaction: Object
   },
   computed: {
-    totalPrice() {
-      return this.transaction.unitPrice * this.transaction.volume;
+    totalPrice () {
+      return this.transaction.amount * this.transaction.volume;
     }
   }
 };

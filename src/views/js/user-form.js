@@ -1,12 +1,6 @@
 import { mapActions, mapState } from "vuex";
 import { minLength, required } from "vuelidate/lib/validators";
 
-const userTemp = {
-  username: "",
-  password: "",
-  role: ""
-};
-
 export default {
   validations: {
     user: {

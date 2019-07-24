@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/22</span>
+        <span class='fraction'>0/23</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/22</span>
+        <span class='fraction'>0/23</span>
       </div>
     </div>
   </div>
@@ -122,31 +122,7 @@
 77
 78
 79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+80</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,22 +156,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,6 +163,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -234,18 +196,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,9 +214,9 @@ export default {
   components: { Datetime },
   validations: {
     parking: {
-      in: { required },
+      date: { required },
       out: { required },
-      price: { required, currency },
+      amount: { required, currency },
       title: { required },
       vehicle: { required },
       license: { required },
@@ -277,31 +229,15 @@ export default {
         type: Boolean,
         default: true
       },
-      vehicleType: ["Bus", "Car", "Motorcycle", "Van"]
+      vehicleType: ["Bus", "Car", "Motorcycle", "Van"],
     };
   },
   computed: {
-    ...mapState("transaction", ["parking"]),
-    parkingTemplate () {
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        data: {
-          in: "",
-          out: "",
-          price: 0,
-          title: "",
-          vehicle: "",
-          license: "",
-          location: "",
-          category: "PARKING"
-        }
-      }
-    }
+    ...mapState("transaction", ["parking", "OCRResultImage"]),
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    ...mapActions("notification", [
-      "addNotification",
-    ]),
+    ...mapActions("notification", ["addNotification"]),
     toggle () {
 <span class="cstat-no" title="statement not covered" >      this.isSwitchOn = !this.isSwitchOn;</span>
     },
@@ -309,7 +245,9 @@ export default {
 <span class="cstat-no" title="statement not covered" >      this.$v.parking.$touch();</span>
 <span class="cstat-no" title="statement not covered" >      if (!this.$v.parking.$invalid) {</span>
 <span class="cstat-no" title="statement not covered" >        this.reformatPrice();</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.parking).then(() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.parking.image = this.OCRResultImage;</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.parking).then((response) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log(response)</span>
 <span class="cstat-no" title="statement not covered" >          const notification = {</span>
             type: "success",
             message: "Parking form has been submitted."
@@ -327,28 +265,18 @@ export default {
       }
     },
     formatPrice () {
-<span class="cstat-no" title="statement not covered" >      this.$v.parking.price.$touch();</span>
-<span class="cstat-no" title="statement not covered" >      this.parking.price = this.parking.price</span>
+<span class="cstat-no" title="statement not covered" >      this.$v.parking.amount.$touch();</span>
+<span class="cstat-no" title="statement not covered" >      this.parking.amount = this.parking.amount</span>
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     reformatPrice () {
-<span class="cstat-no" title="statement not covered" >      this.parking.price = parseInt(this.parking.price.split(".").join(""));</span>
-    },
-    clearParkingForm () {
-<span class="cstat-no" title="statement not covered" >      this.parking = {</span>
-        in: "",
-        out: "",
-        price: 0,
-        title: "",
-        vehicle: "",
-        license: "",
-        location: ""
-      }
+<span class="cstat-no" title="statement not covered" >      this.parking.amount = parseInt(this.parking.amount.split(".").join(""));</span>
     }
   },
-  mounted () {
+  created () {
+<span class="cstat-no" title="statement not covered" >    console.log('mounted', this.parking)</span>
 <span class="cstat-no" title="statement not covered" >    this.formatPrice();</span>
   }
 };
@@ -358,7 +286,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 15 2019 13:20:51 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 24 2019 10:10:00 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

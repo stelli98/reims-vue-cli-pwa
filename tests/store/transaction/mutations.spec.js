@@ -21,7 +21,7 @@ describe('mutations for transaction module', () => {
                 date: "",
                 type: "",
                 volume: 0,
-                unitPrice: 0,
+                amount: 0,
                 title: ""
             }
         }
@@ -36,6 +36,15 @@ describe('mutations for transaction module', () => {
         }
         mutations.SET_OCR_RESULT_TYPE(state, expectedValue.data.category)
         expect(state.OCRResultType).toBe(expectedValue.data.category)
+    })
+
+    test('SET_OCR_RESULT_IMAGE sets state.OCRResultImage', () => {
+        const expectedValue = data.find(d => d.url === url.transaction && d.method === "POST")
+        const state = {
+            OCRResultImage: ""
+        }
+        mutations.SET_OCR_RESULT_IMAGE(state, expectedValue.data.image)
+        expect(state.OCRResultImage).toBe(expectedValue.data.image)
     })
 
     test('SET_TRANSACTION sets state.transaction', () => {

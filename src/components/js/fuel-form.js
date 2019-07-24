@@ -31,26 +31,14 @@ export default {
   computed: {
     ...mapState("transaction", ["fuel", "OCRResultImage"]),
     totalPrice () {
-      const value = (this.amountInt * this.fuel.volume).toFixed(2);
+      const value = (this.fuel.amount * this.fuel.volume).toFixed(2);
       if (value.includes("e")) {
         return value || 0
       }
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0
     },
-    fuelTemplate () {
-      return {
-        data: {
-          date: "",
-          type: "",
-          volume: 0,
-          unitPrice: 0,
-          title: "",
-          category: "FUEL"
-        }
-      }
-    },
     amountInt () {
-      return this.fuel.amount ? parseInt(this.fuel.amount.split(".").join("")) : ""
+      return typeof this.fuel.amount == "string" ? parseInt(this.fuel.amount.split(".").join("")) : this.fuel.amount
     }
   },
   methods: {
@@ -64,7 +52,8 @@ export default {
     sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.reformatUnitPrice();
+        this.reformatAmount();
+        console.log(this.fuel.amount)
         this.fuel.image = this.OCRResultImage;
         return this.saveTransaction(this.fuel).then((response) => {
           console.log('fuel', response)
@@ -74,7 +63,7 @@ export default {
           };
           this.addNotification(notification)
         }).catch((error) => {
-          console.log('error-fuel', response)
+          console.log('error-fuel', error)
           const notification = {
             type: "error",
             message: "Oops ! You're offline. We will send it back as soon as you're online."
@@ -85,27 +74,17 @@ export default {
         console.log("error");
       }
     },
-    formatUnitPrice () {
-      this.$v.fuel.amount.$touch();
+    formatAmount () {
       this.fuel.amount = this.fuel.amount
         .toString()
         .replace(/\D/g, "")
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    reformatUnitPrice () {
+    reformatAmount () {
       this.fuel.amount = parseInt(this.fuel.amount.split(".").join(""));
-    },
-    clearFuelForm () {
-      this.fuel = {
-        date: "",
-        type: "",
-        volume: 0,
-        unitPrice: 0,
-        title: ""
-      }
     }
   },
   mounted () {
-    this.formatUnitPrice();
+    // this.formatAmount();
   }
 };

@@ -1,33 +1,33 @@
 import { mapState } from "vuex";
 export default {
   name: "App",
-  data() {
+  data () {
     return {
       myCroppa: null,
-      image: "",
       filterFunctions: null,
       width: 0,
       height: 0
     };
   },
   methods: {
-    generateImage() {
+    generateImage () {
       if (this.myCroppa.hasImage()) {
         return this.myCroppa.generateDataUrl("image/jpg", 0.7);
       }
     },
-    flipXImage() {
+    flipXImage () {
+      console.log(this.myCroppa)
       this.myCroppa.flipX();
     },
-    flipYImage() {
+    flipYImage () {
       this.myCroppa.flipY();
     },
-    rotateRight() {
+    rotateRight () {
       this.myCroppa.rotate(1);
     },
-    rotateLeft() {
+    rotateLeft () {
       this.myCroppa.rotate(-1);
     }
   },
-  computed: mapState(["transaction"])
+  computed: mapState("transaction", ["image"])
 };
