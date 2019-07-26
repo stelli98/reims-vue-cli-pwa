@@ -2,6 +2,8 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import NotificationBar from "@/components/NotificationBar.vue";
 import Vuex from "vuex";
 
+jest.useFakeTimers();
+
 describe('NotificationBar.vue', () => {
     let store;
     let wrapper;
@@ -60,8 +62,13 @@ describe('NotificationBar.vue', () => {
         wrapper = createWrapper(store.store);
     });
 
-    test('', () => {
-
+    test('notification will be delete after 5 seconds', () => {
+        const spy = jest.spyOn(store.actions, 'removeNotification')
+        expect(spy).not.toBeCalled();
+        jest.advanceTimersByTime(5000);
+        expect(spy).toHaveBeenCalled();
+        expect(setTimeout).toHaveBeenCalledTimes(1);
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
     })
 
 })
