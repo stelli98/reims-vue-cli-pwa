@@ -90,7 +90,6 @@ export default {
       }
       this.createTransaction(request)
         .then((response) => {
-          console.log('response', response)
           const notification = {
             type: "success",
             message: "Image has been submitted."

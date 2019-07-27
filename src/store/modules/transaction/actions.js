@@ -12,11 +12,14 @@ export default {
   },
   createTransaction: async ({ commit, rootState }, image) => {
     const { token } = rootState.auth;
+    const { id } = rootState.auth;
     const { data } = await transactionApi.createTransaction(image, token);
-    console.log('actions1', data);
     commit("SET_OCR_RESULT", data);
     commit("SET_OCR_RESULT_TYPE", data.data.category);
-    commit("SET_OCR_RESULT_IMAGE", data.data.image);
+    commit("ADD_IMAGE_FUEL", data.data.image);
+    commit("ADD_IMAGE_PARKING", data.data.image);
+    commit("ADD_USER_ID_FUEL", id);
+    commit("ADD_USER_ID_PARKING", id);
     return data;
   },
   getTransaction: async ({ commit, rootState }, id) => {

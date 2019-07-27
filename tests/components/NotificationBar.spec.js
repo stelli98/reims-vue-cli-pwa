@@ -71,4 +71,10 @@ describe('NotificationBar.vue', () => {
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
     })
 
+    // test('clear timeout', () => {
+    //     jest.advanceTimersByTime(5000);
+    //     expect(clearTimeout).toHaveBeenCalledTimes(1);
+    // })
+
+
 })

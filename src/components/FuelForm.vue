@@ -54,23 +54,23 @@
         Fuel Type
       </label>
       <select
-        v-model="fuel.type"
+        v-model="fuel.fuelType"
         class="form__input form__input__select"
-        @blur="$v.fuel.type.$touch()"
+        @blur="$v.fuel.fuelType.$touch()"
       >
         <option
           v-for="fuel in fuelType"
           :key="fuel"
           :value="fuel"
-          :selected="fuel.type"
+          :selected="fuel.fuelType"
         >
-          {{ fuel }}
+          {{ fuel | textFormatter}}
         </option>
       </select>
 
-      <div v-if="$v.fuel.type.$error">
+      <div v-if="$v.fuel.fuelType.$error">
         <p
-          v-if="!$v.fuel.type.required"
+          v-if="!$v.fuel.fuelType.required"
           class="input__error-message"
         >
           Fuel Type must be filled
@@ -85,25 +85,25 @@
         Volume
       </label>
       <input
-        v-model="fuel.volume"
+        v-model="fuel.liters"
         type="text"
         name="type"
         class="form__input"
         placeholder=" ex: 1000.34, 1.34, 1.00, 1"
-        @blur="$v.fuel.volume.$touch()"
+        @blur="$v.fuel.liters.$touch()"
       />
-      <div v-if="$v.fuel.volume.$error">
+      <div v-if="$v.fuel.liters.$error">
         <p
-          v-if="!$v.fuel.volume.float"
+          v-if="!$v.fuel.liters.float"
           class="input__error-message"
         >
           Volume must be decimal ex: 100.34, 1.34, 1.00, 1
         </p>
       </div>
 
-      <div v-if="$v.fuel.volume.$error">
+      <div v-if="$v.fuel.liters.$error">
         <p
-          v-if="!$v.fuel.volume.required"
+          v-if="!$v.fuel.liters.required"
           class="input__error-message"
         >
           Volume must be filled

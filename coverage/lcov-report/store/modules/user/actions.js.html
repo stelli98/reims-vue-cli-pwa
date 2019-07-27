@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/20</span>
+        <span class='fraction'>19/19</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/20</span>
+        <span class='fraction'>19/19</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -80,78 +80,78 @@
 35
 36
 37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import userApi from "@/api/user";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import userApi from "@/api/user";
 &nbsp;
 export default {
-  createUser: <span class="fstat-no" title="function not covered" >async (</span>{ rootState }, data) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-    const response = <span class="cstat-no" title="statement not covered" >await userApi.createUser(data, token);</span>
-<span class="cstat-no" title="statement not covered" >    return response</span>
+  createUser: async ({ rootState }, data) =&gt; {
+    const { token } = rootState.auth;
+    const response = await userApi.createUser(data, token);
+    return response
   },
-  emptyUser: <span class="fstat-no" title="function not covered" >({</span> commit }, data) =&gt; {
-<span class="cstat-no" title="statement not covered" >    commit("SET_USER_EMPTY", data);</span>
+  emptyUser: ({ commit }, data) =&gt; {
+    commit("SET_USER_EMPTY", data);
   },
-  getUser: <span class="fstat-no" title="function not covered" >async (</span>{ commit, rootState }, id) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-    const { data } = <span class="cstat-no" title="statement not covered" >await userApi.getUser(id, token);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_USER", data);</span>
+  getUser: async ({ commit, rootState }, id) =&gt; {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUser(id, token);
+    commit("SET_USER", data);
   },
-  getUsers: <span class="fstat-no" title="function not covered" >async (</span>{ commit, rootState }, options) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-    const { data } = <span class="cstat-no" title="statement not covered" >await userApi.getUsers(options, token);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_USERS", data);</span>
-<span class="cstat-no" title="statement not covered" >    commit("SET_PAGINATION", data);</span>
+  getUsers: async ({ commit, rootState }, options) =&gt; {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUsers(options, token);
+    commit("SET_USERS", data);
+    commit("SET_PAGINATION", data);
   },
-  updateUser: <span class="fstat-no" title="function not covered" >async (</span>{ rootState }, data) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-    const response = <span class="cstat-no" title="statement not covered" >await userApi.updateUser(data.id, data, token);</span>
-<span class="cstat-no" title="statement not covered" >    return response</span>
+  updateUser: async ({ rootState }, data) =&gt; {
+    const { token } = rootState.auth;
+    const response = await userApi.updateUser(data.id, data, token);
+    return response
   },
-  changePassword: <span class="fstat-no" title="function not covered" >({</span> rootState }, data) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-<span class="cstat-no" title="statement not covered" >    userApi.changePassword(data, token);</span>
+  changePassword: ({ rootState }, data) =&gt; {
+    const { token } = rootState.auth;
+    userApi.changePassword(data, token);
   },
-  deleteUser: <span class="fstat-no" title="function not covered" >async (</span>{ rootState }, id) =&gt; {
-    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
-    const response = <span class="cstat-no" title="statement not covered" >userApi.deleteUser(id, token);</span>
-<span class="cstat-no" title="statement not covered" >    return response;</span>
+  deleteUser: async ({ rootState }, id) =&gt; {
+    const { token } = rootState.auth;
+    const response = userApi.deleteUser(id, token);
+    return response;
   }
 };
 &nbsp;</pre></td></tr>
@@ -160,7 +160,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 25 2019 09:33:11 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 26 2019 22:51:05 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -10,11 +10,6 @@ export default {
         this.transaction.title,
         20
       );
-    },
-    transactionCategory () {
-      return this.$options.filters.textFormatter(
-        this.transaction.category
-      );
     }
   },
   methods: {

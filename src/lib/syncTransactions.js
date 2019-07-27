@@ -9,7 +9,7 @@ export default {
   data () {
     return {
       isSending: false,
-      interval: null
+      interval: null,
     };
   },
   components: {
@@ -36,7 +36,7 @@ export default {
       const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
       const images = await offlineService.getAllDataFromIndexedDB(imageIdb);
       if (images.length > 0 && forms.length > 0) {
-        this.sendImageAndFormToServer(images);
+        this.sendImageAndFormToServer(images, 0)
       } else if (images.length > 0 && !forms.length > 0) {
         this.sendOnlyImageToServer(images)
       } else if (!images.length > 0 && forms.length > 0) {
@@ -67,14 +67,17 @@ export default {
         })
       });
     },
-    sendImageAndFormToServer (images) {
-      images.map(image => {
-        console.log('before send', image)
-        transactionApi.createTransaction(image, this.token).then(response => {
-          console.log('post Trans', response)
-          offlineService.deleteDataByKeyFromIndexedDB(imageIdb, image.id)
-          this.sendFormAfterImageToServer(image.id, response);
-        });
+    sendImageAndFormToServer (images, index) {
+      console.log('index', index)
+      if (index + 1 > images.length) return
+      console.log('before send', images[index])
+      transactionApi.createTransaction(images[index], this.token).then(response => {
+        console.log('post response', response)
+        offlineService.deleteDataByKeyFromIndexedDB(imageIdb, images[index].id)
+        this.sendFormAfterImageToServer(images[index].id, response).then(() => {
+          console.log('call recursive')
+          this.sendImageAndFormToServer(images, index + 1)
+        })
       })
     },
     async findFormByImageID (id) {
@@ -95,6 +98,7 @@ export default {
           this.addSuccessImageNotification();
           this.addSuccessFormNotification();
           this.setSendingData(false)
+          return response
         });
     },
     addSuccessFormNotification () {

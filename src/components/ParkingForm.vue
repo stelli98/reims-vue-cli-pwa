@@ -114,25 +114,25 @@
         Vehicle Type
       </label>
       <select
-        v-model="parking.vehicle"
+        v-model="parking.parkingType"
         class="form__input form__input__select"
-        @blur="$v.parking.vehicle.$touch()"
+        @blur="$v.parking.parkingType.$touch()"
       >
         <option
-          v-for="vehicle in vehicleType"
-          :key="vehicle"
-          :value="vehicle"
-          :selected="parking.vehicle"
+          v-for="type in type"
+          :key="type"
+          :value="type"
+          :selected="parking.parkingType"
         >
-          {{ vehicle }}
+          {{ type | textFormatter}}
         </option>
       </select>
-      <div v-if="$v.parking.vehicle.$error">
+      <div v-if="$v.parking.parkingType.$error">
         <p
-          v-if="!$v.parking.vehicle.required"
+          v-if="!$v.parking.parkingType.required"
           class="input__error-message"
         >
-          Vehicle Type must be filled
+          type Type must be filled
         </p>
       </div>
     </div>

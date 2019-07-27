@@ -28,7 +28,7 @@ describe('Actions for Transactions Module', () => {
             out: "",
             price: 0,
             title: "",
-            vehicle: "",
+            type: "",
             license: "",
             location: "",
             category: "PARKING"
@@ -107,7 +107,7 @@ describe('Actions for Transactions Module', () => {
             "category": "FUEL",
             "date": "2018-05-12T17:19:06.151Z",
             "type": "Premium",
-            "volume": 5.0,
+            "liters": 5.0,
             "unitPrice": 9000,
             "created_at": "2018-05-12T17:19:06.151Z",
             "modified_at": ""

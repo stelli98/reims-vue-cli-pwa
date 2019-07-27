@@ -2,11 +2,11 @@
   <div class="transaction-detail__list">
     <div class="transaction-detail__box">
       <h3>Fuel Type</h3>
-      <p>{{ transaction.type }}</p>
+      <p>{{ transaction.type | textFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Volume</h3>
-      <p>{{ transaction.volume }}</p>
+      <p>{{ transaction.liters }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Unit Price</h3>

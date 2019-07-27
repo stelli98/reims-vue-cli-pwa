@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1564021991656" clover="3.2.0">
-  <project timestamp="1564021991656" name="All files">
-    <metrics statements="397" coveredstatements="4" conditionals="68" coveredconditionals="0" methods="31" coveredmethods="1" elements="496" coveredelements="5" complexity="0" loc="397" ncloc="397" packages="7" files="38" classes="38">
+<coverage generated="1564156265209" clover="3.2.0">
+  <project timestamp="1564156265210" name="All files">
+    <metrics statements="373" coveredstatements="214" conditionals="68" coveredconditionals="22" methods="31" coveredmethods="22" elements="472" coveredelements="258" complexity="0" loc="373" ncloc="373" packages="7" files="38" classes="38">
       <package name="components">
-        <metrics statements="151" coveredstatements="4" conditionals="26" coveredconditionals="0" methods="11" coveredmethods="1"/>
+        <metrics statements="149" coveredstatements="42" conditionals="26" coveredconditionals="3" methods="11" coveredmethods="3"/>
         <file name="CropImage.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\CropImage.vue">
-          <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="5" count="5" type="stmt"/>
+          <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
         </file>
         <file name="FilterImage.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\FilterImage.vue">
           <metrics statements="38" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -90,24 +89,24 @@
         </file>
         <file name="NotificationBar.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\NotificationBar.vue">
           <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-          <line num="1" count="1" type="stmt"/>
+          <line num="1" count="2" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
           <line num="9" count="2" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="25" count="1" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
         </file>
         <file name="NotificationContainer.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\NotificationContainer.vue">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
         </file>
         <file name="Pagination.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\Pagination.vue">
-          <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
+          <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="16" count="2" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
         </file>
         <file name="ParkingForm.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\ParkingForm.vue">
           <metrics statements="23" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -136,23 +135,22 @@
           <line num="77" count="0" type="stmt"/>
         </file>
         <file name="SortFilter.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\SortFilter.vue">
-          <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="5" count="4" type="stmt"/>
+          <line num="13" count="2" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="20" count="7" type="stmt"/>
+          <line num="29" count="1" type="stmt"/>
         </file>
         <file name="TransactionCard.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\TransactionCard.vue">
-          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
         </file>
         <file name="TransactionForm.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\TransactionForm.vue">
           <metrics statements="17" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -175,222 +173,200 @@
           <line num="94" count="0" type="stmt"/>
         </file>
         <file name="TransactionList.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\TransactionList.vue">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
         </file>
         <file name="UserCard.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\UserCard.vue">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
         </file>
         <file name="UserList.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\UserList.vue">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
         </file>
         <file name="ViewFuelDetail.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\ViewFuelDetail.vue">
-          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="7" count="0" type="stmt"/>
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="7" count="1" type="stmt"/>
         </file>
       </package>
       <package name="store">
-        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <file name="index.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\index.js">
-          <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
         </file>
       </package>
       <package name="store.modules.auth">
-        <metrics statements="27" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="23" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <file name="actions.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\auth\actions.js">
-          <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
+          <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
         </file>
         <file name="getters.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\auth\getters.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
         </file>
         <file name="index.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\auth\index.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
         </file>
         <file name="mutations.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\auth\mutations.js">
-          <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
+          <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="4" type="stmt"/>
+          <line num="2" count="4" type="stmt"/>
+          <line num="3" count="4" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
         </file>
       </package>
       <package name="store.modules.notification">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <file name="actions.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\notification\actions.js">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
         </file>
         <file name="getters.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\notification\getters.js">
-          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
         </file>
         <file name="index.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\notification\index.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
         </file>
         <file name="mutations.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\notification\mutations.js">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="1" count="4" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
         </file>
       </package>
       <package name="store.modules.transaction">
-        <metrics statements="46" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="41" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <file name="actions.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\transaction\actions.js">
-          <metrics statements="25" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
+          <metrics statements="24" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="29" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
           <line num="36" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="42" count="1" type="stmt"/>
         </file>
         <file name="getters.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\transaction\getters.js">
-          <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
         </file>
         <file name="index.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\transaction\index.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="5" count="2" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
         </file>
         <file name="mutations.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\transaction\mutations.js">
-          <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
         </file>
       </package>
       <package name="store.modules.user">
-        <metrics statements="32" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="28" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
         <file name="actions.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\user\actions.js">
-          <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
+          <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="29" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
         </file>
         <file name="getters.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\user\getters.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
         </file>
         <file name="index.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\user\index.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
         </file>
         <file name="mutations.js" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\store\modules\user\mutations.js">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
         </file>
       </package>
       <package name="views">
-        <metrics statements="121" coveredstatements="0" conditionals="42" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="121" coveredstatements="70" conditionals="42" coveredconditionals="19" methods="5" coveredmethods="4"/>
         <file name="ChangePassword.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\ChangePassword.vue">
           <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
@@ -447,91 +423,91 @@
           <line num="114" count="0" type="stmt"/>
         </file>
         <file name="HomePage.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\HomePage.vue">
-          <metrics statements="24" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="45" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="58" count="0" type="stmt"/>
-          <line num="59" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="63" count="0" type="stmt"/>
-          <line num="69" count="0" type="stmt"/>
-          <line num="70" count="0" type="stmt"/>
+          <metrics statements="24" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="13" count="6" type="stmt"/>
+          <line num="16" count="6" type="stmt"/>
+          <line num="23" count="10" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="42" count="1" type="stmt"/>
+          <line num="43" count="1" type="stmt"/>
+          <line num="44" count="1" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="51" count="11" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="62" count="1" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="69" count="4" type="stmt"/>
+          <line num="70" count="4" type="stmt"/>
         </file>
         <file name="LoginPage.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\LoginPage.vue">
-          <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
+          <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
           <line num="39" count="0" type="stmt"/>
         </file>
         <file name="ManageUser.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\ManageUser.vue">
-          <metrics statements="16" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
+          <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="12" count="8" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="27" count="8" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="47" count="4" type="stmt"/>
+          <line num="51" count="4" type="stmt"/>
         </file>
         <file name="TransactionDetail.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\TransactionDetail.vue">
-          <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="12" count="4" type="stmt"/>
+          <line num="15" count="4" type="stmt"/>
+          <line num="18" count="4" type="cond" truecount="1" falsecount="1"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="30" count="4" type="stmt"/>
         </file>
         <file name="UserForm.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\views\UserForm.vue">
-          <metrics statements="15" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
+          <metrics statements="15" coveredstatements="14" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="13" count="8" type="stmt"/>
+          <line num="20" count="10" type="stmt"/>
+          <line num="23" count="10" type="cond" truecount="2" falsecount="0"/>
+          <line num="26" count="6" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="40" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="42" count="1" type="stmt"/>
           <line num="45" count="0" type="stmt"/>
-          <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="56" count="0" type="stmt"/>
+          <line num="49" count="10" type="cond" truecount="2" falsecount="0"/>
+          <line num="52" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="56" count="8" type="stmt"/>
         </file>
       </package>
     </metrics>

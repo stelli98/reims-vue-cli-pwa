@@ -48,26 +48,31 @@ export default {
     parkingTemplate () {
       return {
         data: {
-          in: "",
+          category: "PARKING",
+          date: "",
           out: "",
           amount: 0,
           title: "",
-          vehicle: "",
+          parkingType: "",
           license: "",
           location: "",
-          category: "PARKING"
+          hours: 0,
+          userId: "",
+          image: ""
         }
       }
     },
     fuelTemplate () {
       return {
         data: {
+          category: "FUEL",
           date: "",
-          type: "",
-          volume: 0,
+          fuelType: "",
+          liters: 0,
           amount: 0,
           title: "",
-          category: "FUEL"
+          userId: "",
+          image: ""
         }
       }
     }

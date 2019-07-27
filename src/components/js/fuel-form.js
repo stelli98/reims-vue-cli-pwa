@@ -13,8 +13,8 @@ export default {
   validations: {
     fuel: {
       date: { required },
-      type: { required },
-      volume: { required, float },
+      fuelType: { required },
+      liters: { required, float },
       amount: { required, currency },
       title: { required }
     }
@@ -25,20 +25,20 @@ export default {
         type: Boolean,
         default: true
       },
-      fuelType: ["Pertalite", "Pertamax", "Premium", "Solar"]
+      fuelType: ["PERTALITE", "SOLAR", "PREMIUM"]
     };
   },
   computed: {
-    ...mapGetters("transaction", ["fuel", "OCRResultImage"]),
+    ...mapGetters("transaction", ["fuel"]),
     totalPrice () {
-      const value = (this.fuel.amount * this.fuel.volume).toFixed(2);
+      const value = (this.amountInt * this.fuel.liters).toFixed(2);
       if (value.includes("e")) {
         return value || 0
       }
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0
     },
     amountInt () {
-      return typeof this.fuel.amount == "string" ? parseInt(this.fuel.amount.split(".").join("")) : this.fuel.amount
+      return this.fuel.amount ? parseInt(this.fuel.amount.split(".").join("")) : "";
     }
   },
   methods: {
@@ -53,8 +53,7 @@ export default {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.reformatAmount();
-        console.log(this.fuel.amount)
-        this.fuel.image = this.OCRResultImage;
+        this.reformatVolume();
         return this.saveTransaction(this.fuel).then((response) => {
           console.log('fuel', response)
           const notification = {
@@ -81,10 +80,15 @@ export default {
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     reformatAmount () {
-      this.fuel.amount = parseInt(this.fuel.amount.split(".").join(""));
+      if (typeof this.fuel.amount == "string") {
+        this.fuel.amount = this.amountInt()
+      }
+    },
+    reformatVolume () {
+      this.fuel.liters = parseFloat(this.fuel.liters)
     }
   },
   mounted () {
-    // this.formatAmount();
+    this.fuel.amount ? this.formatAmount() : "";
   }
 };

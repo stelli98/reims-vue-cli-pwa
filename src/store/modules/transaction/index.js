@@ -6,24 +6,28 @@ const namespaced = true;
 const state = {
   image: "",
   OCRResultType: "FUEL",
-  OCRResultImage: "",
   parking: {
     category: "PARKING",
-    in: "",
+    date: "",
     out: "",
     amount: 0,
     title: "",
-    vehicle: "",
+    parkingType: "",
     license: "",
-    location: ""
+    location: "",
+    hours: 0,
+    userId: "",
+    image: ""
   },
   fuel: {
     category: "FUEL",
     date: "",
-    type: "",
-    volume: 0,
+    fuelType: "",
+    liters: 0,
     amount: 0,
-    title: ""
+    title: "",
+    userId: "",
+    image: ""
   },
   transactions: [],
   transaction: {},

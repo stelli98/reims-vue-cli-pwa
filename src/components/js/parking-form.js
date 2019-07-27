@@ -15,7 +15,7 @@ export default {
       out: { required },
       amount: { required, currency },
       title: { required },
-      vehicle: { required },
+      parkingType: { required },
       license: { required },
       location: { required }
     }
@@ -26,11 +26,12 @@ export default {
         type: Boolean,
         default: true
       },
-      vehicleType: ["Bus", "Car", "Motorcycle", "Van"],
+      type: ["BUS", "CAR", "MOTORCYCLE"],
     };
   },
   computed: {
     ...mapGetters("transaction", ["parking", "OCRResultImage"]),
+    // ...mapGetters("auth", ["id"]),
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
@@ -42,7 +43,9 @@ export default {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
-        this.parking.image = this.OCRResultImage;
+        this.calculateDuration();
+        // this.parking.userId = parseInt(this.id);
+        // this.parking.image = this.OCRResultImage;
         return this.saveTransaction(this.parking).then((response) => {
           console.log(response)
           const notification = {
@@ -70,10 +73,15 @@ export default {
     },
     reformatPrice () {
       this.parking.amount = parseInt(this.parking.amount.split(".").join(""));
+    },
+    calculateDuration () {
+      this.parking.hours = Math.floor(
+        (new Date(this.parking.out).getTime()
+          - new Date(this.parking.date).getTime()
+        ) / 3600000)
     }
   },
   created () {
-    console.log('mounted', this.parking)
     this.formatPrice();
   }
 };

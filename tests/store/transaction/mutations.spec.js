@@ -20,7 +20,7 @@ describe('mutations for transaction module', () => {
             fuel: {
                 date: "",
                 type: "",
-                volume: 0,
+                liters: 0,
                 amount: 0,
                 title: ""
             }

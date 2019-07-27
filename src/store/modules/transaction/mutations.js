@@ -3,8 +3,6 @@ export default {
     state.image = img;
   },
   SET_OCR_RESULT (state, { data }) {
-
-    console.log('actual1', data)
     state[data.category.toLowerCase()] = {
       ...state[data.category.toLowerCase()],
       ...data
@@ -13,8 +11,17 @@ export default {
   SET_OCR_RESULT_TYPE (state, category) {
     state.OCRResultType = category;
   },
-  SET_OCR_RESULT_IMAGE (state, image) {
-    state.OCRResultImage = image;
+  ADD_IMAGE_FUEL (state, image) {
+    state.fuel.image = image;
+  },
+  ADD_IMAGE_PARKING (state, image) {
+    state.fuel.parking = image;
+  },
+  ADD_USER_ID_FUEL (state, id) {
+    state.fuel.userId = id
+  },
+  ADD_USER_ID_PARKING (state, id) {
+    state.parking.userId = id
   },
   SET_TRANSACTION (state, { data }) {
     state.transaction = data;
