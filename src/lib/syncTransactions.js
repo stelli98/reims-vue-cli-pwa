@@ -10,41 +10,65 @@ export default {
     return {
       isSending: false,
       interval: null,
+      images: [],
+      forms: []
     };
   },
   components: {
     NotificationContainer
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction"]),
+    ...mapActions("transaction", ["createTransaction", "getTransactions"]),
     ...mapActions("notification", [
       "addNotification",
     ]),
     checkConnectivityStatus () {
       this.interval = setInterval(() => {
-        navigator.onLine && !this.isSending ? this.prepareSendingData() : "";
+        navigator.onLine && !this.isSending ? this.checkDataInIDB() : "";
       }, 10000);
     },
     setSendingData (value) {
       this.isSending = value
     },
-    prepareSendingData () {
-      this.setSendingData(true)
-      this.sendDataToServer()
+    async checkDataInIDB () {
+      const images = await offlineService.getAllDataFromIndexedDB(imageIdb).then(images =>
+        images.filter(x => {
+          return x.userId == this.id
+        })
+      )
+      const forms = await offlineService.getAllDataFromIndexedDB(formIdb).then(forms => {
+        return forms.filter(x => {
+          return x.userId == this.id
+        })
+      })
+      console.log(images)
+      console.log(forms)
+      console.log(images.length > 0 || forms.length > 0)
+      if (images.length > 0 || forms.length > 0) {
+        this.setSendingData(true)
+        this.sendDataToServer(images, forms)
+      } else {
+        this.setSendingData(false)
+      }
     },
-    async sendDataToServer () {
-      const forms = await offlineService.getAllDataFromIndexedDB(formIdb);
-      const images = await offlineService.getAllDataFromIndexedDB(imageIdb);
+    sendDataToServer (images, forms) {
+      console.log(images)
+      console.log(forms)
       if (images.length > 0 && forms.length > 0) {
+        console.log('A')
         this.sendImageAndFormToServer(images, 0)
       } else if (images.length > 0 && !forms.length > 0) {
+        console.log('B')
         this.sendOnlyImageToServer(images)
       } else if (!images.length > 0 && forms.length > 0) {
         this.sendOnlyFormToServer(forms);
-      } else {
-        this.setSendingData(false)
-
       }
+    },
+    checkImagesByUserId (images) {
+      return images.find(image => image.userId == this.id)
+    },
+    checkFormsByUserId (forms) {
+      return forms.find(form => form.userId == this.id)
     },
     sendOnlyFormToServer (forms) {
       forms.map(data => {
@@ -56,11 +80,12 @@ export default {
         });
       });
     },
-    sendOnlyImageToServer (images) {
-      this.createTransaction(images[0]).then(() => {
+    sendOnlyImageToServer (image) {
+      console.log('here', image)
+      this.createTransaction(image).then(() => {
         offlineService.deleteDataByKeyFromIndexedDB(
           imageIdb,
-          images[0].id
+          image.id
         ).then(() => {
           this.addSuccessImageNotification();
           this.setSendingData(false)
@@ -94,6 +119,7 @@ export default {
         .saveTransaction(form, this.token)
         .then((response) => {
           console.log('put trans', response)
+          this.getTransactions()
           offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId)
           this.addSuccessImageNotification();
           this.addSuccessFormNotification();
@@ -117,7 +143,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['token'])
+    ...mapGetters('auth', ['token', 'id'])
   },
   created () {
     this.checkConnectivityStatus();

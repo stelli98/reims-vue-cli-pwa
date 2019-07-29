@@ -26,6 +26,29 @@
             class="input__label title--medium-form"
             for="type"
           >
+            Username
+          </label>
+          <input
+            v-model="user.username"
+            type="text"
+            name="type"
+            class="form__input"
+            @blur="$v.user.username.$touch()"
+          />
+          <div v-if="$v.user.username.$error">
+            <p
+              v-if="!$v.user.username.required"
+              class="input__error-message"
+            >
+              Name must be filled
+            </p>
+          </div>
+        </div>
+        <div class="form__child">
+          <label
+            class="input__label title--medium-form"
+            for="type"
+          >
             Password
           </label>
           <input

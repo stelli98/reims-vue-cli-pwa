@@ -81,7 +81,7 @@ export default {
     },
     reformatAmount () {
       if (typeof this.fuel.amount == "string") {
-        this.fuel.amount = this.amountInt()
+        this.fuel.amount = this.amountInt
       }
     },
     reformatVolume () {

@@ -15,7 +15,7 @@ export default {
     state.fuel.image = image;
   },
   ADD_IMAGE_PARKING (state, image) {
-    state.fuel.parking = image;
+    state.parking.image = image;
   },
   ADD_USER_ID_FUEL (state, id) {
     state.fuel.userId = id

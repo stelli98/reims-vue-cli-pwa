@@ -5,7 +5,7 @@ const formIdb = "offlineForms";
 
 export default {
   storeImageOffline (data) {
-    if (!data.id) {
+    if (!!!data.id) {
       const request = {
         id: Date.now(),
         userId: store.state.auth.id,
@@ -16,7 +16,7 @@ export default {
     }
   },
   async storeFormOffline (form) {
-    if (!form.id) {
+    if (!!!form.id) {
       const id = await this.getLastIndexIDFromIndexedDB(imageIdb);
       console.log('id form from idb', id)
       const data = {

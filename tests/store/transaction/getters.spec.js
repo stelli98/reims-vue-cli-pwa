@@ -40,14 +40,6 @@ describe("transaction getters", () => {
         expect(OCRResultType).toBe(state.OCRResultType)
     })
 
-    test('Get OCRResultImage from OCRResultImage module', () => {
-        const state = {
-            OCRResultImage: expectedValue.data.image
-        }
-        const OCRResultImage = getters.OCRResultImage(state);
-        expect(OCRResultImage).toBe(state.OCRResultImage)
-    })
-
     test('Get parking from parking module', () => {
         const state = {
             parking: expectedValueParking.data

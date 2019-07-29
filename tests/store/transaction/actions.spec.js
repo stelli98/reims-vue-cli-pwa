@@ -49,14 +49,18 @@ describe('Actions for Transactions Module', () => {
         const commit = jest.fn()
         const rootState = {
             auth: {
-                token: 'Bearer 123'
+                token: 'Bearer 123',
+                id: 123
             }
         }
-        console.log('test', expectedValue)
         await actions.createTransaction({ commit, rootState }, image)
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT', expectedValue)
-        expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_IMAGE', expectedValue.data.image)
         expect(commit).toHaveBeenCalledWith('SET_OCR_RESULT_TYPE', expectedValue.data.category)
+        expect(commit).toHaveBeenCalledWith('ADD_IMAGE_FUEL', expectedValue.data.image)
+        expect(commit).toHaveBeenCalledWith('ADD_IMAGE_PARKING', expectedValue.data.image)
+        expect(commit).toHaveBeenCalledWith('ADD_USER_ID_FUEL', rootState.auth.id)
+        expect(commit).toHaveBeenCalledWith('ADD_USER_ID_PARKING', rootState.auth.id)
+
     })
 
     test('get a transaction', async () => {

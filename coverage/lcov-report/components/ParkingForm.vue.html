@@ -122,7 +122,15 @@
 77
 78
 79
-80</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+80
+81
+82
+83
+84
+85
+86
+87
+88</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -160,37 +168,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -198,6 +198,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,7 +234,7 @@ export default {
       out: { required },
       amount: { required, currency },
       title: { required },
-      vehicle: { required },
+      parkingType: { required },
       license: { required },
       location: { required }
     }
@@ -229,11 +245,12 @@ export default {
         type: Boolean,
         default: true
       },
-      vehicleType: ["Bus", "Car", "Motorcycle", "Van"],
+      type: ["BUS", "CAR", "MOTORCYCLE"],
     };
   },
   computed: {
     ...mapGetters("transaction", ["parking", "OCRResultImage"]),
+    // ...mapGetters("auth", ["id"]),
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
@@ -245,7 +262,9 @@ export default {
 <span class="cstat-no" title="statement not covered" >      this.$v.parking.$touch();</span>
 <span class="cstat-no" title="statement not covered" >      if (!this.$v.parking.$invalid) {</span>
 <span class="cstat-no" title="statement not covered" >        this.reformatPrice();</span>
-<span class="cstat-no" title="statement not covered" >        this.parking.image = this.OCRResultImage;</span>
+<span class="cstat-no" title="statement not covered" >        this.calculateDuration();</span>
+        // this.parking.userId = parseInt(this.id);
+        // this.parking.image = this.OCRResultImage;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.parking).then((response) =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >          console.log(response)</span>
 <span class="cstat-no" title="statement not covered" >          const notification = {</span>
@@ -273,10 +292,15 @@ export default {
     },
     reformatPrice () {
 <span class="cstat-no" title="statement not covered" >      this.parking.amount = parseInt(this.parking.amount.split(".").join(""));</span>
+    },
+    calculateDuration () {
+<span class="cstat-no" title="statement not covered" >      this.parking.hours = Math.floor(</span>
+        (new Date(this.parking.out).getTime()
+          - new Date(this.parking.date).getTime()
+        ) / 3600000)
     }
   },
   created () {
-<span class="cstat-no" title="statement not covered" >    console.log('mounted', this.parking)</span>
 <span class="cstat-no" title="statement not covered" >    this.formatPrice();</span>
   }
 };
@@ -286,7 +310,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 26 2019 22:51:05 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 29 2019 09:52:11 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>
