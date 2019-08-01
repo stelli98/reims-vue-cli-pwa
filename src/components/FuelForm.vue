@@ -122,11 +122,10 @@
           Rp.
         </p>
         <input
-          v-model="fuel.amount"
+          v-model="fuelAmount"
           type="text"
           name="type"
           class="form__currency__input"
-          @blur="formatAmount"
         />
       </div>
       <div v-if="$v.fuel.amount.$error">

@@ -30,6 +30,16 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["fuel"]),
+    fuelAmount: {
+      set (newValue) {
+        this.fuel.amount = newValue.toString()
+          .replace(/\D/g, '')
+          .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      },
+      get () {
+        return this.fuel.amount
+      }
+    },
     totalPrice () {
       const value = (this.amountInt * this.fuel.liters).toFixed(2);
       if (value.includes("e")) {
@@ -38,7 +48,16 @@ export default {
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0
     },
     amountInt () {
-      return this.fuel.amount ? parseInt(this.fuel.amount.split(".").join("")) : "";
+      if (this.fuel.amount) {
+        console.log(this.fuel.amount)
+        if (typeof this.fuel.amount === "string") {
+          return parseInt(this.fuel.amount.split(".").join(""))
+        } else {
+          return this.fuel.amount
+        }
+      } else {
+        return ""
+      }
     }
   },
   methods: {
@@ -52,7 +71,7 @@ export default {
     sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.reformatAmount();
+        this.fuel.amount = parseInt(this.fuel.amount.toString().split(".").join(""))
         this.reformatVolume();
         return this.saveTransaction(this.fuel).then((response) => {
           console.log('fuel', response)
@@ -73,22 +92,11 @@ export default {
         console.log("error");
       }
     },
-    formatAmount () {
-      this.fuel.amount = this.fuel.amount
-        .toString()
-        .replace(/\D/g, "")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
-    reformatAmount () {
-      if (typeof this.fuel.amount == "string") {
-        this.fuel.amount = this.amountInt
-      }
-    },
     reformatVolume () {
       this.fuel.liters = parseFloat(this.fuel.liters)
     }
   },
   mounted () {
-    this.fuel.amount ? this.formatAmount() : "";
+    // this.fuel.amount ? this.formatAmount() : "";
   }
 };
