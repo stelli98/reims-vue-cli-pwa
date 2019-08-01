@@ -41,9 +41,6 @@ export default {
           return x.userId == this.id
         })
       })
-      console.log(images)
-      console.log(forms)
-      console.log(images.length > 0 || forms.length > 0)
       if (images.length > 0 || forms.length > 0) {
         this.setSendingData(true)
         this.sendDataToServer(images, forms)
@@ -52,13 +49,9 @@ export default {
       }
     },
     sendDataToServer (images, forms) {
-      console.log(images)
-      console.log(forms)
       if (images.length > 0 && forms.length > 0) {
-        console.log('A')
         this.sendImageAndFormToServer(images, 0)
       } else if (images.length > 0 && !forms.length > 0) {
-        console.log('B')
         this.sendOnlyImageToServer(images)
       } else if (!images.length > 0 && forms.length > 0) {
         this.sendOnlyFormToServer(forms);
@@ -81,8 +74,7 @@ export default {
       });
     },
     sendOnlyImageToServer (image) {
-      console.log('here', image)
-      this.createTransaction(image).then(() => {
+      this.createTransaction(this.sendImageObject(image)).then(() => {
         offlineService.deleteDataByKeyFromIndexedDB(
           imageIdb,
           image.id
@@ -96,7 +88,7 @@ export default {
       console.log('index', index)
       if (index + 1 > images.length) return
       console.log('before send', images[index])
-      transactionApi.createTransaction(images[index], this.token).then(response => {
+      transactionApi.createTransaction(this.sendImageObject(images[index]), this.token).then(response => {
         console.log('post response', response)
         offlineService.deleteDataByKeyFromIndexedDB(imageIdb, images[index].id)
         this.sendFormAfterImageToServer(images[index].id, response).then(() => {
@@ -104,6 +96,11 @@ export default {
           this.sendImageAndFormToServer(images, index + 1)
         })
       })
+    },
+    sendImageObject (data) {
+      return {
+        image: data.image
+      }
     },
     async findFormByImageID (id) {
       return await offlineService.findDataByKeyFromIndexedDB(
