@@ -6,8 +6,13 @@ export default {
     ViewFuelDetail,
     ViewParkingDetail
   },
+  data () {
+    return {
+      image: ''
+    }
+  },
   computed: {
-    ...mapGetters("transaction", ["transaction"]),
+    ...mapGetters("transaction", ["transaction", "viewImage"]),
     transactionId () {
       return this.$route.params.id;
     },
@@ -18,15 +23,26 @@ export default {
       return this.transactionCategory
         ? `View${this.transactionCategory}Detail`
         : "";
-    }
+    },
+    transactionImageType () {
+      return this.transaction.image ? this.transaction.image.split(".")[this.transaction.image.split(".").length - 1] : ""
+    },
   },
   methods: {
-    ...mapActions("transaction", ["getTransaction"]),
+    ...mapActions("transaction", ["getTransaction", "getViewImage"]),
     moveTo () {
       this.$router.push({ name: 'home' });
     }
   },
   mounted () {
     this.getTransaction(this.transactionId);
+  },
+  watch: {
+    transaction () {
+      console.log(this.transaction)
+      this.getViewImage(this.transaction.image).then((response) => {
+        this.image = response
+      })
+    }
   }
 };

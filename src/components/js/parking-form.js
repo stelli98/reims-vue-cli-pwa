@@ -1,11 +1,6 @@
-import { helpers, numeric, required } from "vuelidate/lib/validators";
+import { required, minValue } from "vuelidate/lib/validators";
 import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
-import "vue-datetime/dist/vue-datetime.css";
-const currency = helpers.regex(
-  "numeric",
-  /(\d{1,3}[.](\d{3}[.])*\d{3}|\d+)([,]\d{1,2})?$/
-);
 
 export default {
   components: { Datetime },
@@ -13,11 +8,19 @@ export default {
     parking: {
       date: { required },
       out: { required },
-      amount: { required, currency },
+      amount: {
+        required,
+        currency (input) {
+          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input)
+        }
+      },
       title: { required },
       parkingType: { required },
       license: { required },
       location: { required }
+    },
+    amountInt: {
+      minValue: minValue(100)
     }
   },
   data () {
@@ -30,8 +33,20 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("transaction", ["parking", "OCRResultImage"]),
-    // ...mapGetters("auth", ["id"]),
+    ...mapGetters("transaction", ["parking"]),
+    parkingAmount: {
+      set (newValue) {
+        this.parking.amount = newValue.toString()
+          .replace(/\./g, '')
+          .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      },
+      get () {
+        return this.parking.amount
+      }
+    },
+    amountInt () {
+      return typeof this.parking.amount === "string" ? parseInt(this.parking.amount.split(".").join("")) : this.parking.amount
+    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
@@ -39,13 +54,12 @@ export default {
     toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    async sendParkingForm () {
+    sendParkingForm () {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
         this.calculateDuration();
-        // this.parking.userId = parseInt(this.id);
-        // this.parking.image = this.OCRResultImage;
+        this.convertDateToEpoch();
         return this.saveTransaction(this.parking).then((response) => {
           console.log(response)
           const notification = {
@@ -64,24 +78,17 @@ export default {
         alert("error");
       }
     },
-    formatPrice () {
-      this.$v.parking.amount.$touch();
-      this.parking.amount = this.parking.amount
-        .toString()
-        .replace(/\D/g, "")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
     reformatPrice () {
-      this.parking.amount = parseInt(this.parking.amount.split(".").join(""));
+      this.parking.amount = this.amountInt
     },
     calculateDuration () {
       this.parking.hours = Math.floor(
         (new Date(this.parking.out).getTime()
           - new Date(this.parking.date).getTime()
         ) / 3600000)
+    },
+    convertDateToEpoch () {
+      this.parking.date = new Date(this.parking.date).getTime().toString()
     }
-  },
-  created () {
-    this.formatPrice();
   }
 };

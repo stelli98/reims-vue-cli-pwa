@@ -91,9 +91,10 @@ export default {
       transactionApi.createTransaction(this.sendImageObject(images[index]), this.token).then(response => {
         console.log('post response', response)
         offlineService.deleteDataByKeyFromIndexedDB(imageIdb, images[index].id)
-        this.sendFormAfterImageToServer(images[index].id, response).then(() => {
-          console.log('call recursive')
-          this.sendImageAndFormToServer(images, index + 1)
+        this.sendFormAfterImageToServer(images[index].id, response, {
+          success: () => {
+            this.sendImageAndFormToServer(images, index + 1)
+          }
         })
       })
     },
@@ -108,7 +109,7 @@ export default {
         id
       );
     },
-    async sendFormAfterImageToServer (formId, response) {
+    async sendFormAfterImageToServer (formId, response, { success }) {
       const form = await this.findFormByImageID(formId)
       form.image = response.data.data.image;
       console.log('before send', form)
@@ -121,6 +122,7 @@ export default {
           this.addSuccessImageNotification();
           this.addSuccessFormNotification();
           this.setSendingData(false)
+          success()
           return response
         });
     },

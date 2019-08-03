@@ -16,3 +16,9 @@
 .vdatetime-popup__actions__button {
   color: $color-green;
 }
+
+.vdatetime-calendar__current--month {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+}

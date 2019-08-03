@@ -1,12 +1,8 @@
-import { helpers, numeric, required } from "vuelidate/lib/validators";
+import { required, helpers, minValue } from "vuelidate/lib/validators";
 import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
-import "vue-datetime/dist/vue-datetime.css";
+
 const float = helpers.regex("decimal", /^[0-9]+([.][0-9]+)?$/);
-const currency = helpers.regex(
-  "numeric",
-  /(\d{1,3}[.](\d{3}[.])*\d{3}|\d+)([,]\d{1,2})?$/
-);
 
 export default {
   components: { Datetime },
@@ -14,9 +10,21 @@ export default {
     fuel: {
       date: { required },
       fuelType: { required },
-      liters: { required, float },
-      amount: { required, currency },
+      liters: {
+        required,
+        float,
+        minValue: minValue(0.01)
+      },
+      amount: {
+        required,
+        currency (input) {
+          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input)
+        }
+      },
       title: { required }
+    },
+    amountInt: {
+      minValue: minValue(100)
     }
   },
   data () {
@@ -33,7 +41,7 @@ export default {
     fuelAmount: {
       set (newValue) {
         this.fuel.amount = newValue.toString()
-          .replace(/\D/g, '')
+          .replace(/\./g, '')
           .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       },
       get () {
@@ -41,23 +49,17 @@ export default {
       }
     },
     totalPrice () {
-      const value = (this.amountInt * this.fuel.liters).toFixed(2);
+      const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);
       if (value.includes("e")) {
         return value || 0
       }
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0
     },
+    formatAmountToInt () {
+      return this.fuel.amount ? this.amountInt : "";
+    },
     amountInt () {
-      if (this.fuel.amount) {
-        console.log(this.fuel.amount)
-        if (typeof this.fuel.amount === "string") {
-          return parseInt(this.fuel.amount.split(".").join(""))
-        } else {
-          return this.fuel.amount
-        }
-      } else {
-        return ""
-      }
+      return typeof this.fuel.amount === "string" ? parseInt(this.fuel.amount.split(".").join("")) : this.fuel.amount
     }
   },
   methods: {
@@ -71,8 +73,9 @@ export default {
     sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.fuel.amount = parseInt(this.fuel.amount.toString().split(".").join(""))
+        this.fuel.amount = this.amountInt
         this.reformatVolume();
+        this.convertDateToEpoch();
         return this.saveTransaction(this.fuel).then((response) => {
           console.log('fuel', response)
           const notification = {
@@ -94,9 +97,9 @@ export default {
     },
     reformatVolume () {
       this.fuel.liters = parseFloat(this.fuel.liters)
+    },
+    convertDateToEpoch () {
+      this.fuel.date = new Date(this.fuel.date).getTime().toString()
     }
-  },
-  mounted () {
-    // this.fuel.amount ? this.formatAmount() : "";
   }
 };

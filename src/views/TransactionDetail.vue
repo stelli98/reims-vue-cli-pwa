@@ -20,8 +20,8 @@
       </h1>
       <img
         class="transaction-detail__image"
-        :src="transaction.image"
-      />
+        :src="image"
+      >
       <Component
         :is="activeComponent"
         :transaction="transaction"

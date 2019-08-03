@@ -127,7 +127,9 @@ describe('Actions for Transactions Module', () => {
                 token: 'Bearer 123'
             }
         }
-        actions.deleteTransaction({ rootState }, id)
+        const commit = jest.fn()
+        actions.deleteTransaction({ commit, rootState }, id)
+        expect(commit).toHaveBeenCalledWith('DELETE_TRANSACTION', id)
         expect(api.deleteTransaction).toHaveBeenCalledWith(id, rootState.auth.token)
     })
 })

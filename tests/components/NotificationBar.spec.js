@@ -2,7 +2,6 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import NotificationBar from "@/components/NotificationBar.vue";
 import Vuex from "vuex";
 
-jest.useFakeTimers();
 
 describe('NotificationBar.vue', () => {
     let store;
@@ -57,6 +56,7 @@ describe('NotificationBar.vue', () => {
     }
 
     beforeEach(() => {
+        jest.useFakeTimers();
         localVue = generateLocalVue();
         store = initializeStore();
         wrapper = createWrapper(store.store);
@@ -72,9 +72,8 @@ describe('NotificationBar.vue', () => {
     })
 
     // test('clear timeout', () => {
-    //     jest.advanceTimersByTime(5000);
+    //     jest.runAllTimers();
     //     expect(clearTimeout).toHaveBeenCalledTimes(1);
     // })
-
 
 })

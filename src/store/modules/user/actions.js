@@ -29,7 +29,8 @@ export default {
     const { token } = rootState.auth;
     userApi.changePassword(data, token);
   },
-  deleteUser: async ({ rootState }, id) => {
+  deleteUser: async ({ commit, rootState }, id) => {
+    commit('DELETE_USER', id)
     const { token } = rootState.auth;
     const response = userApi.deleteUser(id, token);
     return response;

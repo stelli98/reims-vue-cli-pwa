@@ -38,10 +38,19 @@ export default {
     const { data } = await transactionApi.saveTransaction(transaction, token);
     return data;
   },
-  deleteTransaction: ({ rootState }, id) => {
+  deleteTransaction: ({ commit, rootState }, id) => {
+    commit("DELETE_TRANSACTION", id);
     const { token } = rootState.auth;
     const response = transactionApi.deleteTransaction(id, token);
     console.log('delete', response)
     return response
+  },
+  getViewImage: async ({ commit, rootState }, link) => {
+    console.log(link)
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.getViewImage(link, token);
+    console.log(data)
+    commit("SET_VIEW_IMAGE", data)
+    return data
   }
 };

@@ -1,5 +1,6 @@
 export default value => {
-  const date = new Date(value);
+  const date = new Date(value)
+  //.toISOString();
   return date.toLocaleDateString(["en-US"], {
     weekday: "short",
     day: "2-digit",

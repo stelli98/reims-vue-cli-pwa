@@ -19,5 +19,8 @@ export default {
     },
     fuel (state) {
         return state.fuel;
+    },
+    viewImage (state) {
+        return state.viewImage;
     }
 }

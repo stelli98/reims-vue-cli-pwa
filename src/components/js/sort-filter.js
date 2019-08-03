@@ -27,6 +27,7 @@ export default {
     },
     resetFilter () {
       this.options = this.emptyOptions();
+      this.applyFilter()
     }
   }
 };

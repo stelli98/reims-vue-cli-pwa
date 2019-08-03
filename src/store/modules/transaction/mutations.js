@@ -31,5 +31,11 @@ export default {
   },
   SET_PAGINATION (state, { paging }) {
     state.pagination = paging;
+  },
+  SET_VIEW_IMAGE (state, { data }) {
+    state.viewImage = data;
+  },
+  DELETE_TRANSACTION (state, id) {
+    state.transactions = state.transactions.filter(x => x.id != id);
   }
 };

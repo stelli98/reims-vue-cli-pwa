@@ -36,7 +36,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("transaction", ["parking", "fuel", "OCRResultType"]),
+    ...mapGetters("transaction", ["OCRResultType"]),
     currentComponent () {
       return this.OCRResultType;
     },

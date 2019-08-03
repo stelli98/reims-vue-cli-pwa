@@ -116,7 +116,9 @@ describe('Actions for User Module', () => {
             }
         }
         const id = 1
-        actions.deleteUser({ rootState }, id)
+        const commit = jest.fn()
+        actions.deleteUser({ commit, rootState }, id)
+        expect(commit).toHaveBeenCalledWith('DELETE_USER', id)
         expect(api.deleteUser).toHaveBeenCalledWith(id, rootState.auth.token)
     })
 })

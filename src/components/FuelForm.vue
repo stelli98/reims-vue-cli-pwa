@@ -109,6 +109,13 @@
           Volume must be filled
         </p>
       </div>
+
+      <p
+        v-if="!$v.fuel.liters.minValue"
+        class="input__error-message"
+      >
+        Volume must more than 0.01
+      </p>
     </div>
     <div class="form__child">
       <label
@@ -128,22 +135,24 @@
           class="form__currency__input"
         />
       </div>
-      <div v-if="$v.fuel.amount.$error">
-        <p
-          v-if="!$v.fuel.amount.required"
-          class="input__error-message"
-        >
-          Unit Price must be filled
-        </p>
-      </div>
-      <div v-if="$v.fuel.amount.$error">
-        <p
-          v-if="!$v.fuel.amount.currency"
-          class="input__error-message"
-        >
-          Unit Price must be only filled in IDR currency format
-        </p>
-      </div>
+      <p
+        v-if="!$v.fuel.amount.required"
+        class="input__error-message"
+      >
+        Unit Price must be filled
+      </p>
+      <p
+        v-if="!$v.fuel.amount.currency && $v.fuel.amount.required"
+        class="input__error-message"
+      >
+        Unit Price must be only filled in IDR currency format
+      </p>
+      <p
+        v-if="!$v.amountInt.minValue && $v.fuel.amount.currency"
+        class="input__error-message"
+      >
+        Unit Price must more than 100
+      </p>
     </div>
     <div class="form__child">
       <label
@@ -170,4 +179,6 @@
 
 <script src="./js/fuel-form.js"></script>
 
-<style lang="scss"></style>
+<style>
+@import "../../node_modules/vue-datetime/dist/vue-datetime.css";
+</style>

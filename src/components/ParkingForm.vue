@@ -81,11 +81,10 @@
           Rp.
         </p>
         <input
-          v-model="parking.amount"
+          v-model="parkingAmount"
           type="text"
           name="type"
           class="form__currency__input"
-          @blur="formatPrice"
         />
       </div>
 
@@ -97,14 +96,18 @@
           Price must be filled
         </p>
       </div>
-      <div v-if="$v.parking.amount.$error">
-        <p
-          v-if="!$v.parking.amount.currency"
-          class="input__error-message"
-        >
-          Price must be only filled in IDR currency format
-        </p>
-      </div>
+      <p
+        v-if="!$v.parking.amount.currency && $v.parking.amount.required"
+        class="input__error-message"
+      >
+        Price must be only filled in IDR currency format
+      </p>
+      <p
+        v-if="!$v.amountInt.minValue && $v.parking.amount.currency"
+        class="input__error-message"
+      >
+        Price must more than 100
+      </p>
     </div>
     <div class="form__child">
       <label
@@ -132,7 +135,7 @@
           v-if="!$v.parking.parkingType.required"
           class="input__error-message"
         >
-          type Type must be filled
+          Vehicle Type must be filled
         </p>
       </div>
     </div>

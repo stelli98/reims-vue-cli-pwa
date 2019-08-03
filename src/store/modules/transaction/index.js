@@ -10,7 +10,7 @@ const state = {
     category: "PARKING",
     date: "",
     out: "",
-    amount: 0,
+    amount: 100,
     title: "",
     parkingType: "",
     license: "",
@@ -23,15 +23,16 @@ const state = {
     category: "FUEL",
     date: "",
     fuelType: "",
-    liters: 0,
-    amount: 0,
+    liters: 0.01,
+    amount: 100,
     title: "",
     userId: "",
     image: ""
   },
   transactions: [],
   transaction: {},
-  pagination: {}
+  pagination: {},
+  viewImage: ""
 };
 
 export default { state, actions, mutations, getters, namespaced };

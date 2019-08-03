@@ -60,6 +60,14 @@ export default {
       }
     });
   },
+  getViewImage (url, token) {
+    const path = api.transaction;
+    return axios.get(`${path}/${url}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
   isOnline () {
     return navigator.onLine;
   }

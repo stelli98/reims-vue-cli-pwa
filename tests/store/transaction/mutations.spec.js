@@ -108,4 +108,14 @@ describe('mutations for transaction module', () => {
         mutations.SET_PAGINATION(state, expectedValue)
         expect(state.pagination).toBe(expectedValue.paging)
     })
+
+    // test('DELETE_TRANSACTION remove deleted id from state.transactions', () => {
+    //     const initialValue = data.find(d => d.url === url.transaction && d.method === "GET")
+    //     const state = {
+    //         transactions: initialValue
+    //     }
+    //     mutations.DELETE_TRANSACTION(state, 1)
+    //     const expectedValue = initialValue.filter(data => data.id != 1)
+    //     expect(state.transactions).toBe(expectedValue)
+    // })
 })

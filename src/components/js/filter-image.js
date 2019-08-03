@@ -28,17 +28,14 @@ export default {
   },
   methods: {
     ...mapActions("transaction", [
-      "createTransaction",
-      "setImageOffline",
-      "getAllData"
+      "createTransaction", "setImage"
     ]),
     ...mapActions("notification", [
       "addNotification",
     ]),
-    makeFilter (filterSet) {
-      if (!filterSet) {
-        filterSet = this.filterFunctions;
-      }
+    makeFilter () {
+
+      const filterSet = this.filterFunctions;
 
       let filterString = "";
       const defaultValues = this.defaultValues();
@@ -50,25 +47,12 @@ export default {
       }
       return { filter: filterString };
     },
-    setToDefault () {
-      this.filterFunctions = this.defaultValues();
-    },
     defaultValues () {
       return {
         grayscale: 1,
         brightness: 1.1,
         contrast: 1
       };
-    },
-    changeImage () {
-      this.$store.dispatch("setImage", "").then(() => {
-        this.$router.push({ name: "crop-image" });
-      });
-    },
-    fillForm () {
-      this.$router.push({
-        name: "add"
-      });
     },
     generateImage () {
       const canvas = document.createElement("canvas");
