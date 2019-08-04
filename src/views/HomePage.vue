@@ -3,10 +3,7 @@
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
-          <img
-            src="../assets/images/logo.png"
-            class="logo__small"
-          />
+          <img src="../assets/images/logo.png" class="logo__small" />
         </div>
         <div class="home__header__upper__right">
           <div
@@ -15,10 +12,7 @@
           >
             Change Password
           </div>
-          <div
-            class="home__header__nav__logout"
-            @click="doLogout"
-          >
+          <div class="home__header__nav__logout" @click="doLogout">
             Logout
           </div>
         </div>
@@ -29,16 +23,8 @@
             Make Reimbursement Reporting Become Easier
           </div>
           <div class="home__header__footer__button">
-            <input
-              id="file"
-              type="file"
-              name="file"
-              @change="onFileChange"
-            />
-            <label
-              for="file"
-              class="btn-white"
-            >
+            <input id="file" type="file" name="file" @change="onFileChange" />
+            <label for="file" class="btn-white">
               Upload Receipt
             </label>
           </div>
@@ -50,10 +36,7 @@
       @openFilter="toogleFilter"
       @updateTransactions="updateTransaction"
     />
-    <Pagination
-      :paging="pagination"
-      @changePage="changePage"
-    />
+    <Pagination :paging="pagination" @changePage="changePage" />
     <SortFilter
       v-show="showFilter"
       @closeFilter="toogleFilter"

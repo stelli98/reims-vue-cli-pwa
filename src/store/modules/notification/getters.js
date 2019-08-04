@@ -1,5 +1,5 @@
 export default {
-    notifications (state) {
-        return state.notifications;
-    }
-}
+  notifications(state) {
+    return state.notifications;
+  }
+};

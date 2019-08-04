@@ -9,50 +9,52 @@ export default {
       role: { required }
     }
   },
-  data () {
+  data() {
     return {
       roles: ["ADMIN", "USER"]
     };
   },
   computed: {
     ...mapGetters("user", ["user"]),
-    userId () {
+    userId() {
       return this.$route.params.id;
     },
-    formTitle () {
-      return !!this.userId ? "Edit User" : "Create User"
+    formTitle() {
+      return this.userId ? "Edit User" : "Create User";
     },
-    userTemp () {
+    userTemp() {
       return {
         username: "",
         password: "",
         role: ""
-      }
+      };
     }
   },
   methods: {
     ...mapActions("user", ["updateUser", "createUser", "getUser", "emptyUser"]),
-    moveTo () {
+    moveTo() {
       this.$router.push({ name: "user" });
     },
-    submitForm () {
+    submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.sendForm().then(() => {
           this.$router.push({ name: "user" });
-        })
+        });
       } else {
         console.log("error");
       }
     },
-    checkActionForm () {
-      !!this.userId ? this.getUser(this.userId) : this.emptyUser(this.userTemp);
+    checkActionForm() {
+      this.userId ? this.getUser(this.userId) : this.emptyUser(this.userTemp);
     },
-    sendForm () {
-      return this.userId ? this.updateUser(this.user) : this.createUser(this.user);
+    sendForm() {
+      return this.userId
+        ? this.updateUser(this.user)
+        : this.createUser(this.user);
     }
   },
-  mounted () {
+  mounted() {
     this.checkActionForm();
   }
 };

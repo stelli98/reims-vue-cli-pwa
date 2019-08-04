@@ -4,35 +4,33 @@ import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.users;
-describe('UserList.vue', () => {
-    let wrapper;
-    let localVue;
-    const userData = data.find(d =>
-        d.url === url.user && d.params.page == 1
-    );
+describe("UserList.vue", () => {
+  let wrapper;
+  let localVue;
+  const userData = data.find(d => d.url === url.user && d.params.page == 1);
 
-    function generateLocalVue () {
-        const lv = createLocalVue();
-        return lv;
-    }
+  function generateLocalVue() {
+    const lv = createLocalVue();
+    return lv;
+  }
 
-    function createWrapper () {
-        return shallowMount(UserList, {
-            localVue,
-            stubs: ["UserCard"],
-            propsData: {
-                users: userData.data
-            }
-        });
-    }
-
-    beforeEach(() => {
-        localVue = generateLocalVue();
-        wrapper = createWrapper();
+  function createWrapper() {
+    return shallowMount(UserList, {
+      localVue,
+      stubs: ["UserCard"],
+      propsData: {
+        users: userData.data
+      }
     });
+  }
 
-    test('Emit updateUsers', () => {
-        wrapper.vm.updateUsers()
-        expect(wrapper.emitted().updateUsers).toEqual([[]])
-    })
-})
+  beforeEach(() => {
+    localVue = generateLocalVue();
+    wrapper = createWrapper();
+  });
+
+  test("Emit updateUsers", () => {
+    wrapper.vm.updateUsers();
+    expect(wrapper.emitted().updateUsers).toEqual([[]]);
+  });
+});

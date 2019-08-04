@@ -4,66 +4,66 @@ import TextFilter from "@/filters/text";
 import DateTime from "vue-datetime";
 
 describe("UserCard.vue", () => {
-    let wrapper;
-    let localVue;
+  let wrapper;
+  let localVue;
 
-    function generateLocalVue () {
-        const lv = createLocalVue();
-        lv.use(DateTime)
-        lv.filter('textFormatter', TextFilter)
-        return lv;
-    }
+  function generateLocalVue() {
+    const lv = createLocalVue();
+    lv.use(DateTime);
+    lv.filter("textFormatter", TextFilter);
+    return lv;
+  }
 
-    function createWrapper () {
-        return shallowMount(SortFilter, {
-            localVue,
-            stubs: ['Datetime']
-        });
-    }
-
-    beforeEach(() => {
-        localVue = generateLocalVue();
-        wrapper = createWrapper();
+  function createWrapper() {
+    return shallowMount(SortFilter, {
+      localVue,
+      stubs: ["Datetime"]
     });
+  }
 
-    test('Emit moveTo', () => {
-        wrapper.vm.moveTo()
-        expect(wrapper.emitted().closeFilter).toEqual([[false]])
-    })
+  beforeEach(() => {
+    localVue = generateLocalVue();
+    wrapper = createWrapper();
+  });
 
-    test('Emit applyFilter', () => {
-        wrapper.vm.applyFilter()
-        const options = {
-            search: "",
-            sortBy: "",
-            category: "",
-            startDate: "",
-            endDate: ""
-        }
-        expect(wrapper.emitted().applyFilter).toEqual([[options]])
-    })
+  test("Emit moveTo", () => {
+    wrapper.vm.moveTo();
+    expect(wrapper.emitted().closeFilter).toEqual([[false]]);
+  });
 
-    test('emptyOptions return empty options', () => {
-        wrapper.vm.emptyOptions()
-        const options = {
-            search: "",
-            sortBy: "",
-            category: "",
-            startDate: "",
-            endDate: ""
-        }
-        expect(wrapper.vm.emptyOptions()).toEqual(options)
-    })
+  test("Emit applyFilter", () => {
+    wrapper.vm.applyFilter();
+    const options = {
+      search: "",
+      sortBy: "",
+      category: "",
+      startDate: "",
+      endDate: ""
+    };
+    expect(wrapper.emitted().applyFilter).toEqual([[options]]);
+  });
 
-    test('resetFilter set options to default', () => {
-        wrapper.vm.resetFilter()
-        const options = {
-            search: "",
-            sortBy: "",
-            category: "",
-            startDate: "",
-            endDate: ""
-        }
-        expect(wrapper.vm.options).toEqual(options)
-    })
+  test("emptyOptions return empty options", () => {
+    wrapper.vm.emptyOptions();
+    const options = {
+      search: "",
+      sortBy: "",
+      category: "",
+      startDate: "",
+      endDate: ""
+    };
+    expect(wrapper.vm.emptyOptions()).toEqual(options);
+  });
+
+  test("resetFilter set options to default", () => {
+    wrapper.vm.resetFilter();
+    const options = {
+      search: "",
+      sortBy: "",
+      category: "",
+      startDate: "",
+      endDate: ""
+    };
+    expect(wrapper.vm.options).toEqual(options);
+  });
 });

@@ -1,13 +1,13 @@
 import transactionApi from "@/api/transaction";
 
 export default {
-  setImage ({ commit }, img) {
+  setImage({ commit }, img) {
     commit("SET_IMAGE", img);
   },
-  setOCRResultType ({ commit }, data) {
+  setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
-  setFormEmpty ({ commit }, data) {
+  setFormEmpty({ commit }, data) {
     commit("SET_OCR_RESULT", data);
   },
   createTransaction: async ({ commit, rootState }, image) => {
@@ -42,15 +42,15 @@ export default {
     commit("DELETE_TRANSACTION", id);
     const { token } = rootState.auth;
     const response = transactionApi.deleteTransaction(id, token);
-    console.log('delete', response)
-    return response
+    console.log("delete", response);
+    return response;
   },
   getViewImage: async ({ commit, rootState }, link) => {
-    console.log(link)
+    console.log(link);
     const { token } = rootState.auth;
     const { data } = await transactionApi.getViewImage(link, token);
-    console.log(data)
-    commit("SET_VIEW_IMAGE", data)
-    return data
+    console.log(data);
+    commit("SET_VIEW_IMAGE", data);
+    return data;
   }
 };

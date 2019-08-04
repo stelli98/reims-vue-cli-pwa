@@ -1,7 +1,7 @@
 import { mapGetters } from "vuex";
 export default {
   name: "App",
-  data () {
+  data() {
     return {
       myCroppa: null,
       filterFunctions: null,
@@ -10,21 +10,21 @@ export default {
     };
   },
   methods: {
-    generateImage () {
+    generateImage() {
       if (this.myCroppa.hasImage()) {
         return this.myCroppa.generateDataUrl("image/jpg", 0.7);
       }
     },
-    flipXImage () {
+    flipXImage() {
       this.myCroppa.flipX();
     },
-    flipYImage () {
+    flipYImage() {
       this.myCroppa.flipY();
     },
-    rotateRight () {
+    rotateRight() {
       this.myCroppa.rotate(1);
     },
-    rotateLeft () {
+    rotateLeft() {
       this.myCroppa.rotate(-1);
     }
   },

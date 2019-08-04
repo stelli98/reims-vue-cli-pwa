@@ -7,8 +7,8 @@ export default {
     users: Array
   },
   methods: {
-    updateUsers () {
-      this.$emit('updateUsers')
+    updateUsers() {
+      this.$emit("updateUsers");
     }
   }
 };

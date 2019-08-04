@@ -1,7 +1,7 @@
 <template>
   <div class="user__list">
     <UserCard
-      v-for="(user,index) in users"
+      v-for="(user, index) in users"
       :key="user.id"
       :user="user"
       :index="index"

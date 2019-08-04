@@ -3,7 +3,7 @@ export default {
     transaction: Object
   },
   computed: {
-    totalPrice () {
+    totalPrice() {
       return this.transaction.amount * this.transaction.liters;
     }
   }

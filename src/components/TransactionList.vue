@@ -4,10 +4,7 @@
       Transaction List
     </div>
     <div class="transaction__actions">
-      <div
-        class="btn-green transaction__filter"
-        @click="openFilter"
-      >
+      <div class="btn-green transaction__filter" @click="openFilter">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-filter" />
         </svg>
@@ -33,7 +30,7 @@
 
 <script src="./js/transaction-list.js"></script>
 
-<style lang="scss" >
+<style lang="scss">
 .transaction {
   display: flex;
   flex-direction: column;

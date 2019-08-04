@@ -4,7 +4,7 @@ const api = config.api.users;
 // process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getUser (id, token) {
+  getUser(id, token) {
     const path = api.user;
     return axios.get(`${path}/${id}`, {
       headers: {
@@ -12,16 +12,16 @@ export default {
       }
     });
   },
-  getUsers (options, token) {
+  getUsers(options, token) {
     const path = api.user;
     return axios.get(path, {
       params: options,
       headers: {
         Authorization: token
       }
-    })
+    });
   },
-  createUser (data, token) {
+  createUser(data, token) {
     const path = api.user;
     return axios.post(path, data, {
       headers: {
@@ -29,7 +29,7 @@ export default {
       }
     });
   },
-  updateUser (id, data, token) {
+  updateUser(id, data, token) {
     const path = api.user;
     return axios.put(`${path}/${id}`, data, {
       headers: {
@@ -37,7 +37,7 @@ export default {
       }
     });
   },
-  deleteUser (id, token) {
+  deleteUser(id, token) {
     const path = api.user;
     return axios.delete(`${path}/${id}`, {
       headers: {

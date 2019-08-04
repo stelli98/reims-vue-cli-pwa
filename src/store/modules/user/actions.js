@@ -4,7 +4,7 @@ export default {
   createUser: async ({ rootState }, data) => {
     const { token } = rootState.auth;
     const response = await userApi.createUser(data, token);
-    return response
+    return response;
   },
   emptyUser: ({ commit }, data) => {
     commit("SET_USER_EMPTY", data);
@@ -23,14 +23,14 @@ export default {
   updateUser: async ({ rootState }, data) => {
     const { token } = rootState.auth;
     const response = await userApi.updateUser(data.id, data, token);
-    return response
+    return response;
   },
   changePassword: ({ rootState }, data) => {
     const { token } = rootState.auth;
     userApi.changePassword(data, token);
   },
   deleteUser: async ({ commit, rootState }, id) => {
-    commit('DELETE_USER', id)
+    commit("DELETE_USER", id);
     const { token } = rootState.auth;
     const response = userApi.deleteUser(id, token);
     return response;

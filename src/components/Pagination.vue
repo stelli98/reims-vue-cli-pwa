@@ -1,12 +1,6 @@
 <template>
-  <div
-    v-show="paging.totalPages > 1"
-    class="pagination"
-  >
-    <div
-      class="first"
-      @click="moveTo(1)"
-    >
+  <div v-show="paging.totalPages > 1" class="pagination">
+    <div class="first" @click="moveTo(1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -32,10 +26,7 @@
         />
         <h2 class="pagination__text">/ {{ paging.totalPages }}</h2>
       </div>
-      <button
-        class="pagination__button"
-        @click="moveTo(parseInt(inputPage))"
-      >
+      <button class="pagination__button" @click="moveTo(parseInt(inputPage))">
         Go
       </button>
     </div>
@@ -48,10 +39,7 @@
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div
-      class="last"
-      @click="moveTo(paging.totalPages)"
-    >
+    <div class="last" @click="moveTo(paging.totalPages)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>

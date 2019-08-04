@@ -4,9 +4,18 @@ import getters from "./getters";
 
 const namespaced = true;
 const state = {
-  id: document.cookie.replace(/(?:(?:^|.*;\s*)id\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
-  role: document.cookie.replace(/(?:(?:^|.*;\s*)role\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
-  token: document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+  id: document.cookie.replace(
+    /(?:(?:^|.*;\s*)id\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  ),
+  role: document.cookie.replace(
+    /(?:(?:^|.*;\s*)role\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  ),
+  token: document.cookie.replace(
+    /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  )
 };
 
 export default { state, actions, mutations, getters, namespaced };

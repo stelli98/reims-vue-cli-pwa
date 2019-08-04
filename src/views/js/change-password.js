@@ -9,26 +9,26 @@ export default {
       confirmPassword: { required, sameAsPassword: sameAs("password") }
     }
   },
-  data () {
+  data() {
     return {
       user: {
         username: "",
         password: "",
         confirmPassword: ""
       }
-    }
+    };
   },
   methods: {
     ...mapActions("user", ["updateUser"]),
-    moveTo () {
+    moveTo() {
       this.$router.push({ name: "home" });
     },
-    submitForm () {
+    submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         console.log(this.user);
         this.updateUser(this.user);
-        this.moveTo()
+        this.moveTo();
       } else {
         console.log("error");
       }

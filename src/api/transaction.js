@@ -10,26 +10,31 @@ export default {
     const path = api.transaction;
     return axios.get(`${path}/${id}`, {
       headers: {
-        Authorization: token
+        "Authorization": token,
+        "Access-Control-Allow-Origin": "*"
       }
     });
   },
   getTransactions (options, token) {
     const path = api.transaction;
     return axios.get(path, {
-      params: options, headers: {
-        Authorization: token
+      params: options,
+      headers: {
+        "Authorization": token,
+        "Access-Control-Allow-Origin": "*"
       }
-    })
+    });
   },
   createTransaction (data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
-      return axios.post(path, data, {
-        headers: {
-          Authorization: token
-        }
-      })
+      return axios
+        .post(path, data, {
+          headers: {
+            "Authorization": token,
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
         .catch(() => {
           return offlineService.storeImageOffline(data);
         });
@@ -40,13 +45,16 @@ export default {
   saveTransaction (data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
-      return axios.put(path, data, {
-        headers: {
-          Authorization: token
-        }
-      }).catch(() => {
-        return offlineService.storeFormOffline(data);
-      });
+      return axios
+        .put(path, data, {
+          headers: {
+            "Authorization": token,
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
+        .catch(() => {
+          return offlineService.storeFormOffline(data);
+        });
     } else {
       return offlineService.storeFormOffline(data);
     }
@@ -56,7 +64,8 @@ export default {
     console.log("delete id :" + id);
     return axios.delete(`${path}/${id}`, {
       headers: {
-        Authorization: token
+        "Authorization": token,
+        "Access-Control-Allow-Origin": "*"
       }
     });
   },
@@ -64,7 +73,8 @@ export default {
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
       headers: {
-        Authorization: token
+        "Authorization": token,
+        "Access-Control-Allow-Origin": "*"
       }
     });
   },

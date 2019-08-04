@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script src ="./js/notification-bar.js"></script>
+<script src="./js/notification-bar.js"></script>
 
 <style lang="scss">
 .notification-bar {

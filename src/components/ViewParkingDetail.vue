@@ -6,11 +6,11 @@
     </div>
     <div class="transaction-detail__box">
       <h3>Total Hours</h3>
-      <p>{{ transaction.hours}}</p>
+      <p>{{ transaction.hours }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Vehicle Type</h3>
-      <p>{{ transaction.type | textFormatter}}</p>
+      <p>{{ transaction.type | textFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>License</h3>
@@ -29,4 +29,4 @@
 
 <script src="./js/view-parking-detail.js"></script>
 
-<style lang="scss" ></style>
+<style lang="scss"></style>

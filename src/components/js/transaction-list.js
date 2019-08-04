@@ -7,11 +7,11 @@ export default {
     transactions: Array
   },
   methods: {
-    openFilter () {
+    openFilter() {
       this.$emit("openFilter", true);
     },
-    updateTransactions () {
-      this.$emit('updateTransactions');
+    updateTransactions() {
+      this.$emit("updateTransactions");
     }
   }
 };

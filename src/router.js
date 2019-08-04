@@ -60,8 +60,7 @@ const router = new Router({
       beforeEnter: checkAuthUser,
       name: "change-password",
       component: ChangePassword
-    }
-    ,
+    },
     {
       path: "*",
       redirect: "/home"
@@ -69,33 +68,29 @@ const router = new Router({
   ]
 });
 
-function checkAuthUser (to, from, next) {
-  if (!!store.state.auth.token
-    && store.state.auth.role === "USER"
-  ) {
-    next()
+function checkAuthUser(to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "USER") {
+    next();
   } else {
     const notification = {
       type: "error",
       message: "You are not authorized. Please login again."
     };
-    store.dispatch('notification/addNotification', notification)
-    next('/login')
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
   }
 }
 
-function checkAuthAdmin (to, from, next) {
-  if (!!store.state.auth.token
-    && store.state.auth.role === "ADMIN"
-  ) {
-    next()
+function checkAuthAdmin(to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
+    next();
   } else {
     const notification = {
       type: "error",
       message: "You are not authorized. Please login again."
     };
-    store.dispatch('notification/addNotification', notification)
-    next('/login')
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
   }
 }
 export default router;

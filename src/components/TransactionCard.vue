@@ -1,12 +1,14 @@
 <template>
   <div class="transaction__card">
-    <div
-      class="transaction__card__content"
-      @click="moveTo(transaction.id)"
-    >
+    <div class="transaction__card__content" @click="moveTo(transaction.id)">
       <div class="transaction__card__left">
         <svg class="icon icon-big">
-          <use v-bind="{ 'xlink:href': 'icons.svg#icon-' + transaction.category.toLowerCase() }" />
+          <use
+            v-bind="{
+              'xlink:href':
+                'icons.svg#icon-' + transaction.category.toLowerCase()
+            }"
+          />
         </svg>
       </div>
       <div class="transaction__card__center">
@@ -26,10 +28,7 @@
       class="transaction__card__right"
       @click="removeTransaction(transaction.id)"
     >
-      <svg
-        class="icon icon-medium-green"
-        id="delete"
-      >
+      <svg class="icon icon-medium-green" id="delete">
         <use xlink:href="icons.svg#icon-dustbin" />
       </svg>
     </div>

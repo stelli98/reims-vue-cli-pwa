@@ -3,16 +3,16 @@ d.setTime(d.getTime() + 604800000);
 const expires = d.toGMTString();
 
 export default {
-  SET_TOKEN (state, token) {
+  SET_TOKEN(state, token) {
     document.cookie = `token=${token};expires=${expires}`;
     state.token = token;
   },
-  SET_ID (state, id) {
+  SET_ID(state, id) {
     document.cookie = `id=${id};expires=${expires}`;
-    state.id = id
+    state.id = id;
   },
-  SET_ROLE (state, role) {
+  SET_ROLE(state, role) {
     document.cookie = `role=${role};expires=${expires}`;
-    state.role = role
-  },
-}
+    state.role = role;
+  }
+};

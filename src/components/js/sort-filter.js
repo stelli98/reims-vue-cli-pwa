@@ -1,7 +1,7 @@
 import { Datetime } from "vue-datetime";
 export default {
   components: { Datetime },
-  data () {
+  data() {
     return {
       options: this.emptyOptions(),
       sortByOptions: ["date", "category", "title"],
@@ -9,14 +9,14 @@ export default {
     };
   },
   methods: {
-    moveTo () {
+    moveTo() {
       this.$emit("closeFilter", false);
     },
-    applyFilter () {
+    applyFilter() {
       this.$emit("applyFilter", this.options);
       this.moveTo();
     },
-    emptyOptions () {
+    emptyOptions() {
       return {
         search: "",
         sortBy: "",
@@ -25,9 +25,9 @@ export default {
         endDate: ""
       };
     },
-    resetFilter () {
+    resetFilter() {
       this.options = this.emptyOptions();
-      this.applyFilter()
+      this.applyFilter();
     }
   }
 };

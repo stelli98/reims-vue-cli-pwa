@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: "/home",
-    name: "home",
+    name: "home"
   }
 ];
 
@@ -24,18 +24,16 @@ describe("TransactionDetail.vue", () => {
   let store;
   let wrapper;
   let localVue;
-  const transactionData = data.find(d =>
-    d.url === url.transaction + "/1"
-  );
+  const transactionData = data.find(d => d.url === url.transaction + "/1");
 
-  function initializeStore () {
+  function initializeStore() {
     const actions = {
       getTransaction: jest.fn()
     };
 
     const getters = {
-      transaction: (state) => state.transaction
-    }
+      transaction: state => state.transaction
+    };
 
     const state = {
       transaction: transactionData.data
@@ -60,16 +58,16 @@ describe("TransactionDetail.vue", () => {
     };
   }
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
-    lv.filter('textFormatter', TextFilter)
+    lv.filter("textFormatter", TextFilter);
     lv.filter("dateFormatter", dateFilter);
     return lv;
   }
 
-  function createWrapper (store) {
+  function createWrapper(store) {
     const router = new VueRouter({ routes });
     return shallowMount(TransactionDetail, {
       store,
@@ -89,7 +87,7 @@ describe("TransactionDetail.vue", () => {
   test("route push to transaction with transactionId", () => {
     var transactionID = {
       id: 1
-    }
+    };
     wrapper.vm.$router.push({ transactionID });
     expect(wrapper.vm.transactionId).toBe(
       wrapper.vm.$route.params.transactionID
@@ -99,7 +97,7 @@ describe("TransactionDetail.vue", () => {
   test("transactionCategory must be PARKING", () => {
     var transactionID = {
       id: 1
-    }
+    };
     wrapper.vm.$router.push({ transactionID });
     expect(wrapper.vm.transactionCategory).toBe("Parking");
   });
@@ -107,14 +105,13 @@ describe("TransactionDetail.vue", () => {
   test("activeComponent must be ViewParkingDetail", () => {
     var transactionID = {
       id: 1
-    }
+    };
     wrapper.vm.$router.push({ transactionID });
     expect(wrapper.vm.activeComponent).toBe("ViewParkingDetail");
   });
 
-
   test("moveTo before page", () => {
-    wrapper.vm.$router.push('/transactions/1');
+    wrapper.vm.$router.push("/transactions/1");
     wrapper.vm.moveTo();
     expect(wrapper.vm.$route.path).toBe("/home");
   });
