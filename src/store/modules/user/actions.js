@@ -34,5 +34,9 @@ export default {
     const { token } = rootState.auth;
     const response = userApi.deleteUser(id, token);
     return response;
+  },
+  getPersonalReport: ({ rootState }, options) => {
+    const { token } = rootState.auth;
+    userApi.getPersonalReport(options, token);
   }
 };

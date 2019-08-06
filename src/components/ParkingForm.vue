@@ -1,7 +1,10 @@
 <template>
   <form class="transaction-form__parking">
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Title
       </label>
       <input
@@ -12,47 +15,67 @@
         @blur="$v.parking.title.$touch()"
       />
       <div v-if="$v.parking.title.$error">
-        <p v-if="!$v.parking.title.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.title.required"
+          class="input__error-message"
+        >
           Title must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="date">
+      <label
+        class="input__label title--medium-form"
+        for="date"
+      >
         In
       </label>
       <Datetime
-        v-model="parking.date"
+        v-model="formatInDate"
         type="datetime"
         class="form__input"
-        :max-datetime="parking.out"
+        :max-datetime="parking.out || 
+        currentDateTime"
         @close="$v.parking.date.$touch()"
       />
       <div v-if="$v.parking.date.$error">
-        <p v-if="!$v.parking.date.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.date.required"
+          class="input__error-message"
+        >
           In DateTime must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="date">
+      <label
+        class="input__label title--medium-form"
+        for="date"
+      >
         Out
       </label>
       <Datetime
-        v-model="parking.out"
+        v-model="formatOutDate"
         type="datetime"
         class="form__input"
-        :min-datetime="parking.date"
+        :min-datetime="formatInDate"
+        :max-datetime="currentDateTime"
         @close="$v.parking.out.$touch()"
       />
       <div v-if="$v.parking.out.$error">
-        <p v-if="!$v.parking.out.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.out.required"
+          class="input__error-message"
+        >
           Out DateTime must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Price
       </label>
       <div class="form__currency">
@@ -68,7 +91,10 @@
       </div>
 
       <div v-if="$v.parking.amount.$error">
-        <p v-if="!$v.parking.amount.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.amount.required"
+          class="input__error-message"
+        >
           Price must be filled
         </p>
       </div>
@@ -86,7 +112,10 @@
       </p>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Vehicle Type
       </label>
       <select
@@ -104,13 +133,19 @@
         </option>
       </select>
       <div v-if="$v.parking.parkingType.$error">
-        <p v-if="!$v.parking.parkingType.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.parkingType.required"
+          class="input__error-message"
+        >
           Vehicle Type must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         License
       </label>
       <input
@@ -121,13 +156,19 @@
         @blur="$v.parking.license.$touch()"
       />
       <div v-if="$v.parking.license.$error">
-        <p v-if="!$v.parking.license.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.license.required"
+          class="input__error-message"
+        >
           License must be filled
         </p>
       </div>
     </div>
     <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
+      <label
+        class="input__label title--medium-form"
+        for="type"
+      >
         Location
       </label>
       <input
@@ -138,7 +179,10 @@
         @blur="$v.parking.location.$touch()"
       />
       <div v-if="$v.parking.location.$error">
-        <p v-if="!$v.parking.location.required" class="input__error-message">
+        <p
+          v-if="!$v.parking.location.required"
+          class="input__error-message"
+        >
           Location must be filled
         </p>
       </div>

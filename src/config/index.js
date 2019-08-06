@@ -6,7 +6,8 @@ module.exports = {
       transaction: `${baseUrl}/api/transactions`
     },
     users: {
-      user: `${baseUrl}/api/admin/users`
+      user: `${baseUrl}/api/admin/users`,
+      report: `${baseUrl}/api/admin/users/report`
     },
     auth: {
       login: `${baseUrl}/api/login`,

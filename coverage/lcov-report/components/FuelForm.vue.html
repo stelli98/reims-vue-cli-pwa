@@ -147,7 +147,12 @@
 102
 103
 104
-105</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+105
+106
+107
+108
+109
+110</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,43 +199,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -242,6 +242,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,6 +251,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { required, helpers, minValue } from "vuelidate/lib/validators";
@@ -270,8 +280,8 @@ export default {
       },
       amount: {
         required,
-        currency (input) {
-<span class="cstat-no" title="statement not covered" >          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input)</span>
+        currency(input) {
+<span class="cstat-no" title="statement not covered" >          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input);</span>
         }
       },
       title: { required }
@@ -280,7 +290,7 @@ export default {
       minValue: minValue(100)
     }
   },
-  data () {
+  data() {
 <span class="cstat-no" title="statement not covered" >    return {</span>
       isSwitchOn: {
         type: Boolean,
@@ -292,76 +302,81 @@ export default {
   computed: {
     ...mapGetters("transaction", ["fuel"]),
     fuelAmount: {
-      set (newValue) {
-<span class="cstat-no" title="statement not covered" >        this.fuel.amount = newValue.toString()</span>
-          .replace(/\./g, '')
-          .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      set(newValue) {
+<span class="cstat-no" title="statement not covered" >        this.fuel.amount = newValue</span>
+          .toString()
+          .replace(/\./g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       },
-      get () {
-<span class="cstat-no" title="statement not covered" >        return this.fuel.amount</span>
+      get() {
+<span class="cstat-no" title="statement not covered" >        return this.fuel.amount;</span>
       }
     },
-    totalPrice () {
+    totalPrice() {
 <span class="cstat-no" title="statement not covered" >      const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);</span>
 <span class="cstat-no" title="statement not covered" >      if (value.includes("e")) {</span>
-<span class="cstat-no" title="statement not covered" >        return value || 0</span>
+<span class="cstat-no" title="statement not covered" >        return value || 0;</span>
       }
-<span class="cstat-no" title="statement not covered" >      return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0</span>
+<span class="cstat-no" title="statement not covered" >      return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0;</span>
     },
-    formatAmountToInt () {
+    formatAmountToInt() {
 <span class="cstat-no" title="statement not covered" >      return this.fuel.amount ? this.amountInt : "";</span>
     },
-    amountInt () {
-<span class="cstat-no" title="statement not covered" >      return typeof this.fuel.amount === "string" ? parseInt(this.fuel.amount.split(".").join("")) : this.fuel.amount</span>
+    amountInt() {
+<span class="cstat-no" title="statement not covered" >      return typeof this.fuel.amount === "string"</span>
+        ? parseInt(this.fuel.amount.split(".").join(""))
+        : this.fuel.amount;
     }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
-    ...mapActions("notification", [
-      "addNotification",
-    ]),
-    toggle () {
+    ...mapActions("notification", ["addNotification"]),
+    toggle() {
 <span class="cstat-no" title="statement not covered" >      this.isSwitchOn = !this.isSwitchOn;</span>
     },
-    sendFuelForm () {
+    sendFuelForm() {
 <span class="cstat-no" title="statement not covered" >      this.$v.fuel.$touch();</span>
 <span class="cstat-no" title="statement not covered" >      if (!this.$v.fuel.$invalid) {</span>
-<span class="cstat-no" title="statement not covered" >        this.fuel.amount = this.amountInt</span>
+<span class="cstat-no" title="statement not covered" >        this.fuel.amount = this.amountInt;</span>
 <span class="cstat-no" title="statement not covered" >        this.reformatVolume();</span>
 <span class="cstat-no" title="statement not covered" >        this.convertDateToEpoch();</span>
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.fuel).then((response) =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >          console.log('fuel', response)</span>
-<span class="cstat-no" title="statement not covered" >          const notification = {</span>
-            type: "success",
-            message: "Fuel form has been submitted."
-          };
-<span class="cstat-no" title="statement not covered" >          this.addNotification(notification)</span>
-<span class="fstat-no" title="function not covered" >        }).catch((error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          console.log('error-fuel', error)</span>
-<span class="cstat-no" title="statement not covered" >          const notification = {</span>
-            type: "error",
-            message: "Oops ! You're offline. We will send it back as soon as you're online."
-          };
-<span class="cstat-no" title="statement not covered" >          this.addNotification(notification)</span>
-        })
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        return this.saveTransaction(this.fuel)</span></span>
+          .then(response =&gt; {
+<span class="cstat-no" title="statement not covered" >            console.log("fuel", response);</span>
+<span class="cstat-no" title="statement not covered" >            const notification = {</span>
+              type: "success",
+              message: "Fuel form has been submitted."
+            };
+<span class="cstat-no" title="statement not covered" >            this.addNotification(notification);</span>
+<span class="fstat-no" title="function not covered" >          })</span>
+          .catch(error =&gt; {
+<span class="cstat-no" title="statement not covered" >            console.log("error-fuel", error);</span>
+<span class="cstat-no" title="statement not covered" >            const notification = {</span>
+              type: "error",
+              message:
+                "Oops ! You're offline. We will send it back as soon as you're online."
+            };
+<span class="cstat-no" title="statement not covered" >            this.addNotification(notification);</span>
+          });
       } else {
 <span class="cstat-no" title="statement not covered" >        console.log("error");</span>
       }
     },
-    reformatVolume () {
-<span class="cstat-no" title="statement not covered" >      this.fuel.liters = parseFloat(this.fuel.liters)</span>
+    reformatVolume() {
+<span class="cstat-no" title="statement not covered" >      this.fuel.liters = parseFloat(this.fuel.liters);</span>
     },
-    convertDateToEpoch () {
-<span class="cstat-no" title="statement not covered" >      this.fuel.date = new Date(this.fuel.date).getTime().toString()</span>
+    convertDateToEpoch() {
+<span class="cstat-no" title="statement not covered" >      this.fuel.date = new Date(this.fuel.date).getTime().toString();</span>
     }
   }
-};</pre></td></tr>
+};
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 03 2019 21:47:10 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 06 2019 22:05:17 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

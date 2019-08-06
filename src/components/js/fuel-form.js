@@ -17,7 +17,7 @@ export default {
       },
       amount: {
         required,
-        currency(input) {
+        currency (input) {
           return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input);
         }
       },
@@ -27,7 +27,7 @@ export default {
       minValue: minValue(100)
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -39,44 +39,47 @@ export default {
   computed: {
     ...mapGetters("transaction", ["fuel"]),
     fuelAmount: {
-      set(newValue) {
-        this.fuel.amount = newValue
+      set (newValue) {
+        this.fuel.amount = newValue;
+      },
+      get () {
+        return this.fuel.amount
           .toString()
           .replace(/\./g, "")
           .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      },
-      get() {
-        return this.fuel.amount;
       }
     },
-    totalPrice() {
+    totalPrice () {
       const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);
       if (value.includes("e")) {
         return value || 0;
       }
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0;
     },
-    formatAmountToInt() {
+    formatAmountToInt () {
       return this.fuel.amount ? this.amountInt : "";
     },
-    amountInt() {
+    amountInt () {
       return typeof this.fuel.amount === "string"
         ? parseInt(this.fuel.amount.split(".").join(""))
         : this.fuel.amount;
+    },
+    currentDateTime () {
+      return new Date().toISOString()
     }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
     ...mapActions("notification", ["addNotification"]),
-    toggle() {
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendFuelForm() {
+    sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.fuel.amount = this.amountInt;
         this.reformatVolume();
-        this.convertDateToEpoch();
+        this.convertDateToEpoch()
         return this.saveTransaction(this.fuel)
           .then(response => {
             console.log("fuel", response);
@@ -99,11 +102,11 @@ export default {
         console.log("error");
       }
     },
-    reformatVolume() {
+    reformatVolume () {
       this.fuel.liters = parseFloat(this.fuel.liters);
     },
-    convertDateToEpoch() {
-      this.fuel.date = new Date(this.fuel.date).getTime().toString();
+    convertDateToEpoch () {
+      this.fuel.date = new Date(this.fuel.date).getTime();
     }
   }
 };

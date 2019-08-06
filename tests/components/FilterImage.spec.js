@@ -14,7 +14,7 @@ describe("FilterImage.vue", () => {
   let wrapper;
   let localVue;
 
-  function initializeStore() {
+  function initializeStore () {
     const transaction = initializeTransactionStore();
     const notification = initializeNotificationStore();
     const store = new Vuex.Store({
@@ -33,7 +33,7 @@ describe("FilterImage.vue", () => {
     };
   }
 
-  function initializeNotificationStore() {
+  function initializeNotificationStore () {
     const actions = {
       addNotification: jest.fn()
     };
@@ -41,22 +41,22 @@ describe("FilterImage.vue", () => {
     return { actions, namespaced };
   }
 
-  function initializeTransactionStore() {
+  function initializeTransactionStore () {
     const actions = {
-      createTransaction: jest.fn(() => Promise.reject(new Error("Offline")))
+      createTransaction: jest.fn()
     };
     const namespaced = true;
     return { actions, namespaced };
   }
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store, options) {
+  function createWrapper (store, options) {
     const router = new VueRouter({ routes });
     const defaultOptions = {
       store,
@@ -117,7 +117,7 @@ describe("FilterImage.vue", () => {
     expect(wrapper.vm.filterFunctions).toEqual(expectedValue);
   });
 
-  test("uploadImageOCR method online", () => {
+  test("uploadImageOCR method if app is online", async () => {
     const options = {
       propsData: {
         pictureUrl: "image.jpg"
@@ -129,10 +129,38 @@ describe("FilterImage.vue", () => {
       store.actions.transaction,
       "createTransaction"
     );
-    // const spySuccessNotification = jest.spyOn(store.actions.notification, 'addNotification')
-    wrapper.vm.uploadImageOCR(resultImage);
-    expect(spyCreateTransaction).toHaveBeenCalled();
-    // expect(spySuccessNotification).toHaveBeenCalled()
+    const spySuccessNotification = jest.spyOn(store.actions.notification, "addNotification")
+    await wrapper.vm.uploadImageOCR(resultImage);
+    wrapper.vm.$nextTick(() => {
+      expect(spyCreateTransaction).toHaveBeenCalled();
+      expect(spySuccessNotification).toHaveBeenCalled()
+    })
+  });
+
+  test("uploadImageOCR method if app is offline", async () => {
+    const options = {
+      propsData: {
+        pictureUrl: "image.jpg"
+      }
+    };
+    store.actions.transaction.createTransaction.mockRejectedValue(() => Promise.reject())
+    wrapper = createWrapper(store.store, options);
+    const resultImage = "data:image/png.AAAA";
+    const spyCreateTransaction = jest.spyOn(
+      store.actions.transaction,
+      "createTransaction"
+    );
+    const spyErrorNotification = jest.spyOn(store.actions.notification, "addNotification")
+    try {
+      await wrapper.vm.uploadImageOCR(resultImage);
+    }
+    catch {
+      wrapper.vm.$nextTick(() => {
+        expect(spyCreateTransaction).toHaveBeenCalled();
+        expect(spyErrorNotification).toHaveBeenCalled()
+      })
+    }
+
   });
 
   test("generateImage method ", () => {

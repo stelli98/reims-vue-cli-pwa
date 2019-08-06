@@ -22,7 +22,7 @@ describe("TransactionForm.vue", () => {
     d => d.url == url.transaction && d.method == "POST"
   );
 
-  function initializeStore() {
+  function initializeStore () {
     const state = {
       OCRResultType: fuelData.data.category
     };
@@ -52,14 +52,14 @@ describe("TransactionForm.vue", () => {
     };
   }
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store, options) {
+  function createWrapper (store, options) {
     const router = new VueRouter({ routes });
     const defaultOptions = {
       store,
@@ -167,4 +167,16 @@ describe("TransactionForm.vue", () => {
     wrapper.vm.toggle();
     expect(spy).toHaveBeenCalled();
   });
+
+  // test("saveData method", () => {
+  //   const options = {
+  //     propsData: {
+  //       pictureUrl: "image.jpg"
+  //     }
+  //   };
+  //   wrapper = createWrapper(store.store, options);
+  //   const spy = jest.spyOn(wrapper.vm.$refs.sendForm());
+  //   wrapper.vm.saveData();
+  //   expect(spy).toHaveBeenCalled();
+  // });
 });

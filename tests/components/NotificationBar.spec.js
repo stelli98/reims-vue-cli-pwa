@@ -17,7 +17,7 @@ describe("NotificationBar.vue", () => {
     }
   ];
 
-  function initializeStore() {
+  function initializeStore () {
     const actions = {
       removeNotification: jest.fn()
     };
@@ -36,13 +36,13 @@ describe("NotificationBar.vue", () => {
       actions
     };
   }
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(Vuex);
     return lv;
   }
 
-  function createWrapper(store) {
+  function createWrapper (store) {
     return shallowMount(NotificationBar, {
       store,
       localVue,
@@ -70,7 +70,9 @@ describe("NotificationBar.vue", () => {
   });
 
   // test('clear timeout', () => {
-  //     jest.runAllTimers();
-  //     expect(clearTimeout).toHaveBeenCalledTimes(1);
+  //   // spy 
+  //   // pakai unmount
+  //   jest.runAllTimers();
+  //   expect(clearTimeout).toHaveBeenCalledTimes(1)
   // })
 });
