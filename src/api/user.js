@@ -45,8 +45,8 @@ export default {
       }
     });
   },
-  getPersonalReport (options, token) {
-    const path = api.user.report;
+  downloadPersonalReport (options, token) {
+    const path = api.report;
     return axios.get(path, {
       params: options,
       headers: {

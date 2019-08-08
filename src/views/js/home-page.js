@@ -9,28 +9,28 @@ export default {
     Pagination,
     SortFilter
   },
-  mounted() {
-    this.updateTransaction(this.options);
-  },
-  data() {
+  data () {
     return {
-      showFilter: false
+      showFilter: false,
+      optionParams: this.initOptions()
     };
   },
   computed: {
     ...mapGetters("transaction", ["transactions", "pagination"]),
-    options() {
-      return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
-        sortBy: "createdAt"
-      };
+    options: {
+      set (newValue) {
+        this.optionsParams = newValue
+      },
+      get () {
+        return this.optionParams
+      }
     }
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
+    ...mapActions("user", ["downloadPersonalReport"]),
     ...mapActions("auth", ["logout"]),
-    onFileChange(e) {
+    onFileChange (e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
       this.$router.push({
@@ -38,36 +38,47 @@ export default {
         params: { step: 1 }
       });
     },
-    changePage(toPage) {
+    changePage (toPage) {
       this.options.page = parseInt(toPage);
-      const allOptions = { ...this.$route.query, ...this.options };
-      this.$router.push({ name: "home", query: allOptions });
-      this.getTransactions(allOptions);
+      this.options = { ...this.$route.query, ...this.options }
+      this.$router.replace({ query: this.options });
     },
-    toogleFilter(value) {
+    toogleFilter (value) {
       this.showFilter = value;
     },
-    updateTransaction(options) {
-      this.getTransactions(options);
+    updateTransaction () {
+      this.getTransactions(this.$route.query);
     },
-    moveTo(toPage) {
+    moveTo (toPage) {
       this.$router.push({ name: toPage });
     },
-    applyFilter(options) {
-      this.options.page = 1;
-      const allOptions = { ...this.options, ...options };
-      this.updateTransaction(allOptions);
-    },
-    doLogout() {
+    doLogout () {
       this.logout().then(() => {
         this.$router.push({ name: "login" });
       });
+    },
+    download () {
+      const optionDownload = {
+        start: this.$route.query.start,
+        end: this.$route.query.end
+      }
+      this.downloadPersonalReport(optionDownload)
+    },
+    initOptions () {
+      return {
+        page: parseInt(this.$route.query.page) || 1,
+        size: parseInt(this.$route.query.size) || 5,
+        sortBy: "createdAt"
+      }
     }
   },
   watch: {
-    options() {
-      const allOptions = { ...this.options, ...this.$route.query };
-      this.updateTransaction(allOptions);
+    '$route' () {
+      this.updateTransaction();
     }
+  },
+  mounted () {
+    this.$router.replace({ query: { ...this.options, ...this.$route.query } })
+    this.updateTransaction();
   }
 };

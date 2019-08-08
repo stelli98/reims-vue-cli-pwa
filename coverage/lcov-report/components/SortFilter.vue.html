@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>12/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>12/14</span>
       </div>
     </div>
   </div>
@@ -76,7 +76,30 @@
 31
 32
 33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -88,11 +111,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
@@ -105,40 +152,62 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Datetime } from "vue-datetime";
 export default {
   components: { Datetime },
-  data() {
+  data () {
     return {
       options: this.emptyOptions(),
       sortByOptions: ["date", "category", "title"],
       categoryOptions: ["FUEL", "PARKING"]
     };
   },
+  computed: {
+    currentDateTime () {
+      return new Date().toISOString()
+    },
+    formatStart: {
+      set (newValue) {
+<span class="cstat-no" title="statement not covered" >        this.options.start = newValue;</span>
+      },
+      get () {
+<span class="branch-0 cbranch-no" title="branch not covered" >        return this.options.start ? new Date(this.options.start).toISOString() : ""</span>
+      }
+    },
+    formatEnd: {
+      set (newValue) {
+<span class="cstat-no" title="statement not covered" >        this.options.end = newValue;</span>
+      },
+      get () {
+<span class="branch-0 cbranch-no" title="branch not covered" >        return this.options.out ?</span>
+          new Date(this.options.end).toISOString() : ""
+      }
+    },
+  },
   methods: {
-    moveTo() {
+    moveTo () {
       this.$emit("closeFilter", false);
     },
-    applyFilter() {
+    applyFilter () {
+<span class="branch-0 cbranch-no" title="branch not covered" >      this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""</span>
+<span class="branch-0 cbranch-no" title="branch not covered" >      this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""</span>
       this.$emit("applyFilter", this.options);
       this.moveTo();
     },
-    emptyOptions() {
+    emptyOptions () {
       return {
         search: "",
         sortBy: "",
         category: "",
-        startDate: "",
-        endDate: ""
+        start: "",
+        end: ""
       };
     },
-    resetFilter() {
+    resetFilter () {
       this.options = this.emptyOptions();
-      this.applyFilter();
     }
   }
 };
@@ -148,7 +217,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 06 2019 22:05:17 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 07 2019 12:11:09 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

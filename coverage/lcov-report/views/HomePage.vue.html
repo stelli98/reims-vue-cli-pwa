@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">93.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/24</span>
+        <span class='fraction'>28/30</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">93.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/24</span>
+        <span class='fraction'>28/30</span>
       </div>
     </div>
   </div>
@@ -116,7 +116,26 @@
 71
 72
 73
-74</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -131,6 +150,15 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,15 +166,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -166,7 +185,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -182,11 +201,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import TransactionList from "@/components/TransactionList";
@@ -200,28 +238,28 @@ export default {
     Pagination,
     SortFilter
   },
-  mounted() {
-    this.updateTransaction(this.options);
-  },
-  data() {
+  data () {
     return {
-      showFilter: false
+      showFilter: false,
+      optionParams: this.initOptions()
     };
   },
   computed: {
     ...mapGetters("transaction", ["transactions", "pagination"]),
-    options() {
-      return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
-        sortBy: "createdAt"
-      };
+    options: {
+      set (newValue) {
+        this.optionsParams = newValue
+      },
+      get () {
+        return this.optionParams
+      }
     }
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
+    ...mapActions("user", ["downloadPersonalReport"]),
     ...mapActions("auth", ["logout"]),
-    onFileChange(e) {
+    onFileChange (e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
       this.$router.push({
@@ -229,37 +267,56 @@ export default {
         params: { step: 1 }
       });
     },
-    changePage(toPage) {
+    changePage (toPage) {
       this.options.page = parseInt(toPage);
-      const allOptions = { ...this.$route.query, ...this.options };
-      this.$router.push({ name: "home", query: allOptions });
-      this.getTransactions(allOptions);
+      this.options = { ...this.$route.query, ...this.options };
+      this.$router.push({ name: "home", query: this.options });
+      this.getTransactions(this.options);
     },
-    toogleFilter(value) {
+    toogleFilter (value) {
       this.showFilter = value;
     },
-    updateTransaction(options) {
+    updateTransaction (options) {
       this.getTransactions(options);
     },
-    moveTo(toPage) {
+    moveTo (toPage) {
       this.$router.push({ name: toPage });
     },
-    applyFilter(options) {
+    applyFilter (options) {
       this.options.page = 1;
-      const allOptions = { ...this.options, ...options };
-      this.updateTransaction(allOptions);
+      this.options = Object.assign(this.options, options);
+      this.$router.push({ name: "home", query: this.options })
     },
-    doLogout() {
+    doLogout () {
       this.logout().then(() =&gt; {
         this.$router.push({ name: "login" });
       });
+    },
+    download () {
+<span class="cstat-no" title="statement not covered" >      const optionDownload = {</span>
+        start: this.options.start,
+        end: this.options.end
+      }
+<span class="cstat-no" title="statement not covered" >      this.downloadPersonalReport(optionDownload)</span>
+    },
+    initOptions () {
+      return {
+        page: parseInt(this.$route.query.page) || 1,
+        size: parseInt(this.$route.query.size) || 5,
+        sortBy: "createdAt"
+      }
     }
   },
   watch: {
-    options() {
-      const allOptions = { ...this.options, ...this.$route.query };
-      this.updateTransaction(allOptions);
+    '$route' () {
+      this.options = { ...this.options, ...this.$route.query }
+      this.$router.push({ name: "home", query: this.options })
+      this.updateTransaction(this.options);
     }
+  },
+  mounted () {
+    this.options = Object.assign(this.options, this.$route.query)
+    this.updateTransaction(this.options);
   }
 };
 &nbsp;</pre></td></tr>
@@ -268,7 +325,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 06 2019 22:05:17 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 07 2019 12:11:09 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

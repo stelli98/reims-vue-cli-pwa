@@ -33,7 +33,7 @@ describe("HomePage.vue", () => {
     d => d.url == url.transaction && d.method == "GET" && d.params.page == 1
   );
 
-  function initializeStore() {
+  function initializeStore () {
     const transaction = initializeTransactionStore();
     const auth = initializeAuthStore();
     const store = new Vuex.Store({
@@ -58,7 +58,7 @@ describe("HomePage.vue", () => {
     };
   }
 
-  function initializeAuthStore() {
+  function initializeAuthStore () {
     const actions = {
       logout: jest.fn()
     };
@@ -66,7 +66,7 @@ describe("HomePage.vue", () => {
     return { actions, namespaced };
   }
 
-  function initializeTransactionStore() {
+  function initializeTransactionStore () {
     const actions = {
       setImage: jest.fn(),
       getTransactions: jest.fn()
@@ -83,14 +83,14 @@ describe("HomePage.vue", () => {
     return { state, actions, getters, namespaced };
   }
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store) {
+  function createWrapper (store) {
     const router = new VueRouter({ routes });
     return shallowMount(HomePage, {
       store,
@@ -125,12 +125,17 @@ describe("HomePage.vue", () => {
   });
 
   test("methods applyFilter", () => {
-    const spy = jest.spyOn(wrapper.vm, "updateTransaction");
     const options = {
       search: "Parking"
     };
+    const expectedValue = {
+      search: "Parking",
+      page: 1,
+      size: "5",
+      sortBy: "createdAt"
+    }
     wrapper.vm.applyFilter(options);
-    expect(spy).toHaveBeenCalled();
+    expect(wrapper.vm.options).toEqual(expectedValue);
   });
 
   test("methods doLogout", () => {

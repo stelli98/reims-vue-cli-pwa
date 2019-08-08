@@ -11,12 +11,12 @@ describe("TransactionList.vue", () => {
     d => d.url === url.transaction && d.params.page == 1
   );
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     return lv;
   }
 
-  function createWrapper() {
+  function createWrapper () {
     return shallowMount(TransactionList, {
       localVue,
       stubs: ["TransactionCard"],
@@ -39,5 +39,10 @@ describe("TransactionList.vue", () => {
   test("Emit updateTransactions", () => {
     wrapper.vm.updateTransactions();
     expect(wrapper.emitted().updateTransactions).toEqual([[]]);
+  });
+
+  test("Emit downloadReport", () => {
+    wrapper.vm.downloadReport();
+    expect(wrapper.emitted().downloadReport).toEqual([[]]);
   });
 });

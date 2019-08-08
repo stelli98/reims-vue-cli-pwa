@@ -1,5 +1,5 @@
 export default value => {
-  const date = new Date(value * 1000)
+  const date = new Date(value)
   return date
     .toLocaleDateString(["en-US"], {
       weekday: "short",

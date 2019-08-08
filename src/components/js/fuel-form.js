@@ -82,7 +82,6 @@ export default {
         this.convertDateToEpoch()
         return this.saveTransaction(this.fuel)
           .then(response => {
-            console.log("fuel", response);
             const notification = {
               type: "success",
               message: "Fuel form has been submitted."

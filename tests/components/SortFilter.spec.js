@@ -7,14 +7,14 @@ describe("UserCard.vue", () => {
   let wrapper;
   let localVue;
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(DateTime);
     lv.filter("textFormatter", TextFilter);
     return lv;
   }
 
-  function createWrapper() {
+  function createWrapper () {
     return shallowMount(SortFilter, {
       localVue,
       stubs: ["Datetime"]
@@ -37,8 +37,8 @@ describe("UserCard.vue", () => {
       search: "",
       sortBy: "",
       category: "",
-      startDate: "",
-      endDate: ""
+      start: "",
+      end: ""
     };
     expect(wrapper.emitted().applyFilter).toEqual([[options]]);
   });
@@ -49,8 +49,8 @@ describe("UserCard.vue", () => {
       search: "",
       sortBy: "",
       category: "",
-      startDate: "",
-      endDate: ""
+      start: "",
+      end: ""
     };
     expect(wrapper.vm.emptyOptions()).toEqual(options);
   });
@@ -61,8 +61,8 @@ describe("UserCard.vue", () => {
       search: "",
       sortBy: "",
       category: "",
-      startDate: "",
-      endDate: ""
+      start: "",
+      end: ""
     };
     expect(wrapper.vm.options).toEqual(options);
   });
