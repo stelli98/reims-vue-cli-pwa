@@ -4,35 +4,31 @@ import { mapActions } from "vuex";
 export default {
   validations: {
     user: {
+      username: { required },
       password: { required, minLength: minLength(6) },
       confirmPassword: { required, sameAsPassword: sameAs("password") }
     }
   },
-  props: {
-    user: {
-      type: Object,
-      default: () => ({
-        confirmPassword: "",
-        password: ""
-      })
-    }
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+        confirmPassword: ""
+      }
+    };
   },
   methods: {
-    ...mapActions("user", ["changePassword"]),
+    ...mapActions("user", ["updateUser"]),
     moveTo() {
-      this.$router.go(-1);
-    },
-    getUserDetail() {
-      this.$route.params.id
-        ? Object.assign(this.user, this.getUser(this.$route.params.id))
-        : "";
+      this.$router.push({ name: "home" });
     },
     submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         console.log(this.user);
-        this.changePassword(this.user);
-        // this.$router.push({ name: 'user' });
+        this.updateUser(this.user);
+        this.moveTo();
       } else {
         console.log("error");
       }

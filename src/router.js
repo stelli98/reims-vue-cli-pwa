@@ -7,6 +7,7 @@ import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
 import UserForm from "./views/UserForm";
 import ChangePassword from "./views/ChangePassword";
+import store from "./store";
 
 Vue.use(Router);
 
@@ -20,36 +21,43 @@ const router = new Router({
     },
     {
       path: "/home",
+      beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/:step",
+      beforeEnter: checkAuthUser,
       name: "create",
       component: CreateTransaction
     },
     {
       path: "/transaction/:id",
+      beforeEnter: checkAuthUser,
       name: "transaction-detail",
       component: TransactionDetail
     },
     {
       path: "/users",
+      beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
     {
       path: "/users/create",
+      beforeEnter: checkAuthAdmin,
       name: "user-create",
       component: UserForm
     },
     {
       path: "/users/edit/:id",
+      beforeEnter: checkAuthAdmin,
       name: "user-edit",
       component: UserForm
     },
     {
       path: "/users/change-password",
+      beforeEnter: checkAuthUser,
       name: "change-password",
       component: ChangePassword
     },
@@ -60,4 +68,29 @@ const router = new Router({
   ]
 });
 
+function checkAuthUser(to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "USER") {
+    next();
+  } else {
+    const notification = {
+      type: "error",
+      message: "You are not authorized. Please login again."
+    };
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
+  }
+}
+
+function checkAuthAdmin(to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
+    next();
+  } else {
+    const notification = {
+      type: "error",
+      message: "You are not authorized. Please login again."
+    };
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
+  }
+}
 export default router;

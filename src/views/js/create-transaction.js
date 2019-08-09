@@ -1,6 +1,7 @@
 import CropImage from "@/components/CropImage.vue";
 import FilterImage from "@/components/FilterImage.vue";
 import TransactionForm from "@/components/TransactionForm.vue";
+import offlineService from "@/api/transaction-offline";
 import { mapActions } from "vuex";
 export default {
   components: {
@@ -54,6 +55,9 @@ export default {
       this[function_name]();
     },
     toStepOne() {
+      if (this.activeTab == 3) {
+        this.deleteDataFromIDB();
+      }
       this.$router.push({ name: "create", params: { step: 1 } });
     },
     toStepTwo() {
@@ -71,6 +75,7 @@ export default {
       }
     },
     fromStepThree() {
+      this.deleteDataFromIDB();
       this.$router.push({ name: "create", params: { step: 2 } });
     },
     toStepThree() {
@@ -78,7 +83,6 @@ export default {
         return;
       } else if (this.pictureUrl) {
         this.pictureUrl = this.$refs.generate.generateImage();
-        this.$router.push({ name: "create", params: { step: 3 } });
       } else {
         this.$router.push({ name: "create", params: { step: 1 } });
       }
@@ -90,7 +94,25 @@ export default {
       return this.activeTab == clickedTab;
     },
     moveTo() {
+      this.deleteDataFromIDB();
       this.$router.push({ name: "home" });
+    },
+    deleteDataFromIDB() {
+      try {
+        offlineService.deleteLastDataFromIndexedDB("offlineImages");
+      } catch (e) {
+        return e;
+      }
+    }
+  },
+  watch: {
+    $route() {
+      if (
+        !this.$route.path.includes("/transaction/create/") &&
+        this.activeTab == 3
+      ) {
+        this.deleteDataFromIDB();
+      }
     }
   }
 };

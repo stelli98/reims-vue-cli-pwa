@@ -6,9 +6,23 @@ export default {
   props: {
     transactions: Array
   },
+  computed: {
+    isFiltering () {
+      return !!this.$route.query.search || !!this.$route.query.category || !!this.$route.query.start || !!this.$route.query.end || this.$route.query.sortBy === "date"
+    }
+  },
   methods: {
-    openFilter() {
+    openFilter () {
       this.$emit("openFilter", true);
+    },
+    updateTransactions () {
+      this.$emit("updateTransactions");
+    },
+    downloadReport () {
+      this.$emit("downloadReport")
+    },
+    setIsFiltering (value) {
+      this.isFiltering = value
     }
   }
 };

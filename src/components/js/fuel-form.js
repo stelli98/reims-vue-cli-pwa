@@ -1,78 +1,115 @@
-import { helpers, numeric, required } from "vuelidate/lib/validators";
-import { mapActions, mapState } from "vuex";
+import { required, helpers, minValue } from "vuelidate/lib/validators";
+import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
-import "vue-datetime/dist/vue-datetime.css";
-const float = helpers.regex("numeric", /\d*\.?\d*$/);
-const currency = helpers.regex(
-  "numeric",
-  /(\d{1,3}[.](\d{3}[.])*\d{3}|\d+)([,]\d{1,2})?$/
-);
+
+const float = helpers.regex("decimal", /^[0-9]+([.][0-9]+)?$/);
 
 export default {
   components: { Datetime },
   validations: {
     fuel: {
       date: { required },
-      type: { required },
-      volume: { required, float },
-      unitPrice: { required, currency },
+      fuelType: { required },
+      liters: {
+        required,
+        float,
+        minValue: minValue(0.01)
+      },
+      amount: {
+        required,
+        currency (input) {
+          const value = input
+            .toString()
+            .replace(/\./g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
+        }
+      },
       title: { required }
+    },
+    amountInt: {
+      minValue: minValue(100)
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
         default: true
       },
-      fuelType: ["Pertalite", "Pertamax", "Premium", "Solar"]
+      fuelType: ["PERTALITE", "SOLAR", "PREMIUM"]
     };
   },
   computed: {
-    ...mapState("transaction", ["fuel"]),
-    totalPrice() {
-      const value = (this.unitPrice * this.fuel.volume).toString();
-      if (value.includes("e")) {
-        return value;
+    ...mapGetters("transaction", ["fuel"]),
+    fuelAmount: {
+      set (newValue) {
+        this.fuel.amount = newValue;
+      },
+      get () {
+        return this.fuel.amount
+          .toString()
+          .replace(/\./g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
-      return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    unitPrice() {
-      if (typeof this.fuel.unitPrice === "string") {
-        return parseInt(this.fuel.unitPrice.split(".").join(""));
-      } else {
-        return this.fuel.unitPrice;
+    totalPrice () {
+      const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);
+      if (value.includes("e")) {
+        return value || 0;
       }
+      return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0;
+    },
+    formatAmountToInt () {
+      return this.fuel.amount ? this.amountInt : "";
+    },
+    amountInt () {
+      return typeof this.fuel.amount === "string"
+        ? parseInt(this.fuel.amount.split(".").join(""))
+        : this.fuel.amount;
+    },
+    currentDateTime () {
+      return new Date().toISOString()
     }
   },
   methods: {
-    ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
+    ...mapActions("notification", ["addNotification"]),
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendFuelForm() {
+    sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.reformatUnitPrice();
-        this.saveTransaction(this.fuel);
-        console.log(this.fuel);
-        this.$router.push({ name: "home" });
+        this.fuel.amount = this.amountInt;
+        this.reformatVolume();
+        this.convertDateToEpoch()
+        return this.saveTransaction(this.fuel)
+          .then(response => {
+            const notification = {
+              type: "success",
+              message: "Fuel form has been submitted."
+            };
+            this.addNotification(notification);
+          })
+          .catch(error => {
+            console.log("error-fuel", error);
+            const notification = {
+              type: "error",
+              message:
+                "Oops ! You're offline. We will send it back as soon as you're online."
+            };
+            this.addNotification(notification);
+          });
       } else {
         console.log("error");
       }
     },
-    formatUnitPrice() {
-      this.$v.fuel.unitPrice.$touch();
-      this.fuel.unitPrice = this.fuel.unitPrice
-        .toString()
-        .replace(/\D/g, "")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    reformatVolume () {
+      this.fuel.liters = parseFloat(this.fuel.liters);
     },
-    reformatUnitPrice() {
-      this.fuel.unitPrice = parseInt(this.fuel.unitPrice.split(".").join(""));
+    convertDateToEpoch () {
+      this.fuel.date = new Date(this.fuel.date).getTime();
     }
-  },
-  mounted() {
-    this.formatUnitPrice();
   }
 };

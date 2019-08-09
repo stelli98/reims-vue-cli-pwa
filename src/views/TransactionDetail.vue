@@ -20,7 +20,7 @@
       </h1>
       <img
         class="transaction-detail__image"
-        :src="transaction.image"
+        :src="imageBase64"
       />
       <Component
         :is="activeComponent"

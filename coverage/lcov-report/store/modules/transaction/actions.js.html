@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for store/modules/transaction/actions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">store/modules/transaction</a> actions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.1% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>27/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>27/31</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import transactionApi from "@/api/transaction";
+&nbsp;
+export default {
+  setImage ({ commit }, img) {
+    commit("SET_IMAGE", img);
+  },
+  setOCRResultType ({ commit }, data) {
+    commit("SET_OCR_RESULT_TYPE", data);
+  },
+  setFormEmpty ({ commit }, data) {
+    commit("SET_OCR_RESULT", data);
+  },
+  createTransaction: async ({ commit, rootState }, image) =&gt; {
+    const { token } = rootState.auth;
+    const { id } = rootState.auth;
+    const { data } = await transactionApi.createTransaction(image, token);
+    commit("SET_OCR_RESULT", data);
+    commit("SET_OCR_RESULT_TYPE", data.data.category);
+    commit("ADD_IMAGE_FUEL", data.data.image);
+    commit("ADD_IMAGE_PARKING", data.data.image);
+    commit("ADD_USER_ID_FUEL", id);
+    commit("ADD_USER_ID_PARKING", id);
+    return data;
+  },
+  getTransaction: async ({ commit, rootState }, id) =&gt; {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.getTransaction(id, token);
+    commit("SET_TRANSACTION", data);
+  },
+  getTransactions: async ({ commit, rootState }, options) =&gt; {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.getTransactions(options, token);
+    commit("SET_TRANSACTIONS", data);
+    commit("SET_PAGINATION", data);
+  },
+  saveTransaction: async ({ rootState }, transaction) =&gt; {
+    const { token } = rootState.auth;
+    const { data } = await transactionApi.saveTransaction(transaction, token);
+<span class="cstat-no" title="statement not covered" >    return data;</span>
+  },
+  deleteTransaction: ({ commit, rootState }, id) =&gt; {
+    commit("DELETE_TRANSACTION", id);
+    const { token } = rootState.auth;
+    const response = transactionApi.deleteTransaction(id, token);
+    console.log("delete", response);
+    return response;
+  },
+  getViewImage: <span class="fstat-no" title="function not covered" >as</span>ync ({ commit, rootState }, link) =&gt; {
+    const { token } = <span class="cstat-no" title="statement not covered" >rootState.auth;</span>
+    const { data } = <span class="cstat-no" title="statement not covered" >await transactionApi.getViewImage(link, token);</span>
+<span class="cstat-no" title="statement not covered" >    commit("SET_VIEW_IMAGE", data);</span>
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 07 2019 12:11:09 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

@@ -1,7 +1,8 @@
 import { mapActions } from "vuex";
 export default {
   props: {
-    user: Object
+    user: Object,
+    index: 0
   },
   computed: {
     userName() {
@@ -11,7 +12,15 @@ export default {
   methods: {
     ...mapActions("user", ["deleteUser"]),
     removeUser(id) {
-      this.deleteUser(id);
+      this.deleteUser(id).then(() => {
+        this.$emit("updateUserList");
+      });
+    },
+    moveTo(userId) {
+      this.$router.push({
+        name: "user-edit",
+        params: { id: userId }
+      });
     }
   }
 };

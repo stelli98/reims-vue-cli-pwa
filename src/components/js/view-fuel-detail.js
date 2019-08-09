@@ -4,7 +4,7 @@ export default {
   },
   computed: {
     totalPrice() {
-      return this.transaction.unitPrice * this.transaction.volume;
+      return this.transaction.amount * this.transaction.liters;
     }
   }
 };

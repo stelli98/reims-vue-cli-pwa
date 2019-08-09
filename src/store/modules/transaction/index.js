@@ -5,26 +5,34 @@ import getters from "./getters";
 const namespaced = true;
 const state = {
   image: "",
-  OCRResultType: "",
+  OCRResultType: "FUEL",
   parking: {
-    in: "",
+    category: "PARKING",
+    date: "",
     out: "",
-    price: 0,
+    amount: 100,
     title: "",
-    vehicle: "",
+    parkingType: "",
     license: "",
-    location: ""
+    location: "",
+    hours: 0,
+    userId: "",
+    image: ""
   },
   fuel: {
+    category: "FUEL",
     date: "",
-    type: "",
-    volume: 0,
-    unitPrice: 0,
-    title: ""
+    fuelType: "",
+    liters: 0.01,
+    amount: 100,
+    title: "",
+    userId: "",
+    image: ""
   },
   transactions: [],
   transaction: {},
-  pagination: {}
+  pagination: {},
+  viewImage: ""
 };
 
 export default { state, actions, mutations, getters, namespaced };

@@ -11,4 +11,10 @@ if (workbox) {
   // Since we have a SPA here, this should be index.html always.
   // https://stackoverflow.com/questions/49963982/vue-router-history-mode-with-pwa-in-offline-mode
   workbox.routing.registerNavigationRoute("/index.html");
+
+
+  workbox.routing.registerRoute(
+    new RegExp('/api/'),
+    new workbox.strategies.NetworkOnly()
+  );
 }

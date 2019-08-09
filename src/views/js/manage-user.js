@@ -1,18 +1,13 @@
 import UserList from "@/components/UserList.vue";
 import Pagination from "@/components/Pagination.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     UserList,
     Pagination
   },
-  data() {
-    return {
-      isActiveTab: true
-    };
-  },
   computed: {
-    ...mapState("user", ["users", "pagination"]),
+    ...mapGetters("user", ["users", "pagination"]),
     options() {
       return {
         page: parseInt(this.$route.query.page) || 1,
@@ -24,13 +19,8 @@ export default {
   },
   methods: {
     ...mapActions("user", ["getUsers"]),
+    ...mapActions("auth", ["logout"]),
     moveTo() {
-      this.$router.go(-1);
-    },
-    changeTab() {
-      this.isActiveTab = !this.isActiveTab;
-    },
-    routeTo() {
       this.$router.push({ name: "user-create" });
     },
     updateUser() {
@@ -45,6 +35,11 @@ export default {
       this.options.search = event.target.value;
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
+    },
+    doLogout() {
+      this.logout().then(() => {
+        this.$router.push({ name: "login" });
+      });
     }
   },
   watch: {

@@ -1,65 +1,125 @@
-import { helpers, numeric, required } from "vuelidate/lib/validators";
-import { mapActions, mapState } from "vuex";
+import { required, minValue } from "vuelidate/lib/validators";
+import { mapActions, mapGetters } from "vuex";
 import { Datetime } from "vue-datetime";
-import "vue-datetime/dist/vue-datetime.css";
-const currency = helpers.regex(
-  "numeric",
-  /(\d{1,3}[.](\d{3}[.])*\d{3}|\d+)([,]\d{1,2})?$/
-);
 
 export default {
   components: { Datetime },
   validations: {
     parking: {
-      in: { required },
+      date: { required },
       out: { required },
-      price: { required, currency },
+      amount: {
+        required,
+        currency (input) {
+          const value = input
+            .toString()
+            .replace(/\./g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
+        }
+      },
       title: { required },
-      vehicle: { required },
+      parkingType: { required },
       license: { required },
-      location: { required }
+      location: { required },
+    },
+    amountInt: {
+      minValue: minValue(100)
     }
   },
-  data() {
+  data () {
     return {
       isSwitchOn: {
         type: Boolean,
         default: true
       },
-      vehicleType: ["Bus", "Car", "Motorcycle", "Van"]
+      type: ["BUS", "CAR", "MOTORCYCLE"]
     };
   },
   computed: {
-    ...mapState("transaction", ["parking"])
+    ...mapGetters("transaction", ["parking"]),
+    parkingAmount: {
+      set (newValue) {
+        this.parking.amount = newValue;
+      },
+      get () {
+        return this.parking.amount
+          .toString()
+          .replace(/\./g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+    },
+    amountInt () {
+      return typeof this.parking.amount === "string"
+        ? parseInt(this.parking.amount.split(".").join(""))
+        : this.parking.amount;
+    },
+    formatInDate: {
+      set (newValue) {
+        this.parking.date = newValue;
+      },
+      get () {
+        return this.parking.date ? new Date(this.parking.date).toISOString() : ""
+      }
+    },
+    formatOutDate: {
+      set (newValue) {
+        this.parking.out = newValue;
+      },
+      get () {
+        return this.parking.out ?
+          new Date(this.parking.out).toISOString() : ""
+      }
+    },
+    currentDateTime () {
+      return new Date().toISOString()
+    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
-    toggle() {
+    ...mapActions("notification", ["addNotification"]),
+    toggle () {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendParkingForm() {
+    sendParkingForm () {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
-        this.saveTransaction(this.parking);
-        console.log(this.parking);
-        this.$router.push({ name: "home" });
+        this.calculateDuration();
+        this.convertDateToEpoch();
+        return this.saveTransaction(this.parking)
+          .then(response => {
+            console.log(response);
+            const notification = {
+              type: "success",
+              message: "Parking form has been submitted."
+            };
+            this.addNotification(notification);
+          })
+          .catch(() => {
+            const notification = {
+              type: "error",
+              message:
+                "Oops ! You're offline. We will send it back as soon as you're online."
+            };
+            this.addNotification(notification);
+          });
       } else {
-        console.log("error");
+        alert("error");
       }
     },
-    formatPrice() {
-      this.$v.parking.price.$touch();
-      this.parking.price = this.parking.price
-        .toString()
-        .replace(/\D/g, "")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    reformatPrice () {
+      this.parking.amount = this.amountInt;
     },
-    reformatPrice() {
-      this.parking.price = parseInt(this.parking.price.split(".").join(""));
+    calculateDuration () {
+      this.parking.hours = Math.floor(
+        (new Date(this.parking.out).getTime() -
+          new Date(this.parking.date).getTime()) /
+        3600000
+      );
+    },
+    convertDateToEpoch () {
+      this.parking.date = new Date(this.parking.date).getTime();
     }
-  },
-  mounted() {
-    this.formatPrice();
   }
 };

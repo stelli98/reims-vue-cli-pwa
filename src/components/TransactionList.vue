@@ -8,12 +8,21 @@
         class="btn-green transaction__filter"
         @click="openFilter"
       >
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-filter" />
-        </svg>
+        <div class="transaction__icon">
+          <div
+            v-if="isFiltering"
+            class="notification-circle"
+          ></div>
+          <svg class="icon icon-small">
+            <use xlink:href="icons.svg#icon-filter" />
+          </svg>
+        </div>
         <span>Filter and Sort</span>
       </div>
-      <div class="btn-green transaction__download">
+      <div
+        class="btn-green transaction__download"
+        @click="downloadReport"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-download" />
         </svg>
@@ -25,6 +34,7 @@
         v-for="transaction in transactions"
         :key="transaction.id"
         :transaction="transaction"
+        @updateTransactionList="updateTransactions"
       />
     </div>
   </div>
@@ -32,17 +42,12 @@
 
 <script src="./js/transaction-list.js"></script>
 
-<style lang="scss" >
+<style lang="scss">
 .transaction {
   display: flex;
   flex-direction: column;
   width: 90vw;
   margin: 1.5rem 5vw;
-
-  @include respond(large-phone) {
-    width: 70vw;
-    margin: 1.8rem 15vw;
-  }
 
   @include respond(large-phone) {
     width: 50vw;
@@ -52,6 +57,24 @@
   &__actions {
     display: flex;
     justify-content: space-evenly;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+}
+.notification-circle {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  top: 0px;
+  left: 12px;
+  @include respond(large-phone) {
+    left: 14px;
   }
 }
 </style>

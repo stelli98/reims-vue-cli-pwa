@@ -9,9 +9,10 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
+    "axios": "^0.19.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
+    "vue-datetime": "^1.0.0-beta.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
@@ -29,16 +30,17 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "idb": "3.0.2",
     "luxon": "^1.16.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-croppa": "^1.3.8",
-    "vue-datetime": "^1.0.0-beta.10",
     "vue-template-compiler": "^2.6.10",
     "vuelidate": "^0.7.4",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.1",
+    "weekstart": "^1.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -66,8 +68,6 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "jsx",
-      "json",
       "vue"
     ],
     "transform": {
@@ -78,19 +78,23 @@
     "transformIgnorePatterns": [
       "/node_modules/"
     ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
     "snapshotSerializers": [
       "jest-serializer-vue"
     ],
     "testMatch": [
-      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+      "**/tests/**/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
     ],
     "testURL": "http://localhost/",
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "resolver": null,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/components/**/*.vue",
+      "src/views/**/*.vue",
+      "src/store/**/*.js",
+      "!**/node_modules/**"
     ]
   }
 }

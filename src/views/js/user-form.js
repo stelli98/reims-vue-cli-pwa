@@ -1,11 +1,5 @@
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { minLength, required } from "vuelidate/lib/validators";
-
-const user = {
-  username: "",
-  password: "",
-  role: ""
-};
 
 export default {
   validations: {
@@ -17,34 +11,47 @@ export default {
   },
   data() {
     return {
-      roles: ["ADMIN", "MEMBER"]
+      roles: ["ADMIN", "USER"]
     };
   },
   computed: {
-    ...mapState("user", ["user"]),
+    ...mapGetters("user", ["user"]),
     userId() {
-      return this.$route.params.id | "";
+      return this.$route.params.id;
+    },
+    formTitle() {
+      return this.userId ? "Edit User" : "Create User";
+    },
+    userTemp() {
+      return {
+        username: "",
+        password: "",
+        role: ""
+      };
     }
   },
   methods: {
     ...mapActions("user", ["updateUser", "createUser", "getUser", "emptyUser"]),
     moveTo() {
-      this.$router.go(-1);
+      this.$router.push({ name: "user" });
     },
     submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
-        this.sendForm();
-        this.$router.push({ name: "user" });
+        this.sendForm().then(() => {
+          this.$router.push({ name: "user" });
+        });
       } else {
         console.log("error");
       }
     },
     checkActionForm() {
-      this.userId ? this.getUser(this.userId) : this.emptyUser(user);
+      this.userId ? this.getUser(this.userId) : this.emptyUser(this.userTemp);
     },
     sendForm() {
-      this.userId ? this.updateUser(this.user) : this.createUser(this.user);
+      return this.userId
+        ? this.updateUser(this.user)
+        : this.createUser(this.user);
     }
   },
   mounted() {

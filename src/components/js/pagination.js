@@ -1,26 +1,23 @@
+import { get } from "http";
+
 export default {
   props: {
     paging: Object
   },
-  data() {
+  data () {
     return {
       currentPage: this.$route.query.page || 1
-    };
-  },
-  computed: {
-    inputPage: {
-      set(value) {
-        this.currentPage = value;
-      },
-      get() {
-        return this.currentPage;
-      }
     }
   },
   methods: {
-    moveTo(toPage) {
-      this.inputPage = toPage;
-      this.$emit("changePage", toPage);
+    moveTo (pageToGo) {
+      this.currentPage = pageToGo
+      this.$emit("changePage", parseInt(this.currentPage))
+    }
+  },
+  watch: {
+    '$route' () {
+      this.currentPage = this.$route.query.page
     }
   }
 };

@@ -1,10 +1,9 @@
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   data() {
     return {
       myCroppa: null,
-      image: "",
       filterFunctions: null,
       width: 0,
       height: 0
@@ -13,7 +12,7 @@ export default {
   methods: {
     generateImage() {
       if (this.myCroppa.hasImage()) {
-        return this.myCroppa.generateDataUrl("image/webp", 0.7);
+        return this.myCroppa.generateDataUrl("image/jpg", 0.7);
       }
     },
     flipXImage() {
@@ -29,5 +28,5 @@ export default {
       this.myCroppa.rotate(-1);
     }
   },
-  computed: mapState(["transaction"])
+  computed: mapGetters("transaction", ["image"])
 };

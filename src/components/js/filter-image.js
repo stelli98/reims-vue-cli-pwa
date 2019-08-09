@@ -1,4 +1,5 @@
 import { mapActions } from "vuex";
+
 export default {
   name: "App",
   props: {
@@ -7,7 +8,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       filterFunctions: null,
       width: 0,
@@ -15,22 +16,21 @@ export default {
     };
   },
   computed: {
-    filters() {
+    filters () {
       return this.makeFilter();
     }
   },
-  created() {
+  created () {
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction"]),
-    makeFilter(filterSet) {
-      if (!filterSet) {
-        filterSet = this.filterFunctions;
-      }
+    ...mapActions("transaction", ["createTransaction", "setImage"]),
+    ...mapActions("notification", ["addNotification"]),
+    makeFilter () {
+      const filterSet = this.filterFunctions;
 
       let filterString = "";
       const defaultValues = this.defaultValues();
@@ -42,27 +42,14 @@ export default {
       }
       return { filter: filterString };
     },
-    setToDefault() {
-      this.filterFunctions = this.defaultValues();
-    },
-    defaultValues() {
+    defaultValues () {
       return {
         grayscale: 1,
         brightness: 1.1,
         contrast: 1
       };
     },
-    changeImage() {
-      this.$store.dispatch("setImage", "").then(() => {
-        this.$router.push({ name: "crop-image" });
-      });
-    },
-    fillForm() {
-      this.$router.push({
-        name: "add"
-      });
-    },
-    generateImage() {
+    generateImage () {
       const canvas = document.createElement("canvas");
       canvas.width = document.getElementById("image").clientWidth;
       canvas.height = document.getElementById("image").clientHeight;
@@ -76,8 +63,27 @@ export default {
       this.uploadImageOCR(resultImage);
       return resultImage;
     },
-    uploadImageOCR(resultImage) {
-      this.createTransaction(resultImage);
+    uploadImageOCR (resultImage) {
+      const request = {
+        image: resultImage
+      };
+      this.createTransaction(request)
+        .then(() => {
+          const notification = {
+            type: "success",
+            message: "Image has been submitted."
+          };
+          this.addNotification(notification);
+        })
+        .catch(() => {
+          const notification = {
+            type: "error",
+            message:
+              "Oops ! You're offline. We will send it back as soon as you're online."
+          };
+          this.addNotification(notification);
+        });
+      this.$router.push({ name: "create", params: { step: 3 } });
     }
   }
 };

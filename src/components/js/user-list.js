@@ -5,5 +5,10 @@ export default {
   },
   props: {
     users: Array
+  },
+  methods: {
+    updateUsers() {
+      this.$emit("updateUsers");
+    }
   }
 };

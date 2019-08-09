@@ -5,7 +5,7 @@
         v-model="myCroppa"
         class="croppa-canvas"
         auto-sizing
-        :initial-image="transaction.image"
+        :initial-image="image"
       />
     </div>
     <div class="crop-image__button">

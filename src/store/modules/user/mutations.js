@@ -10,5 +10,8 @@ export default {
   },
   SET_USER_EMPTY(state, data) {
     state.user = data;
+  },
+  DELETE_USER(state, id) {
+    state.users = state.users.filter(x => x.id != id);
   }
 };

@@ -10,18 +10,15 @@
         </div>
         <div class="home__header__upper__right">
           <div
-            class="home__header__nav__user"
-            @click="moveTo('user')"
-          >
-            Manage User
-          </div>
-          <div
             class="home__header__nav__password"
             @click="moveTo('change-password')"
           >
             Change Password
           </div>
-          <div class="home__header__nav__logout">
+          <div
+            class="home__header__nav__logout"
+            @click="doLogout"
+          >
             Logout
           </div>
         </div>
@@ -51,6 +48,8 @@
     <TransactionList
       :transactions="transactions"
       @openFilter="toogleFilter"
+      @updateTransactions="updateTransaction"
+      @downloadReport="download"
     />
     <Pagination
       :paging="pagination"
@@ -59,7 +58,6 @@
     <SortFilter
       v-show="showFilter"
       @closeFilter="toogleFilter"
-      @applyFilter="applyFilter"
     >
     </SortFilter>
   </div>

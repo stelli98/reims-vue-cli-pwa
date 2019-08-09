@@ -1,4 +1,4 @@
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import ParkingForm from "@/components/ParkingForm.vue";
 import FuelForm from "@/components/FuelForm.vue";
 
@@ -36,14 +36,43 @@ export default {
     };
   },
   computed: {
-    ...mapState("transaction", ["parking", "fuel", "OCRResultType"]),
+    ...mapGetters("transaction", ["OCRResultType"]),
     currentComponent() {
       return this.OCRResultType;
     },
     isSwitchOn() {
-      return this.OCRResultType
-        ? this.tabs[this.OCRResultType.toString()].show
-        : "";
+      return this.currentComponent ? this.tabs[this.currentComponent].show : "";
+    },
+    parkingTemplate() {
+      return {
+        data: {
+          category: "PARKING",
+          date: "",
+          out: "",
+          amount: 0,
+          title: "",
+          parkingType: "",
+          license: "",
+          location: "",
+          hours: 0,
+          userId: "",
+          image: ""
+        }
+      };
+    },
+    fuelTemplate() {
+      return {
+        data: {
+          category: "FUEL",
+          date: "",
+          fuelType: "",
+          liters: 0,
+          amount: 0,
+          title: "",
+          userId: "",
+          image: ""
+        }
+      };
     }
   },
   created() {
@@ -52,7 +81,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("transaction", ["saveTransaction", "setOCRResultType"]),
+    ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),
     toggle() {
       this.setOCRResultType(
         TOGGLE_BUTTON[(!this.isSwitchOn).toString()].component
@@ -61,7 +90,12 @@ export default {
     saveData() {
       this.$refs.sendForm[
         TOGGLE_BUTTON[this.isSwitchOn.toString()].action.toString()
-      ]();
+      ]().then(() => {
+        this.setFormEmpty(this.parkingTemplate);
+        this.setFormEmpty(this.fuelTemplate);
+        this.$router.push({ name: "home" });
+        console.log("selesai");
+      });
     }
   }
 };

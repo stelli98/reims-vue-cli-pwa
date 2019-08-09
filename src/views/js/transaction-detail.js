@@ -1,32 +1,43 @@
 import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
 import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ViewFuelDetail,
     ViewParkingDetail
   },
   computed: {
-    ...mapState("transaction", ["transaction"]),
-    transactionId() {
+    ...mapGetters("transaction", ["transaction", "viewImage"]),
+    transactionId () {
       return this.$route.params.id;
     },
-    transactionCategory() {
+    transactionCategory () {
       return this.$options.filters.textFormatter(this.transaction.category);
     },
-    activeComponent() {
+    activeComponent () {
       return this.transactionCategory
         ? `View${this.transactionCategory}Detail`
         : "";
+    },
+    imageExt () {
+      return this.transaction.image ? this.transaction.image.split(".")[1] : ""
+    },
+    imagePath () {
+      return this.transaction.image ? this.transaction.image.split(".")[0] : ""
+    },
+    imageBase64 () {
+      return `data:image/${this.imageExt};base64,${this.viewImage}`
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransaction"]),
-    moveTo() {
-      this.$router.go(-1);
+    ...mapActions("transaction", ["getTransaction", "getViewImage"]),
+    moveTo () {
+      this.$router.go(-1)
     }
   },
-  mounted() {
-    this.getTransaction(this.transactionId);
+  mounted () {
+    this.getTransaction(this.transactionId).then(() => {
+      this.getViewImage(this.imagePath)
+    })
   }
 };

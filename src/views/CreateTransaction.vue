@@ -1,10 +1,7 @@
 <template>
   <div class="create-transaction">
     <div class="header create-transaction__header">
-      <div
-        class="create-transaction__close"
-        @click="moveTo"
-      >
+      <div class="create-transaction__close" @click="moveTo">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>

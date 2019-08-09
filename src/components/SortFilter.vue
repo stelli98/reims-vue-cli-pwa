@@ -93,10 +93,10 @@
               Start Date
             </label>
             <Datetime
-              v-model="options.startDate"
+              v-model="formatStart"
               type="datetime"
               class="form__input"
-              :max-datetime="options.endDate"
+              :max-datetime="formatEnd || currentDateTime"
             />
           </div>
           <div class="form__child">
@@ -107,8 +107,9 @@
               End Date
             </label>
             <Datetime
-              v-model="options.endDate"
-              :min-datetime="options.startDate"
+              v-model="formatEnd"
+              :min-datetime="formatStart"
+              :max-datetime="currentDateTime"
               type="datetime"
               class="form__input"
             />
