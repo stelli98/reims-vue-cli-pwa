@@ -9,7 +9,10 @@
         @click="openFilter"
       >
         <div class="transaction__icon">
-          <div class="notification-circle"></div>
+          <div
+            v-if="isFiltering"
+            class="notification-circle"
+          ></div>
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-filter" />
           </svg>

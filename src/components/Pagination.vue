@@ -1,6 +1,12 @@
 <template>
-  <div v-show="paging.totalPages > 1" class="pagination">
-    <div class="first" @click="moveTo(1)">
+  <div
+    v-show="paging.totalPages > 1"
+    class="pagination"
+  >
+    <div
+      class="first"
+      @click="moveTo(1)"
+    >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -15,20 +21,20 @@
       </svg>
     </div>
     <div class="pagination__go-to">
-      <div class="pagination__caption">
-        <input
-          v-model="inputPage"
-          class="pagination__input"
-          type="number"
-          name=""
-          min="1"
-          :max="paging.totalPages"
-        />
-        <h2 class="pagination__text">/ {{ paging.totalPages }}</h2>
-      </div>
-      <button class="pagination__button" @click="moveTo(parseInt(inputPage))">
-        Go
-      </button>
+      <select
+        v-model="currentPage"
+        class="pagination__selection"
+        onfocus='this.size=2;'
+        onblur='this.size=1;'
+        onchange='this.size=1; this.blur();'
+        @click="moveTo(currentPage)"
+      >
+        <option
+          :selected="currentPage"
+          class="pagination__option"
+          v-for="(n,index) in paging.totalPages"
+        >{{index+1}}</option>
+      </select>
     </div>
     <div
       v-show="paging.pageNumber != paging.totalPages"
@@ -39,7 +45,10 @@
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div class="last" @click="moveTo(paging.totalPages)">
+    <div
+      class="last"
+      @click="moveTo(paging.totalPages)"
+    >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
@@ -89,6 +98,14 @@
   &__text {
     align-self: center;
     color: $color-green;
+  }
+
+  &__selection {
+    padding: 0.5rem;
+  }
+
+  &__option {
+    padding: 0.5rem;
   }
 }
 </style>

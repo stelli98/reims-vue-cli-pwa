@@ -38,16 +38,19 @@ export default {
         params: { step: 1 }
       });
     },
-    changePage (toPage) {
-      this.options.page = parseInt(toPage);
-      this.options = { ...this.$route.query, ...this.options }
-      this.$router.replace({ query: this.options });
+    changePage (page) {
+      this.$router.push({ query: { ...this.$route.query, page: page } });
     },
     toogleFilter (value) {
       this.showFilter = value;
     },
     updateTransaction () {
-      this.getTransactions(this.$route.query);
+      this.getTransactions(this.$route.query).then(() => {
+        if (this.transactions.length == 0) {
+          this.changePage(1)
+        }
+      })
+
     },
     moveTo (toPage) {
       this.$router.push({ name: toPage });
@@ -68,17 +71,18 @@ export default {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: "createdAt"
+        sortBy: "date",
       }
     }
   },
   watch: {
     '$route' () {
       this.updateTransaction();
-    }
+    },
   },
   mounted () {
     this.$router.replace({ query: { ...this.options, ...this.$route.query } })
     this.updateTransaction();
   }
 };
+

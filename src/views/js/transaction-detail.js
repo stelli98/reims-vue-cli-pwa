@@ -6,11 +6,6 @@ export default {
     ViewFuelDetail,
     ViewParkingDetail
   },
-  data () {
-    return {
-      image: ""
-    };
-  },
   computed: {
     ...mapGetters("transaction", ["transaction", "viewImage"]),
     transactionId () {
@@ -24,30 +19,25 @@ export default {
         ? `View${this.transactionCategory}Detail`
         : "";
     },
-    transactionImageType () {
-      return this.transaction.image
-        ? this.transaction.image.split(".")[
-        this.transaction.image.split(".").length - 1
-        ]
-        : "";
+    imageExt () {
+      return this.transaction.image ? this.transaction.image.split(".")[1] : ""
+    },
+    imagePath () {
+      return this.transaction.image ? this.transaction.image.split(".")[0] : ""
+    },
+    imageBase64 () {
+      return `data:image/${this.imageExt};base64,${this.viewImage}`
     }
   },
   methods: {
     ...mapActions("transaction", ["getTransaction", "getViewImage"]),
     moveTo () {
-      // this.$router.push({ name: "home" });
       this.$router.go(-1)
     }
   },
   mounted () {
-    this.getTransaction(this.transactionId);
-  },
-  watch: {
-    transaction () {
-      console.log(this.transaction);
-      this.getViewImage(this.transaction.image).then(response => {
-        this.image = response;
-      });
-    }
+    this.getTransaction(this.transactionId).then(() => {
+      this.getViewImage(this.imagePath)
+    })
   }
 };

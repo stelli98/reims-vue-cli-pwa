@@ -18,7 +18,11 @@ export default {
       amount: {
         required,
         currency (input) {
-          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(input);
+          const value = input
+            .toString()
+            .replace(/\./g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
         }
       },
       title: { required }

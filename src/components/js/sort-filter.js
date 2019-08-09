@@ -5,7 +5,7 @@ export default {
     return {
       options: this.emptyOptions(),
       sortByOptions: ["date", "category", "title"],
-      categoryOptions: ["FUEL", "PARKING"]
+      categoryOptions: ["FUEL", "PARKING"],
     };
   },
   computed: {
@@ -25,22 +25,21 @@ export default {
         this.options.end = newValue;
       },
       get () {
-        return this.options.out ?
-          new Date(this.options.end).toISOString() : ""
+        return this.options.end ?
+          new Date(this.options.end).toISOString() :
+          ""
       }
     },
   },
   methods: {
     moveTo () {
       this.$emit("closeFilter", false);
-      console.log('B')
     },
     applyFilter () {
       this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""
       this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""
       this.options.page = 1
-      this.$router.replace({ query: { ...this.$route.query, ...this.options } })
-      console.log('A', this.$route.query)
+      this.$router.push({ query: { ...this.$route.query, ...this.options } })
       this.moveTo();
     },
     emptyOptions () {
@@ -55,5 +54,11 @@ export default {
     resetFilter () {
       this.options = this.emptyOptions();
     }
+  },
+  created () {
+    this.options = { ...this.options, ...this.$route.query }
+    this.options.start = new Date(parseInt(this.$route.query.start)).toISOString()
+    this.options.end = new Date(parseInt(this.$route.query.end)).toISOString()
+
   }
 };
