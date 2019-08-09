@@ -98,6 +98,12 @@
               class="form__input"
               :max-datetime="formatEnd || currentDateTime"
             />
+            <p
+              v-if="isStartAndEndSelected"
+              class="input__error-message"
+            >
+              Start Date and End Date must be filled
+            </p>
           </div>
           <div class="form__child">
             <label
@@ -113,6 +119,12 @@
               type="datetime"
               class="form__input"
             />
+            <p
+              v-if="isStartAndEndSelected"
+              class="input__error-message"
+            >
+              Start Date and End Date must be filled
+            </p>
           </div>
         </form>
       </div>
