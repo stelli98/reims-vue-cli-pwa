@@ -16,8 +16,8 @@ const routes = [
     name: "create"
   },
   {
-    path: "/transactions/change-password",
-    name: "change-password"
+    path: "/transactions/edit-profile",
+    name: "edit-profile"
   },
   {
     path: "/home",
@@ -36,10 +36,12 @@ describe("HomePage.vue", () => {
   function initializeStore () {
     const transaction = initializeTransactionStore();
     const auth = initializeAuthStore();
+    const user = initializeUserStore();
     const store = new Vuex.Store({
       modules: {
         transaction,
-        auth
+        auth,
+        user
       }
     });
 
@@ -50,7 +52,8 @@ describe("HomePage.vue", () => {
       },
       actions: {
         transaction: transaction.actions,
-        auth: auth.actions
+        auth: auth.actions,
+        user: user.actions
       },
       getters: {
         transaction: transaction.getters
@@ -61,6 +64,14 @@ describe("HomePage.vue", () => {
   function initializeAuthStore () {
     const actions = {
       logout: jest.fn()
+    };
+    const namespaced = true;
+    return { actions, namespaced };
+  }
+
+  function initializeUserStore () {
+    const actions = {
+      downloadPersonalReport: jest.fn()
     };
     const namespaced = true;
     return { actions, namespaced };
@@ -113,29 +124,13 @@ describe("HomePage.vue", () => {
   });
 
   test("methods changePage", () => {
-    const spy = jest.spyOn(store.actions.transaction, "getTransactions");
     wrapper.vm.changePage(2);
     expect(wrapper.vm.$route.query.page).toBe(2);
-    expect(spy).toHaveBeenCalled();
   });
 
   test("method moveTo", async () => {
-    wrapper.vm.moveTo("change-password");
-    expect(wrapper.vm.$route.path).toEqual("/transactions/change-password");
-  });
-
-  test("methods applyFilter", () => {
-    const options = {
-      search: "Parking"
-    };
-    const expectedValue = {
-      search: "Parking",
-      page: 1,
-      size: "5",
-      sortBy: "createdAt"
-    }
-    wrapper.vm.applyFilter(options);
-    expect(wrapper.vm.options).toEqual(expectedValue);
+    wrapper.vm.moveTo("edit-profile");
+    expect(wrapper.vm.$route.path).toEqual("/transactions/edit-profile");
   });
 
   test("methods doLogout", () => {
@@ -155,4 +150,23 @@ describe("HomePage.vue", () => {
     wrapper.vm.onFileChange(e);
     expect(spy).toHaveBeenCalled();
   });
+
+  test("methods updateTransaction if there is no transactions", async () => {
+    const spyAction = jest.spyOn(store.actions.transaction, "getTransactions");
+    store.state.transaction.transactions = []
+    const spyChangePage = jest.spyOn(wrapper.vm, "changePage")
+    await wrapper.vm.updateTransaction();
+    expect(spyAction).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyChangePage).toHaveBeenCalled();
+      expect(wrapper.vm.$route.query.page).toBe(1);
+    })
+  })
+
+  test("methods download", () => {
+    const spy = jest.spyOn(store.actions.user, "downloadPersonalReport");
+    wrapper.vm.download();
+    expect(spy).toHaveBeenCalled();
+  });
+
 });

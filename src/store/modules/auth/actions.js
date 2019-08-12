@@ -6,6 +6,7 @@ export default {
     commit("SET_TOKEN", data.headers.authorization);
     commit("SET_ROLE", data.data.role);
     commit("SET_ID", data.data.id);
+    commit("SET_USERNAME", data.data.username);
   },
   logout: async ({ commit, rootState }) => {
     const { token } = rootState.auth;
@@ -13,5 +14,9 @@ export default {
     commit("SET_ID", "");
     commit("SET_ROLE", "");
     commit("SET_TOKEN", "");
+    commit("SET_USER", "");
+  },
+  updateToken: ({ commit }, token) => {
+    commit("SET_TOKEN", token)
   }
 };

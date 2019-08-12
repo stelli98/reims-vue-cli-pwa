@@ -14,13 +14,13 @@ describe("Pagination.vue", () => {
     totalRecords: 10
   };
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper() {
+  function createWrapper () {
     const router = new VueRouter({ routes });
     return shallowMount(Pagination, {
       localVue,
@@ -40,5 +40,12 @@ describe("Pagination.vue", () => {
   test("Emit changePage moveTo method", () => {
     wrapper.vm.moveTo(2);
     expect(wrapper.emitted().changePage).toEqual([[2]]);
+  });
+
+  test("Emit changePage moveTo method", () => {
+    wrapper.vm.$router.push({ query: { page: 4 } })
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.currentPage).toBe(4);
+    })
   });
 });

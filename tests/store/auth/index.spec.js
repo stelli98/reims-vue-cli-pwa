@@ -12,6 +12,10 @@ const state = {
   token: document.cookie.replace(
     /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
     "$1"
+  ),
+  username: document.cookie.replace(
+    /(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
   )
 };
 

@@ -99,10 +99,10 @@
               :max-datetime="formatEnd || currentDateTime"
             />
             <p
-              v-if="isStartAndEndSelected"
+              v-if="isStartSelected"
               class="input__error-message"
             >
-              Start Date and End Date must be filled
+              Start Date must be filled
             </p>
           </div>
           <div class="form__child">
@@ -120,10 +120,10 @@
               class="form__input"
             />
             <p
-              v-if="isStartAndEndSelected"
+              v-if="isEndSelected"
               class="input__error-message"
             >
-              Start Date and End Date must be filled
+              End Date must be filled
             </p>
           </div>
         </form>

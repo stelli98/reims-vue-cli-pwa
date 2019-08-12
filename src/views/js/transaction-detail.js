@@ -30,10 +30,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransaction", "getViewImage"]),
-    moveTo () {
-      this.$router.go(-1)
-    }
+    ...mapActions("transaction", ["getTransaction", "getViewImage"])
   },
   mounted () {
     this.getTransaction(this.transactionId).then(() => {

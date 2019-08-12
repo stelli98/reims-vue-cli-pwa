@@ -3,7 +3,7 @@
     <div class="header transaction-detail__header">
       <div
         class="transaction-detail__close"
-        @click="moveTo"
+        @click="$router.go(-1)"
       >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-back" />

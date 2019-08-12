@@ -20,7 +20,6 @@ export default {
     commit("ADD_IMAGE_PARKING", data.data.image);
     commit("ADD_USER_ID_FUEL", id);
     commit("ADD_USER_ID_PARKING", id);
-    return data;
   },
   getTransaction: async ({ commit, rootState }, id) => {
     const { token } = rootState.auth;
@@ -41,9 +40,7 @@ export default {
   deleteTransaction: ({ commit, rootState }, id) => {
     commit("DELETE_TRANSACTION", id);
     const { token } = rootState.auth;
-    const response = transactionApi.deleteTransaction(id, token);
-    console.log("delete", response);
-    return response;
+    transactionApi.deleteTransaction(id, token);
   },
   getViewImage: async ({ commit, rootState }, link) => {
     const { token } = rootState.auth;

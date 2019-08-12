@@ -11,9 +11,9 @@
         <div class="home__header__upper__right">
           <div
             class="home__header__nav__password"
-            @click="moveTo('change-password')"
+            @click="moveTo('edit-profile')"
           >
-            Change Password
+            Edit Profile
           </div>
           <div
             class="home__header__nav__logout"

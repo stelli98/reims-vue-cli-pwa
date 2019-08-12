@@ -12,19 +12,15 @@ export default {
   data () {
     return {
       showFilter: false,
-      optionParams: this.initOptions()
+      options: {
+        page: parseInt(this.$route.query.page) || 1,
+        size: parseInt(this.$route.query.size) || 5,
+        sortBy: "date",
+      }
     };
   },
   computed: {
-    ...mapGetters("transaction", ["transactions", "pagination"]),
-    options: {
-      set (newValue) {
-        this.optionsParams = newValue
-      },
-      get () {
-        return this.optionParams
-      }
-    }
+    ...mapGetters("transaction", ["transactions", "pagination"])
   },
   methods: {
     ...mapActions("transaction", ["setImage", "getTransactions"]),
@@ -61,18 +57,7 @@ export default {
       });
     },
     download () {
-      const optionDownload = {
-        start: this.$route.query.start,
-        end: this.$route.query.end
-      }
-      this.downloadPersonalReport(optionDownload)
-    },
-    initOptions () {
-      return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
-        sortBy: "date",
-      }
+      this.downloadPersonalReport(this.$route.query)
     }
   },
   watch: {

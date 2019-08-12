@@ -25,13 +25,14 @@ export default {
         this.options.end = newValue;
       },
       get () {
-        return this.options.end ?
-          new Date(this.options.end).toISOString() :
-          ""
+        return this.options.end ? new Date(this.options.end).toISOString() : ""
       }
     },
-    isStartAndEndSelected () {
+    isEndSelected () {
       return this.options.start && !this.options.end ? true : false
+    },
+    isStartSelected () {
+      return this.options.end && !this.options.start ? true : false
     }
 
   },
@@ -40,7 +41,7 @@ export default {
       this.$emit("closeFilter", false);
     },
     applyFilter () {
-      if (!this.isStartAndEndSelected) {
+      if (!this.isEndSelected && !this.isStartSelected) {
         this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""
         this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""
         this.options.page = 1
@@ -51,7 +52,7 @@ export default {
     emptyOptions () {
       return {
         search: "",
-        sortBy: "",
+        sortBy: "date",
         category: "",
         start: "",
         end: ""
@@ -60,11 +61,13 @@ export default {
     resetFilter () {
       this.options = this.emptyOptions();
     },
-
+    convertDateToISOString () {
+      this.options.start = !!this.options.start ? new Date(parseInt(this.$route.query.start)).toISOString() : ""
+      this.options.end = !!this.options.end ? new Date(parseInt(this.$route.query.end)).toISOString() : ""
+    }
   },
   created () {
     this.options = { ...this.options, ...this.$route.query }
-    this.options.start = !!this.options.start ? new Date(parseInt(this.$route.query.start)).toISOString() : ""
-    this.options.end = !!this.options.end ? new Date(parseInt(this.$route.query.end)).toISOString() : ""
+    this.convertDateToISOString()
   }
 };

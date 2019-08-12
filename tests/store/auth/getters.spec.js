@@ -22,6 +22,14 @@ describe("Auth getters", () => {
     expect(role).toBe(state.role);
   });
 
+  test("Get username from auth module", () => {
+    const state = {
+      username: expectedValue.data.username
+    };
+    const username = getters.username(state);
+    expect(username).toBe(state.username);
+  });
+
   test("Get token from auth module", () => {
     const state = {
       token: expectedValue.headers.authorization
