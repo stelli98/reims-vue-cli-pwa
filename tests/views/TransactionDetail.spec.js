@@ -25,18 +25,22 @@ describe("TransactionDetail.vue", () => {
   let wrapper;
   let localVue;
   const transactionData = data.find(d => d.url === url.transaction + "/1");
+  const imageData = data.find(d => d.url === url.transaction + "/3278/12345abc");
 
-  function initializeStore() {
+  function initializeStore () {
     const actions = {
-      getTransaction: jest.fn()
+      getTransaction: jest.fn(),
+      getViewImage: jest.fn()
     };
 
     const getters = {
-      transaction: state => state.transaction
+      transaction: state => state.transaction,
+      viewImage: state => state.viewImage
     };
 
     const state = {
-      transaction: transactionData.data
+      transaction: transactionData.data,
+      viewImage: imageData.data
     };
 
     const store = new Vuex.Store({
@@ -58,7 +62,7 @@ describe("TransactionDetail.vue", () => {
     };
   }
 
-  function generateLocalVue() {
+  function generateLocalVue () {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
@@ -67,7 +71,7 @@ describe("TransactionDetail.vue", () => {
     return lv;
   }
 
-  function createWrapper(store) {
+  function createWrapper (store) {
     const router = new VueRouter({ routes });
     return shallowMount(TransactionDetail, {
       store,
@@ -110,9 +114,4 @@ describe("TransactionDetail.vue", () => {
     expect(wrapper.vm.activeComponent).toBe("ViewParkingDetail");
   });
 
-  test("moveTo before page", () => {
-    wrapper.vm.$router.push("/transactions/1");
-    wrapper.vm.moveTo();
-    expect(wrapper.vm.$route.path).toBe("/home");
-  });
 });

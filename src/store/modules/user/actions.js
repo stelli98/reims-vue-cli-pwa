@@ -25,10 +25,6 @@ export default {
     const response = await userApi.updateUser(data.id, data, token);
     return response;
   },
-  changePassword: ({ rootState }, data) => {
-    const { token } = rootState.auth;
-    userApi.changePassword(data, token);
-  },
   deleteUser: async ({ commit, rootState }, id) => {
     commit("DELETE_USER", id);
     const { token } = rootState.auth;
@@ -38,5 +34,10 @@ export default {
   downloadPersonalReport: ({ rootState }, options) => {
     const { token } = rootState.auth;
     userApi.downloadPersonalReport(options, token);
+  },
+  updatePersonalProfile: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.updatePersonalProfile(data, token);
+    return response;
   }
 };

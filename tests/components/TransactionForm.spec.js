@@ -11,6 +11,10 @@ const routes = [
   {
     path: "/transactions/create/:step",
     name: "create"
+  },
+  {
+    path: "/home",
+    name: "home"
   }
 ];
 
@@ -65,7 +69,10 @@ describe("TransactionForm.vue", () => {
       store,
       localVue,
       router,
-      stubs: ["ParkingForm", "FuelForm"],
+      stub: [
+        "FuelForm",
+        "ParkingForm"
+      ],
       sync: false
     };
     const mergeOptions = { ...options, ...defaultOptions };
@@ -111,7 +118,7 @@ describe("TransactionForm.vue", () => {
         category: "PARKING",
         date: "",
         out: "",
-        amount: 0,
+        amount: 100,
         title: "",
         parkingType: "",
         license: "",
@@ -136,8 +143,8 @@ describe("TransactionForm.vue", () => {
         category: "FUEL",
         date: "",
         fuelType: "",
-        liters: 0,
-        amount: 0,
+        liters: 0.01,
+        amount: 100,
         title: "",
         userId: "",
         image: ""
@@ -168,15 +175,31 @@ describe("TransactionForm.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  // test("saveData method", () => {
+  test("emptyAllForm method", () => {
+    const spy = jest.spyOn(wrapper.vm, 'setFormEmpty');
+    wrapper.vm.emptyAllForm();
+    expect(spy).toHaveBeenCalledTimes(2);
+  })
+
+  // test("saveData method", async () => {
   //   const options = {
+  //     mocks: {
+  //       // $refs: {
+  //       //   sendForm: {
+  //       //     sendParkingForm: () => Promise.resolve('true'),
+  //       //     sendFuelForm: () => Promise.resolve('true')
+  //       //   }
+  //       // },
+  //       isSwitchOn: () => false
+  //     },
   //     propsData: {
   //       pictureUrl: "image.jpg"
   //     }
-  //   };
+  //   }
   //   wrapper = createWrapper(store.store, options);
-  //   const spy = jest.spyOn(wrapper.vm.$refs.sendForm());
-  //   wrapper.vm.saveData();
-  //   expect(spy).toHaveBeenCalled();
+  //   console.log(wrapper.vm)
+  //   const spy = jest.spyOn(wrapper.vm, 'setFormEmpty');
+  //   await wrapper.vm.saveData();
+  //   expect(spy).toHaveBeenCalledTimes(2);
   // });
 });

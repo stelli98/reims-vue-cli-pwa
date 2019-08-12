@@ -133,7 +133,7 @@ describe("FilterImage.vue", () => {
     await wrapper.vm.uploadImageOCR(resultImage);
     wrapper.vm.$nextTick(() => {
       expect(spyCreateTransaction).toHaveBeenCalled();
-      expect(spySuccessNotification).toHaveBeenCalled()
+      expect(spySuccessNotification).toHaveBeenCalled();
     })
   });
 

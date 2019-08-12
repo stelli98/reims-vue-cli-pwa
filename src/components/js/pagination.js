@@ -1,5 +1,3 @@
-import { get } from "http";
-
 export default {
   props: {
     paging: Object

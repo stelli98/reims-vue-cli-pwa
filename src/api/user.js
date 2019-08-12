@@ -47,8 +47,17 @@ export default {
   },
   downloadPersonalReport (options, token) {
     const path = api.report;
+    console.log(options)
     return axios.get(path, {
       params: options,
+      headers: {
+        Authorization: token
+      }
+    });
+  },
+  updatePersonalProfile (data, token) {
+    const path = api.personalUser;
+    return axios.put(path, data, {
       headers: {
         Authorization: token
       }

@@ -91,9 +91,11 @@
     "resolver": null,
     "collectCoverage": true,
     "collectCoverageFrom": [
+      "src/App.vue",
       "src/components/**/*.vue",
       "src/views/**/*.vue",
       "src/store/**/*.js",
+      "src/filters/**/*.js",
       "!**/node_modules/**"
     ]
   }

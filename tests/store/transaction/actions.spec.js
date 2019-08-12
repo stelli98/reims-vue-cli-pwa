@@ -115,8 +115,11 @@ describe("Actions for Transactions Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_PAGINATION", expectedValue.data);
   });
 
-  test("save transaction form", () => {
-    api.saveTransaction = jest.fn();
+  test("save transaction form", async () => {
+    const expectedValue = data.find(
+      d => d.url === url.transaction && d.method == "PUT"
+    );
+    api.saveTransaction = jest.fn().mockResolvedValue(expectedValue)
     const rootState = {
       auth: {
         token: "Bearer 123"
@@ -134,7 +137,7 @@ describe("Actions for Transactions Module", () => {
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: ""
     };
-    actions.saveTransaction({ rootState }, transaction);
+    expect(await actions.saveTransaction({ rootState }, transaction)).toEqual(expectedValue.data)
     expect(api.saveTransaction).toHaveBeenCalledWith(
       transaction,
       rootState.auth.token
@@ -155,5 +158,26 @@ describe("Actions for Transactions Module", () => {
       id,
       rootState.auth.token
     );
+  });
+
+  test("getViewImage action", async () => {
+    api.getViewImage = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+
+    const expectedValue = data.find(
+      d =>
+        d.url === url.transaction + '/3278/12345abc' &&
+        d.method == "GET"
+    );
+    const link = '3278/12345abc'
+    const commit = jest.fn();
+
+    api.getViewImage.mockResolvedValue(expectedValue);
+    await actions.getViewImage({ commit, rootState }, link);
+    expect(commit).toHaveBeenCalledWith("SET_VIEW_IMAGE", expectedValue.data);
   });
 });

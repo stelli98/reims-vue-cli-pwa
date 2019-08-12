@@ -6,7 +6,7 @@ import CreateTransaction from "./views/CreateTransaction";
 import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
 import UserForm from "./views/UserForm";
-import ChangePassword from "./views/ChangePassword";
+import EditProfile from "./views/EditProfile";
 import store from "./store";
 
 Vue.use(Router);
@@ -56,10 +56,10 @@ const router = new Router({
       component: UserForm
     },
     {
-      path: "/users/change-password",
+      path: "/users/edit-profile",
       beforeEnter: checkAuthUser,
-      name: "change-password",
-      component: ChangePassword
+      name: "edit-profile",
+      component: EditProfile
     },
     {
       path: "*",
@@ -68,7 +68,7 @@ const router = new Router({
   ]
 });
 
-function checkAuthUser(to, from, next) {
+function checkAuthUser (to, from, next) {
   if (!!store.state.auth.token && store.state.auth.role === "USER") {
     next();
   } else {
@@ -81,7 +81,7 @@ function checkAuthUser(to, from, next) {
   }
 }
 
-function checkAuthAdmin(to, from, next) {
+function checkAuthAdmin (to, from, next) {
   if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
     next();
   } else {

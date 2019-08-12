@@ -193,6 +193,15 @@ export default [
   },
   {
     code: 200,
+    method: "GET",
+    url: api.transactions.transaction + '/3278/12345abc',
+    status: "OK",
+    data: {
+      image: '12345abc'
+    }
+  },
+  {
+    code: 200,
     method: "PUT",
     url: api.transactions.transaction,
     status: "OK",

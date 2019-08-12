@@ -1,22 +1,31 @@
 <template>
-  <div class="change-password">
-    <div class="header change-password__header">
-      <div class="change-password__close" @click="moveTo">
+  <div class="edit-profile">
+    <div class="header edit-profile__header">
+      <div
+        class="edit-profile__close"
+        @click="moveTo"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
-      <div class="title--menu user-form__next" @click="submitForm">
+      <div
+        class="title--menu user-form__next"
+        @click="submitForm"
+      >
         SAVE
       </div>
     </div>
-    <div class="change-password__content">
-      <div class="heading change-password__heading">
+    <div class="edit-profile__content">
+      <div class="heading edit-profile__heading">
         Change Password
       </div>
-      <form class="change-password__form">
+      <form class="edit-profile__form">
         <div class="form__child">
-          <label class="input__label title--medium-form" for="type">
+          <label
+            class="input__label title--medium-form"
+            for="type"
+          >
             Username
           </label>
           <input
@@ -27,13 +36,19 @@
             @blur="$v.user.username.$touch()"
           />
           <div v-if="$v.user.username.$error">
-            <p v-if="!$v.user.username.required" class="input__error-message">
+            <p
+              v-if="!$v.user.username.required"
+              class="input__error-message"
+            >
               Name must be filled
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label class="input__label title--medium-form" for="type">
+          <label
+            class="input__label title--medium-form"
+            for="type"
+          >
             Password
           </label>
           <input
@@ -44,53 +59,60 @@
             @blur="$v.user.password.$touch()"
           />
           <div v-if="$v.user.password.$error">
-            <p v-if="!$v.user.password.required" class="input__error-message">
+            <p
+              v-if="!$v.user.password.required"
+              class="input__error-message"
+            >
               Password must be filled
             </p>
           </div>
           <div v-if="$v.user.password.$error">
-            <p v-if="!$v.user.password.minLength" class="input__error-message">
+            <p
+              v-if="!$v.user.password.minLength"
+              class="input__error-message"
+            >
               Password must have at least 6 characters
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label class="input__label title--medium-form" for="type">
+          <label
+            class="input__label title--medium-form"
+            for="type"
+          >
             Confirm Password
           </label>
           <input
-            v-model="user.confirmPassword"
+            v-model="confirmPassword"
             type="password"
             name="type"
             class="form__input"
-            @blur="$v.user.confirmPassword.$touch()"
+            @blur="$v.confirmPassword.$touch()"
           />
-          <div v-if="$v.user.confirmPassword.$error">
+          <div v-if="$v.confirmPassword.$error">
             <p
-              v-if="!$v.user.confirmPassword.required"
+              v-if="!$v.confirmPassword.required"
               class="input__error-message"
             >
               Confirm Password must be filled
             </p>
           </div>
-          <div v-if="$v.user.confirmPassword.$error">
-            <p
-              v-if="!$v.user.confirmPassword.sameAsPassword"
-              class="input__error-message"
-            >
-              Confirm Password must same as Password
-            </p>
-          </div>
+          <p
+            v-if="sameAsPassword"
+            class="input__error-message"
+          >
+            Confirm Password must same as Password
+          </p>
         </div>
       </form>
     </div>
   </div>
 </template>
 
-<script src="./js/change-password.js"></script>
+<script src="./js/edit-profile.js"></script>
 
 <style lang="scss">
-.change-password {
+.edit-profile {
   &__content {
     width: 65vw;
     margin: 0 auto;

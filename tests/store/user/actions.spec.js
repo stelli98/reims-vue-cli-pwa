@@ -100,23 +100,6 @@ describe("Actions for User Module", () => {
     );
   });
 
-  test("Change Password actions", () => {
-    api.changePassword = jest.fn();
-
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
-    const user = {
-      username: "admin",
-      password: "admin",
-      role: "ADMIN"
-    };
-    actions.changePassword({ rootState }, user);
-    expect(api.changePassword).toHaveBeenCalledWith(user, rootState.auth.token);
-  });
-
   test("Delete user actions", () => {
     api.deleteUser = jest.fn();
 
@@ -130,5 +113,36 @@ describe("Actions for User Module", () => {
     actions.deleteUser({ commit, rootState }, id);
     expect(commit).toHaveBeenCalledWith("DELETE_USER", id);
     expect(api.deleteUser).toHaveBeenCalledWith(id, rootState.auth.token);
+  });
+
+  test("downloadPersonalReport actions", () => {
+    api.downloadPersonalReport = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const options = {
+      start: 1565096633000,
+      end: 1565442233000
+    };
+    actions.downloadPersonalReport({ rootState }, options);
+    expect(api.downloadPersonalReport).toHaveBeenCalledWith(options, rootState.auth.token);
+  });
+
+  test("updatePersonalProfile actions", () => {
+    api.updatePersonalProfile = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const user = {
+      username: "stelli",
+      password: "stelli123"
+    };
+    actions.updatePersonalProfile({ rootState }, user);
+    expect(api.updatePersonalProfile).toHaveBeenCalledWith(user, rootState.auth.token);
   });
 });

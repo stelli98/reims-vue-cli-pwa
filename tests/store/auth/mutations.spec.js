@@ -46,4 +46,18 @@ describe("mutations for transaction module", () => {
     mutations.SET_ROLE(state, expectedValue.data.role);
     expect(state.role).toEqual(expectedValue.data.role);
   });
+
+  test("SET_USERNAME sets state.username", () => {
+    const expectedValue = data.find(
+      d => d.url === url.login && d.method === "POST"
+    );
+    const state = {
+      username: document.cookie.replace(
+        /(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      )
+    };
+    mutations.SET_USERNAME(state, expectedValue.data.username);
+    expect(state.username).toEqual(expectedValue.data.username);
+  });
 });

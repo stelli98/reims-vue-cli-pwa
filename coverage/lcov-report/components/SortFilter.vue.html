@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/14</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">85% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>17/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/14</span>
+        <span class='fraction'>22/22</span>
       </div>
     </div>
   </div>
@@ -99,11 +99,28 @@
 54
 55
 56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,23 +128,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,9 +163,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,6 +180,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Datetime } from "vue-datetime";
 export default {
@@ -162,7 +196,7 @@ export default {
     return {
       options: this.emptyOptions(),
       sortByOptions: ["date", "category", "title"],
-      categoryOptions: ["FUEL", "PARKING"]
+      categoryOptions: ["FUEL", "PARKING"],
     };
   },
   computed: {
@@ -171,36 +205,45 @@ export default {
     },
     formatStart: {
       set (newValue) {
-<span class="cstat-no" title="statement not covered" >        this.options.start = newValue;</span>
+        this.options.start = newValue;
       },
       get () {
-<span class="branch-0 cbranch-no" title="branch not covered" >        return this.options.start ? new Date(this.options.start).toISOString() : ""</span>
+        return this.options.start ? new Date(this.options.start).toISOString() : ""
       }
     },
     formatEnd: {
       set (newValue) {
-<span class="cstat-no" title="statement not covered" >        this.options.end = newValue;</span>
+        this.options.end = newValue;
       },
       get () {
-<span class="branch-0 cbranch-no" title="branch not covered" >        return this.options.out ?</span>
-          new Date(this.options.end).toISOString() : ""
+        return this.options.end ? new Date(this.options.end).toISOString() : ""
       }
     },
+    isEndSelected () {
+      return this.options.start &amp;&amp; !this.options.end ? true : false
+    },
+    isStartSelected () {
+      return this.options.end &amp;&amp; !this.options.start ? true : false
+    }
+&nbsp;
   },
   methods: {
     moveTo () {
       this.$emit("closeFilter", false);
     },
     applyFilter () {
-<span class="branch-0 cbranch-no" title="branch not covered" >      this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""</span>
-<span class="branch-0 cbranch-no" title="branch not covered" >      this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""</span>
-      this.$emit("applyFilter", this.options);
-      this.moveTo();
+<span class="missing-if-branch" title="else path not taken" >E</span>      if (!this.isEndSelected &amp;&amp; !this.isStartSelected) {
+<span class="branch-1 cbranch-no" title="branch not covered" >        this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >        this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""</span>
+        this.options.page = 1
+        this.$router.push({ query: { ...this.$route.query, ...this.options } })
+        this.moveTo();
+      }
     },
     emptyOptions () {
       return {
         search: "",
-        sortBy: "",
+        sortBy: "date",
         category: "",
         start: "",
         end: ""
@@ -208,7 +251,15 @@ export default {
     },
     resetFilter () {
       this.options = this.emptyOptions();
+    },
+    convertDateToISOString () {
+      this.options.start = !!this.options.start ? new Date(parseInt(this.$route.query.start)).toISOString() : ""
+      this.options.end = !!this.options.end ? new Date(parseInt(this.$route.query.end)).toISOString() : ""
     }
+  },
+  created () {
+    this.options = { ...this.options, ...this.$route.query }
+    this.convertDateToISOString()
   }
 };
 &nbsp;</pre></td></tr>
@@ -217,7 +268,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 07 2019 12:11:09 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 12 2019 22:39:52 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>
