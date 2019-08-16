@@ -12,7 +12,9 @@ export default {
       fuelType: { required },
       liters: {
         required,
-        float,
+        float (input){
+          return /^[0-9]+([.][0-9]+)?$/g.test(input);
+        },
         minValue: minValue(0.01)
       },
       amount: {
@@ -70,7 +72,15 @@ export default {
     },
     currentDateTime () {
       return new Date().toISOString()
-    }
+    },
+    formatDate: {
+      set (newValue) {
+        this.fuel.date = newValue;
+      },
+      get () {
+        return this.fuel.date ? new Date(this.fuel.date).toISOString() : ""
+      }
+    },
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
@@ -109,7 +119,7 @@ export default {
       this.fuel.liters = parseFloat(this.fuel.liters);
     },
     convertDateToEpoch () {
-      this.fuel.date = new Date(this.fuel.date).getTime();
+      this.fuel.date = new Date(this.fuel.date).getTime()
     }
   }
-};
+}

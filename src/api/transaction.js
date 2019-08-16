@@ -70,6 +70,7 @@ export default {
     });
   },
   getViewImage (url, token) {
+    console.log(url)
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
       headers: {

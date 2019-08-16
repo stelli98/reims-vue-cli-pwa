@@ -119,7 +119,7 @@ export default {
       );
     },
     convertDateToEpoch () {
-      this.parking.date = new Date(this.parking.date).getTime();
+      this.parking.date = new Date(this.parking.date).getTime()
     }
   }
 };

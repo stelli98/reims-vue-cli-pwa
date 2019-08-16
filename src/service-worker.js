@@ -14,7 +14,7 @@ if (workbox) {
 
 
   workbox.routing.registerRoute(
-    new RegExp('/api/'),
+    new RegExp('/api'),
     new workbox.strategies.NetworkOnly()
   );
 }

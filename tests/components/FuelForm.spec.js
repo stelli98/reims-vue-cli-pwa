@@ -44,7 +44,7 @@ describe("FuelForm.vue", () => {
 
     function initializeTransactionStore () {
         const state = {
-            fuel: fuelData
+            fuel: fuelData.data
         };
         const getters = {
             fuel: state => state.fuel
@@ -76,7 +76,7 @@ describe("FuelForm.vue", () => {
     function createWrapper (store) {
         return shallowMount(FuelForm, {
             store,
-            localVue,
+            localVue,   
             stubs: ["Datetime"],
             sync: false
         });
@@ -90,7 +90,43 @@ describe("FuelForm.vue", () => {
     });
 
     test("methods toggle", () => {
-        //     wrapper.vm.toggle();
-        //     expect(wrapper.vm.isSwitchOn).toBe(false);
+        wrapper.vm.toggle();
+        expect(wrapper.vm.isSwitchOn).toBe(false);
+    });
+
+    test("reformat volume", () => {
+        wrapper.vm.fuel.liters = "1.32"
+        wrapper.vm.reformatVolume();
+        expect(wrapper.vm.fuel.liters).toBe(1.32);
+    });
+
+    test("reformat convertDateToEpoch", () => {
+        wrapper.vm.fuel.date = "2019-08-13T10:26:49.000Z"
+        wrapper.vm.convertDateToEpoch();
+        expect(wrapper.vm.fuel.date).toBe(1565692009000);
+        wrapper.vm.fuel.date += "";
+    });
+
+    test("sendFuelForm method", () => {
+        store.state.transaction.fuel = {
+            id: 500000026,
+            title: "Test 1",
+            image:
+                "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
+            category: "FUEL",
+            date: "2018-05-12T17:19:06.151Z",
+            type: "Premium",
+            liters: "5.0",
+            amount: 9000,
+            created_at: "2018-05-12T17:19:06.151Z",
+            modified_at: ""
+        }
+        wrapper.vm.sendFuelForm();
+        const spyFormatVolume = jest.spyOn(wrapper.vm, 'reformatVolume')
+        const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, 'convertDateToEpoch')
+        const spySaveTransactions = jest.spyOn(store.actions.transaction, 'saveTransaction')
+        expect(spyFormatVolume).toHaveBeenCalled();
+        expect(spyConvertDateToEpoch).toHaveBeenCalled();
+        expect(spySaveTransactions).toHaveBeenCalled();
     });
 });

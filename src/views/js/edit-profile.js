@@ -36,7 +36,8 @@ export default {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.updatePersonalProfile(this.user).then((response) => {
-          this.updateToken(response.headers.authorization)
+          console.log(response.headers)
+          this.updateToken(response.headers.Authorization)
         })
         this.moveTo();
       } else {

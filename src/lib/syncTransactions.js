@@ -53,9 +53,9 @@ export default {
       if (images.length > 0 && forms.length > 0) {
         this.sendImageAndFormToServer(images, 0);
       } else if (images.length > 0 && !forms.length > 0) {
-        this.sendOnlyImageToServer(images);
+        this.sendOnlyImageToServer(images[0]);
       } else if (!images.length > 0 && forms.length > 0) {
-        this.sendOnlyFormToServer(forms);
+        this.sendOnlyFormToServer(forms[0]);
       }
     },
     checkImagesByUserId (images) {
@@ -64,35 +64,25 @@ export default {
     checkFormsByUserId (forms) {
       return forms.find(form => form.userId == this.id);
     },
-    sendOnlyFormToServer (forms) {
-      forms.map(data => {
-        transactionApi.saveTransaction(data, this.token).then(() => {
-          offlineService
-            .deleteDataByKeyFromIndexedDB(formIdb, data.id)
-            .then(() => {
-              this.addSuccessFormNotification();
-              this.setSendingData(false);
-            });
-        });
+    sendOnlyFormToServer (form) {
+      transactionApi.saveTransaction(form, this.token).then(() => {
+        offlineService
+          .deleteDataByKeyFromIndexedDB(formIdb, form.id)
+          .then(() => {
+            this.getTransactions();
+            this.addSuccessFormNotification();
+            this.setSendingData(false);
+          });
       });
     },
     sendOnlyImageToServer (image) {
-      this.createTransaction(this.sendImageObject(image)).then(() => {
+      this.createTransaction(this.sendImageObject(image), this.token).then(() => {
         offlineService
           .deleteDataByKeyFromIndexedDB(imageIdb, image.id)
           .then(() => {
             this.addSuccessImageNotification();
             this.setSendingData(false);
           });
-      });
-      const imageObj = this.sendImageObject(image)
-      store.dispatch('transaction/createTransaction', {
-        imageObj
-      }).then(() => {
-        offlineService.deleteDataByKeyFromIndexedDB(imageIdb, image.id).then(() => {
-          this.addSuccessImageNotification();
-          this.setSendingData(false);
-        });
       });
     },
     sendImageAndFormToServer (images, index) {

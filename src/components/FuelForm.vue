@@ -31,7 +31,7 @@
         Date
       </label>
       <Datetime
-        v-model="fuel.date"
+        v-model="formatDate"
         type="datetime"
         class="form__input"
         :max-datetime="currentDateTime"
@@ -92,31 +92,26 @@
         placeholder=" ex: 1000.34, 1.34, 1.00, 1"
         @blur="$v.fuel.liters.$touch()"
       />
-      <div v-if="$v.fuel.liters.$error">
-        <p
-          v-if="!$v.fuel.liters.float"
-          class="input__error-message"
-        >
-          Volume must be decimal ex: 100.34, 1.34, 1.00, 1
-        </p>
-      </div>
-
-      <div v-if="$v.fuel.liters.$error">
-        <p
-          v-if="!$v.fuel.liters.required"
-          class="input__error-message"
-        >
-          Volume must be filled
-        </p>
-      </div>
-
       <p
-        v-if="!$v.fuel.liters.minValue"
+        v-if="!$v.fuel.liters.float && $v.fuel.liters.required"
         class="input__error-message"
       >
-        Volume must more than 0.01
+        Volume must be decimal ex: 100.34, 1.34, 1.00, 1
+      </p>
+      <p
+        v-if="!$v.fuel.liters.required"
+        class="input__error-message"
+      >
+        Volume must be filled
       </p>
     </div>
+
+    <p
+      v-if="!$v.fuel.liters.minValue && $v.fuel.liters.float"
+      class="input__error-message"
+    >
+      Volume must more than 0.01
+    </p>
     <div class="form__child">
       <label
         class="input__label title--medium-form"

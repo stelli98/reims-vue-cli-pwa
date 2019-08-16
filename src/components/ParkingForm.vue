@@ -43,7 +43,7 @@
           v-if="!$v.parking.date.required"
           class="input__error-message"
         >
-          In DateTime must be filled
+          In must be filled
         </p>
       </div>
     </div>
@@ -67,7 +67,7 @@
           v-if="!$v.parking.out.required"
           class="input__error-message"
         >
-          Out DateTime must be filled
+          Out must be filled
         </p>
       </div>
     </div>

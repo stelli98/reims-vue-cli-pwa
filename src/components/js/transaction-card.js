@@ -15,9 +15,8 @@ export default {
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction (id) {
-      this.deleteTransaction(id).then(() => {
-        this.$emit("updateTransactionList");
-      });
+      this.deleteTransaction(id)
+      this.$emit("updateTransactionList");
     },
     moveTo (transactionId) {
       this.$router.push({

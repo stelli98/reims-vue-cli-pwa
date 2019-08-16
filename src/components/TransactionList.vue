@@ -30,12 +30,13 @@
       </div>
     </div>
     <div class="transaction__list">
-      <TransactionCard
-        v-for="transaction in transactions"
-        :key="transaction.id"
-        :transaction="transaction"
-        @updateTransactionList="updateTransactions"
-      />
+      <div v-for="transaction in transactions">
+        <TransactionCard
+          :key="transaction.id"
+          :transaction="transaction"
+          @updateTransactionList="updateTransactions"
+        />
+      </div>
     </div>
   </div>
 </template>

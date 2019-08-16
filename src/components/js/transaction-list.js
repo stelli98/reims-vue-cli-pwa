@@ -8,7 +8,7 @@ export default {
   },
   computed: {
     isFiltering () {
-      return !!this.$route.query.search || !!this.$route.query.category || !!this.$route.query.start || !!this.$route.query.end || !this.$route.query.sortBy === "date"
+      return !!this.$route.query.search || !!this.$route.query.category || !!this.$route.query.start || !!this.$route.query.end || this.$route.query.sortBy != "date"
     }
   },
   methods: {

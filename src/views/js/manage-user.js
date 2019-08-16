@@ -8,7 +8,7 @@ export default {
   },
   computed: {
     ...mapGetters("user", ["users", "pagination"]),
-    options() {
+    options () {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 10,
@@ -20,34 +20,34 @@ export default {
   methods: {
     ...mapActions("user", ["getUsers"]),
     ...mapActions("auth", ["logout"]),
-    moveTo() {
+    moveTo () {
       this.$router.push({ name: "user-create" });
     },
-    updateUser() {
+    updateUser () {
       this.getUsers(this.options);
     },
-    changePage(toPage) {
+    changePage (toPage) {
       this.options.page = parseInt(toPage);
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
     },
-    submitSearch(event) {
+    submitSearch (event) {
       this.options.search = event.target.value;
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
     },
-    doLogout() {
+    doLogout () {
       this.logout().then(() => {
         this.$router.push({ name: "login" });
       });
     }
   },
   watch: {
-    options() {
+    options () {
       this.updateUser();
     }
   },
-  mounted() {
+  mounted () {
     this.updateUser();
   }
 };

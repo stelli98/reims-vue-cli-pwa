@@ -1,8 +1,8 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import App from "@/App";
-import transactionApi from "@/api/transaction";
-import offlineService from "@/api/transaction-offline";
+// import transactionApi from "@/api/transaction";
+// import offlineService from "@/api/transaction-offline";
 
 describe("SyncTransactions Lib", () => {
     let store;
