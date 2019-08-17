@@ -4,7 +4,6 @@ const expires = d.toGMTString();
 
 export default {
   SET_TOKEN (state, token) {
-    console.log('change token', token)
     document.cookie = `token=${token};expires=${expires}`;
     state.token = token;
   },

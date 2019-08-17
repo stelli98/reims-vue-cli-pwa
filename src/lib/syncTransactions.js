@@ -112,9 +112,7 @@ export default {
     async sendFormAfterImageToServer (formId, response, { success }) {
       const form = await this.findFormByImageID(formId);
       form.image = response.data.data.image;
-      console.log("before send", form);
       transactionApi.saveTransaction(form, this.token).then(response => {
-        console.log("put trans", response);
         this.getTransactions();
         offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId);
         this.addSuccessImageNotification();

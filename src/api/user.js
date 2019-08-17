@@ -47,7 +47,6 @@ export default {
   },
   downloadPersonalReport (options, token) {
     const path = api.report;
-    console.log(options)
     return axios.get(path, {
       params: options,
       headers: {

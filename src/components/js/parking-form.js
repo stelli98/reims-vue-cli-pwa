@@ -89,7 +89,6 @@ export default {
         this.convertDateToEpoch();
         return this.saveTransaction(this.parking)
           .then(response => {
-            console.log(response);
             const notification = {
               type: "success",
               message: "Parking form has been submitted."
@@ -104,8 +103,6 @@ export default {
             };
             this.addNotification(notification);
           });
-      } else {
-        alert("error");
       }
     },
     reformatPrice () {

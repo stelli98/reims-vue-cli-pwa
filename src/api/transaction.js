@@ -62,7 +62,6 @@ export default {
   },
   deleteTransaction (id, token) {
     const path = api.transaction;
-    console.log("delete id :" + id);
     return axios.delete(`${path}/${id}`, {
       headers: {
         "Authorization": token,
@@ -71,7 +70,6 @@ export default {
     });
   },
   getViewImage (url, token) {
-    console.log(url)
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
       headers: {

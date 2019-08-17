@@ -105,4 +105,20 @@ describe("FuelForm.vue", () => {
         wrapper.vm.convertDateToEpoch();
         expect(wrapper.vm.fuel.date).toBe(1565692009000);
     });
+
+    test("fuelAmount computed setter getter", () => {
+        wrapper.setData({ fuelAmount: 20000 })
+        expect(wrapper.vm.fuelAmount).toBe("20.000")
+    })
+
+    test("totalPrice computed", () => {
+        wrapper.setData({ fuelAmount: 200000000000000000000000000000000 })
+        expect(wrapper.vm.totalPrice).toBe("2.6400000000000003e+32")
+    })
+
+    test("formatDate computed setter getter", () => {
+        wrapper.setData({ formatDate: 1565419259000 })
+        expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z")
+
+    })
 });

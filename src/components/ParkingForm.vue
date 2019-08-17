@@ -34,7 +34,7 @@
         v-model="formatInDate"
         type="datetime"
         class="form__input"
-        :max-datetime="parking.out || 
+        :max-datetime="formatOutDate || 
         currentDateTime"
         @close="$v.parking.date.$touch()"
       />

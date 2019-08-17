@@ -139,4 +139,19 @@ describe("ParkingForm.vue", () => {
         // expect(spyConvertDateToEpoch).toHaveBeenCalled();
         // expect(spySaveTransactions).toHaveBeenCalled();
     });
+
+    test("formatInDate computed", () => {
+        wrapper.setData({ formatInDate: 1565419259000 })
+        expect(wrapper.vm.formatInDate).toBe("2019-08-10T06:40:59.000Z")
+    })
+
+    test("formatOutDate computed", () => {
+        wrapper.setData({ formatOutDate: 1565695670000 })
+        expect(wrapper.vm.formatOutDate).toBe("2019-08-13T11:27:50.000Z")
+    })
+
+    test("parkingAmount computed setter getter", () => {
+        wrapper.setData({ parkingAmount: 20000 })
+        expect(wrapper.vm.parkingAmount).toBe("20.000")
+    })
 });

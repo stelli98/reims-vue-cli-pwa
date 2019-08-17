@@ -12,7 +12,7 @@ export default {
       fuelType: { required },
       liters: {
         required,
-        float (input){
+        float (input) {
           return /^[0-9]+([.][0-9]+)?$/g.test(input);
         },
         minValue: minValue(0.01)
@@ -103,7 +103,6 @@ export default {
             this.addNotification(notification);
           })
           .catch(error => {
-            console.log("error-fuel", error);
             const notification = {
               type: "error",
               message:
@@ -111,8 +110,6 @@ export default {
             };
             this.addNotification(notification);
           });
-      } else {
-        console.log("error");
       }
     },
     reformatVolume () {

@@ -95,7 +95,6 @@ const deleteDataByKey = async (storeName, key) => {
     const db = await dbPromise();
     const tx = db.transaction(storeName, "readwrite");
     const store = tx.objectStore(storeName);
-    console.log("delete idb storename " + storeName + " with key " + key);
     await store.delete(key);
     return tx.complete;
   } catch (error) {
