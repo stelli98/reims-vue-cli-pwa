@@ -40,8 +40,6 @@ export default {
           this.updateToken(response.headers.Authorization)
         })
         this.moveTo();
-      } else {
-        console.log("error");
       }
     }
   },

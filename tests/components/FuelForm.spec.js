@@ -105,29 +105,4 @@ describe("FuelForm.vue", () => {
         wrapper.vm.convertDateToEpoch();
         expect(wrapper.vm.fuel.date).toBe(1565692009000);
     });
-
-    test("sendFuelForm method", () => {
-        // store.state.transaction.fuel = {
-        //     id: 500000026,
-        //     title: "Test 1",
-        //     image:
-        //         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
-        //     category: "FUEL",
-        //     date: "2018-05-12T17:19:06.151Z",
-        //     type: "Premium",
-        //     liters: "5.0",
-        //     amount: 9000,
-        //     created_at: "2018-05-12T17:19:06.151Z",
-        //     modified_at: ""
-        // }
-
-        wrapper.vm.reformatVolume = jest.fn()
-        const spyFormatVolume = jest.spyOn(wrapper.vm, 'reformatVolume')
-        const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, 'convertDateToEpoch')
-        const spySaveTransactions = jest.spyOn(store.actions.transaction, 'saveTransaction')
-        wrapper.vm.sendFuelForm();
-        expect(spyFormatVolume).toHaveBeenCalled();
-        expect(spyConvertDateToEpoch).toHaveBeenCalled();
-        expect(spySaveTransactions).toHaveBeenCalled();
-    });
 });
