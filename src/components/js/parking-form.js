@@ -109,7 +109,7 @@ export default {
       this.parking.amount = this.amountInt;
     },
     calculateDuration () {
-      this.parking.hours = Math.floor(
+      this.parking.hours = Math.ceil(
         (new Date(this.parking.out).getTime() -
           new Date(this.parking.date).getTime()) /
         3600000

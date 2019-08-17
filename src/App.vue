@@ -32,4 +32,8 @@ body {
   position: relative;
   z-index: 1;
 }
+
+#app {
+  position: relative;
+}
 </style>

@@ -3,7 +3,7 @@ import authApi from "@/api/auth";
 export default {
   login: async ({ commit }, user) => {
     const data = await authApi.login(user);
-    commit("SET_TOKEN", data.headers.authorization || data.data.token);
+    commit("SET_TOKEN", data.headers.authorization);
     commit("SET_ROLE", data.data.role);
     commit("SET_ID", data.data.id);
     commit("SET_USERNAME", data.data.username);

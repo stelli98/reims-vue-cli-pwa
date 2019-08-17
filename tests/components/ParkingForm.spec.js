@@ -112,7 +112,7 @@ describe("ParkingForm.vue", () => {
     test("methods calculateDuration", () => {
         wrapper.vm.parking.out = "2019-08-13T11:27:50.000Z"
         wrapper.vm.calculateDuration();
-        expect(wrapper.vm.parking.hours).toBe(1);
+        expect(wrapper.vm.parking.hours).toBe(2);
     });
 
     test("sendParkingForm method", () => {

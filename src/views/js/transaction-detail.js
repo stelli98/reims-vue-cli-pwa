@@ -6,6 +6,11 @@ export default {
     ViewFuelDetail,
     ViewParkingDetail
   },
+  data () {
+    return {
+      isLoading: false
+    }
+  },
   computed: {
     ...mapGetters("transaction", ["transaction", "viewImage"]),
     transactionId () {
@@ -35,6 +40,7 @@ export default {
   mounted () {
     this.getTransaction(this.transactionId).then(() => {
       this.getViewImage(this.imagePath)
+      this.isLoading = true;
     })
   }
 };

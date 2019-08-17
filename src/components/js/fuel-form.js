@@ -91,9 +91,9 @@ export default {
     sendFuelForm () {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.fuel.amount = this.amountInt;
         this.reformatVolume();
-        this.convertDateToEpoch()
+        this.convertDateToEpoch();
+        this.fuel.amount = this.amountInt * this.fuel.liters
         return this.saveTransaction(this.fuel)
           .then(response => {
             const notification = {

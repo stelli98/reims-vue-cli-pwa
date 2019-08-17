@@ -12,8 +12,9 @@ export default {
   methods: {
     ...mapActions("user", ["deleteUser"]),
     removeUser (id) {
-      this.deleteUser(id)
-      this.$emit("updateUserList");
+      this.deleteUser(id).then(() => {
+        this.$emit("updateUserList");
+      })
     },
     moveTo (userId) {
       this.$router.push({

@@ -27,7 +27,7 @@ export default {
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction", "setImage"]),
+    ...mapActions("transaction", ["createTransaction", "setImage", "setOCRResultType"]),
     ...mapActions("notification", ["addNotification"]),
     makeFilter () {
       const filterSet = this.filterFunctions;
@@ -76,6 +76,7 @@ export default {
           this.addNotification(notification);
         })
         .catch(() => {
+          this.setOCRResultType("FUEL")
           const notification = {
             type: "error",
             message:

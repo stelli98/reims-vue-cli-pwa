@@ -1,11 +1,22 @@
 <template>
+
   <div class="transaction-form">
-    <div v-show="pictureUrl" class="transaction-form__image">
-      <img crossorigin="Anonymous" :src="pictureUrl" />
+    <div
+      v-show="pictureUrl"
+      class="transaction-form__image"
+    >
+      <img
+        crossorigin="Anonymous"
+        :src="pictureUrl"
+      />
     </div>
 
     <div class="transaction-form__menu">
-      <div class="title--big" :class="{ active: !isSwitchOn }">
+      <div
+        class="title--big"
+        :class="{ active: !isSwitchOn }"
+        :disabled="true"
+      >
         Fuel
       </div>
       <div>
@@ -19,12 +30,18 @@
           </div>
         </div>
       </div>
-      <div class="title--big" :class="{ active: isSwitchOn }">
+      <div
+        class="title--big"
+        :class="{ active: isSwitchOn }"
+      >
         Parking
       </div>
     </div>
 
-    <Component :is="currentComponent" ref="sendForm" />
+    <Component
+      :is="currentComponent"
+      ref="sendForm"
+    />
   </div>
 </template>
 

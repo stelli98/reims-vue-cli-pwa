@@ -32,7 +32,8 @@ export default {
       tabs: {
         PARKING: TOGGLE_BUTTON["true"],
         FUEL: TOGGLE_BUTTON["false"]
-      }
+      },
+      isLoading: false
     };
   },
   computed: {

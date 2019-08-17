@@ -96,6 +96,7 @@ export default {
           );
           this.sendFormAfterImageToServer(images[index].id, response, {
             success: () => {
+              this.getTransactions();
               this.sendImageAndFormToServer(images, index + 1);
             }
           });
@@ -113,7 +114,6 @@ export default {
       const form = await this.findFormByImageID(formId);
       form.image = response.data.data.image;
       transactionApi.saveTransaction(form, this.token).then(response => {
-        this.getTransactions();
         offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId);
         this.addSuccessImageNotification();
         this.addSuccessFormNotification();

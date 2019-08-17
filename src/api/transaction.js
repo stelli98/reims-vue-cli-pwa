@@ -10,8 +10,7 @@ export default {
     const path = api.transaction;
     return axios.get(`${path}/${id}`, {
       headers: {
-        "Authorization": token,
-        "Access-Control-Allow-Origin": "*"
+        Authorization: token
       }
     });
   },
@@ -20,8 +19,7 @@ export default {
     return axios.get(path, {
       params: options,
       headers: {
-        "Authorization": token,
-        "Access-Control-Allow-Origin": "*"
+        Authorization: token
       }
     });
   },
@@ -31,8 +29,7 @@ export default {
       return axios
         .post(path, data, {
           headers: {
-            "Authorization": token,
-            "Access-Control-Allow-Origin": "*"
+            Authorization: token
           },
           errorHandle: false
         })
@@ -49,9 +46,9 @@ export default {
       return axios
         .put(path, data, {
           headers: {
-            "Authorization": token,
-            "Access-Control-Allow-Origin": "*"
-          }
+            Authorization: token
+          },
+          errorHandle: false
         })
         .catch(() => {
           return offlineService.storeFormOffline(data);
@@ -64,8 +61,7 @@ export default {
     const path = api.transaction;
     return axios.delete(`${path}/${id}`, {
       headers: {
-        "Authorization": token,
-        "Access-Control-Allow-Origin": "*"
+        Authorization: token
       }
     });
   },
@@ -73,8 +69,7 @@ export default {
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
       headers: {
-        "Authorization": token,
-        "Access-Control-Allow-Origin": "*"
+        Authorization: token
       }
     });
   },

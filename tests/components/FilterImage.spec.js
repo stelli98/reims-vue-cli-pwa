@@ -43,7 +43,8 @@ describe("FilterImage.vue", () => {
 
   function initializeTransactionStore () {
     const actions = {
-      createTransaction: jest.fn()
+      createTransaction: jest.fn(),
+      setOCRResultType: jest.fn()
     };
     const namespaced = true;
     return { actions, namespaced };

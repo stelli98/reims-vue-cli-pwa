@@ -10,7 +10,10 @@
         </svg>
       </div>
     </div>
-    <div class="transaction-detail__content">
+    <div
+      class="transaction-detail__content"
+      v-if="isLoading"
+    >
       <h3>{{ transactionCategory + " Expenses" }}</h3>
       <p>
         {{ transaction.date || transaction.in | dateFormatter }}

@@ -5,7 +5,7 @@ import getters from "./getters";
 const namespaced = true;
 const state = {
   image: "",
-  OCRResultType: "FUEL",
+  OCRResultType: "",
   parking: {
     category: "PARKING",
     date: "",
