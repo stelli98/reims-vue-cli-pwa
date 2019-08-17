@@ -33,7 +33,8 @@ export default {
           headers: {
             "Authorization": token,
             "Access-Control-Allow-Origin": "*"
-          }
+          },
+          errorHandle: false
         })
         .catch(() => {
           return offlineService.storeImageOffline(data);

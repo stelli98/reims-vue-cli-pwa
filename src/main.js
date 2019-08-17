@@ -10,6 +10,7 @@ import DateFilter from "./filters/date";
 import PriceFilter from "./filters/price";
 import TextFilter from "./filters/text";
 import trimTextFilter from "./filters/trimText";
+require('@/api/errorHandler');
 
 Vue.use(Vuelidate);
 Vue.use(Croppa, { componentName: "Croppa" });
