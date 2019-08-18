@@ -43,12 +43,6 @@ describe("TransactionList.vue", () => {
     expect(wrapper.emitted().openFilter).toEqual([[true]]);
   });
 
-  test("Emit updateTransactions", () => {
-    wrapper = createWrapper();
-    wrapper.vm.updateTransactions();
-    expect(wrapper.emitted().updateTransactions).toEqual([[]]);
-  });
-
   test("Emit downloadReport", () => {
     wrapper = createWrapper();
     wrapper.vm.downloadReport();

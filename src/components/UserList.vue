@@ -5,7 +5,6 @@
       :key="user.id"
       :user="user"
       :index="index"
-      @updateUserList="updateUsers"
     />
   </div>
 </template>

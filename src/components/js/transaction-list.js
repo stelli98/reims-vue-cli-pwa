@@ -15,9 +15,6 @@ export default {
     openFilter () {
       this.$emit("openFilter", true);
     },
-    updateTransactions () {
-      this.$emit("updateTransactions");
-    },
     downloadReport () {
       this.$emit("downloadReport")
     }

@@ -39,7 +39,6 @@
       <UserList
         v-if="users.length"
         :users="users"
-        @updateUsers="updateUser"
       />
       <Pagination
         :paging="pagination"

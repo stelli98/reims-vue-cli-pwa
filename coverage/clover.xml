@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566065284632" clover="3.2.0">
-  <project timestamp="1566065284632" name="All files">
-    <metrics statements="479" coveredstatements="376" conditionals="141" coveredconditionals="77" methods="56" coveredmethods="40" elements="676" coveredelements="493" complexity="0" loc="479" ncloc="479" packages="9" files="43" classes="43">
+<coverage generated="1566089022201" clover="3.2.0">
+  <project timestamp="1566089022201" name="All files">
+    <metrics statements="477" coveredstatements="374" conditionals="141" coveredconditionals="77" methods="56" coveredmethods="40" elements="674" coveredelements="491" complexity="0" loc="477" ncloc="477" packages="9" files="43" classes="43">
       <package name="src">
         <metrics statements="59" coveredstatements="17" conditionals="20" coveredconditionals="0" methods="13" coveredmethods="2"/>
         <file name="App.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\App.vue">
@@ -68,7 +68,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="168" coveredstatements="147" conditionals="61" coveredconditionals="43" methods="10" coveredmethods="5"/>
+        <metrics statements="166" coveredstatements="145" conditionals="61" coveredconditionals="43" methods="10" coveredmethods="5"/>
         <file name="CropImage.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\CropImage.vue">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
@@ -255,25 +255,23 @@
           <line num="97" count="1" type="stmt"/>
         </file>
         <file name="TransactionList.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\TransactionList.vue">
-          <metrics statements="5" coveredstatements="5" conditionals="5" coveredconditionals="5" methods="0" coveredmethods="0"/>
+          <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="5" methods="0" coveredmethods="0"/>
           <line num="1" count="2" type="stmt"/>
-          <line num="11" count="3" type="cond" truecount="5" falsecount="0"/>
+          <line num="11" count="2" type="cond" truecount="5" falsecount="0"/>
           <line num="16" count="1" type="stmt"/>
           <line num="19" count="1" type="stmt"/>
-          <line num="22" count="1" type="stmt"/>
         </file>
         <file name="UserCard.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\UserCard.vue">
           <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="1" count="3" type="stmt"/>
-          <line num="9" count="3" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
           <line num="16" count="1" type="stmt"/>
-          <line num="20" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
         </file>
         <file name="UserList.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\UserList.vue">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="2" type="stmt"/>
-          <line num="11" count="1" type="stmt"/>
         </file>
         <file name="ViewFuelDetail.vue" path="D:\BlibliFuturePhase2\reims-vue-cli-pwa\src\components\ViewFuelDetail.vue">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

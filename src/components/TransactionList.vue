@@ -34,7 +34,6 @@
         <TransactionCard
           :key="transaction.id"
           :transaction="transaction"
-          @updateTransactionList="updateTransactions"
         />
       </div>
     </div>

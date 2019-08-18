@@ -48,7 +48,6 @@
     <TransactionList
       :transactions="transactions"
       @openFilter="toogleFilter"
-      @updateTransactions="updateTransaction"
       @downloadReport="download"
     />
     <Pagination
