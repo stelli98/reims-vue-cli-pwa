@@ -1,13 +1,19 @@
 <template>
   <div>
-    <div class="transaction-detail__header">
-      <div class="transaction-detail__close" @click="moveTo">
+    <div class="header transaction-detail__header">
+      <div
+        class="transaction-detail__close"
+        @click="$router.go(-1)"
+      >
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-back" />
         </svg>
       </div>
     </div>
-    <div class="transaction-detail__content">
+    <div
+      class="transaction-detail__content"
+      v-if="isLoading"
+    >
       <h3>{{ transactionCategory + " Expenses" }}</h3>
       <p>
         {{ transaction.date || transaction.in | dateFormatter }}
@@ -15,62 +21,22 @@
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <img class="transaction-detail__image" :src="transaction.image" />
-      <Component :is="activeComponent" :transaction="transaction" />
+      <img
+        class="transaction-detail__image"
+        :src="imageBase64"
+      />
+      <Component
+        :is="activeComponent"
+        :transaction="transaction"
+      />
     </div>
   </div>
 </template>
 
-<script>
-import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
-import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
-import { mapActions, mapState } from "vuex";
-export default {
-  components: {
-    ViewFuelDetail,
-    ViewParkingDetail
-  },
-  computed: {
-    ...mapState("transaction", ["transaction"]),
-    transactionId() {
-      return this.$route.params.id;
-    },
-    transactionCategory() {
-      return this.$options.filters.textFormatter(this.transaction.category);
-    },
-    activeComponent() {
-      return this.transactionCategory
-        ? `View${this.transactionCategory}Detail`
-        : "";
-    }
-  },
-  methods: {
-    ...mapActions("transaction", ["getTransaction"]),
-    moveTo() {
-      this.$router.go(-1);
-    }
-  },
-  mounted() {
-    this.getTransaction(this.transactionId);
-  }
-};
-</script>
+<script src="./js/transaction-detail.js"></script>
 
 <style lang="scss">
 .transaction-detail {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: $color-green-gradient;
-    height: 5rem;
-    padding: 0 1.5rem;
-
-    & > div {
-      cursor: pointer;
-    }
-  }
-
   &__image {
     margin: 1.2rem auto;
     display: flex;

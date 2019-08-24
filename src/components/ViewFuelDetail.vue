@@ -2,15 +2,15 @@
   <div class="transaction-detail__list">
     <div class="transaction-detail__box">
       <h3>Fuel Type</h3>
-      <p>{{ transaction.type }}</p>
+      <p>{{ transaction.type | textFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Volume</h3>
-      <p>{{ transaction.volume }}</p>
+      <p>{{ transaction.liters }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Unit Price</h3>
-      <p>{{ transaction.unitPrice | priceFormatter }}</p>
+      <p>{{ transaction.amount | priceFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Total Price</h3>
@@ -19,17 +19,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    transaction: Object
-  },
-  computed: {
-    totalPrice() {
-      return this.transaction.unitPrice * this.transaction.volume;
-    }
-  }
-};
-</script>
+<script src="./js/view-fuel-detail.js"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

@@ -2,15 +2,15 @@
   <div class="transaction-detail__list">
     <div class="transaction-detail__box">
       <h3>In</h3>
-      <p>{{ transaction.in | dateFormatter }}</p>
+      <p>{{ transaction.date | dateFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
-      <h3>Out</h3>
-      <p>{{ transaction.out | dateFormatter }}</p>
+      <h3>Total Hours</h3>
+      <p>{{ transaction.hours }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Vehicle Type</h3>
-      <p>{{ transaction.vehicle }}</p>
+      <p>{{ transaction.type | textFormatter }}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>License</h3>
@@ -22,17 +22,11 @@
     </div>
     <div class="transaction-detail__box">
       <h3>Total Price</h3>
-      <p>{{ transaction.price | priceFormatter }}</p>
+      <p>{{ transaction.amount | priceFormatter }}</p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    transaction: Object
-  }
-};
-</script>
+<script src="./js/view-parking-detail.js"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

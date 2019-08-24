@@ -8,7 +8,7 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "created_at"
+      sortBy: "createdAt"
     },
     status: "OK",
     data: [
@@ -17,41 +17,41 @@ export default [
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       },
       {
         id: 2,
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
         title: "Bensin PP Thamrin - GI",
-        price: 25000
+        amount: 25000
       },
       {
         id: 3,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       },
       {
         id: 4,
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
         title: "Bensin PP Thamrin - GI",
-        price: 25000
+        amount: 25000
       },
       {
         id: 5,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       }
     ],
     paging: {
       pageNumber: 1,
       pageSize: 5,
-      totalPage: 2,
+      totalPages: 2,
       totalRecords: 10
     }
   },
@@ -62,7 +62,7 @@ export default [
     params: {
       page: 2,
       size: 5,
-      sortBy: "created_at"
+      sortBy: "createdAt"
     },
     status: "OK",
     data: [
@@ -71,41 +71,41 @@ export default [
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
         title: "Bensin PP Jakarta - Bandung",
-        price: 25000
+        amount: 25000
       },
       {
         id: 7,
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
         title: "Bensin Town Hall",
-        price: 25000
+        amount: 25000
       },
       {
         id: 8,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Bus Mini",
-        price: 25000
+        amount: 25000
       },
       {
         id: 9,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Motor GI",
-        price: 25000
+        amount: 25000
       },
       {
         id: 10,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 6",
-        price: 25000
+        amount: 25000
       }
     ],
     paging: {
       pageNumber: 1,
       pageSize: 5,
-      totalPage: 2,
+      totalPages: 2,
       totalRecords: 10
     }
   },
@@ -129,47 +129,47 @@ export default [
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       },
       {
         id: 3,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       },
       {
         id: 5,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
         title: "Parkir Tanggal 20",
-        price: 25000
+        amount: 25000
       }
     ],
     paging: {
       pageNumber: 1,
       pageSize: 5,
-      totalPage: 1,
+      totalPages: 1,
       totalRecords: 3
     }
   },
   // {
-  //     'code': 200,
-  //     'method': 'POST',
-  //     'url': api.transactions.transaction,
-  //     'status': 'OK',
-  //     'data': {
-  //         'id': 500000026,
-  //         'image': 'https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379',
-  //         'location': 'Graha Niaga Thamrin',
-  //         'category': 'PARKING',
-  //         'license': 'BL 6728 POW',
-  //         'vehicle': 'Motorcycle',
-  //         'in': '2018-05-12T17:19:06.151Z',
-  //         'out': '2018-05-12T17:19:06.151Z',
-  //         'price': 9000,
-  //         'created_at': '01:12:2007 03:06:10z',
-  //         'modified_at': '',
+  //     "code": 200,
+  //     "method": "POST",
+  //     "url": api.transactions.transaction,
+  //     "status": "OK",
+  //     "data": {
+  //         "id": 500000026,
+  //         "image": "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
+  //         "location": "Graha Niaga Thamrin",
+  //         "category": "PARKING",
+  //         "license": "BL 6728 POW",
+  //         "type": "Motorcycle",
+  //         "in": "2018-05-12T17:19:06.151Z",
+  //         "out": "2018-05-12T17:19:06.151Z",
+  //         "amount": 9000,
+  //         "created_at": "01:12:2007 03:06:10z",
+  //         "modified_at": ",
   //     }
   // },
   {
@@ -179,15 +179,25 @@ export default [
     status: "OK",
     data: {
       id: 500000026,
+      title: "",
       image:
         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
       category: "FUEL",
       date: "2018-05-12T17:19:06.151Z",
       type: "Premium",
-      volume: 5.0,
-      unitPrice: 9000,
+      liters: 5.0,
+      amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: ""
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction + '/3278/12345abc',
+    status: "OK",
+    data: {
+      image: '12345abc'
     }
   },
   {
@@ -202,35 +212,35 @@ export default [
       location: "Graha Niaga Thamrin",
       category: "PARKING",
       license: "BL 6728 POW",
-      vehicle: "Motor",
-      in: "2018-05-12T17:19:06.151Z",
+      type: "Motor",
+      "in ": "2018-05-12T17:19:06.151Z",
       out: "2018-05-12T17:19:06.151Z",
-      price: 9000,
+      amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: "2018-05-12T17:19:06.151Z"
     }
   },
   // {
-  //     'code': 200,
-  //     'method': 'PUT',
-  //     'url': api.transactions.transaction,
-  //     'status': 'OK',
-  //     'data': {
-  //         'id': 500000026,
-  //         'title': 'Blibli Future Program',
-  //         'image': 'https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379',
-  //         'category': 'FUEL',
-  //         'type': 'premium',
-  //         'volume': 5.00,
-  //         'price': 9000,
-  //         'created_at': '2018-05-12T17:19:06.151Z',
-  //         'modified_at': '2018-05-12T17:19:06.151Z',
+  //     "code": 200,
+  //     "method": "PUT",
+  //     "url": api.transactions.transaction,
+  //     "status": "OK",
+  //     "data": {
+  //         "id": 500000026,
+  //         "title": "Blibli Future Program",
+  //         "image": "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
+  //         "category": "FUEL",
+  //         "type": "premium",
+  //         "liters": 5.00,
+  //         "amount": 9000,
+  //         "created_at": "2018-05-12T17:19:06.151Z",
+  //         "modified_at": "2018-05-12T17:19:06.151Z",
   //     }
   // },
   {
     code: 200,
     method: "GET",
-    url: api.transactions.transaction + "/1",
+    url: api.transactions.transaction + "/2",
     status: "OK",
     data: {
       id: 2,
@@ -239,8 +249,8 @@ export default [
       date: "2018-05-12T17:19:06.151Z",
       image:
         "https://i.ibb.co/CH1BZGh/0-214a0b28-8817-4f97-9f18-8933fb3a4b92-700-1045.jpg",
-      unitPrice: 90000,
-      volume: 23.5,
+      amount: 9000,
+      liters: 1.5,
       type: "Premium",
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: "2018-05-12T17:19:06.151Z"
@@ -249,7 +259,7 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.transactions.transaction + "/2",
+    url: api.transactions.transaction + "/1",
     status: "OK",
     data: {
       id: 1,
@@ -258,10 +268,10 @@ export default [
       location: "Graha Niaga Thamrin",
       category: "PARKING",
       license: "BL 6728 POW",
-      vehicle: "Motor",
+      type: "Motor",
       in: "2018-05-12T17:19:06.151Z",
       out: "2018-05-12T17:19:06.151Z",
-      price: 9000,
+      amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: "2018-05-12T17:19:06.151Z"
     }
@@ -342,7 +352,7 @@ export default [
     paging: {
       pageNumber: 1,
       pageSize: 10,
-      totalPage: 2,
+      totalPages: 2,
       totalRecords: 20
     }
   },
@@ -422,7 +432,7 @@ export default [
     paging: {
       pageNumber: 2,
       pageSize: 10,
-      totalPage: 2,
+      totalPages: 2,
       totalRecords: 20
     }
   },
@@ -478,7 +488,7 @@ export default [
     paging: {
       pageNumber: 1,
       pageSize: 10,
-      totalPage: 1,
+      totalPages: 1,
       totalRecords: 4
     }
   },
@@ -489,7 +499,7 @@ export default [
     status: "OK",
     data: {
       id: 1559058600,
-      username: "Hefriza Munaf",
+      username: "Munawan Sadakh",
       password: "Test123",
       role: "ADMIN",
       created_at: 1559058410
@@ -506,6 +516,20 @@ export default [
       password: "Test123",
       role: "ADMIN",
       updated_at: 1559058410
+    }
+  },
+  {
+    code: 200,
+    method: "POST",
+    url: api.auth.login,
+    status: "OK",
+    headers: {
+      authorization: "Bearer 123"
+    },
+    data: {
+      id: 1,
+      username: "Hefriza Munaf",
+      role: "ADMIN"
     }
   }
 ];

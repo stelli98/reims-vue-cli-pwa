@@ -1,28 +1,43 @@
 import userApi from "@/api/user";
 
 export default {
-  createUser: ({ commit }, data) => {
-    userApi.createUser(data);
+  createUser: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.createUser(data, token);
+    return response;
   },
   emptyUser: ({ commit }, data) => {
     commit("SET_USER_EMPTY", data);
   },
-  getUser: async ({ commit }, id) => {
-    const { data } = await userApi.getUser(id);
+  getUser: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUser(id, token);
     commit("SET_USER", data);
   },
-  getUsers: async ({ commit }, options) => {
-    const { data } = await userApi.getUsers(options);
+  getUsers: async ({ commit, rootState }, options) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getUsers(options, token);
     commit("SET_USERS", data);
     commit("SET_PAGINATION", data);
   },
-  updateUser: ({}, data) => {
-    userApi.updateUser(data.id, data);
+  updateUser: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.updateUser(data.id, data, token);
+    return response;
   },
-  changePassword: ({}, data) => {
-    userApi.changePassword(data);
+  deleteUser: async ({ commit, rootState }, id) => {
+    commit("DELETE_USER", id);
+    const { token } = rootState.auth;
+    const data = await userApi.deleteUser(id, token);
+    return data;
   },
-  deleteUser: ({}, id) => {
-    userApi.deleteUser(id);
+  downloadPersonalReport: ({ rootState }, options) => {
+    const { token } = rootState.auth;
+    userApi.downloadPersonalReport(options, token);
+  },
+  updatePersonalProfile: async ({ rootState }, data) => {
+    const { token } = rootState.auth;
+    const response = await userApi.updatePersonalProfile(data, token);
+    return response;
   }
 };

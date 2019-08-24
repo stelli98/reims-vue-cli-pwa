@@ -1,13 +1,11 @@
 <template>
   <div id="app">
+    <NotificationContainer></NotificationContainer>
     <router-view />
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
+<script src="./lib/syncTransactions.js" />
 <style lang="scss">
 * {
   margin: 0;
@@ -29,9 +27,13 @@ body {
   font-family: "Nunito Regular", sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  // color: $color-black;
+  color: $color-black;
   height: 100vh;
   position: relative;
   z-index: 1;
+}
+
+#app {
+  position: relative;
 }
 </style>

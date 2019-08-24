@@ -3,118 +3,66 @@
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
-          <img src="../assets/images/logo.png" class="logo__small" />
+          <img
+            src="../assets/images/logo.png"
+            class="logo__small"
+          />
         </div>
         <div class="home__header__upper__right">
-          <div class="home__header__nav__user" @click="moveTo('user')">
-            Manage User
-          </div>
           <div
             class="home__header__nav__password"
-            @click="moveTo('change-password')"
+            @click="moveTo('edit-profile')"
           >
-            Change Password
+            Edit Profile
           </div>
-          <div class="home__header__nav__logout">
+          <div
+            class="home__header__nav__logout"
+            @click="doLogout"
+          >
             Logout
           </div>
         </div>
       </div>
       <div class="home__header__footer">
         <div class="home__header__footer__container">
-          <div class="home__header__footer__heading">
+          <div class="heading home__header__footer__heading">
             Make Reimbursement Reporting Become Easier
           </div>
           <div class="home__header__footer__button">
-            <input id="file" type="file" name="file" @change="onFileChange" />
-            <label for="file" class="btn-white">
+            <input
+              id="file"
+              type="file"
+              name="file"
+              @change="onFileChange"
+            />
+            <label
+              for="file"
+              class="btn-white"
+            >
               Upload Receipt
             </label>
           </div>
         </div>
       </div>
     </header>
-    <TransactionList :transactions="transactions" @openFilter="toogleFilter" />
-    <Pagination :paging="pagination" @changePage="changePage" />
+    <TransactionList
+      :transactions="transactions"
+      @openFilter="toogleFilter"
+      @downloadReport="download"
+    />
+    <Pagination
+      :paging="pagination"
+      @changePage="changePage"
+    />
     <SortFilter
       v-show="showFilter"
       @closeFilter="toogleFilter"
-      @applyFilter="applyFilter"
     >
     </SortFilter>
   </div>
 </template>
 
-<script>
-import TransactionList from "@/components/TransactionList";
-import Pagination from "@/components/Pagination.vue";
-import SortFilter from "@/components/SortFilter.vue";
-
-import { mapActions, mapState } from "vuex";
-export default {
-  components: {
-    TransactionList,
-    Pagination,
-    SortFilter
-  },
-  created() {
-    console.log("created called");
-    this.updateTransaction(this.options);
-  },
-  data() {
-    return {
-      showFilter: false
-    };
-  },
-  computed: {
-    ...mapState("transaction", ["transactions", "pagination"]),
-    options() {
-      return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
-        sortBy: "created_at"
-      };
-    }
-  },
-  methods: {
-    ...mapActions("transaction", ["setImage", "getTransactions"]),
-    onFileChange(e) {
-      const file = URL.createObjectURL(e.target.files[0]);
-      this.setImage(file);
-      this.$router.push({
-        name: "create",
-        params: { step: 1 }
-      });
-    },
-    changePage(toPage) {
-      this.options.page = parseInt(toPage);
-      const allOptions = { ...this.$route.query, ...this.options };
-      this.$router.push({ name: "home", query: allOptions });
-      this.getTransactions(allOptions);
-    },
-    toogleFilter(value) {
-      this.showFilter = value;
-    },
-    updateTransaction(options) {
-      this.getTransactions(options);
-    },
-    moveTo(toPage) {
-      this.$router.push({ name: toPage });
-    },
-    applyFilter(options) {
-      this.options.page = 1;
-      const allOptions = { ...this.options, ...options };
-      this.updateTransaction(allOptions);
-      this.$router.push({ name: "home", query: allOptions });
-    }
-  },
-  watch: {
-    options() {
-      this.updateTransaction(this.options);
-    }
-  }
-};
-</script>
+<script src="./js/home-page.js"></script>
 
 <style lang="scss">
 .home__header {

@@ -1,6 +1,12 @@
 <template>
-  <div v-show="paging.totalPage > 1" class="pagination">
-    <div class="first" @click="moveTo(1)">
+  <div
+    v-show="paging.totalPages > 1"
+    class="pagination"
+  >
+    <div
+      class="first"
+      @click="moveTo(1)"
+    >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -15,23 +21,23 @@
       </svg>
     </div>
     <div class="pagination__go-to">
-      <div class="pagination__caption">
-        <input
-          v-model="inputPage"
-          class="pagination__input"
-          type="number"
-          name=""
-          min="1"
-          :max="paging.totalPage"
-        />
-        <h2 class="pagination__text">/ {{ paging.totalPage }}</h2>
-      </div>
-      <button class="pagination__button" @click="moveTo(parseInt(inputPage))">
-        Go
-      </button>
+      <select
+        v-model="currentPage"
+        class="pagination__selection"
+        onfocus='this.size=2;'
+        onblur='this.size=1;'
+        onchange='this.size=1; this.blur();'
+        @click="moveTo(currentPage)"
+      >
+        <option
+          :selected="currentPage"
+          class="pagination__option"
+          v-for="(n,index) in paging.totalPages"
+        >{{index+1}}</option>
+      </select>
     </div>
     <div
-      v-show="paging.pageNumber != paging.totalPage"
+      v-show="paging.pageNumber != paging.totalPages"
       class="next"
       @click="moveTo(paging.pageNumber + 1)"
     >
@@ -39,7 +45,10 @@
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div class="last" @click="moveTo(paging.totalPage)">
+    <div
+      class="last"
+      @click="moveTo(paging.totalPages)"
+    >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
@@ -47,36 +56,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    paging: Object
-  },
-  data() {
-    return {
-      currentPage: this.$route.query.page || 1
-    };
-  },
-  computed: {
-    inputPage: {
-      set(value) {
-        this.currentPage = value;
-      },
-      get() {
-        return this.currentPage;
-      }
-    }
-  },
-  methods: {
-    moveTo(toPage) {
-      this.inputPage = toPage;
-      this.$emit("changePage", toPage);
-    }
-  }
-};
-</script>
-
-<style lang="scss" scoped>
+<script src="./js/pagination.js"></script>
+<style lang="scss">
 .pagination {
   display: flex;
   justify-content: center;
@@ -117,6 +98,14 @@ export default {
   &__text {
     align-self: center;
     color: $color-green;
+  }
+
+  &__selection {
+    padding: 0.5rem;
+  }
+
+  &__option {
+    padding: 0.5rem;
   }
 }
 </style>

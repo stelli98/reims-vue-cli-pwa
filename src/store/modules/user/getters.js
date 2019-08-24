@@ -1,5 +1,11 @@
 export default {
-  getUserDetail(state) {
+  user(state) {
     return state.user;
+  },
+  users(state) {
+    return state.users;
+  },
+  pagination(state) {
+    return state.pagination;
   }
 };

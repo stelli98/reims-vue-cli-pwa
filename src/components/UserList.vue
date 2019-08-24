@@ -1,22 +1,17 @@
 <template>
   <div class="user__list">
-    <UserCard v-for="user in users" :key="user.id" :user="user" />
+    <UserCard
+      v-for="(user, index) in users"
+      :key="user.id"
+      :user="user"
+      :index="index"
+    />
   </div>
 </template>
 
-<script>
-import UserCard from "@/components/UserCard.vue";
-export default {
-  components: {
-    UserCard
-  },
-  props: {
-    users: Array
-  }
-};
-</script>
+<script src="./js/user-list.js"></script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .user {
   &__list {
     display: grid;

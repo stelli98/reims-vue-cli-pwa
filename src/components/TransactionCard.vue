@@ -1,14 +1,12 @@
 <template>
-  <router-link
-    class="link"
-    :to="{ name: 'transaction-detail', params: { id: transaction.id } }"
-  >
-    <div class="transaction__card">
+  <div class="transaction__card">
+    <div
+      class="transaction__card__content"
+      @click="moveTo(transaction.id)"
+    >
       <div class="transaction__card__left">
         <svg class="icon icon-big">
-          <use
-            v-bind="{ 'xlink:href': 'icons.svg#icon-' + transaction.category }"
-          />
+          <use v-bind="{'xlink:href':`icons.svg#icon-${transaction.category.toLowerCase()}`}" />
         </svg>
       </div>
       <div class="transaction__card__center">
@@ -19,44 +17,26 @@
           {{ transactionTitle }}
         </div>
         <div class="title--small transaction__price">
-          {{ transaction.price | priceFormatter }}
+          {{ transaction.amount | priceFormatter }}
         </div>
       </div>
-
-      <div
-        class="transaction__card__right"
-        @click="removeTransaction(transaction.id)"
-      >
-        <svg class="icon icon-medium-green">
-          <use xlink:href="icons.svg#icon-dustbin" />
-        </svg>
-      </div>
     </div>
-  </router-link>
+
+    <div
+      class="transaction__card__right"
+      @click="removeTransaction(transaction.id)"
+    >
+      <svg
+        class="icon icon-medium-green"
+        id="delete"
+      >
+        <use xlink:href="icons.svg#icon-dustbin" />
+      </svg>
+    </div>
+  </div>
 </template>
 
-<script>
-import { mapActions } from "vuex";
-export default {
-  props: {
-    transaction: Object
-  },
-  computed: {
-    transactionTitle() {
-      return this.$options.filters.trimTextFormatter(
-        this.transaction.title,
-        20
-      );
-    }
-  },
-  methods: {
-    ...mapActions("transaction", ["deleteTransaction"]),
-    removeTransaction(id) {
-      this.deleteTransaction(id);
-    }
-  }
-};
-</script>
+<script src="./js/transaction-card.js"></script>
 
 <style lang="scss">
 .transaction__card {
@@ -72,10 +52,9 @@ export default {
     margin: 2.5rem 0;
   }
 
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2),
-      0 1px 15px 0 rgba(0, 0, 0, 0.19);
+  &__content {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -90,6 +69,11 @@ export default {
 
 .transaction__card__right {
   padding: 2rem;
+  &:hover {
+    #delete {
+      fill: $color-red;
+    }
+  }
 }
 
 .link {

@@ -5,7 +5,7 @@
         v-model="myCroppa"
         class="croppa-canvas"
         auto-sizing
-        :initial-image="transaction.image"
+        :initial-image="image"
       />
     </div>
     <div class="crop-image__button">
@@ -37,41 +37,7 @@
   </div>
 </template>
 
-<script>
-import { mapState } from "vuex";
-export default {
-  name: "App",
-  data() {
-    return {
-      myCroppa: null,
-      image: "",
-      filterFunctions: null,
-      width: 0,
-      height: 0
-    };
-  },
-  methods: {
-    generateImage() {
-      if (this.myCroppa.hasImage()) {
-        return this.myCroppa.generateDataUrl("image/webp", 0.7);
-      }
-    },
-    flipXImage() {
-      this.myCroppa.flipX();
-    },
-    flipYImage() {
-      this.myCroppa.flipY();
-    },
-    rotateRight() {
-      this.myCroppa.rotate(1);
-    },
-    rotateLeft() {
-      this.myCroppa.rotate(-1);
-    }
-  },
-  computed: mapState(["transaction"])
-};
-</script>
+<script src="./js/crop-image.js"></script>
 
 <style lang="scss">
 .croppa-container.croppa-canvas {
