@@ -1,5 +1,6 @@
-import UserList from "@/components/UserList.vue";
-import Pagination from "@/components/Pagination.vue";
+const UserList = () => import("@/components/UserList.vue");
+const Pagination = () => import("@/components/Pagination.vue");
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
@@ -48,6 +49,7 @@ export default {
     }
   },
   mounted () {
+    this.$router.push({ query: { ...this.options, ...this.$route.query } })
     this.updateUser();
   }
 };

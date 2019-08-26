@@ -14,7 +14,7 @@ export default {
     ...mapActions("user", ["deleteUser"]),
     removeUser (id) {
       this.deleteUser(id).then(() => {
-        this.$router.push({ name: "user" })
+        this.$router.push({ query: { ...this.$route.query, page: 1 } })
       })
     },
     moveTo (userId) {

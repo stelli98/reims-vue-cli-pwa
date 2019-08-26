@@ -1,4 +1,4 @@
-import TransactionCard from "@/components/TransactionCard.vue";
+const TransactionCard = () =>import("@/components/ParkingForm.vue");
 export default {
   components: {
     TransactionCard

@@ -1,6 +1,6 @@
 import { mapActions, mapGetters } from "vuex";
-import ParkingForm from "@/components/ParkingForm.vue";
-import FuelForm from "@/components/FuelForm.vue";
+const ParkingForm = () => import("@/components/ParkingForm.vue");
+const FuelForm = () => import("@/components/FuelForm.vue");
 
 const TOGGLE_BUTTON = {
   true: {

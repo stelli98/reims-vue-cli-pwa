@@ -1,6 +1,6 @@
-import CropImage from "@/components/CropImage.vue";
-import FilterImage from "@/components/FilterImage.vue";
-import TransactionForm from "@/components/TransactionForm.vue";
+const CropImage = () => import("@/components/CropImage.vue");
+const FilterImage = () => import("@/components/FilterImage.vue");
+const TransactionForm = () => import("@/components/TransactionForm.vue");
 import offlineService from "@/api/transaction-offline";
 import { mapActions, mapGetters } from "vuex";
 export default {

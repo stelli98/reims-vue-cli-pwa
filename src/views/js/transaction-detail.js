@@ -1,5 +1,6 @@
-import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
-import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
+const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue");
+const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue");
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {

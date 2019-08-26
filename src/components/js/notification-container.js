@@ -1,4 +1,4 @@
-import NotificationBar from "@/components/NotificationBar";
+const NotificationBar = () => import("@/components/NotificationBar");
 import { mapGetters } from "vuex";
 
 export default {

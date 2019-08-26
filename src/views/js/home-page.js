@@ -1,6 +1,6 @@
-import TransactionList from "@/components/TransactionList";
-import Pagination from "@/components/Pagination.vue";
-import SortFilter from "@/components/SortFilter.vue";
+const TransactionList = () => import("@/components/TransactionList");
+const Pagination = () => import("@/components/Pagination.vue");
+const SortFilter = () => import("@/components/SortFilter.vue");
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -66,7 +66,7 @@ export default {
     },
   },
   mounted () {
-    this.$router.replace({ query: { ...this.options, ...this.$route.query } })
+    this.$router.push({ query: { ...this.options, ...this.$route.query } })
     this.updateTransaction();
   }
 };

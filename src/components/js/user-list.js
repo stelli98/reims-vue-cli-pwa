@@ -1,4 +1,4 @@
-import UserCard from "@/components/UserCard.vue";
+const UserCard = () => import("@/components/UserCard.vue")
 export default {
   components: {
     UserCard
