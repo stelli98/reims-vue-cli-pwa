@@ -17,13 +17,13 @@ export default {
     NotificationContainer
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction", "getTransactions"]),
+    ...mapActions("transaction", ["ction", "getTransactions"]),
     ...mapActions("notification", ["addNotification"]),
-    checkConnectivityStatus () {
-      this.interval = setInterval(() => {
-        navigator.onLine && !this.isSending ? this.checkDataInIDB() : "";
-      }, 10000);
-    },
+    // checkConnectivityStatus () {
+    //   this.interval = setInterval(() => {
+    //     navigator.onLine && !this.isSending ? this.checkDataInIDB() : "";
+    //   }, 10000);
+    // },
     setSendingData (value) {
       this.isSending = value;
     },
@@ -141,7 +141,7 @@ export default {
     ...mapGetters("auth", ["token", "id"])
   },
   created () {
-    this.checkConnectivityStatus();
+    // this.checkConnectivityStatus();
   },
   beforeDestroy () {
     clearTimeout(this.interval);

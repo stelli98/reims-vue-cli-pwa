@@ -41,6 +41,9 @@
             >
               Upload Receipt
             </label>
+            <button @click="postTest">
+              Post Test
+            </button>
           </div>
         </div>
       </div>

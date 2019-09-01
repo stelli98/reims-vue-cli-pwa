@@ -75,5 +75,13 @@ export default {
   },
   isOnline () {
     return navigator.onLine;
+  },
+  postTest () {
+    return axios.post('https://reqres.in/api/users', {
+      data: {
+        "name": "stelli",
+        "job": "leader"
+      }
+    })
   }
 };

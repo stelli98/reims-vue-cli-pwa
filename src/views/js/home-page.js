@@ -2,6 +2,7 @@ const TransactionList = () => import("@/components/TransactionList");
 const Pagination = () => import("@/components/Pagination.vue");
 const SortFilter = () => import("@/components/SortFilter.vue");
 import { mapActions, mapGetters } from "vuex";
+import transactionApi from "@/api/transaction";
 
 export default {
   components: {
@@ -58,11 +59,17 @@ export default {
     },
     download () {
       this.downloadPersonalReport(this.$route.query)
+    },
+    postTest () {
+      console.log('call test')
+      transactionApi.postTest()
     }
   },
   watch: {
     '$route' () {
-      this.updateTransaction();
+      this.updateTransaction().then(response => {
+        console.log(response)
+      })
     },
   },
   mounted () {
