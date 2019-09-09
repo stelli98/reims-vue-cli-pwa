@@ -42,7 +42,7 @@ describe("Actions for Auth Module", () => {
 
   test("update token", () => {
     const commit = jest.fn();
-    const token = `Bearer 321`
+    const token = `Bearer 321`;
     actions.updateToken({ commit }, token);
     expect(commit).toHaveBeenCalledWith("SET_TOKEN", token);
   });

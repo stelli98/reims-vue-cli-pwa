@@ -1,16 +1,9 @@
 <template>
   <div>
-    <div
-      v-show="transactionDisabled"
-      class="loading-true"
-    >
-    </div>
+    <div v-show="transactionDisabled" class="background-dark background-dark__transaction"></div>
     <div class="create-transaction">
       <div class="header create-transaction__header">
-        <div
-          class="create-transaction__close"
-          @click="moveTo"
-        >
+        <div class="create-transaction__close" @click="moveTo">
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-cancel" />
           </svg>
@@ -105,18 +98,11 @@
 <script src="./js/create-transaction.js"></script>
 
 <style lang="scss">
-.loading-true {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 100;
-  opacity: 0.4;
-  background-color: $color-black;
+.background-dark__transaction{
   width: 100vw;
   height: 120vh;
 }
+
 .create-transaction {
   &__order {
     width: 70vw;

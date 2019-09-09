@@ -27,7 +27,7 @@ export default {
       default: ""
     }
   },
-  data () {
+  data() {
     return {
       tabs: {
         PARKING: TOGGLE_BUTTON["true"],
@@ -38,13 +38,13 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["OCRResultType"]),
-    currentComponent () {
+    currentComponent() {
       return this.OCRResultType;
     },
-    isSwitchOn () {
+    isSwitchOn() {
       return this.currentComponent ? this.tabs[this.currentComponent].show : "";
     },
-    parkingTemplate () {
+    parkingTemplate() {
       return {
         data: {
           category: "PARKING",
@@ -61,7 +61,7 @@ export default {
         }
       };
     },
-    fuelTemplate () {
+    fuelTemplate() {
       return {
         data: {
           category: "FUEL",
@@ -76,22 +76,24 @@ export default {
       };
     }
   },
-  created () {
+  created() {
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
   },
   methods: {
     ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),
-    toggle () {
+    toggle() {
       this.setOCRResultType(
         TOGGLE_BUTTON[(!this.isSwitchOn).toString()].component
       );
     },
-    saveData () {
-      this.isSwitchOn ? this.$refs.sendForm.sendParkingForm().then(() => this.emptyAllForm()) : this.$refs.sendForm.sendFuelForm().then(() => this.emptyAllForm())
+    saveData() {
+      this.isSwitchOn
+        ? this.$refs.sendForm.sendParkingForm().then(() => this.emptyAllForm())
+        : this.$refs.sendForm.sendFuelForm().then(() => this.emptyAllForm());
     },
-    emptyAllForm () {
+    emptyAllForm() {
       this.setFormEmpty(this.parkingTemplate);
       this.setFormEmpty(this.fuelTemplate);
       this.$router.push({ name: "home" });

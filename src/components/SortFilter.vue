@@ -2,18 +2,12 @@
   <transition name="slide">
     <div class="sort-filter">
       <div class="header sort-filter__header">
-        <div
-          class="sort-filter__close"
-          @click="moveTo"
-        >
+        <div class="sort-filter__close" @click="moveTo">
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-cancel" />
           </svg>
         </div>
-        <div
-          class="title--menu user-form__next"
-          @click="resetFilter"
-        >
+        <div class="title--menu user-form__next" @click="resetFilter">
           RESET
         </div>
       </div>
@@ -23,10 +17,7 @@
         </div>
         <form class="sort-filter__form">
           <div class="form__child">
-            <label
-              class="input__label title--medium-form"
-              for="type"
-            >
+            <label class="input__label title--medium-form" for="type">
               Keyword Search
             </label>
             <input
@@ -37,10 +28,7 @@
             />
           </div>
           <div class="form__child">
-            <label
-              class="input__label title--medium-form"
-              for="type"
-            >
+            <label class="input__label title--medium-form" for="type">
               Sort By
             </label>
 
@@ -64,10 +52,7 @@
         </div>
         <form class="sort-filter__form">
           <div class="form__child">
-            <label
-              class="input__label title--medium-form"
-              for="type"
-            >
+            <label class="input__label title--medium-form" for="type">
               Category
             </label>
 
@@ -86,10 +71,7 @@
             </select>
           </div>
           <div class="form__child">
-            <label
-              class="input__label title--medium-form"
-              for="type"
-            >
+            <label class="input__label title--medium-form" for="type">
               Start Date
             </label>
             <Datetime
@@ -98,18 +80,12 @@
               class="form__input"
               :max-datetime="formatEnd || currentDateTime"
             />
-            <p
-              v-if="isStartSelected"
-              class="input__error-message"
-            >
+            <p v-if="isStartSelected" class="input__error-message">
               Start Date must be filled
             </p>
           </div>
           <div class="form__child">
-            <label
-              class="input__label title--medium-form"
-              for="type"
-            >
+            <label class="input__label title--medium-form" for="type">
               End Date
             </label>
             <Datetime
@@ -119,19 +95,13 @@
               type="datetime"
               class="form__input"
             />
-            <p
-              v-if="isEndSelected"
-              class="input__error-message"
-            >
+            <p v-if="isEndSelected" class="input__error-message">
               End Date must be filled
             </p>
           </div>
         </form>
       </div>
-      <div
-        class="sort-filter__button"
-        @click="applyFilter"
-      >
+      <div class="sort-filter__button" @click="applyFilter">
         <div class="btn-green ">
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-filter" />

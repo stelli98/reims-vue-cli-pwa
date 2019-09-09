@@ -4,7 +4,7 @@ const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
 
 export default {
-  storeImageOffline (data) {
+  storeImageOffline(data) {
     if (data.image) {
       const request = {
         id: Date.now(),
@@ -15,7 +15,7 @@ export default {
       this.throwError();
     }
   },
-  async storeFormOffline (form) {
+  async storeFormOffline(form) {
     if (!form.id) {
       const id = await this.getLastIndexIDFromIndexedDB(imageIdb);
       const data = {
@@ -27,32 +27,32 @@ export default {
       this.throwError();
     }
   },
-  throwError () {
+  throwError() {
     return Promise.reject(new Error("Offline. Fail to send data to server"));
   },
-  async storeToIndexedDB (storeName, data) {
+  async storeToIndexedDB(storeName, data) {
     try {
       await idbs.saveData(storeName, data);
     } catch (e) {
       alert(e);
     }
   },
-  async getLastIndexIDFromIndexedDB (storeName) {
+  async getLastIndexIDFromIndexedDB(storeName) {
     return await idbs.getLastIndexData(storeName);
   },
-  async getAllDataFromIndexedDB (storeName) {
+  async getAllDataFromIndexedDB(storeName) {
     return await idbs.getAllData(storeName);
   },
-  async deleteDataByKeyFromIndexedDB (storeName, key) {
+  async deleteDataByKeyFromIndexedDB(storeName, key) {
     return await idbs.deleteDataByKey(storeName, key);
   },
-  async deleteLastDataFromIndexedDB (storeName) {
+  async deleteLastDataFromIndexedDB(storeName) {
     return await this.deleteDataByKeyFromIndexedDB(
       storeName,
       await this.getLastIndexIDFromIndexedDB(storeName)
     );
   },
-  async findDataByKeyFromIndexedDB (storeName, key) {
+  async findDataByKeyFromIndexedDB(storeName, key) {
     return await idbs.findDatabyKey(storeName, key);
   }
 };

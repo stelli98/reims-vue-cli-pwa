@@ -1,26 +1,26 @@
 export default {
-  transactions (state) {
+  transactions(state) {
     return state.transactions || [];
   },
-  transaction (state) {
+  transaction(state) {
     return state.transaction;
   },
-  pagination (state) {
+  pagination(state) {
     return state.pagination;
   },
-  image (state) {
+  image(state) {
     return state.image;
   },
-  OCRResultType (state) {
+  OCRResultType(state) {
     return state.OCRResultType;
   },
-  parking (state) {
+  parking(state) {
     return state.parking;
   },
-  fuel (state) {
+  fuel(state) {
     return state.fuel;
   },
-  viewImage (state) {
+  viewImage(state) {
     return state.viewImage;
   }
 };

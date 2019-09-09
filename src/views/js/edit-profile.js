@@ -11,7 +11,7 @@ export default {
       required
     }
   },
-  data () {
+  data() {
     return {
       user: {
         username: "",
@@ -22,29 +22,33 @@ export default {
   },
   computed: {
     ...mapGetters("auth", ["username"]),
-    sameAsPassword () {
-      return this.user.password ? this.user.password != this.confirmPassword : false
+    sameAsPassword() {
+      return this.user.password
+        ? this.user.password != this.confirmPassword
+        : false;
     }
   },
   methods: {
     ...mapActions("user", ["updatePersonalProfile"]),
     ...mapActions("auth", ["updateToken"]),
-    moveTo () {
+    moveTo() {
       this.$router.push({ name: "home" });
     },
-    submitForm () {
+    submitForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
-        this.updatePersonalProfile(this.user).then((response) => {
-          this.updateToken(response.headers.authorization || response.data.token)
-        })
+        this.updatePersonalProfile(this.user).then(response => {
+          this.updateToken(
+            response.headers.authorization || response.data.token
+          );
+        });
         this.moveTo();
       }
     }
   },
-  created () {
+  created() {
     this.$nextTick(() => {
-      this.user.username = this.username
-    })
+      this.user.username = this.username;
+    });
   }
 };

@@ -119,7 +119,7 @@ describe("Actions for Transactions Module", () => {
     const expectedValue = data.find(
       d => d.url === url.transaction && d.method == "PUT"
     );
-    api.saveTransaction = jest.fn().mockResolvedValue(expectedValue)
+    api.saveTransaction = jest.fn().mockResolvedValue(expectedValue);
     const rootState = {
       auth: {
         token: "Bearer 123"
@@ -137,7 +137,9 @@ describe("Actions for Transactions Module", () => {
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: ""
     };
-    expect(await actions.saveTransaction({ rootState }, transaction)).toEqual(expectedValue.data)
+    expect(await actions.saveTransaction({ rootState }, transaction)).toEqual(
+      expectedValue.data
+    );
     expect(api.saveTransaction).toHaveBeenCalledWith(
       transaction,
       rootState.auth.token
@@ -169,11 +171,9 @@ describe("Actions for Transactions Module", () => {
     };
 
     const expectedValue = data.find(
-      d =>
-        d.url === url.transaction + '/3278/12345abc' &&
-        d.method == "GET"
+      d => d.url === url.transaction + "/3278/12345abc" && d.method == "GET"
     );
-    const link = '3278/12345abc'
+    const link = "3278/12345abc";
     const commit = jest.fn();
 
     api.getViewImage.mockResolvedValue(expectedValue);

@@ -1,4 +1,4 @@
-const TransactionCard = () =>import("@/components/ParkingForm.vue");
+const TransactionCard = () =>import("@/components/TransactionCard.vue");
 export default {
   components: {
     TransactionCard
@@ -7,16 +7,22 @@ export default {
     transactions: Array
   },
   computed: {
-    isFiltering () {
-      return !!this.$route.query.search || !!this.$route.query.category || !!this.$route.query.start || !!this.$route.query.end || this.$route.query.sortBy != "date"
+    isFiltering() {
+      return (
+        !!this.$route.query.search ||
+        !!this.$route.query.category ||
+        !!this.$route.query.start ||
+        !!this.$route.query.end ||
+        this.$route.query.sortBy != "date"
+      );
     }
   },
   methods: {
-    openFilter () {
+    openFilter() {
       this.$emit("openFilter", true);
     },
-    downloadReport () {
-      this.$emit("downloadReport")
+    downloadReport() {
+      this.$emit("downloadReport");
     }
   }
 };

@@ -4,11 +4,11 @@ import config from "@/config";
 const api = config.api.auth;
 
 export default {
-  login (data) {
+  login(data) {
     const path = api.login;
     return axios.post(path, data);
   },
-  logout (token) {
+  logout(token) {
     const path = api.logout;
     return axios.get(path, {
       headers: {

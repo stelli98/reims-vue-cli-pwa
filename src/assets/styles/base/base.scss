@@ -125,4 +125,14 @@ input {
       padding: 0.5rem;
     }
 }
-  
+
+.background-dark {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  opacity: 0.4;
+  background-color: $color-black;
+}

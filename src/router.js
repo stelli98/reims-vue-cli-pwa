@@ -21,13 +21,13 @@ const router = new Router({
     },
     {
       path: "/home",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/:step",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       name: "create",
       component: CreateTransaction
     },
@@ -68,29 +68,29 @@ const router = new Router({
   ]
 });
 
-function checkAuthUser (to, from, next) {
-  if (!!store.state.auth.token && store.state.auth.role === "USER") {
-    next();
-  } else {
-    const notification = {
-      type: "error",
-      message: "You are not authorized. Please login again."
-    };
-    store.dispatch("notification/addNotification", notification);
-    next("/login");
-  }
+function checkAuthUser(to, from, next) {
+  // if (!!store.state.auth.token && store.state.auth.role === "USER") {
+  //   next();
+  // } else {
+  //   const notification = {
+  //     type: "error",
+  //     message: "You are not authorized. Please login again."
+  //   };
+  //   store.dispatch("notification/addNotification", notification);
+  // next("/login");
+  // }
 }
 
-function checkAuthAdmin (to, from, next) {
-  if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
-    next();
-  } else {
-    const notification = {
-      type: "error",
-      message: "You are not authorized. Please login again."
-    };
-    store.dispatch("notification/addNotification", notification);
-    next("/login");
-  }
+function checkAuthAdmin(to, from, next) {
+  // if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
+  //   next();
+  // } else {
+  //   const notification = {
+  //     type: "error",
+  //     message: "You are not authorized. Please login again."
+  //   };
+  //   store.dispatch("notification/addNotification", notification);
+  // next("/login");
+  // }
 }
 export default router;

@@ -1,55 +1,60 @@
 import { Datetime } from "vue-datetime";
 export default {
   components: { Datetime },
-  data () {
+  data() {
     return {
       options: this.emptyOptions(),
       sortByOptions: ["date", "category", "title"],
-      categoryOptions: ["FUEL", "PARKING"],
+      categoryOptions: ["FUEL", "PARKING"]
     };
   },
   computed: {
-    currentDateTime () {
-      return new Date().toISOString()
+    currentDateTime() {
+      return new Date().toISOString();
     },
     formatStart: {
-      set (newValue) {
+      set(newValue) {
         this.options.start = newValue;
       },
-      get () {
-        return this.options.start ? new Date(this.options.start).toISOString() : ""
+      get() {
+        return this.options.start
+          ? new Date(this.options.start).toISOString()
+          : "";
       }
     },
     formatEnd: {
-      set (newValue) {
+      set(newValue) {
         this.options.end = newValue;
       },
-      get () {
-        return this.options.end ? new Date(this.options.end).toISOString() : ""
+      get() {
+        return this.options.end ? new Date(this.options.end).toISOString() : "";
       }
     },
-    isEndSelected () {
-      return this.options.start && !this.options.end ? true : false
+    isEndSelected() {
+      return this.options.start && !this.options.end ? true : false;
     },
-    isStartSelected () {
-      return this.options.end && !this.options.start ? true : false
+    isStartSelected() {
+      return this.options.end && !this.options.start ? true : false;
     }
-
   },
   methods: {
-    moveTo () {
+    moveTo() {
       this.$emit("closeFilter", false);
     },
-    applyFilter () {
+    applyFilter() {
       if (!this.isEndSelected && !this.isStartSelected) {
-        this.options.start = this.options.start ? new Date(this.options.start).getTime() : ""
-        this.options.end = this.options.end ? new Date(this.options.end).getTime() : ""
-        this.options.page = 1
-        this.$router.push({ query: { ...this.$route.query, ...this.options } })
+        this.options.start = this.options.start
+          ? new Date(this.options.start).getTime()
+          : "";
+        this.options.end = this.options.end
+          ? new Date(this.options.end).getTime()
+          : "";
+        this.options.page = 1;
+        this.$router.push({ query: { ...this.$route.query, ...this.options } });
         this.moveTo();
       }
     },
-    emptyOptions () {
+    emptyOptions() {
       return {
         search: "",
         sortBy: "date",
@@ -58,16 +63,20 @@ export default {
         end: ""
       };
     },
-    resetFilter () {
+    resetFilter() {
       this.options = this.emptyOptions();
     },
-    convertDateToISOString () {
-      this.options.start = !!this.options.start ? new Date(parseInt(this.$route.query.start)).toISOString() : ""
-      this.options.end = !!this.options.end ? new Date(parseInt(this.$route.query.end)).toISOString() : ""
+    convertDateToISOString() {
+      this.options.start = this.options.start
+        ? new Date(parseInt(this.$route.query.start)).toISOString()
+        : "";
+      this.options.end = this.options.end
+        ? new Date(parseInt(this.$route.query.end)).toISOString()
+        : "";
     }
   },
-  created () {
-    this.options = { ...this.options, ...this.$route.query }
-    this.convertDateToISOString()
+  created() {
+    this.options = { ...this.options, ...this.$route.query };
+    this.convertDateToISOString();
   }
 };

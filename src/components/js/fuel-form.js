@@ -12,14 +12,14 @@ export default {
       fuelType: { required },
       liters: {
         required,
-        float (input) {
+        float(input) {
           return /^[0-9]+([.][0-9]+)?$/g.test(input);
         },
         minValue: minValue(0.01)
       },
       amount: {
         required,
-        currency (input) {
+        currency(input) {
           const value = input
             .toString()
             .replace(/\./g, "")
@@ -33,7 +33,7 @@ export default {
       minValue: minValue(100)
     }
   },
-  data () {
+  data() {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -45,55 +45,55 @@ export default {
   computed: {
     ...mapGetters("transaction", ["fuel"]),
     fuelAmount: {
-      set (newValue) {
+      set(newValue) {
         this.fuel.amount = newValue;
       },
-      get () {
+      get() {
         return this.fuel.amount
           .toString()
           .replace(/\./g, "")
           .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
     },
-    totalPrice () {
+    totalPrice() {
       const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);
       if (value.includes("e")) {
         return value || 0;
       }
       return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0;
     },
-    formatAmountToInt () {
+    formatAmountToInt() {
       return this.fuel.amount ? this.amountInt : "";
     },
-    amountInt () {
+    amountInt() {
       return typeof this.fuel.amount === "string"
         ? parseInt(this.fuel.amount.split(".").join(""))
         : this.fuel.amount;
     },
-    currentDateTime () {
-      return new Date().toISOString()
+    currentDateTime() {
+      return new Date().toISOString();
     },
     formatDate: {
-      set (newValue) {
+      set(newValue) {
         this.fuel.date = newValue;
       },
-      get () {
-        return this.fuel.date ? new Date(this.fuel.date).toISOString() : ""
+      get() {
+        return this.fuel.date ? new Date(this.fuel.date).toISOString() : "";
       }
-    },
+    }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
     ...mapActions("notification", ["addNotification"]),
-    toggle () {
+    toggle() {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendFuelForm () {
+    sendFuelForm() {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
         this.reformatVolume();
         this.convertDateToEpoch();
-        this.fuel.amount = this.amountInt * this.fuel.liters
+        this.fuel.amount = this.amountInt * this.fuel.liters;
         return this.saveTransaction(this.fuel)
           .then(response => {
             const notification = {
@@ -112,11 +112,11 @@ export default {
           });
       }
     },
-    reformatVolume () {
+    reformatVolume() {
       this.fuel.liters = parseFloat(this.fuel.liters);
     },
-    convertDateToEpoch () {
-      this.fuel.date = new Date(this.fuel.date).getTime()
+    convertDateToEpoch() {
+      this.fuel.date = new Date(this.fuel.date).getTime();
     }
   }
-}
+};

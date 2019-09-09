@@ -127,7 +127,10 @@ describe("Actions for User Module", () => {
       end: 1565442233000
     };
     actions.downloadPersonalReport({ rootState }, options);
-    expect(api.downloadPersonalReport).toHaveBeenCalledWith(options, rootState.auth.token);
+    expect(api.downloadPersonalReport).toHaveBeenCalledWith(
+      options,
+      rootState.auth.token
+    );
   });
 
   test("updatePersonalProfile actions", () => {
@@ -143,6 +146,9 @@ describe("Actions for User Module", () => {
       password: "stelli123"
     };
     actions.updatePersonalProfile({ rootState }, user);
-    expect(api.updatePersonalProfile).toHaveBeenCalledWith(user, rootState.auth.token);
+    expect(api.updatePersonalProfile).toHaveBeenCalledWith(
+      user,
+      rootState.auth.token
+    );
   });
 });

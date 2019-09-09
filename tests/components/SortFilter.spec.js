@@ -15,7 +15,7 @@ describe("SortFilter.vue", () => {
   let wrapper;
   let localVue;
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(DateTime);
     lv.use(VueRouter);
@@ -23,7 +23,7 @@ describe("SortFilter.vue", () => {
     return lv;
   }
 
-  function createWrapper () {
+  function createWrapper() {
     const router = new VueRouter({ routes });
     return shallowMount(SortFilter, {
       localVue,
@@ -43,9 +43,9 @@ describe("SortFilter.vue", () => {
   });
 
   test("Emit applyFilter", () => {
-    wrapper.vm.options.start = "2019-08-10T06:40:59.000Z"
-    wrapper.vm.options.end = "2019-08-12T06:40:59.000Z"
-    const spy = jest.spyOn(wrapper.vm, 'moveTo')
+    wrapper.vm.options.start = "2019-08-10T06:40:59.000Z";
+    wrapper.vm.options.end = "2019-08-12T06:40:59.000Z";
+    const spy = jest.spyOn(wrapper.vm, "moveTo");
     wrapper.vm.applyFilter();
     const options = {
       search: "",
@@ -55,19 +55,19 @@ describe("SortFilter.vue", () => {
       end: 1565592059000,
       page: 1
     };
-    expect(wrapper.vm.options).toEqual(options)
-    expect(spy).toHaveBeenCalled()
+    expect(wrapper.vm.options).toEqual(options);
+    expect(spy).toHaveBeenCalled();
   });
 
   test("formatStart computed", () => {
-    wrapper.setData({ formatStart: 1565419259000 })
-    expect(wrapper.vm.formatStart).toBe("2019-08-10T06:40:59.000Z")
-  })
+    wrapper.setData({ formatStart: 1565419259000 });
+    expect(wrapper.vm.formatStart).toBe("2019-08-10T06:40:59.000Z");
+  });
 
   test("formatEnd computed", () => {
-    wrapper.setData({ formatEnd: 1565419259000 })
-    expect(wrapper.vm.formatEnd).toBe("2019-08-10T06:40:59.000Z")
-  })
+    wrapper.setData({ formatEnd: 1565419259000 });
+    expect(wrapper.vm.formatEnd).toBe("2019-08-10T06:40:59.000Z");
+  });
 
   test("emptyOptions return empty options", () => {
     wrapper.vm.emptyOptions();

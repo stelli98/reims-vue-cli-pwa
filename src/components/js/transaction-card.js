@@ -5,7 +5,7 @@ export default {
     transaction: Object
   },
   computed: {
-    transactionTitle () {
+    transactionTitle() {
       return this.$options.filters.trimTextFormatter(
         this.transaction.title,
         20
@@ -14,12 +14,12 @@ export default {
   },
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
-    removeTransaction (id) {
+    removeTransaction(id) {
       this.deleteTransaction(id).then(() => {
-        this.$router.push({ query: { ...this.$route.query, page: 1 } })
-      })
+        this.$router.push({ name: "home" });
+      });
     },
-    moveTo (transactionId) {
+    moveTo(transactionId) {
       this.$router.push({
         name: "transaction-detail",
         params: { id: transactionId }

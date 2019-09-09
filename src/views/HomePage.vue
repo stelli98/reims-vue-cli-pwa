@@ -1,12 +1,10 @@
 <template>
   <div class="home">
+    <div class="background-dark background-dark__home" v-if="actionButtonActive"></div>
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
-          <img
-            src="../assets/images/logo.png"
-            class="logo__small"
-          />
+          <img src="../assets/images/logo.png" class="logo__small" />
         </div>
         <div class="home__header__upper__right">
           <div
@@ -15,10 +13,7 @@
           >
             Edit Profile
           </div>
-          <div
-            class="home__header__nav__logout"
-            @click="doLogout"
-          >
+          <div class="home__header__nav__logout" @click="doLogout">
             Logout
           </div>
         </div>
@@ -28,20 +23,6 @@
           <div class="heading home__header__footer__heading">
             Make Reimbursement Reporting Become Easier
           </div>
-          <div class="home__header__footer__button">
-            <input
-              id="file"
-              type="file"
-              name="file"
-              @change="onFileChange"
-            />
-            <label
-              for="file"
-              class="btn-white"
-            >
-              Upload Receipt
-            </label>
-          </div>
         </div>
       </div>
     </header>
@@ -50,41 +31,81 @@
       @openFilter="toogleFilter"
       @downloadReport="download"
     />
-    <Pagination
-      :paging="pagination"
-      @changePage="changePage"
-    />
-    <SortFilter
-      v-show="showFilter"
-      @closeFilter="toogleFilter"
+    <Pagination :paging="pagination" @changePage="changePage" />
+    <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>
+    <ActionButton
+      :class="actionButtonClass"
+      @isActionButtonActive="toggleActionButton"
+      v-if="!showFilter"
     >
-    </SortFilter>
+    </ActionButton>
   </div>
 </template>
 
 <script src="./js/home-page.js"></script>
 
 <style lang="scss">
+.action-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.action-button-true {
+  position: sticky;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.action-button,
+.action-button-true {
+  @include respond(tab) {
+    position: sticky;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+}
+
+.background-dark__home {
+  width: 100vw;
+  height: 100vh;
+
+  @include respond(tab) {
+    width: 180vw;
+    height: 180vh;
+  }
+}
+
+.home {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
 .home__header {
   display: flex;
   background: $color-green-gradient-transparent;
   background-size: cover;
   background-position: center bottom;
   flex-direction: column;
-  padding: 1.5rem 1rem;
-  height: 45vh;
+  padding: 1.5rem 1rem 0;
+  height: 28vh;
 
   @include respond(medium-phone) {
-    height: 55vh;
+    height: 40vh;
   }
 
   @include respond(large-phone) {
-    height: 65vh;
+    height: 50vh;
   }
 
   @include respond(tab) {
-    height: 70vh;
+    height: 55vh;
   }
+
   &__upper {
     display: flex;
     justify-content: space-between;
@@ -158,9 +179,5 @@
       }
     }
   }
-}
-
-#file {
-  display: none;
 }
 </style>

@@ -25,7 +25,7 @@ describe("LoginPage.vue", () => {
   let localVue;
   const userData = data.find(d => d.url === url.login && d.method == "POST");
 
-  function initializeStore () {
+  function initializeStore() {
     const actions = {
       login: jest.fn()
     };
@@ -57,7 +57,7 @@ describe("LoginPage.vue", () => {
     };
   }
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
@@ -65,7 +65,7 @@ describe("LoginPage.vue", () => {
     return lv;
   }
 
-  function createWrapper (store) {
+  function createWrapper(store) {
     const router = new VueRouter({ routes });
     return shallowMount(LoginPage, {
       store,

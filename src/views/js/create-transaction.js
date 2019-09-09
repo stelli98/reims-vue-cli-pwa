@@ -9,7 +9,7 @@ export default {
     FilterImage,
     TransactionForm
   },
-  data () {
+  data() {
     return {
       menus: [
         { menuId: 0 },
@@ -36,53 +36,53 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('transaction', ['OCRResultType']),
-    menu () {
+    ...mapGetters("transaction", ["OCRResultType"]),
+    menu() {
       return this.menus[this.activeTab].menuTitle;
     },
-    menuAction () {
+    menuAction() {
       return this.menus[this.activeTab].menuFunction;
     },
-    activeTab () {
+    activeTab() {
       return this.$route.params.step;
     },
-    activeComponent () {
+    activeComponent() {
       return this.menus[this.activeTab].component;
     },
-    transactionDisabled () {
-      return !!!this.OCRResultType && this.activeTab == 3
+    transactionDisabled() {
+      return !this.OCRResultType && this.activeTab == 3;
     }
   },
   methods: {
     ...mapActions("transaction", ["setImage", "setOCRResultType"]),
-    menuFunctionAction (function_name) {
+    menuFunctionAction(function_name) {
       this[function_name]();
     },
-    toStepOne () {
+    toStepOne() {
       if (this.activeTab == 3) {
         this.deleteDataFromIDB();
       }
       this.$router.push({ name: "create", params: { step: 1 } });
     },
-    toStepTwo () {
+    toStepTwo() {
       if (this.activeTab == 1) {
         this.fromStepOne();
       } else if (this.activeTab == 3) {
         this.fromStepThree();
       }
     },
-    fromStepOne () {
+    fromStepOne() {
       this.pictureUrl = this.$refs.generate.generateImage();
       this.setImage(this.pictureUrl);
       if (this.pictureUrl) {
         this.$router.push({ name: "create", params: { step: 2 } });
       }
     },
-    fromStepThree () {
+    fromStepThree() {
       this.deleteDataFromIDB();
       this.$router.push({ name: "create", params: { step: 2 } });
     },
-    toStepThree () {
+    toStepThree() {
       if (this.isSamePage("3")) {
         return;
       } else if (this.pictureUrl) {
@@ -91,18 +91,18 @@ export default {
         this.$router.push({ name: "create", params: { step: 1 } });
       }
     },
-    finalStep () {
+    finalStep() {
       this.$refs.generate.saveData();
-      this.setOCRResultType("")
+      this.setOCRResultType("");
     },
-    isSamePage (clickedTab) {
+    isSamePage(clickedTab) {
       return this.activeTab == clickedTab;
     },
-    moveTo () {
+    moveTo() {
       this.deleteDataFromIDB();
       this.$router.push({ name: "home" });
     },
-    deleteDataFromIDB () {
+    deleteDataFromIDB() {
       try {
         offlineService.deleteLastDataFromIndexedDB("offlineImages");
       } catch (e) {
@@ -111,7 +111,7 @@ export default {
     }
   },
   watch: {
-    $route () {
+    $route() {
       if (
         !this.$route.path.includes("/transaction/create/") &&
         this.activeTab == 3

@@ -8,7 +8,7 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       filterFunctions: null,
       width: 0,
@@ -16,20 +16,24 @@ export default {
     };
   },
   computed: {
-    filters () {
+    filters() {
       return this.makeFilter();
     }
   },
-  created () {
+  created() {
     if (!this.pictureUrl) {
       this.$router.push({ name: "create", params: { step: 1 } });
     }
     this.filterFunctions = this.defaultValues();
   },
   methods: {
-    ...mapActions("transaction", ["createTransaction", "setImage", "setOCRResultType"]),
+    ...mapActions("transaction", [
+      "createTransaction",
+      "setImage",
+      "setOCRResultType"
+    ]),
     ...mapActions("notification", ["addNotification"]),
-    makeFilter () {
+    makeFilter() {
       const filterSet = this.filterFunctions;
 
       let filterString = "";
@@ -42,14 +46,14 @@ export default {
       }
       return { filter: filterString };
     },
-    defaultValues () {
+    defaultValues() {
       return {
         grayscale: 1,
         brightness: 1.1,
         contrast: 1
       };
     },
-    generateImage () {
+    generateImage() {
       const canvas = document.createElement("canvas");
       canvas.width = document.getElementById("image").clientWidth;
       canvas.height = document.getElementById("image").clientHeight;
@@ -63,7 +67,7 @@ export default {
       this.uploadImageOCR(resultImage);
       return resultImage;
     },
-    uploadImageOCR (resultImage) {
+    uploadImageOCR(resultImage) {
       const request = {
         image: resultImage
       };
@@ -76,7 +80,7 @@ export default {
           this.addNotification(notification);
         })
         .catch(() => {
-          this.setOCRResultType("FUEL")
+          this.setOCRResultType("FUEL");
           const notification = {
             type: "error",
             message:

@@ -9,12 +9,12 @@ describe("UserList.vue", () => {
   let localVue;
   const userData = data.find(d => d.url === url.user && d.params.page == 1);
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     return lv;
   }
 
-  function createWrapper () {
+  function createWrapper() {
     return shallowMount(UserList, {
       localVue,
       stubs: ["UserCard"],
@@ -29,6 +29,5 @@ describe("UserList.vue", () => {
     wrapper = createWrapper();
   });
 
-  test("Emit updateUsers", () => {
-  });
+  test("Emit updateUsers", () => {});
 });

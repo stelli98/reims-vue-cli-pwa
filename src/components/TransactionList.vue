@@ -4,25 +4,16 @@
       Transaction List
     </div>
     <div class="transaction__actions">
-      <div
-        class="btn-green transaction__filter"
-        @click="openFilter"
-      >
+      <div class="btn-green transaction__filter" @click="openFilter">
         <div class="transaction__icon">
-          <div
-            v-if="isFiltering"
-            class="notification-circle"
-          ></div>
+          <div v-if="isFiltering" class="notification-circle"></div>
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-filter" />
           </svg>
         </div>
         <span>Filter and Sort</span>
       </div>
-      <div
-        class="btn-green transaction__download"
-        @click="downloadReport"
-      >
+      <div class="btn-green transaction__download" @click="downloadReport">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-download" />
         </svg>
@@ -31,10 +22,7 @@
     </div>
     <div class="transaction__list">
       <div v-for="transaction in transactions">
-        <TransactionCard
-          :key="transaction.id"
-          :transaction="transaction"
-        />
+        <TransactionCard :key="transaction.id" :transaction="transaction" />
       </div>
     </div>
   </div>
@@ -47,7 +35,7 @@
   display: flex;
   flex-direction: column;
   width: 90vw;
-  margin: 1.5rem 5vw;
+  margin: 1.5rem 5vw 0;
 
   @include respond(large-phone) {
     width: 50vw;
@@ -63,6 +51,10 @@
     display: flex;
     align-items: center;
     position: relative;
+  }
+
+  &__list {
+    margin-top: 1.5rem;
   }
 }
 .notification-circle {
