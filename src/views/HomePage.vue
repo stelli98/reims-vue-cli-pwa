@@ -33,12 +33,12 @@
     />
     <Pagination :paging="pagination" @changePage="changePage" />
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>
-    <ActionButton
+    <FloatingActionButton
       :class="actionButtonClass"
       @isActionButtonActive="toggleActionButton"
       v-if="!showFilter"
     >
-    </ActionButton>
+    </FloatingActionButton>
   </div>
 </template>
 

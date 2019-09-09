@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1568035967221" clover="3.2.0">
-  <project timestamp="1568035967221" name="All files">
-    <metrics statements="485" coveredstatements="376" conditionals="141" coveredconditionals="77" methods="70" coveredmethods="41" elements="696" coveredelements="494" complexity="0" loc="485" ncloc="485" packages="9" files="44" classes="44">
+<coverage generated="1568038467372" clover="3.2.0">
+  <project timestamp="1568038467372" name="All files">
+    <metrics statements="485" coveredstatements="381" conditionals="141" coveredconditionals="77" methods="70" coveredmethods="41" elements="696" coveredelements="499" complexity="0" loc="485" ncloc="485" packages="9" files="44" classes="44">
       <package name="src">
         <metrics statements="59" coveredstatements="17" conditionals="20" coveredconditionals="0" methods="13" coveredmethods="2"/>
         <file name="App.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/App.vue">
@@ -68,17 +68,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="173" coveredstatements="147" conditionals="61" coveredconditionals="43" methods="13" coveredmethods="5"/>
-        <file name="ActionButton.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/ActionButton.vue">
-          <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
-          <line num="4" count="6" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-        </file>
+        <metrics statements="173" coveredstatements="152" conditionals="61" coveredconditionals="43" methods="13" coveredmethods="5"/>
         <file name="CropImage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/CropImage.vue">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
@@ -125,6 +115,16 @@
           <line num="84" count="3" type="stmt"/>
           <line num="89" count="3" type="stmt"/>
           <line num="91" count="4" type="stmt"/>
+        </file>
+        <file name="FloatingActionButton.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FloatingActionButton.vue">
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="4" count="9" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
         </file>
         <file name="FuelForm.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FuelForm.vue">
           <metrics statements="32" coveredstatements="22" conditionals="14" coveredconditionals="7" methods="2" coveredmethods="0"/>

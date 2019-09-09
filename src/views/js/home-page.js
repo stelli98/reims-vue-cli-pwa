@@ -1,7 +1,7 @@
 const TransactionList = () => import("@/components/TransactionList");
 const Pagination = () => import("@/components/Pagination.vue");
 const SortFilter = () => import("@/components/SortFilter.vue");
-const ActionButton = () => import("@/components/ActionButton.vue");
+const FloatingActionButton = () => import("@/components/FloatingActionButton.vue");
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -9,7 +9,7 @@ export default {
     TransactionList,
     Pagination,
     SortFilter,
-    ActionButton
+    FloatingActionButton
   },
   data() {
     return {
