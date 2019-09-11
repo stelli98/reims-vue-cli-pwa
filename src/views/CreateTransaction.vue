@@ -8,12 +8,6 @@
             <use xlink:href="icons.svg#icon-cancel" />
           </svg>
         </div>
-        <div
-          class="title--menu create-transaction__next"
-          @click="menuFunctionAction(menuAction)"
-        >
-          {{ menu }}
-        </div>
       </div>
       <div class="create-transaction__order">
         <div class="create-transaction__step">
@@ -34,7 +28,6 @@
               <div
                 class="create-transaction__step-number"
                 :class="{ 'step-number-active': activeTab >= 1 }"
-                @click="toStepOne"
               >
                 1
               </div>
@@ -50,7 +43,6 @@
               <div
                 class="create-transaction__step-number"
                 :class="{ 'step-number-active': activeTab >= 2 }"
-                @click="toStepTwo"
               >
                 2
               </div>
@@ -58,7 +50,6 @@
               <div
                 class="create-transaction__step-description"
                 :class="{ 'step-text-active': activeTab >= 2 }"
-                @click="toStepTwo"
               >
                 Filter Image
               </div>
@@ -68,7 +59,6 @@
               <div
                 class="create-transaction__step-number"
                 :class="{ 'step-number-active': activeTab >= 3 }"
-                @click="toStepThree"
               >
                 3
               </div>
@@ -76,7 +66,6 @@
               <div
                 class="create-transaction__step-description"
                 :class="{ 'step-text-active': activeTab >= 3 }"
-                @click="toStepThree"
               >
                 Fill Form
               </div>

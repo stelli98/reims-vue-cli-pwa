@@ -9,28 +9,36 @@
       />
     </div>
     <div class="crop-image__button">
-      <div class="btn-green" @click="flipXImage">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="flipXImage">
+        <div class="circle">
+          <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-flip-x" />
         </svg>
+        </div>
         <span>Flip Horizontally</span>
       </div>
-      <div class="btn-green" @click="flipYImage">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="flipYImage">
+        <div class="circle">
+        <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-flip-y" />
         </svg>
+        </div>
         <span>Flip Vertically</span>
       </div>
-      <div class="btn-green" @click="rotateRight">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="rotateRight">
+        <div class="circle">
+        <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>
+        </div>
         <span>Rotate Right</span>
       </div>
-      <div class="btn-green" @click="rotateLeft">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="rotateLeft">
+        <div class="circle">
+          <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-circular-counter-clockwise" />
         </svg>
+        </div>
         <span>Rotate Left</span>
       </div>
     </div>
@@ -40,6 +48,16 @@
 <script src="./js/crop-image.js"></script>
 
 <style lang="scss">
+.circle {
+  border: solid 1px green;
+  padding: 1.2rem;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .croppa-container.croppa-canvas {
   width: 80vw;
   height: 55vh;
@@ -62,7 +80,6 @@
 
   & > div {
     display: flex;
-    flex-flow: column;
     margin: 1.5rem 0;
 
     @include respond(medium-phone) {
@@ -82,9 +99,11 @@
   }
 
   &__button {
-    margin-bottom: 1.5rem;
     & > div {
-      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      flex-flow: column;
+      margin-left: 1rem;
     }
   }
 }
