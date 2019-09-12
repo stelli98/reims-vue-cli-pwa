@@ -5,72 +5,31 @@
       <div class="header create-transaction__header">
         <div class="create-transaction__close" @click="moveTo">
           <svg class="icon icon-small">
-            <use xlink:href="icons.svg#icon-cancel" />
+            <use xlink:href="icons.svg#icon-back" />
           </svg>
         </div>
       </div>
       <div class="create-transaction__order">
-        <div class="create-transaction__step">
-          <div class="create-transaction__progress">
+        <div class="create-transaction__progress">
+            <div class="create-transaction__progress-bar progress-bar-active" id="progress-bar-first">
+            </div>
+            <div class="create-transaction__progress-text">
+              Crop Image
+            </div>        
+        </div>
+        <div class="create-transaction__progress">
             <div class="create-transaction__progress-bar">
-              <div
-                class="create-transaction__progress-bar--level"
-                :class="{ half: activeTab > 1 }"
-              />
-              <div
-                class="create-transaction__progress-bar--level"
-                :class="{ full: activeTab >= 3 }"
-              />
             </div>
-          </div>
-          <div class="create-transaction__step-child">
-            <div class="create-transaction__step-content">
-              <div
-                class="create-transaction__step-number"
-                :class="{ 'step-number-active': activeTab >= 1 }"
-              >
-                1
-              </div>
-              <div
-                class="create-transaction__step-description"
-                :class="{ 'step-text-active': activeTab >= 1 }"
-              >
-                Crop Image
-              </div>
+            <div class="create-transaction__progress-text">
+              Filter Image
+            </div>        
+        </div>
+        <div class="create-transaction__progress">
+            <div class="create-transaction__progress-bar" id="progress-bar-last">
             </div>
-
-            <div class="create-transaction__step-content">
-              <div
-                class="create-transaction__step-number"
-                :class="{ 'step-number-active': activeTab >= 2 }"
-              >
-                2
-              </div>
-
-              <div
-                class="create-transaction__step-description"
-                :class="{ 'step-text-active': activeTab >= 2 }"
-              >
-                Filter Image
-              </div>
-            </div>
-
-            <div class="create-transaction__step-content">
-              <div
-                class="create-transaction__step-number"
-                :class="{ 'step-number-active': activeTab >= 3 }"
-              >
-                3
-              </div>
-
-              <div
-                class="create-transaction__step-description"
-                :class="{ 'step-text-active': activeTab >= 3 }"
-              >
-                Fill Form
-              </div>
-            </div>
-          </div>
+            <div class="create-transaction__progress-text">
+              Fill Form
+            </div>        
         </div>
       </div>
       <div class="create-transaction__view">
@@ -93,43 +52,56 @@
 }
 
 .create-transaction {
-  &__order {
-    width: 70vw;
-    margin: 1.5rem auto;
-    position: relative;
+  height: 100vh;
 
-    @include respond(tab) {
-      width: 50vw;
-    }
+  &__order {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
   }
 
   &__progress {
-    position: absolute;
-    width: 100%;
-    height: 3rem;
-    z-index: -999;
-  }
-
-  &__progress-bar {
     display: flex;
-    height: 85%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 25%;
+    flex-flow: column;
+    
+    &-bar{
+      width: 100%;
+      height: .5rem;
+      display: flex;
+      flex-flow: column;
+      position: relative;
+      background-color: $color-dark-grey;
 
-    &--level {
-      opacity: 1;
-      width: 40%;
-      height: 35%;
-      background-color: $color-grey;
-      -webkit-transition: width 0.6s ease;
-      -o-transition: width 0.6s ease;
-      transition: width 0.6s ease;
-
-      @include respond(medium-phone) {
-        width: 45%;
+      &:after{
+        content: '';
+        position: absolute;
+        top: 90%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 0;
+        height: 0;
+        border-top: solid .3rem $color-dark-grey;
+        border-left: solid .3rem transparent;
+        border-right: solid .3rem transparent;
       }
+
     }
+
+    &-text{
+      text-align: center;
+      margin-top: 1rem;
+    }
+  }
+  
+  .progress-bar-active{
+      background-color: $color-green;
+
+      &:after{
+        border-top: solid .3rem $color-green;
+      }
   }
 
   .half,
@@ -137,50 +109,15 @@
     background-color: $color-green;
   }
 
-  &__step {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    color: $color-green;
-
-    &-child {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    &-content {
-      align-items: center;
-      display: flex;
-      flex-flow: column;
-    }
-
-    &-number {
-      padding: 0.45rem 0.9rem;
-      border-radius: 100%;
-      background-color: $color-white;
-      border: solid 0.2rem $color-green;
-      -webkit-transition: background-color 0.6s ease, border-color 0.6s ease;
-      -o-transition: background-color 0.6s ease, border-color 0.6s ease;
-      transition: background-color 0.6s ease, border-color 0.6s ease;
-      cursor: pointer;
-    }
-
-    &-description {
-      color: $color-green;
-      margin-top: 0.5rem;
-    }
-
-    .step-number-active {
-      color: $color-white;
-      background-color: $color-green;
-    }
-
-    .step-text-active {
-      color: $color-green;
-      font-weight: 700;
-    }
+  #progress-bar-first{
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+  }
+  #progress-bar-last{
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
   }
 }
+
+
 </style>

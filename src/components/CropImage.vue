@@ -42,6 +42,12 @@
         <span>Rotate Left</span>
       </div>
     </div>
+    <div class="crop-image__navigation">
+        <h3 class="title--navigation">Next</h3>
+        <svg class="icon icon-medium-green">
+          <use xlink:href="icons.svg#icon-next" />
+        </svg>
+    </div>
   </div>
 </template>
 
@@ -56,6 +62,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover{
+    background-color: green;
+
+    .icon-small-green{
+      fill: $color-white;
+    }
+
+  }
+
 }
 
 .croppa-container.croppa-canvas {
@@ -78,7 +94,8 @@
   flex-flow: column;
   align-items: center;
 
-  & > div {
+  &__container,
+  &__button{
     display: flex;
     margin: 1.5rem 0;
 
@@ -104,6 +121,24 @@
       align-items: center;
       flex-flow: column;
       margin-left: 1rem;
+    }
+  }
+
+  &__navigation{
+    margin: 0;
+    width: 100vw;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    border-top: solid .5px #eee;
+    position: absolute;
+    bottom: 0;
+
+
+    @include respond(medium-phone) {
+      position: relative;
     }
   }
 }
