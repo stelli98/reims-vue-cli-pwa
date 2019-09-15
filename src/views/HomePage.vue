@@ -45,28 +45,22 @@
 <script src="./js/home-page.js"></script>
 
 <style lang="scss">
-.action-button {
+.action-button-false {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 1rem;
+  right: 1rem;
   z-index: 1000;
 }
 
 .action-button-true {
   position: sticky;
-  bottom: 10px;
-  right: 10px;
+  bottom: 1.5rem;
   z-index: 1000;
-}
 
-.action-button,
-.action-button-true {
-  @include respond(tab) {
-    position: sticky;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
+  .FAB__action-button{
+    margin-right: 1rem;
   }
+
 }
 
 .background-dark__home {

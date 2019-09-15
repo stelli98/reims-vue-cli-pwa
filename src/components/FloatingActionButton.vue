@@ -61,9 +61,6 @@
 }
 
 .FAB {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
   &__action-button,
   &__mini-action-button {
     cursor: pointer;
@@ -73,7 +70,7 @@
   &__action-button {
     bottom: 0;
     right: 0;
-
+    
     &:hover {
       .action-button__icon {
         @include circleShadow(8px);

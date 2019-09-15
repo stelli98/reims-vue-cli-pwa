@@ -41,7 +41,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.2rem;
   background-color: $color-grey;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
