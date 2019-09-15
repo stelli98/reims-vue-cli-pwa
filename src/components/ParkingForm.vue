@@ -199,15 +199,4 @@
     }
   }
 }
-
-.input {
-  &__label {
-    display: block;
-  }
-  &__error-message {
-    color: $color-red;
-    font-weight: bold;
-    padding: 0.5rem;
-  }
-}
 </style>

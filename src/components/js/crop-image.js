@@ -1,4 +1,4 @@
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "App",
   data() {
@@ -10,6 +10,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("transaction",["setImage"]), 
     generateImage() {
       if (this.myCroppa.hasImage()) {
         return this.myCroppa.generateDataUrl("image/jpg", 0.7);
@@ -26,6 +27,10 @@ export default {
     },
     rotateLeft() {
       this.myCroppa.rotate(-1);
+    }, 
+    moveTo(){ 
+      this.setImage(this.generateImage())
+      this.$router.push("/transaction/create/2");
     }
   },
   computed: mapGetters("transaction", ["image"])

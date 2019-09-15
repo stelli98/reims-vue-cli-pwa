@@ -1,13 +1,13 @@
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
-  props: {
-    pictureUrl: {
-      type: String,
-      required: true
-    }
-  },
+  // props: {
+  //   pictureUrl: {
+  //     type: String,
+  //     required: true
+  //   }
+  // },
   data() {
     return {
       filterFunctions: null,
@@ -16,14 +16,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("transaction",["image"]), 
     filters() {
       return this.makeFilter();
     }
   },
   created() {
-    if (!this.pictureUrl) {
-      this.$router.push({ name: "create", params: { step: 1 } });
-    }
+    // if (!this.image) {
+    //   this.$router.push({ name: "create", params: { step: 1 } });
+    // }
     this.filterFunctions = this.defaultValues();
   },
   methods: {

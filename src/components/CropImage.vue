@@ -42,12 +42,14 @@
         <span>Rotate Left</span>
       </div>
     </div>
-    <div class="crop-image__navigation">
+    <div class="crop-image__navigation" @click="moveTo" >
         <h3 class="title--navigation">Next</h3>
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-next" />
         </svg>
     </div>
+
+    <input type="range" min="0" max="11">
   </div>
 </template>
 

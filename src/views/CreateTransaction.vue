@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="transactionDisabled" class="background-dark background-dark__transaction"></div>
+    <!-- <div v-show="transactionDisabled" class="background-dark background-dark__transaction"></div> -->
     <div class="create-transaction">
       <div class="header create-transaction__header">
         <div class="create-transaction__close" @click="moveTo">
@@ -18,7 +18,7 @@
             </div>        
         </div>
         <div class="create-transaction__progress">
-            <div class="create-transaction__progress-bar">
+            <div :class="`create-transaction__progress-bar ${stepTwoActiveClass}`">
             </div>
             <div class="create-transaction__progress-text">
               Filter Image
@@ -32,13 +32,17 @@
             </div>        
         </div>
       </div>
-      <div class="create-transaction__view">
+      <!-- <div class="create-transaction__view">
         <Component
           :is="activeComponent"
           ref="generate"
           :picture-url="pictureUrl"
+          @moveTo="moveToNextStep"
         />
-      </div>
+      </div> -->
+      <router-view>
+
+      </router-view>
     </div>
   </div>
 </template>
@@ -102,11 +106,6 @@
       &:after{
         border-top: solid .3rem $color-green;
       }
-  }
-
-  .half,
-  .full {
-    background-color: $color-green;
   }
 
   #progress-bar-first{

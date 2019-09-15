@@ -1,10 +1,10 @@
 <template>
   <div class="filter-image">
-    <div v-show="pictureUrl" class="filter-image__image">
+    <div v-show="image" class="filter-image__image">
       <img
         id="image"
         crossorigin="Anonymous"
-        :src="pictureUrl"
+        :src="image"
         :style="filters"
       />
     </div>
@@ -20,7 +20,7 @@
           step="0.1"
           min="0"
           max="1"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
       </div>
       <div>
@@ -34,7 +34,7 @@
           step="0.01"
           min="0"
           max="5"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
       </div>
       <div>
@@ -48,7 +48,7 @@
           step="0.01"
           min="0"
           max="10"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
       </div>
     </div>
@@ -92,11 +92,12 @@
     justify-content: center;
     align-items: center;
 
-    & > div {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+    // & > div {
+    //   display: flex;
+    //   justify-content: space-around;
+    //   align-items: center;
+    //   margin-bottom: .2rem;
+    // }
   }
 }
 </style>
