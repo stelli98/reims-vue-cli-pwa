@@ -52,6 +52,20 @@
         />
       </div>
     </div>
+    <div class="bottom-navigation filter-image__navigation">
+      <div @click="makeFilter">
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-circular-clockwise" />
+          </svg>
+          <h3 class="title--navigation">Reset</h3>
+      </div>
+      <div @click="generateImage">
+          <h3 class="title--navigation">Next</h3>
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-next" />
+          </svg>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -64,7 +78,8 @@
   justify-content: center;
   align-items: center;
 
-  & > div {
+  &__image, 
+  &__option{
     margin: 1.2rem 0;
   }
 
@@ -98,6 +113,12 @@
     //   align-items: center;
     //   margin-bottom: .2rem;
     // }
+  }
+  &__navigation, 
+  &__navigation > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>

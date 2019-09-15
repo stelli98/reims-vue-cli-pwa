@@ -11,28 +11,16 @@ export default {
   },
   data() {
     return {
-      // menus: [
-      //   { menuId: 0 },
-      //   {
-      //     menuId: 1,
-      //     component: "CropImage"
-      //   },
-      //   {
-      //     menuId: 2,
-      //     component: "FilterImage"
-      //   },
-      //   {
-      //     menuId: 3,
-      //     component: "TransactionForm"
-      //   }
-      // ],
       pictureUrl: ""
     };
   },
   computed: {
     ...mapGetters("transaction", ["OCRResultType"]),
-    stepTwoActiveClass(){
-      return this.$route.path.includes("2") == true ?  "progress-bar-active": ""
+    activeSecondProgressBar(){
+      return this.$route.name === "create-transaction-2" ? "progress-bar-active" : ""
+    },
+    activeThirdProgressBar(){
+      return this.$route.name === "create-transaction-3" ? "progress-bar-active" : ""
     }
     // activeTab() {
     //   return this.$route.params.step;

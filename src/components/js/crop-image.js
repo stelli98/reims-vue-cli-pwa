@@ -30,7 +30,7 @@ export default {
     }, 
     moveTo(){ 
       this.setImage(this.generateImage())
-      this.$router.push("/transaction/create/2");
+      this.$router.push({name:"create-transaction-2"});
     }
   },
   computed: mapGetters("transaction", ["image"])

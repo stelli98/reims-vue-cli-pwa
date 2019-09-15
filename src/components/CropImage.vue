@@ -42,14 +42,12 @@
         <span>Rotate Left</span>
       </div>
     </div>
-    <div class="crop-image__navigation" @click="moveTo" >
+    <div class="bottom-navigation crop-image__navigation" @click="moveTo" >
         <h3 class="title--navigation">Next</h3>
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-next" />
         </svg>
     </div>
-
-    <input type="range" min="0" max="11">
   </div>
 </template>
 
@@ -91,7 +89,7 @@
   }
 }
 
-.crop-image {
+.crop-image{
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -127,21 +125,10 @@
   }
 
   &__navigation{
-    margin: 0;
-    width: 100vw;
-    padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.4rem;
-    border-top: solid .5px #eee;
-    position: absolute;
-    bottom: 0;
-
-
-    @include respond(medium-phone) {
-      position: relative;
-    }
   }
 }
 </style>

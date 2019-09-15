@@ -31,19 +31,21 @@ const router = new Router({
     {
       path: "/transaction/create/",
       // beforeEnter: checkAuthUser,
-      name: "create",
       component: CreateTransaction, 
       children: [
         {
           path: '1',
+          name:"create-transaction-1",
           component: CropImage
         },
         {
           path: '2',
+          name:"create-transaction-2",
           component: FilterImage
         },
         {
           path: '3',
+          name:"create-transaction-3",
           component: TransactionForm
         }
       ]

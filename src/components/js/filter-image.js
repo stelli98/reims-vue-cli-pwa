@@ -89,7 +89,7 @@ export default {
           };
           this.addNotification(notification);
         });
-      this.$router.push({ name: "create", params: { step: 3 } });
+      this.$router.push({ name: "create-transaction-3"});
     }
   }
 };

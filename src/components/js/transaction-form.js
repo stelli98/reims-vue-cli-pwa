@@ -38,6 +38,7 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["OCRResultType"]),
+    ...mapGetters("transaction", ["image"]),
     currentComponent () {
       return this.OCRResultType;
     },
@@ -77,9 +78,9 @@ export default {
     }
   },
   created () {
-    if (!this.pictureUrl) {
-      this.$router.push({ name: "create", params: { step: 1 } });
-    }
+    // if (!this.pictureUrl) {
+    //   this.$router.push({ name: "create", params: { step: 1 } });
+    // }
   },
   methods: {
     ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),

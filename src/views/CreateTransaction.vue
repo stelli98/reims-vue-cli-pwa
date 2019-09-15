@@ -18,14 +18,14 @@
             </div>        
         </div>
         <div class="create-transaction__progress">
-            <div :class="`create-transaction__progress-bar ${stepTwoActiveClass}`">
+            <div :class="`create-transaction__progress-bar ${activeSecondProgressBar || activeThirdProgressBar}`">
             </div>
             <div class="create-transaction__progress-text">
               Filter Image
             </div>        
         </div>
         <div class="create-transaction__progress">
-            <div class="create-transaction__progress-bar" id="progress-bar-last">
+            <div  :class="`create-transaction__progress-bar ${activeThirdProgressBar}`" id="progress-bar-last">
             </div>
             <div class="create-transaction__progress-text">
               Fill Form
@@ -40,9 +40,7 @@
           @moveTo="moveToNextStep"
         />
       </div> -->
-      <router-view>
-
-      </router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -100,7 +98,8 @@
     }
   }
   
-  .progress-bar-active{
+  .progress-bar-active,
+  .progress-bar-half{
       background-color: $color-green;
 
       &:after{

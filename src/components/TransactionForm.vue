@@ -1,7 +1,8 @@
 <template>
-  <div class="transaction-form">
-    <div v-show="pictureUrl" class="transaction-form__image">
-      <img crossorigin="Anonymous" :src="pictureUrl" />
+<div>
+<div class="transaction-form">
+    <div v-show="image" class="transaction-form__image">
+      <img crossorigin="Anonymous" :src="image" />
     </div>
 
     <div class="transaction-form__menu">
@@ -25,7 +26,26 @@
     </div>
 
     <Component :is="currentComponent" ref="sendForm" />
+    
   </div>
+  
+    <div class="bottom-navigation filter-image__navigation">
+      <div >
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-circular-clockwise" />
+          </svg>
+          <h3 class="title--navigation">Re-Upload</h3>
+      </div>
+      <div>
+          <h3 class="title--navigation">Save</h3>
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-save" />
+          </svg>
+      </div>
+    </div>
+  </div>
+</div>
+  
 </template>
 
 <script src="./js/transaction-form.js"></script>
