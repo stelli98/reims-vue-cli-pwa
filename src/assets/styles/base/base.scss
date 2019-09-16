@@ -136,3 +136,15 @@ input {
   opacity: 0.4;
   background-color: $color-black;
 }
+
+.bottom-navigation{
+  width: 100vw;
+  padding: 2rem;
+  font-size: 1.4rem;
+  border-top: solid .5px #eee;
+  margin: 0;
+   
+  @include respond(medium-phone) {
+    position: relative;
+  }
+}

@@ -14,11 +14,6 @@ export default {
   data() {
     return {
       showFilter: false,
-      options: {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
-        sortBy: "date"
-      },
       actionButtonActive: false
     };
   },
@@ -26,6 +21,13 @@ export default {
     ...mapGetters("transaction", ["transactions", "pagination"]),
     actionButtonClass() {
       return `action-button action-button-${this.transactions.length == 5}`;
+    },
+    options() {
+      return {
+        page: parseInt(this.$route.query.page) || 1,
+        size: parseInt(this.$route.query.size) || 5,
+        sortBy: "date"
+      };
     }
   },
   methods: {
@@ -39,7 +41,7 @@ export default {
       this.showFilter = value;
     },
     updateTransaction() {
-      this.getTransactions(this.$route.query).then(() => {
+      this.getTransactions(this.options).then(() => {
         if (this.transactions.length == 0) {
           this.changePage(1);
         }
@@ -65,8 +67,9 @@ export default {
       this.updateTransaction();
     }
   },
-  mounted () {
-    this.$router.push({ query: { ...this.options, ...this.$route.query } })
+  mounted() {
+    this.$router.push({ query: { ...this.options, ...this.$route.query } });
+    console.log({ query: { ...this.options, ...this.$route.query } });
     this.updateTransaction();
   }
 };

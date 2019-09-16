@@ -5,11 +5,7 @@
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
     </div>
-    <div
-      v-show="paging.pageNumber != 1"
-      class="prev"
-      @click="moveTo(paging.pageNumber - 1)"
-    >
+    <div v-show="paging.pageNumber != 1" class="prev" @click="moveTo(paging.pageNumber - 1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-prev" />
       </svg>
@@ -27,8 +23,7 @@
           :selected="currentPage"
           class="pagination__option"
           v-for="(n, index) in paging.totalPages"
-          >{{ index + 1 }}</option
-        >
+        >{{ index + 1 }}</option>
       </select>
     </div>
     <div

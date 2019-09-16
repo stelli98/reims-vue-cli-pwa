@@ -21,10 +21,10 @@ export default {
     }
   },
   created() {
-    if (!this.pictureUrl) {
-      this.$router.push({ name: "create", params: { step: 1 } });
-    }
-    this.filterFunctions = this.defaultValues();
+    // if (!this.image) {
+    //   this.$router.push({ name: "create", params: { step: 1 } });
+    // }
+    this.setFilter();
   },
   methods: {
     ...mapActions("transaction", [
@@ -88,7 +88,10 @@ export default {
           };
           this.addNotification(notification);
         });
-      this.$router.push({ name: "create", params: { step: 3 } });
+      this.$router.push({ name: "create-transaction-3"});
+    },
+    setFilter(){
+      this.filterFunctions = this.defaultValues();
     }
   }
 };

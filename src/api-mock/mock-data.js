@@ -62,10 +62,13 @@ export default [
     code: 200,
     method: "GET",
     url: api.transactions.transaction,
+    headers: {
+      authorization: "Bearer 123"
+    },
     params: {
       page: 2,
       size: 5,
-      sortBy: "createdAt"
+      sortBy: "date"
     },
     status: "OK",
     data: [

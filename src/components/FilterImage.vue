@@ -52,6 +52,20 @@
         />
       </div>
     </div>
+    <div class="bottom-navigation filter-image__navigation">
+      <div @click="setFilter">
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-circular-clockwise" />
+          </svg>
+          <h3 class="title--navigation">Reset</h3>
+      </div>
+      <div @click="generateImage">
+          <h3 class="title--navigation">Next</h3>
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-next" />
+          </svg>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -90,7 +90,13 @@
           ref="generate"
           :picture-url="pictureUrl"
         />
-      </div>
+      </div> -->
+
+
+    <!-- <div>
+      Crop Image and Filter Image to enhance the OCR quality to fill form
+    </div> -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
