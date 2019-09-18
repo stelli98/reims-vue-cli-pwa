@@ -20,11 +20,14 @@ describe("mutations for transaction module", () => {
     );
     const state = {
       fuel: {
+        category: "FUEL",
         date: "",
-        type: "",
-        liters: 0,
-        amount: 0,
-        title: ""
+        fuelType: "",
+        kilometer: 1,
+        amount: 100,
+        title: "",
+        userId: "",
+        image: ""
       }
     };
     mutations.SET_OCR_RESULT(state, expectedValue);

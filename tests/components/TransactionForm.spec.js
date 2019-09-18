@@ -9,8 +9,8 @@ const url = config.api.transactions;
 
 const routes = [
   {
-    path: "/transactions/create/:step",
-    name: "create"
+    path: "/transactions/create/1",
+    name: "create-transaction-1"
   },
   {
     path: "/home",
@@ -28,13 +28,15 @@ describe("TransactionForm.vue", () => {
 
   function initializeStore() {
     const state = {
-      OCRResultType: fuelData.data.category
+      OCRResultType: fuelData.data.category,
+      image: fuelData.data.image
     };
     const actions = {
       setFormEmpty: jest.fn(),
       setOCRResultType: jest.fn()
     };
     const getters = {
+      image: state => state.image,
       OCRResultType: state => state.OCRResultType
     };
     const store = new Vuex.Store({
@@ -63,17 +65,15 @@ describe("TransactionForm.vue", () => {
     return lv;
   }
 
-  function createWrapper(store, options) {
-    const router = new VueRouter({ routes });
-    const defaultOptions = {
+  function createWrapper(store) {
+    const router = new VueRouter({ routes }); 
+    return shallowMount(TransactionForm, {
       store,
       localVue,
       router,
       stub: ["FuelForm", "ParkingForm"],
       sync: false
-    };
-    const mergeOptions = { ...options, ...defaultOptions };
-    return shallowMount(TransactionForm, mergeOptions);
+    });
   }
 
   beforeEach(() => {
@@ -81,122 +81,15 @@ describe("TransactionForm.vue", () => {
     store = initializeStore();
   });
 
-  test("if there's no pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: ""
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.$route.name).toBe("create");
-    expect(wrapper.vm.$route.params.step).toBe(1);
-  });
-
-  test("if there's pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.$route.name).toBe("create");
-    expect(wrapper.vm.$route.params.step).not.toEqual(1);
-  });
-
-  test("computed parkingTemplate", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedValue = {
-      data: {
-        category: "PARKING",
-        date: "",
-        out: "",
-        amount: 100,
-        title: "",
-        parkingType: "",
-        license: "",
-        location: "",
-        hours: 0,
-        userId: "",
-        image: ""
-      }
-    };
-    expect(wrapper.vm.parkingTemplate).toEqual(expectedValue);
-  });
-
-  test("computed  fuelTemplate", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedValue = {
-      data: {
-        category: "FUEL",
-        date: "",
-        fuelType: "",
-        liters: 0.01,
-        amount: 100,
-        title: "",
-        userId: "",
-        image: ""
-      }
-    };
-    expect(wrapper.vm.fuelTemplate).toEqual(expectedValue);
-  });
-
   test("computed isSwitchOn", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
     expect(wrapper.vm.isSwitchOn).toEqual(false);
   });
 
   test("toggle method", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
     const spy = jest.spyOn(store.actions, "setOCRResultType");
     wrapper.vm.toggle();
     expect(spy).toHaveBeenCalled();
   });
-
-  test("emptyAllForm method", () => {
-    const spy = jest.spyOn(wrapper.vm, "setFormEmpty");
-    wrapper.vm.emptyAllForm();
-    expect(spy).toHaveBeenCalledTimes(2);
-  });
-
-  // test("saveData method", async () => {
-  //   const options = {
-  //     mocks: {
-  //       // $refs: {
-  //       //   sendForm: {
-  //       //     sendParkingForm: () => Promise.resolve('true'),
-  //       //     sendFuelForm: () => Promise.resolve('true')
-  //       //   }
-  //       // },
-  //       isSwitchOn: () => false
-  //     },
-  //     propsData: {
-  //       pictureUrl: "image.jpg"
-  //     }
-  //   }
-  //   wrapper = createWrapper(store.store, options);
-  //   console.log(wrapper.vm)
-  //   const spy = jest.spyOn(wrapper.vm, 'setFormEmpty');
-  //   await wrapper.vm.saveData();
-  //   expect(spy).toHaveBeenCalledTimes(2);
-  // });
 });

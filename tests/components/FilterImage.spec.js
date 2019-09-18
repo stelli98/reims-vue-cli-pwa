@@ -4,8 +4,12 @@ import Vuex from "vuex";
 import VueRouter from "vue-router";
 const routes = [
   {
-    path: "/transactions/create/:step",
-    name: "create"
+    path: "/transactions/create/1",
+    name: "create-transaction-1"
+  },
+  {
+    path: "/transactions/create/3",
+    name: "create-transaction-3"
   }
 ];
 
@@ -26,6 +30,12 @@ describe("FilterImage.vue", () => {
 
     return {
       store,
+      state:{
+        transaction: transaction.state
+      },
+      getters:{
+        transaction: transaction.getters
+      },
       actions: {
         transaction: transaction.actions,
         notification: notification.actions
@@ -42,12 +52,18 @@ describe("FilterImage.vue", () => {
   }
 
   function initializeTransactionStore() {
+    const state = {
+      image: 'image.jpg'
+    }
+    const getters = {
+      image: state => state.image
+    }
     const actions = {
       createTransaction: jest.fn(),
       setOCRResultType: jest.fn()
     };
     const namespaced = true;
-    return { actions, namespaced };
+    return { state,getters, actions, namespaced };
   }
 
   function generateLocalVue() {
@@ -57,17 +73,15 @@ describe("FilterImage.vue", () => {
     return lv;
   }
 
-  function createWrapper(store, options) {
+  function createWrapper(store) {
     const router = new VueRouter({ routes });
-    const defaultOptions = {
+    return shallowMount(FilterImage, {
       store,
       localVue,
       router,
       sync: false,
       attachToDocument: true
-    };
-    const mergeOptions = { ...options, ...defaultOptions };
-    return shallowMount(FilterImage, mergeOptions);
+    });
   }
 
   beforeEach(() => {
@@ -92,39 +106,8 @@ describe("FilterImage.vue", () => {
     store = initializeStore();
   });
 
-  test("if there's no pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: ""
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.$route.name).toBe("create");
-    expect(wrapper.vm.$route.params.step).toBe(1);
-  });
-
-  test("if there's pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedValue = {
-      grayscale: 1,
-      brightness: 1.1,
-      contrast: 1
-    };
-    expect(wrapper.vm.filterFunctions).toEqual(expectedValue);
-  });
-
   test("uploadImageOCR method if app is online", async () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
     const resultImage = "data:image/png.AAAA";
     const spyCreateTransaction = jest.spyOn(
       store.actions.transaction,
@@ -142,15 +125,10 @@ describe("FilterImage.vue", () => {
   });
 
   test("uploadImageOCR method if app is offline", async () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
     store.actions.transaction.createTransaction.mockRejectedValue(() =>
       Promise.reject()
     );
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
     const resultImage = "data:image/png.AAAA";
     const spyCreateTransaction = jest.spyOn(
       store.actions.transaction,

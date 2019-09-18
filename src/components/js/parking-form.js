@@ -7,7 +7,6 @@ export default {
   validations: {
     parking: {
       date: { required },
-      out: { required },
       amount: {
         required,
         currency(input) {
@@ -18,24 +17,15 @@ export default {
           return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
         }
       },
-      title: { required },
-      parkingType: { required },
-      license: { required },
-      location: { required }
+      title: { required }
     },
     amountInt: {
       minValue: minValue(100)
     }
   },
-  data() {
-    return {
-      isSwitchOn: {
-        type: Boolean,
-        default: true
-      },
-      type: ["BUS", "CAR", "MOTORCYCLE"]
-    };
-  },
+  props: [
+    'bus'
+  ],
   computed: {
     ...mapGetters("transaction", ["parking"]),
     parkingAmount: {
@@ -54,7 +44,7 @@ export default {
         ? parseInt(this.parking.amount.split(".").join(""))
         : this.parking.amount;
     },
-    formatInDate: {
+    formatDate: {
       set(newValue) {
         this.parking.date = newValue;
       },
@@ -64,31 +54,31 @@ export default {
           : "";
       }
     },
-    formatOutDate: {
-      set(newValue) {
-        this.parking.out = newValue;
-      },
-      get() {
-        return this.parking.out ? new Date(this.parking.out).toISOString() : "";
-      }
-    },
     currentDateTime() {
       return new Date().toISOString();
-    }
+    },
+    parkingTemplate () {
+      return {
+        data: {
+          category: "PARKING",
+          date: "",
+          amount: 100,
+          title: "",
+          userId: "",
+          image: ""
+        }
+      };
+    },
   },
   methods: {
-    ...mapActions("transaction", ["saveTransaction"]),
+    ...mapActions("transaction", ["saveTransaction","setFormEmpty"]),
     ...mapActions("notification", ["addNotification"]),
-    toggle() {
-      this.isSwitchOn = !this.isSwitchOn;
-    },
     sendParkingForm() {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
-        this.calculateDuration();
         this.convertDateToEpoch();
-        return this.saveTransaction(this.parking)
+        this.saveTransaction(this.parking)
           .then(response => {
             const notification = {
               type: "success",
@@ -104,20 +94,18 @@ export default {
             };
             this.addNotification(notification);
           });
+          this.setFormEmpty(this.parkingTemplate);
+          this.$router.push({name:"home"});
       }
     },
     reformatPrice() {
       this.parking.amount = this.amountInt;
     },
-    calculateDuration() {
-      this.parking.hours = Math.ceil(
-        (new Date(this.parking.out).getTime() -
-          new Date(this.parking.date).getTime()) /
-          3600000
-      );
-    },
     convertDateToEpoch() {
       this.parking.date = new Date(this.parking.date).getTime();
     }
-  }
+  },
+  mounted () {
+    this.bus.$on('submitParkingForm', this.sendParkingForm);
+  },
 };
