@@ -3,11 +3,13 @@ import ParkingForm from "@/components/ParkingForm";
 import TextFilter from "@/filters/text";
 import Vuelidate from "vuelidate";
 import Vuex from "vuex";
+import Vue from "vue";
 
 describe("ParkingForm.vue", () => {
   let store;
   let wrapper;
   let localVue;
+
   const ParkingData = {
     id: 500000026,
     image:
@@ -83,6 +85,9 @@ describe("ParkingForm.vue", () => {
     return shallowMount(ParkingForm, {
       store,
       localVue,
+      propsData: {
+        bus: new Vue()
+      },
       stubs: ["Datetime"],
       sync: false
     });
@@ -100,58 +105,49 @@ describe("ParkingForm.vue", () => {
     expect(wrapper.vm.parking.date).toBe(1565692009000);
   });
 
-  test("methods toggle", () => {
-    wrapper.vm.toggle();
-    expect(wrapper.vm.isSwitchOn).toBe(false);
-  });
-
   test("methods reformatPrice", () => {
     wrapper.vm.reformatPrice();
     expect(wrapper.vm.parking.amount).toBe(9000);
   });
 
-  test("methods calculateDuration", () => {
-    wrapper.vm.parking.out = "2019-08-13T11:27:50.000Z";
-    wrapper.vm.calculateDuration();
-    expect(wrapper.vm.parking.hours).toBe(2);
-  });
-
-  test("sendParkingForm method", () => {
-    // store.state.transaction.fuel = {
-    //     id: 500000026,
-    //     title: "Test 1",
-    //     image:
-    //         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
-    //     category: "FUEL",
-    //     date: "2018-05-12T17:19:06.151Z",
-    //     type: "Premium",
-    //     liters: "5.0",
-    //     amount: 9000,
-    //     created_at: "2018-05-12T17:19:06.151Z",
-    //     modified_at: ""
-    // }
-    // wrapper.vm.reformatVolume = jest.fn()
-    // const spyFormatVolume = jest.spyOn(wrapper.vm, 'reformatVolume')
-    // const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, 'convertDateToEpoch')
-    // const spySaveTransactions = jest.spyOn(store.actions.transaction, 'saveTransaction')
-    // wrapper.vm.sendParkingForm();
-    // expect(wrapper.vm.reformatVolume).toHaveBeenCalled();
-    // expect(spyConvertDateToEpoch).toHaveBeenCalled();
-    // expect(spySaveTransactions).toHaveBeenCalled();
-  });
-
-  test("formatInDate computed", () => {
-    wrapper.setData({ formatInDate: 1565419259000 });
-    expect(wrapper.vm.formatInDate).toBe("2019-08-10T06:40:59.000Z");
-  });
-
-  test("formatOutDate computed", () => {
-    wrapper.setData({ formatOutDate: 1565695670000 });
-    expect(wrapper.vm.formatOutDate).toBe("2019-08-13T11:27:50.000Z");
+  test("formaDate computed", () => {
+    wrapper.setData({ formatDate: 1565695670000 });
+    expect(wrapper.vm.formatDate).toBe("2019-08-13T11:27:50.000Z");
   });
 
   test("parkingAmount computed setter getter", () => {
     wrapper.setData({ parkingAmount: 20000 });
     expect(wrapper.vm.parkingAmount).toBe("20.000");
   });
+
+  test("amountInt computed", () => {
+    wrapper.vm.parking.amount = "2.000"
+    expect(wrapper.vm.amountInt).toBe(2000)
+  });
+
+
+
+  // test("sendParkingForm method", () => {
+  //   // store.state.transaction.fuel = {
+  //   //     id: 500000026,
+  //   //     title: "Test 1",
+  //   //     image:
+  //   //         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
+  //   //     category: "FUEL",
+  //   //     date: "2018-05-12T17:19:06.151Z",
+  //   //     type: "Premium",
+  //   //     liters: "5.0",
+  //   //     amount: 9000,
+  //   //     created_at: "2018-05-12T17:19:06.151Z",
+  //   //     modified_at: ""
+  //   // }
+  //   // wrapper.vm.reformatVolume = jest.fn()
+  //   // const spyFormatVolume = jest.spyOn(wrapper.vm, 'reformatVolume')
+  //   // const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, 'convertDateToEpoch')
+  //   // const spySaveTransactions = jest.spyOn(store.actions.transaction, 'saveTransaction')
+  //   // wrapper.vm.sendParkingForm();
+  //   // expect(wrapper.vm.reformatVolume).toHaveBeenCalled();
+  //   // expect(spyConvertDateToEpoch).toHaveBeenCalled();
+  //   // expect(spySaveTransactions).toHaveBeenCalled();
+  // });
 });

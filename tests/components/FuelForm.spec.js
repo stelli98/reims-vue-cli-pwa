@@ -5,6 +5,7 @@ import Vuelidate from "vuelidate";
 import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
+import Vue from 'vue';
 
 const url = config.api.transactions;
 
@@ -76,6 +77,9 @@ describe("FuelForm.vue", () => {
     return shallowMount(FuelForm, {
       store,
       localVue,
+      propsData:{
+        bus: new Vue()
+      },
       stubs: ["Datetime"],
       sync: false
     });
@@ -87,17 +91,6 @@ describe("FuelForm.vue", () => {
     wrapper = createWrapper(store.store);
   });
 
-  test("methods toggle", () => {
-    wrapper.vm.toggle();
-    expect(wrapper.vm.isSwitchOn).toBe(false);
-  });
-
-  test("reformat volume", () => {
-    wrapper.vm.fuel.liters = "1.32";
-    wrapper.vm.reformatVolume();
-    expect(wrapper.vm.fuel.liters).toBe(1.32);
-  });
-
   test("reformat convertDateToEpoch", () => {
     wrapper.vm.fuel.date = "2019-08-13T10:26:49.000Z";
     wrapper.vm.convertDateToEpoch();
@@ -107,11 +100,6 @@ describe("FuelForm.vue", () => {
   test("fuelAmount computed setter getter", () => {
     wrapper.setData({ fuelAmount: 20000 });
     expect(wrapper.vm.fuelAmount).toBe("20.000");
-  });
-
-  test("totalPrice computed", () => {
-    wrapper.setData({ fuelAmount: 200000000000000000000000000000000 });
-    expect(wrapper.vm.totalPrice).toBe("2.6400000000000003e+32");
   });
 
   test("formatDate computed setter getter", () => {
