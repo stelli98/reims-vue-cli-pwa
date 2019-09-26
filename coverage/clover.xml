@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1568902411167" clover="3.2.0">
-  <project timestamp="1568902411167" name="All files">
-    <metrics statements="449" coveredstatements="360" conditionals="121" coveredconditionals="69" methods="66" coveredmethods="41" elements="636" coveredelements="470" complexity="0" loc="449" ncloc="449" packages="9" files="44" classes="44">
+<coverage generated="1569507027811" clover="3.2.0">
+  <project timestamp="1569507027811" name="All files">
+    <metrics statements="452" coveredstatements="391" conditionals="121" coveredconditionals="73" methods="66" coveredmethods="45" elements="639" coveredelements="509" complexity="0" loc="452" ncloc="452" packages="9" files="44" classes="44">
       <package name="src">
         <metrics statements="59" coveredstatements="17" conditionals="20" coveredconditionals="0" methods="13" coveredmethods="2"/>
         <file name="App.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/App.vue">
@@ -68,7 +68,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="166" coveredstatements="131" conditionals="51" coveredconditionals="35" methods="12" coveredmethods="5"/>
+        <metrics statements="169" coveredstatements="162" conditionals="51" coveredconditionals="39" methods="12" coveredmethods="9"/>
         <file name="ActionButton.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/ActionButton.vue">
           <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
@@ -80,85 +80,86 @@
           <line num="17" count="0" type="stmt"/>
         </file>
         <file name="CropImage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/CropImage.vue">
-          <metrics statements="10" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+          <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
-          <line num="5" count="5" type="stmt"/>
-          <line num="15" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="16" count="2" type="stmt"/>
+          <line num="5" count="6" type="stmt"/>
+          <line num="15" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="16" count="3" type="stmt"/>
           <line num="20" count="1" type="stmt"/>
           <line num="23" count="1" type="stmt"/>
           <line num="26" count="1" type="stmt"/>
           <line num="29" count="1" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
         </file>
         <file name="FilterImage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FilterImage.vue">
-          <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+          <metrics statements="36" coveredstatements="36" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
           <line num="1" count="1" type="stmt"/>
-          <line num="6" count="2" type="stmt"/>
-          <line num="15" count="3" type="stmt"/>
-          <line num="19" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="22" count="2" type="stmt"/>
-          <line num="32" count="5" type="stmt"/>
-          <line num="34" count="5" type="stmt"/>
-          <line num="35" count="5" type="stmt"/>
-          <line num="36" count="5" type="stmt"/>
-          <line num="37" count="15" type="cond" truecount="2" falsecount="0"/>
-          <line num="38" count="9" type="stmt"/>
-          <line num="42" count="5" type="stmt"/>
-          <line num="45" count="7" type="stmt"/>
-          <line num="52" count="2" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="58" count="2" type="stmt"/>
-          <line num="59" count="2" type="stmt"/>
-          <line num="60" count="2" type="stmt"/>
-          <line num="62" count="2" type="stmt"/>
-          <line num="63" count="2" type="stmt"/>
-          <line num="64" count="2" type="stmt"/>
-          <line num="65" count="2" type="stmt"/>
-          <line num="66" count="2" type="stmt"/>
-          <line num="67" count="2" type="stmt"/>
-          <line num="68" count="2" type="stmt"/>
-          <line num="69" count="2" type="stmt"/>
-          <line num="72" count="4" type="stmt"/>
+          <line num="6" count="5" type="stmt"/>
+          <line num="15" count="6" type="stmt"/>
+          <line num="19" count="5" type="stmt"/>
+          <line num="20" count="5" type="stmt"/>
+          <line num="30" count="8" type="stmt"/>
+          <line num="32" count="8" type="stmt"/>
+          <line num="33" count="8" type="stmt"/>
+          <line num="34" count="8" type="stmt"/>
+          <line num="35" count="24" type="cond" truecount="2" falsecount="0"/>
+          <line num="36" count="9" type="stmt"/>
+          <line num="40" count="8" type="stmt"/>
+          <line num="43" count="13" type="stmt"/>
+          <line num="50" count="5" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="56" count="3" type="stmt"/>
+          <line num="57" count="3" type="stmt"/>
+          <line num="58" count="3" type="stmt"/>
+          <line num="60" count="3" type="stmt"/>
+          <line num="61" count="3" type="stmt"/>
+          <line num="62" count="3" type="stmt"/>
+          <line num="63" count="3" type="stmt"/>
+          <line num="64" count="3" type="stmt"/>
+          <line num="65" count="3" type="stmt"/>
+          <line num="66" count="3" type="stmt"/>
+          <line num="67" count="3" type="stmt"/>
+          <line num="70" count="5" type="stmt"/>
+          <line num="73" count="5" type="stmt"/>
           <line num="75" count="4" type="stmt"/>
-          <line num="77" count="1" type="stmt"/>
-          <line num="81" count="1" type="stmt"/>
-          <line num="84" count="3" type="stmt"/>
-          <line num="85" count="3" type="stmt"/>
-          <line num="90" count="3" type="stmt"/>
-          <line num="92" count="4" type="stmt"/>
+          <line num="79" count="4" type="stmt"/>
+          <line num="82" count="1" type="stmt"/>
+          <line num="83" count="1" type="stmt"/>
+          <line num="88" count="1" type="stmt"/>
+          <line num="90" count="5" type="stmt"/>
+          <line num="93" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="94" count="2" type="stmt"/>
         </file>
         <file name="FuelForm.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FuelForm.vue">
-          <metrics statements="27" coveredstatements="15" conditionals="8" coveredconditionals="2" methods="2" coveredmethods="0"/>
+          <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="3" methods="2" coveredmethods="2"/>
           <line num="1" count="2" type="stmt"/>
           <line num="2" count="2" type="stmt"/>
           <line num="3" count="2" type="stmt"/>
           <line num="5" count="2" type="stmt"/>
-          <line num="16" count="3" type="stmt"/>
-          <line num="23" count="5" type="stmt"/>
-          <line num="27" count="5" type="stmt"/>
+          <line num="16" count="12" type="stmt"/>
+          <line num="23" count="14" type="stmt"/>
+          <line num="27" count="14" type="stmt"/>
           <line num="41" count="1" type="stmt"/>
-          <line num="44" count="5" type="stmt"/>
+          <line num="44" count="14" type="stmt"/>
           <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="54" count="5" type="cond" truecount="1" falsecount="1"/>
-          <line num="59" count="3" type="stmt"/>
+          <line num="54" count="14" type="cond" truecount="1" falsecount="1"/>
+          <line num="59" count="8" type="stmt"/>
           <line num="63" count="1" type="stmt"/>
-          <line num="66" count="7" type="cond" truecount="1" falsecount="1"/>
-          <line num="70" count="0" type="stmt"/>
-          <line num="88" count="0" type="stmt"/>
-          <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="90" count="0" type="stmt"/>
-          <line num="91" count="0" type="stmt"/>
-          <line num="93" count="0" type="stmt"/>
-          <line num="97" count="0" type="stmt"/>
-          <line num="100" count="0" type="stmt"/>
-          <line num="105" count="0" type="stmt"/>
-          <line num="107" count="0" type="stmt"/>
-          <line num="108" count="0" type="stmt"/>
-          <line num="112" count="1" type="stmt"/>
-          <line num="116" count="3" type="stmt"/>
+          <line num="66" count="16" type="cond" truecount="1" falsecount="1"/>
+          <line num="70" count="3" type="stmt"/>
+          <line num="88" count="2" type="stmt"/>
+          <line num="89" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="90" count="2" type="stmt"/>
+          <line num="91" count="2" type="stmt"/>
+          <line num="93" count="1" type="stmt"/>
+          <line num="97" count="1" type="stmt"/>
+          <line num="100" count="1" type="stmt"/>
+          <line num="105" count="1" type="stmt"/>
+          <line num="107" count="2" type="stmt"/>
+          <line num="108" count="2" type="stmt"/>
+          <line num="112" count="3" type="stmt"/>
+          <line num="116" count="8" type="stmt"/>
         </file>
         <file name="NotificationBar.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/NotificationBar.vue">
           <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -181,33 +182,33 @@
           <line num="18" count="1" type="stmt"/>
         </file>
         <file name="ParkingForm.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/ParkingForm.vue">
-          <metrics statements="26" coveredstatements="14" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="0"/>
+          <metrics statements="26" coveredstatements="26" conditionals="6" coveredconditionals="4" methods="2" coveredmethods="2"/>
           <line num="1" count="2" type="stmt"/>
           <line num="2" count="2" type="stmt"/>
           <line num="3" count="2" type="stmt"/>
-          <line num="13" count="14" type="stmt"/>
-          <line num="17" count="14" type="stmt"/>
+          <line num="13" count="22" type="stmt"/>
+          <line num="17" count="22" type="stmt"/>
           <line num="33" count="1" type="stmt"/>
-          <line num="36" count="14" type="stmt"/>
-          <line num="43" count="14" type="cond" truecount="2" falsecount="0"/>
+          <line num="36" count="22" type="stmt"/>
+          <line num="43" count="22" type="cond" truecount="2" falsecount="0"/>
           <line num="49" count="1" type="stmt"/>
-          <line num="52" count="9" type="cond" truecount="1" falsecount="1"/>
-          <line num="58" count="5" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="77" count="0" type="stmt"/>
-          <line num="78" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="79" count="0" type="stmt"/>
-          <line num="80" count="0" type="stmt"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="83" count="0" type="stmt"/>
-          <line num="87" count="0" type="stmt"/>
-          <line num="90" count="0" type="stmt"/>
-          <line num="95" count="0" type="stmt"/>
-          <line num="97" count="0" type="stmt"/>
-          <line num="98" count="0" type="stmt"/>
-          <line num="102" count="1" type="stmt"/>
-          <line num="105" count="1" type="stmt"/>
-          <line num="109" count="5" type="stmt"/>
+          <line num="52" count="17" type="cond" truecount="1" falsecount="1"/>
+          <line num="58" count="9" type="stmt"/>
+          <line num="61" count="2" type="stmt"/>
+          <line num="77" count="2" type="stmt"/>
+          <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="79" count="2" type="stmt"/>
+          <line num="80" count="2" type="stmt"/>
+          <line num="81" count="2" type="stmt"/>
+          <line num="83" count="1" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="90" count="1" type="stmt"/>
+          <line num="95" count="1" type="stmt"/>
+          <line num="97" count="2" type="stmt"/>
+          <line num="98" count="2" type="stmt"/>
+          <line num="102" count="3" type="stmt"/>
+          <line num="105" count="3" type="stmt"/>
+          <line num="109" count="9" type="stmt"/>
         </file>
         <file name="SortFilter.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/SortFilter.vue">
           <metrics statements="22" coveredstatements="22" conditionals="20" coveredconditionals="17" methods="0" coveredmethods="0"/>
@@ -243,19 +244,21 @@
           <line num="23" count="1" type="stmt"/>
         </file>
         <file name="TransactionForm.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/TransactionForm.vue">
-          <metrics statements="12" coveredstatements="10" conditionals="4" coveredconditionals="2" methods="0" coveredmethods="0"/>
+          <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
           <line num="6" count="1" type="stmt"/>
-          <line num="25" count="2" type="stmt"/>
-          <line num="38" count="2" type="stmt"/>
-          <line num="41" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="45" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="52" count="1" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
+          <line num="25" count="6" type="stmt"/>
+          <line num="38" count="6" type="stmt"/>
+          <line num="41" count="6" type="cond" truecount="1" falsecount="1"/>
+          <line num="45" count="6" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="59" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="60" count="2" type="stmt"/>
+          <line num="64" count="3" type="stmt"/>
         </file>
         <file name="TransactionList.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/TransactionList.vue">
           <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="0"/>

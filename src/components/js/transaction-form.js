@@ -42,9 +42,7 @@ export default {
     }
   },
   created () {
-    if (!this.image) {
-      this.$router.push({ name: "create-transaction-1" });
-    }
+    this.checkContainsImage()
   },
   methods: {
     ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),
@@ -56,6 +54,14 @@ export default {
     submitForm(){
       this.bus.$emit(
         TOGGLE_BUTTON[(this.isSwitchOn).toString()].action)
+    },
+    checkContainsImage(){
+      if (!this.image) {
+        this.moveTo()
+      }
+    }, 
+    moveTo(){
+      this.$router.push({ name: "create-transaction-1" });
     }
   }
 };

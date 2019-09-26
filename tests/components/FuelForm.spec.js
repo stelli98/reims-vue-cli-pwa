@@ -73,8 +73,8 @@ describe("FuelForm.vue", () => {
     return lv;
   }
 
-  function createWrapper(store) {
-    return shallowMount(FuelForm, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
       propsData:{
@@ -82,7 +82,9 @@ describe("FuelForm.vue", () => {
       },
       stubs: ["Datetime"],
       sync: false
-    });
+    }
+    const mergeConfig = {...options, ...defaultConfig}
+    return shallowMount(FuelForm,mergeConfig);
   }
 
   beforeEach(() => {
@@ -92,6 +94,7 @@ describe("FuelForm.vue", () => {
   });
 
   test("reformat convertDateToEpoch", () => {
+
     wrapper.vm.fuel.date = "2019-08-13T10:26:49.000Z";
     wrapper.vm.convertDateToEpoch();
     expect(wrapper.vm.fuel.date).toBe(1565692009000);
@@ -106,4 +109,89 @@ describe("FuelForm.vue", () => {
     wrapper.setData({ formatDate: 1565419259000 });
     expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z");
   });
+
+  test("fuelTemplate computed", ()=>{
+    const expectedValue = {
+      data: {
+        category: "FUEL",
+        date: "",
+        fuelType: "",
+        kilometer: 1,
+        amount: 100,
+        title: "",
+        userId: "",
+        image: ""
+      }
+    }
+    expect(wrapper.vm.fuelTemplate).toEqual(expectedValue)
+  })
+
+  test("sendFuelForm Method is succeeded", async ()=>{
+    const options = {
+      mocks : {
+        $router : {
+          push: jest.fn()
+        }
+      }
+    }
+    wrapper = createWrapper(store.store, options)
+    store.state.transaction.fuel = {
+      category: "FUEL",
+      date: 123,
+      fuelType: "A",
+      kilometer: 1,
+      amount: 100,
+      title: "AA"
+    }
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
+    const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
+    const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
+    await wrapper.vm.sendFuelForm()
+    wrapper.vm.$nextTick(()=>{
+      expect(spyConvertDateToEpoch).toHaveBeenCalled()
+      expect(spySaveTransaction).toHaveBeenCalled()
+      expect(spyAddNotification).toHaveBeenCalled()
+      expect(spySetFormEmpty).toHaveBeenCalled()
+    })
+  })
+
+  test("sendFuelForm Method is failed", async ()=>{
+    const options = {
+      mocks : {
+        $router : {
+          push: jest.fn()
+        }
+      }
+    }
+    wrapper = createWrapper(store.store, options)
+    store.state.transaction.fuel = {
+      category: "FUEL",
+      date: 123,
+      fuelType: "A",
+      kilometer: 1,
+      amount: 100,
+      title: "AA"
+    }
+    store.actions.transaction.saveTransaction.mockRejectedValue(() =>
+      Promise.reject()
+    );
+
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
+    const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
+    const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
+   
+    try{
+      await wrapper.vm.sendFuelForm() 
+    }catch{
+      wrapper.vm.$nextTick(()=>{
+        expect(spyConvertDateToEpoch).toHaveBeenCalled()
+        expect(spySaveTransaction).toHaveBeenCalled()
+        expect(spyAddNotification).toHaveBeenCalled()
+        expect(spySetFormEmpty).toHaveBeenCalled()
+      })
+    }
+  })
+
 });

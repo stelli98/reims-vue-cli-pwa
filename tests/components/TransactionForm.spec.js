@@ -1,22 +1,11 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import TransactionForm from "@/components/TransactionForm.vue";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
+import Vue from "vue";
 
 const url = config.api.transactions;
-
-const routes = [
-  {
-    path: "/transactions/create/1",
-    name: "create-transaction-1"
-  },
-  {
-    path: "/home",
-    name: "home"
-  }
-];
 
 describe("TransactionForm.vue", () => {
   let store;
@@ -25,6 +14,15 @@ describe("TransactionForm.vue", () => {
   const fuelData = data.find(
     d => d.url == url.transaction && d.method == "POST"
   );
+
+  // const EventBus = new Vue();
+
+  // const GlobalPlugins = {
+  //   install(v) {
+  //     // Event bus
+  //     v.prototype.bus = EventBus;
+  //   },
+  // };
 
   function initializeStore() {
     const state = {
@@ -61,35 +59,79 @@ describe("TransactionForm.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
+    // lv.use(GlobalPlugins);
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes }); 
-    return shallowMount(TransactionForm, {
-      store,
-      localVue,
-      router,
-      stub: ["FuelForm", "ParkingForm"],
-      sync: false
-    });
+  function createWrapper(store, options) {
+     const defaultConfig = {
+        store,
+        localVue,
+        stub: ["FuelForm", "ParkingForm"],
+        sync: false
+     }
+     const mergeConfig = {...options,...defaultConfig}
+    return shallowMount(TransactionForm, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
+    wrapper = createWrapper(store.store);
   });
 
   test("computed isSwitchOn", () => {
-    wrapper = createWrapper(store.store);
     expect(wrapper.vm.isSwitchOn).toEqual(false);
   });
 
   test("toggle method", () => {
-    wrapper = createWrapper(store.store);
     const spy = jest.spyOn(store.actions, "setOCRResultType");
     wrapper.vm.toggle();
     expect(spy).toHaveBeenCalled();
   });
+
+  test("moveTo method ", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.moveTo();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test("checkContainsImage method",() =>{
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    store.state.image = ""
+    wrapper = createWrapper(store.store,options);
+    const spy = jest.spyOn(wrapper.vm, "moveTo");
+    wrapper.vm.checkContainsImage();
+    expect(spy).toHaveBeenCalled();
+  })
+
+  // test("Emit event bus submitForm method", () => {
+  //   const options = {
+  //       data () {
+  //         return {
+  //           bus: GlobalPlugins
+  //         }
+  //       }
+  //   }
+  //   wrapper = createWrapper(store.store,options);
+  //   // console.log(wrapper.vm.bus)
+  //   // const spy = jest.spyOn(wrapper.vm.bus.$emit,"submitFuelForm")
+  //   wrapper.vm.submitForm();
+  //   // expect(spy).toHaveBeenCalled();
+  //   expect(wrapper.vm.bus.emitted().submitFuelForm).toEqual([[]])
+  // });
 });

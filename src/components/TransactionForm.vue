@@ -14,7 +14,7 @@
     </div>
 
     <div class="bottom-navigation filter-image__navigation">
-      <div class="bottom-navigation__left">
+      <div class="bottom-navigation__left" @click="moveTo">
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>

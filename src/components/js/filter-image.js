@@ -16,9 +16,7 @@ export default {
     }
   },
   created() {
-    if (!this.image) {
-      this.$router.push({ name: "create-transaction-1" });
-    }
+    this.checkContainsImage();
     this.setFilterToDefault();
   },
   methods: {
@@ -90,6 +88,11 @@ export default {
           this.addNotification(notification);
         });
       this.$router.push({ name: "create-transaction-3"});
+    },
+    checkContainsImage(){
+      if (!this.image) {
+        this.$router.push({ name: "create-transaction-1" });
+      }
     }
   }
 };

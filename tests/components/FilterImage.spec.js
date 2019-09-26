@@ -1,17 +1,6 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import FilterImage from "@/components/FilterImage";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
-const routes = [
-  {
-    path: "/transactions/create/1",
-    name: "create-transaction-1"
-  },
-  {
-    path: "/transactions/create/3",
-    name: "create-transaction-3"
-  }
-];
 
 describe("FilterImage.vue", () => {
   let store;
@@ -60,7 +49,8 @@ describe("FilterImage.vue", () => {
     }
     const actions = {
       createTransaction: jest.fn(),
-      setOCRResultType: jest.fn()
+      setOCRResultType: jest.fn(), 
+      setImage: jest.fn()
     };
     const namespaced = true;
     return { state,getters, actions, namespaced };
@@ -69,24 +59,22 @@ describe("FilterImage.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes });
-    return shallowMount(FilterImage, {
+  function createWrapper(store,options) {
+    const defaultConfig = {
       store,
       localVue,
-      router,
       sync: false,
       attachToDocument: true
-    });
+    }
+    const mergeConfig = {...options, ...defaultConfig}
+    return shallowMount(FilterImage, mergeConfig);
   }
 
   beforeEach(() => {
     const createElement = document.createElement.bind(document);
-    0;
     document.createElement = tagName => {
       if (tagName === "canvas") {
         return {
@@ -107,7 +95,14 @@ describe("FilterImage.vue", () => {
   });
 
   test("uploadImageOCR method if app is online", async () => {
-    wrapper = createWrapper(store.store);
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
     const resultImage = "data:image/png.AAAA";
     const spyCreateTransaction = jest.spyOn(
       store.actions.transaction,
@@ -125,10 +120,17 @@ describe("FilterImage.vue", () => {
   });
 
   test("uploadImageOCR method if app is offline", async () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
     store.actions.transaction.createTransaction.mockRejectedValue(() =>
       Promise.reject()
     );
-    wrapper = createWrapper(store.store);
     const resultImage = "data:image/png.AAAA";
     const spyCreateTransaction = jest.spyOn(
       store.actions.transaction,
@@ -149,6 +151,14 @@ describe("FilterImage.vue", () => {
   });
 
   test("generateImage method ", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
     wrapper.vm.generateImage();
     const spy = jest.spyOn(wrapper.vm, "uploadImageOCR");
     expect(wrapper.vm.generateImage()).toEqual(
@@ -169,4 +179,36 @@ describe("FilterImage.vue", () => {
     wrapper.vm.makeFilter();
     expect(wrapper.vm.makeFilter()).toEqual(expectedValue);
   });
+
+  test("filterImage Method", ()=>{
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
+    const spyGenerateImage = jest.spyOn(wrapper.vm, "generateImage");
+    const spyActionSetImage = jest.spyOn(store.actions.transaction, "setImage");
+    wrapper.vm.filterImage();
+    expect(spyGenerateImage).toHaveBeenCalled();
+    expect(spyActionSetImage).toHaveBeenCalled();
+
+  })
+
+  test("checkContainsImage method", ()=>{
+    const options = {
+          mocks: {
+            $router: {
+              push: jest.fn()
+            }
+          }
+        };
+        store.state.transaction.image = ""
+        wrapper = createWrapper(store.store,options);
+        wrapper.vm.checkContainsImage()
+        const spyRouterPush = jest.spyOn(wrapper.vm.$router, 'push');
+        expect(spyRouterPush).toHaveBeenCalled()
+  })
 });
