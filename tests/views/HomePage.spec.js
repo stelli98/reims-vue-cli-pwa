@@ -155,4 +155,11 @@ describe("HomePage.vue", () => {
     wrapper.vm.download();
     expect(spy).toHaveBeenCalled();
   });
+
+  test("methods toggleActionButton", () => {
+    var expectedValue = true
+    wrapper.vm.toggleActionButton(expectedValue)
+    expect(wrapper.vm.actionButtonActive).toBe(expectedValue);
+  });
+
 });
