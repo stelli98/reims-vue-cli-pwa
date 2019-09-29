@@ -146,6 +146,23 @@ describe("Actions for Transactions Module", () => {
     );
   });
 
+  test("Delete transaction actions", () => {
+    api.deleteTransaction = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const transactionId =  1
+    actions.deleteTransaction({ rootState }, transactionId);
+    expect(api.deleteTransaction).toHaveBeenCalledWith(
+      transactionId,
+      rootState.auth.token
+    );
+  });
+
+
   test("getViewImage action", async () => {
     api.getViewImage = jest.fn();
     const rootState = {

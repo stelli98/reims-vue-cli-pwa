@@ -100,6 +100,22 @@ describe("Actions for User Module", () => {
     );
   });
 
+  test("Delete user actions", () => {
+    api.deleteUser = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const userId =  1
+    actions.deleteUser({ rootState }, userId);
+    expect(api.deleteUser).toHaveBeenCalledWith(
+      userId,
+      rootState.auth.token
+    );
+  });
+
   test("downloadPersonalReport actions", () => {
     api.downloadPersonalReport = jest.fn();
     const rootState = {
