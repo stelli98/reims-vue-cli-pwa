@@ -17,6 +17,6 @@ export default {
     commit("SET_USERNAME", "");
   },
   updateToken: ({ commit }, token) => {
-    commit("SET_TOKEN", token)
+    commit("SET_TOKEN", token);
   }
 };

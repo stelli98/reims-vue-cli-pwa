@@ -13,7 +13,7 @@ export default {
       password: { required, minLength: minLength(6) }
     }
   },
-  data () {
+  data() {
     return {
       user: {
         username: "",
@@ -28,7 +28,7 @@ export default {
   computed: mapGetters("auth", ["role"]),
   methods: {
     ...mapActions("auth", ["login"]),
-    submitLoginForm () {
+    submitLoginForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.login(this.user).then(() => {

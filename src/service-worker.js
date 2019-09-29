@@ -12,9 +12,8 @@ if (workbox) {
   // https://stackoverflow.com/questions/49963982/vue-router-history-mode-with-pwa-in-offline-mode
   workbox.routing.registerNavigationRoute("/index.html");
 
-
   workbox.routing.registerRoute(
-    new RegExp('/api'),
+    new RegExp("/api"),
     new workbox.strategies.NetworkOnly()
   );
 }

@@ -3,10 +3,10 @@ import config from "@/config";
 import offlineService from "@/api/transaction-offline";
 
 const api = config.api.transactions;
-// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
+process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
-  getTransaction (id, token) {
+  getTransaction(id, token) {
     const path = api.transaction;
     return axios.get(`${path}/${id}`, {
       headers: {
@@ -14,7 +14,7 @@ export default {
       }
     });
   },
-  getTransactions (options, token) {
+  getTransactions(options, token) {
     const path = api.transaction;
     return axios.get(path, {
       params: options,
@@ -23,7 +23,7 @@ export default {
       }
     });
   },
-  createTransaction (data, token) {
+  createTransaction(data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
       return axios
@@ -40,7 +40,7 @@ export default {
       return offlineService.storeImageOffline(data);
     }
   },
-  saveTransaction (data, token) {
+  saveTransaction(data, token) {
     if (this.isOnline()) {
       const path = api.transaction;
       return axios
@@ -57,7 +57,7 @@ export default {
       return offlineService.storeFormOffline(data);
     }
   },
-  deleteTransaction (id, token) {
+  deleteTransaction(id, token) {
     const path = api.transaction;
     return axios.delete(`${path}/${id}`, {
       headers: {
@@ -65,7 +65,7 @@ export default {
       }
     });
   },
-  getViewImage (url, token) {
+  getViewImage(url, token) {
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
       headers: {
@@ -73,7 +73,7 @@ export default {
       }
     });
   },
-  isOnline () {
+  isOnline() {
     return navigator.onLine;
   }
 };

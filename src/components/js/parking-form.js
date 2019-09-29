@@ -10,7 +10,7 @@ export default {
       out: { required },
       amount: {
         required,
-        currency (input) {
+        currency(input) {
           const value = input
             .toString()
             .replace(/\./g, "")
@@ -21,13 +21,13 @@ export default {
       title: { required },
       parkingType: { required },
       license: { required },
-      location: { required },
+      location: { required }
     },
     amountInt: {
       minValue: minValue(100)
     }
   },
-  data () {
+  data() {
     return {
       isSwitchOn: {
         type: Boolean,
@@ -39,49 +39,50 @@ export default {
   computed: {
     ...mapGetters("transaction", ["parking"]),
     parkingAmount: {
-      set (newValue) {
+      set(newValue) {
         this.parking.amount = newValue;
       },
-      get () {
+      get() {
         return this.parking.amount
           .toString()
           .replace(/\./g, "")
           .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
     },
-    amountInt () {
+    amountInt() {
       return typeof this.parking.amount === "string"
         ? parseInt(this.parking.amount.split(".").join(""))
         : this.parking.amount;
     },
     formatInDate: {
-      set (newValue) {
+      set(newValue) {
         this.parking.date = newValue;
       },
-      get () {
-        return this.parking.date ? new Date(this.parking.date).toISOString() : ""
+      get() {
+        return this.parking.date
+          ? new Date(this.parking.date).toISOString()
+          : "";
       }
     },
     formatOutDate: {
-      set (newValue) {
+      set(newValue) {
         this.parking.out = newValue;
       },
-      get () {
-        return this.parking.out ?
-          new Date(this.parking.out).toISOString() : ""
+      get() {
+        return this.parking.out ? new Date(this.parking.out).toISOString() : "";
       }
     },
-    currentDateTime () {
-      return new Date().toISOString()
+    currentDateTime() {
+      return new Date().toISOString();
     }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction"]),
     ...mapActions("notification", ["addNotification"]),
-    toggle () {
+    toggle() {
       this.isSwitchOn = !this.isSwitchOn;
     },
-    sendParkingForm () {
+    sendParkingForm() {
       this.$v.parking.$touch();
       if (!this.$v.parking.$invalid) {
         this.reformatPrice();
@@ -105,18 +106,18 @@ export default {
           });
       }
     },
-    reformatPrice () {
+    reformatPrice() {
       this.parking.amount = this.amountInt;
     },
-    calculateDuration () {
+    calculateDuration() {
       this.parking.hours = Math.ceil(
         (new Date(this.parking.out).getTime() -
           new Date(this.parking.date).getTime()) /
-        3600000
+          3600000
       );
     },
-    convertDateToEpoch () {
-      this.parking.date = new Date(this.parking.date).getTime()
+    convertDateToEpoch() {
+      this.parking.date = new Date(this.parking.date).getTime();
     }
   }
 };

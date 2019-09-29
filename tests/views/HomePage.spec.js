@@ -33,7 +33,7 @@ describe("HomePage.vue", () => {
     d => d.url == url.transaction && d.method == "GET" && d.params.page == 1
   );
 
-  function initializeStore () {
+  function initializeStore() {
     const transaction = initializeTransactionStore();
     const auth = initializeAuthStore();
     const user = initializeUserStore();
@@ -61,7 +61,7 @@ describe("HomePage.vue", () => {
     };
   }
 
-  function initializeAuthStore () {
+  function initializeAuthStore() {
     const actions = {
       logout: jest.fn()
     };
@@ -69,7 +69,7 @@ describe("HomePage.vue", () => {
     return { actions, namespaced };
   }
 
-  function initializeUserStore () {
+  function initializeUserStore() {
     const actions = {
       downloadPersonalReport: jest.fn()
     };
@@ -77,9 +77,8 @@ describe("HomePage.vue", () => {
     return { actions, namespaced };
   }
 
-  function initializeTransactionStore () {
+  function initializeTransactionStore() {
     const actions = {
-      setImage: jest.fn(),
       getTransactions: jest.fn()
     };
     const state = {
@@ -94,14 +93,14 @@ describe("HomePage.vue", () => {
     return { state, actions, getters, namespaced };
   }
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper (store) {
+  function createWrapper(store) {
     const router = new VueRouter({ routes });
     return shallowMount(HomePage, {
       store,
@@ -139,34 +138,28 @@ describe("HomePage.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("methods onFileChange", () => {
-    global.URL.createObjectURL = jest.fn();
-    const spy = jest.spyOn(store.actions.transaction, "setImage");
-    const e = {
-      target: {
-        files: ["image.jpg"]
-      }
-    };
-    wrapper.vm.onFileChange(e);
-    expect(spy).toHaveBeenCalled();
-  });
-
   test("methods updateTransaction if there is no transactions", async () => {
     const spyAction = jest.spyOn(store.actions.transaction, "getTransactions");
-    store.state.transaction.transactions = []
-    const spyChangePage = jest.spyOn(wrapper.vm, "changePage")
+    store.state.transaction.transactions = [];
+    const spyChangePage = jest.spyOn(wrapper.vm, "changePage");
     await wrapper.vm.updateTransaction();
     expect(spyAction).toHaveBeenCalled();
     wrapper.vm.$nextTick(() => {
       expect(spyChangePage).toHaveBeenCalled();
       expect(wrapper.vm.$route.query.page).toBe(1);
-    })
-  })
+    });
+  });
 
   test("methods download", () => {
     const spy = jest.spyOn(store.actions.user, "downloadPersonalReport");
     wrapper.vm.download();
     expect(spy).toHaveBeenCalled();
+  });
+
+  test("methods toggleActionButton", () => {
+    var expectedValue = true
+    wrapper.vm.toggleActionButton(expectedValue)
+    expect(wrapper.vm.actionButtonActive).toBe(expectedValue);
   });
 
 });

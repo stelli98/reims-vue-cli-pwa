@@ -25,9 +25,11 @@ describe("TransactionDetail.vue", () => {
   let wrapper;
   let localVue;
   const transactionData = data.find(d => d.url === url.transaction + "/1");
-  const imageData = data.find(d => d.url === url.transaction + "/3278/12345abc");
+  const imageData = data.find(
+    d => d.url === url.transaction + "/3278/12345abc"
+  );
 
-  function initializeStore () {
+  function initializeStore() {
     const actions = {
       getTransaction: jest.fn(),
       getViewImage: jest.fn()
@@ -62,7 +64,7 @@ describe("TransactionDetail.vue", () => {
     };
   }
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
@@ -71,7 +73,7 @@ describe("TransactionDetail.vue", () => {
     return lv;
   }
 
-  function createWrapper (store) {
+  function createWrapper(store) {
     const router = new VueRouter({ routes });
     return shallowMount(TransactionDetail, {
       store,
@@ -113,5 +115,4 @@ describe("TransactionDetail.vue", () => {
     wrapper.vm.$router.push({ transactionID });
     expect(wrapper.vm.activeComponent).toBe("ViewParkingDetail");
   });
-
 });

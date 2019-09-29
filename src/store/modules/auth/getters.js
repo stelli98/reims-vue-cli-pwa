@@ -1,14 +1,14 @@
 export default {
-  id (state) {
+  id(state) {
     return state.id;
   },
-  token (state) {
+  token(state) {
     return state.token;
   },
-  role (state) {
+  role(state) {
     return state.role;
   },
-  username (state) {
+  username(state) {
     return state.username;
   }
 };

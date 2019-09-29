@@ -5,10 +5,13 @@ export default [
     code: 200,
     method: "GET",
     url: api.transactions.transaction,
+    headers: {
+      authorization: "Bearer 123"
+    },
     params: {
       page: 1,
       size: 5,
-      sortBy: "createdAt"
+      sortBy: "date"
     },
     status: "OK",
     data: [
@@ -194,10 +197,10 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.transactions.transaction + '/3278/12345abc',
+    url: api.transactions.transaction + "/3278/12345abc",
     status: "OK",
     data: {
-      image: '12345abc'
+      image: "12345abc"
     }
   },
   {

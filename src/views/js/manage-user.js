@@ -1,5 +1,6 @@
-import UserList from "@/components/UserList.vue";
-import Pagination from "@/components/Pagination.vue";
+const UserList = () => import("@/components/UserList.vue");
+const Pagination = () => import("@/components/Pagination.vue");
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
@@ -8,7 +9,7 @@ export default {
   },
   computed: {
     ...mapGetters("user", ["users", "pagination"]),
-    options () {
+    options() {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 10,
@@ -20,34 +21,35 @@ export default {
   methods: {
     ...mapActions("user", ["getUsers"]),
     ...mapActions("auth", ["logout"]),
-    moveTo () {
+    moveTo() {
       this.$router.push({ name: "user-create" });
     },
-    updateUser () {
+    updateUser() {
       this.getUsers(this.options);
     },
-    changePage (toPage) {
+    changePage(toPage) {
       this.options.page = parseInt(toPage);
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
     },
-    submitSearch (event) {
+    submitSearch(event) {
       this.options.search = event.target.value;
       this.$router.push({ name: "user", query: this.options });
       this.getUsers(this.options);
     },
-    doLogout () {
+    doLogout() {
       this.logout().then(() => {
         this.$router.push({ name: "login" });
       });
     }
   },
   watch: {
-    options () {
+    options() {
       this.updateUser();
     }
   },
   mounted () {
+    this.$router.push({ query: { ...this.options, ...this.$route.query } })
     this.updateUser();
   }
 };

@@ -7,10 +7,10 @@ const imageIdb = "offlineImages";
 const formIdb = "offlineForms";
 export default {
   name: "syncTransactions",
-  data () {
+  data() {
     return {
       isSending: false,
-      interval: null,
+      interval: null
     };
   },
   components: {
@@ -19,15 +19,15 @@ export default {
   methods: {
     ...mapActions("transaction", ["createTransaction", "getTransactions"]),
     ...mapActions("notification", ["addNotification"]),
-    checkConnectivityStatus () {
+    checkConnectivityStatus() {
       this.interval = setInterval(() => {
         navigator.onLine && !this.isSending ? this.checkDataInIDB() : "";
       }, 10000);
     },
-    setSendingData (value) {
+    setSendingData(value) {
       this.isSending = value;
     },
-    async checkDataInIDB () {
+    async checkDataInIDB() {
       const images = await offlineService
         .getAllDataFromIndexedDB(imageIdb)
         .then(images =>
@@ -49,7 +49,7 @@ export default {
         this.setSendingData(false);
       }
     },
-    sendDataToServer (images, forms) {
+    sendDataToServer(images, forms) {
       if (images.length > 0 && forms.length > 0) {
         this.sendImageAndFormToServer(images, 0);
       } else if (images.length > 0 && !forms.length > 0) {
@@ -58,13 +58,13 @@ export default {
         this.sendOnlyFormToServer(forms[0]);
       }
     },
-    checkImagesByUserId (images) {
+    checkImagesByUserId(images) {
       return images.find(image => image.userId == this.id);
     },
-    checkFormsByUserId (forms) {
+    checkFormsByUserId(forms) {
       return forms.find(form => form.userId == this.id);
     },
-    sendOnlyFormToServer (form) {
+    sendOnlyFormToServer(form) {
       transactionApi.saveTransaction(form, this.token).then(() => {
         offlineService
           .deleteDataByKeyFromIndexedDB(formIdb, form.id)
@@ -75,17 +75,19 @@ export default {
           });
       });
     },
-    sendOnlyImageToServer (image) {
-      this.createTransaction(this.sendImageObject(image), this.token).then(() => {
-        offlineService
-          .deleteDataByKeyFromIndexedDB(imageIdb, image.id)
-          .then(() => {
-            this.addSuccessImageNotification();
-            this.setSendingData(false);
-          });
-      });
+    sendOnlyImageToServer(image) {
+      this.createTransaction(this.sendImageObject(image), this.token).then(
+        () => {
+          offlineService
+            .deleteDataByKeyFromIndexedDB(imageIdb, image.id)
+            .then(() => {
+              this.addSuccessImageNotification();
+              this.setSendingData(false);
+            });
+        }
+      );
     },
-    sendImageAndFormToServer (images, index) {
+    sendImageAndFormToServer(images, index) {
       if (index + 1 > images.length) return;
       transactionApi
         .createTransaction(this.sendImageObject(images[index]), this.token)
@@ -102,15 +104,15 @@ export default {
           });
         });
     },
-    sendImageObject (data) {
+    sendImageObject(data) {
       return {
         image: data.image
       };
     },
-    async findFormByImageID (id) {
+    async findFormByImageID(id) {
       return await offlineService.findDataByKeyFromIndexedDB(formIdb, id);
     },
-    async sendFormAfterImageToServer (formId, response, { success }) {
+    async sendFormAfterImageToServer(formId, response, { success }) {
       const form = await this.findFormByImageID(formId);
       form.image = response.data.data.image;
       transactionApi.saveTransaction(form, this.token).then(response => {
@@ -122,14 +124,14 @@ export default {
         return response;
       });
     },
-    addSuccessFormNotification () {
+    addSuccessFormNotification() {
       const notification = {
         type: "success",
         message: "You're back online. Your form has been submitted."
       };
       this.addNotification(notification);
     },
-    addSuccessImageNotification () {
+    addSuccessImageNotification() {
       const notification = {
         type: "success",
         message: "You're back online. Your image has been submitted."
@@ -140,10 +142,10 @@ export default {
   computed: {
     ...mapGetters("auth", ["token", "id"])
   },
-  created () {
+  created() {
     this.checkConnectivityStatus();
   },
-  beforeDestroy () {
+  beforeDestroy() {
     clearTimeout(this.interval);
   }
 };

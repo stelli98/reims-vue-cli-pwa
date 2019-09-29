@@ -1,19 +1,13 @@
 <template>
   <div>
     <div class="header transaction-detail__header">
-      <div
-        class="transaction-detail__close"
-        @click="$router.go(-1)"
-      >
+      <div class="transaction-detail__close" @click="$router.go(-1)">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-back" />
         </svg>
       </div>
     </div>
-    <div
-      class="transaction-detail__content"
-      v-if="isLoading"
-    >
+    <div class="transaction-detail__content" v-if="isLoading">
       <h3>{{ transactionCategory + " Expenses" }}</h3>
       <p>
         {{ transaction.date || transaction.in | dateFormatter }}
@@ -21,14 +15,8 @@
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <img
-        class="transaction-detail__image"
-        :src="imageBase64"
-      />
-      <Component
-        :is="activeComponent"
-        :transaction="transaction"
-      />
+      <img class="transaction-detail__image" :src="imageBase64" />
+      <Component :is="activeComponent" :transaction="transaction" />
     </div>
   </div>
 </template>

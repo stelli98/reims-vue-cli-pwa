@@ -1,18 +1,12 @@
 <template>
   <div class="edit-profile">
     <div class="header edit-profile__header">
-      <div
-        class="edit-profile__close"
-        @click="moveTo"
-      >
+      <div class="edit-profile__close" @click="moveTo">
         <svg class="icon icon-small">
           <use xlink:href="icons.svg#icon-cancel" />
         </svg>
       </div>
-      <div
-        class="title--menu user-form__next"
-        @click="submitForm"
-      >
+      <div class="title--menu user-form__next" @click="submitForm">
         SAVE
       </div>
     </div>
@@ -22,10 +16,7 @@
       </div>
       <form class="edit-profile__form">
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Username
           </label>
           <input
@@ -36,19 +27,13 @@
             @blur="$v.user.username.$touch()"
           />
           <div v-if="$v.user.username.$error">
-            <p
-              v-if="!$v.user.username.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.username.required" class="input__error-message">
               Name must be filled
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Password
           </label>
           <input
@@ -59,27 +44,18 @@
             @blur="$v.user.password.$touch()"
           />
           <div v-if="$v.user.password.$error">
-            <p
-              v-if="!$v.user.password.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.password.required" class="input__error-message">
               Password must be filled
             </p>
           </div>
           <div v-if="$v.user.password.$error">
-            <p
-              v-if="!$v.user.password.minLength"
-              class="input__error-message"
-            >
+            <p v-if="!$v.user.password.minLength" class="input__error-message">
               Password must have at least 6 characters
             </p>
           </div>
         </div>
         <div class="form__child">
-          <label
-            class="input__label title--medium-form"
-            for="type"
-          >
+          <label class="input__label title--medium-form" for="type">
             Confirm Password
           </label>
           <input
@@ -90,17 +66,11 @@
             @blur="$v.confirmPassword.$touch()"
           />
           <div v-if="$v.confirmPassword.$error">
-            <p
-              v-if="!$v.confirmPassword.required"
-              class="input__error-message"
-            >
+            <p v-if="!$v.confirmPassword.required" class="input__error-message">
               Confirm Password must be filled
             </p>
           </div>
-          <p
-            v-if="sameAsPassword"
-            class="input__error-message"
-          >
+          <p v-if="sameAsPassword" class="input__error-message">
             Confirm Password must same as Password
           </p>
         </div>

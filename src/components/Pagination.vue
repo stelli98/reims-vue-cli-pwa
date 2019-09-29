@@ -1,12 +1,6 @@
 <template>
-  <div
-    v-show="paging.totalPages > 1"
-    class="pagination"
-  >
-    <div
-      class="first"
-      @click="moveTo(1)"
-    >
+  <div v-show="paging.totalPages > 1" class="pagination">
+    <div class="first" @click="moveTo(1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -24,16 +18,17 @@
       <select
         v-model="currentPage"
         class="pagination__selection"
-        onfocus='this.size=2;'
-        onblur='this.size=1;'
-        onchange='this.size=1; this.blur();'
+        onfocus="this.size=2;"
+        onblur="this.size=1;"
+        onchange="this.size=1; this.blur();"
         @click="moveTo(currentPage)"
       >
         <option
           :selected="currentPage"
           class="pagination__option"
-          v-for="(n,index) in paging.totalPages"
-        >{{index+1}}</option>
+          v-for="(n, index) in paging.totalPages"
+          >{{ index + 1 }}</option
+        >
       </select>
     </div>
     <div
@@ -45,10 +40,7 @@
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div
-      class="last"
-      @click="moveTo(paging.totalPages)"
-    >
+    <div class="last" @click="moveTo(paging.totalPages)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>
@@ -90,7 +82,6 @@
 
   &__go-to,
   &__caption {
-    margin: 0 1rem;
     display: flex;
     justify-content: space-between;
   }

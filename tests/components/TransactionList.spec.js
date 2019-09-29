@@ -5,7 +5,7 @@ import config from "@/config";
 
 const defaultOptions = {
   mocks: { $route: { query: {} } }
-}
+};
 
 const url = config.api.transactions;
 describe("TransactionList.vue", () => {
@@ -15,22 +15,22 @@ describe("TransactionList.vue", () => {
     d => d.url === url.transaction && d.params.page == 1
   );
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     return lv;
   }
 
-  function createWrapper (newOptions) {
-    const options = newOptions ? newOptions : defaultOptions
+  function createWrapper(newOptions) {
+    const options = newOptions ? newOptions : defaultOptions;
     const defaultConfig = {
       localVue,
       stubs: ["TransactionCard"],
       propsData: {
         transactions: transactionData.data
       }
-    }
-    const mergeConfig = { ...options, ...defaultConfig }
-    return shallowMount(TransactionList, mergeConfig)
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(TransactionList, mergeConfig);
   }
 
   beforeEach(() => {

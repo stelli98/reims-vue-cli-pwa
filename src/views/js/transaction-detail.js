@@ -1,46 +1,47 @@
-import ViewFuelDetail from "@/components/ViewFuelDetail.vue";
-import ViewParkingDetail from "@/components/ViewParkingDetail.vue";
+const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue");
+const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue");
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ViewFuelDetail,
     ViewParkingDetail
   },
-  data () {
+  data() {
     return {
       isLoading: false
-    }
+    };
   },
   computed: {
     ...mapGetters("transaction", ["transaction", "viewImage"]),
-    transactionId () {
+    transactionId() {
       return this.$route.params.id;
     },
-    transactionCategory () {
+    transactionCategory() {
       return this.$options.filters.textFormatter(this.transaction.category);
     },
-    activeComponent () {
+    activeComponent() {
       return this.transactionCategory
         ? `View${this.transactionCategory}Detail`
         : "";
     },
-    imageExt () {
-      return this.transaction.image ? this.transaction.image.split(".")[1] : ""
+    imageExt() {
+      return this.transaction.image ? this.transaction.image.split(".")[1] : "";
     },
-    imagePath () {
-      return this.transaction.image ? this.transaction.image.split(".")[0] : ""
+    imagePath() {
+      return this.transaction.image ? this.transaction.image.split(".")[0] : "";
     },
-    imageBase64 () {
-      return `data:image/${this.imageExt};base64,${this.viewImage}`
+    imageBase64() {
+      return `data:image/${this.imageExt};base64,${this.viewImage}`;
     }
   },
   methods: {
     ...mapActions("transaction", ["getTransaction", "getViewImage"])
   },
-  mounted () {
+  mounted() {
     this.getTransaction(this.transactionId).then(() => {
-      this.getViewImage(this.imagePath)
+      this.getViewImage(this.imagePath);
       this.isLoading = true;
-    })
+    });
   }
 };

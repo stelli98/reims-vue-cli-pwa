@@ -26,7 +26,7 @@ describe("TransactionForm.vue", () => {
     d => d.url == url.transaction && d.method == "POST"
   );
 
-  function initializeStore () {
+  function initializeStore() {
     const state = {
       OCRResultType: fuelData.data.category
     };
@@ -56,23 +56,20 @@ describe("TransactionForm.vue", () => {
     };
   }
 
-  function generateLocalVue () {
+  function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
     lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper (store, options) {
+  function createWrapper(store, options) {
     const router = new VueRouter({ routes });
     const defaultOptions = {
       store,
       localVue,
       router,
-      stub: [
-        "FuelForm",
-        "ParkingForm"
-      ],
+      stub: ["FuelForm", "ParkingForm"],
       sync: false
     };
     const mergeOptions = { ...options, ...defaultOptions };
@@ -131,7 +128,7 @@ describe("TransactionForm.vue", () => {
     expect(wrapper.vm.parkingTemplate).toEqual(expectedValue);
   });
 
-  test("computed parkingTemplate", () => {
+  test("computed  fuelTemplate", () => {
     const options = {
       propsData: {
         pictureUrl: "image.jpg"
@@ -163,7 +160,7 @@ describe("TransactionForm.vue", () => {
     expect(wrapper.vm.isSwitchOn).toEqual(false);
   });
 
-  test("toogle method", () => {
+  test("toggle method", () => {
     const options = {
       propsData: {
         pictureUrl: "image.jpg"
@@ -176,10 +173,10 @@ describe("TransactionForm.vue", () => {
   });
 
   test("emptyAllForm method", () => {
-    const spy = jest.spyOn(wrapper.vm, 'setFormEmpty');
+    const spy = jest.spyOn(wrapper.vm, "setFormEmpty");
     wrapper.vm.emptyAllForm();
     expect(spy).toHaveBeenCalledTimes(2);
-  })
+  });
 
   // test("saveData method", async () => {
   //   const options = {
