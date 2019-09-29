@@ -9,8 +9,8 @@ export default [
       authorization: "Bearer 123"
     },
     params: {
-      page: 1,
-      size: 5,
+      page: "1",
+      size: "5",
       sortBy: "date"
     },
     status: "OK",
@@ -66,8 +66,8 @@ export default [
       authorization: "Bearer 123"
     },
     params: {
-      page: 2,
-      size: 5,
+      page: "2",
+      size: "5",
       sortBy: "date"
     },
     status: "OK",
@@ -120,8 +120,8 @@ export default [
     method: "GET",
     url: api.transactions.transaction,
     params: {
-      page: 1,
-      size: 5,
+      page: "1",
+      size: "5",
       sortBy: "title",
       search: "Parkir",
       category: "",
@@ -287,8 +287,8 @@ export default [
     method: "GET",
     url: api.users.user,
     params: {
-      page: 1,
-      size: 10,
+      page: "1",
+      size: "10",
       sort_by: "created_at",
       search: ""
     },
@@ -367,8 +367,8 @@ export default [
     method: "GET",
     url: api.users.user,
     params: {
-      page: 2,
-      size: 10,
+      page: "2",
+      size: "10",
       sort_by: "created_at",
       search: ""
     },
@@ -459,8 +459,8 @@ export default [
     method: "GET",
     url: api.users.user,
     params: {
-      page: 1,
-      size: 10,
+      page: "1",
+      size: "10",
       sort_by: "created_at",
       search: "ste"
     },

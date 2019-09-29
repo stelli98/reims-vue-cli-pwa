@@ -24,8 +24,8 @@ export default {
     },
     options() {
       return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 5,
+        page: this.$route.query.page || "1",
+        size: this.$route.query.size || "5",
         sortBy: "date"
       };
     }
@@ -60,21 +60,15 @@ export default {
     },
     toggleActionButton(value) {
       this.actionButtonActive = value;
-    }, 
-    updateParams(){
-      this.$route.query.page = parseInt(this.$route.query.page)
-      this.$route.query.size = parseInt(this.$route.query.size)
-      const params = { ...this.options,...this.$route.query}
-      this.updateTransaction(params);
     }
   },
   watch: {
     $route() {
-      this.updateParams()
+      this.updateTransaction(this.$route.query);
     }
   },
   mounted() {
     this.$router.push({ query: { ...this.options,...this.$route.query}});
-    this.updateParams()
+    this.updateTransaction(this.$route.query);
   }
 };

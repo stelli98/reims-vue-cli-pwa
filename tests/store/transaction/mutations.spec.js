@@ -123,18 +123,6 @@ describe("mutations for transaction module", () => {
     expect(state.pagination).toBe(expectedValue.paging);
   });
 
-  test("DELETE_TRANSACTION remove deleted id from state.transactions", () => {
-    const initialValue = data.find(
-      d => d.url === url.transaction && d.method === "GET"
-    );
-    const state = {
-      transactions: initialValue.data
-    };
-    const expectedValue = initialValue.data.filter(data => data.id !== 1);
-    mutations.DELETE_TRANSACTION(state, 1);
-    expect(state.transactions).toEqual(expectedValue);
-  });
-
   test("SET_VIEW_IMAGE set image from state.viewImage", () => {
     const expectedValue = data.find(
       d => d.url === url.transaction + "/3278/12345abc" && d.method === "GET"

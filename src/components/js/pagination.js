@@ -10,7 +10,7 @@ export default {
   methods: {
     moveTo(pageToGo) {
       this.currentPage = pageToGo;
-      this.$emit("changePage", parseInt(this.currentPage));
+      this.$emit("changePage", this.currentPage);
     }
   },
   watch: {

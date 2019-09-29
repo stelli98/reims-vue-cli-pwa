@@ -146,7 +146,7 @@ describe("HomePage.vue", () => {
     expect(spyAction).toHaveBeenCalled();
     wrapper.vm.$nextTick(() => {
       expect(spyChangePage).toHaveBeenCalled();
-      expect(wrapper.vm.$route.query.page).toBe(1);
+      expect(wrapper.vm.$route.query.page).toBe("1");
     });
   });
 

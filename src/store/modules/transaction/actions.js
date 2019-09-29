@@ -37,8 +37,7 @@ export default {
     const { data } = await transactionApi.saveTransaction(transaction, token);
     return data;
   },
-  deleteTransaction: ({ commit, rootState }, id) => {
-    // commit("DELETE_TRANSACTION", id);
+  deleteTransaction: ({ rootState }, id) => {
     const { token } = rootState.auth;
     transactionApi.deleteTransaction(id, token);
   },

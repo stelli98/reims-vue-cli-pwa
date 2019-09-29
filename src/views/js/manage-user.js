@@ -11,8 +11,8 @@ export default {
     ...mapGetters("user", ["users", "pagination"]),
     options() {
       return {
-        page: parseInt(this.$route.query.page) || 1,
-        size: parseInt(this.$route.query.size) || 10,
+        page: this.$route.query.page || "1",
+        size: this.$route.query.size || "10",
         sort_by: "created_at",
         search: this.$route.query.search || ""
       };

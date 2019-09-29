@@ -51,17 +51,4 @@ describe("mutations", () => {
     expect(state.user).toBe(expectedValue);
   });
 
-  test("DELETE_USER remove deleted id from state.users", () => {
-    const initialValue = data.find(
-      d => d.url === url.user && d.method === "GET"
-    );
-    const state = {
-      users: initialValue.data
-    };
-    const expectedValue = initialValue.data.filter(
-      data => data.id !== 1559058600
-    );
-    mutations.DELETE_USER(state, 1559058600);
-    expect(state.users).toEqual(expectedValue);
-  });
 });

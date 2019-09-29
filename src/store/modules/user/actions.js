@@ -25,11 +25,9 @@ export default {
     const response = await userApi.updateUser(data.id, data, token);
     return response;
   },
-  deleteUser: async ({ commit, rootState }, id) => {
-    commit("DELETE_USER", id);
+  deleteUser: async ({ rootState }, id) => {
     const { token } = rootState.auth;
-    const data = await userApi.deleteUser(id, token);
-    return data;
+    await userApi.deleteUser(id, token);
   },
   downloadPersonalReport: ({ rootState }, options) => {
     const { token } = rootState.auth;
