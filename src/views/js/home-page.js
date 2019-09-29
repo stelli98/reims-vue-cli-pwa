@@ -40,8 +40,8 @@ export default {
     toogleFilter(value) {
       this.showFilter = value;
     },
-    updateTransaction() {
-      this.getTransactions(this.options).then(() => {
+    updateTransaction(params) {
+      this.getTransactions(params).then(() => {
         if (this.transactions.length == 0) {
           this.changePage(1);
         }
@@ -60,16 +60,21 @@ export default {
     },
     toggleActionButton(value) {
       this.actionButtonActive = value;
+    }, 
+    updateParams(){
+      this.$route.query.page = parseInt(this.$route.query.page)
+      this.$route.query.size = parseInt(this.$route.query.size)
+      const params = { ...this.options,...this.$route.query}
+      this.updateTransaction(params);
     }
   },
   watch: {
     $route() {
-      this.updateTransaction();
+      this.updateParams()
     }
   },
   mounted() {
-    this.$router.push({ query: { ...this.options, ...this.$route.query } });
-    console.log({ query: { ...this.options, ...this.$route.query } });
-    this.updateTransaction();
+    this.$router.push({ query: { ...this.options,...this.$route.query}});
+    this.updateParams()
   }
 };

@@ -125,8 +125,8 @@ export default [
       sortBy: "title",
       search: "Parkir",
       category: "",
-      startDate: "",
-      endDate: ""
+      start: "",
+      end: ""
     },
     status: "OK",
     data: [

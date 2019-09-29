@@ -50,6 +50,8 @@ export default {
           ? new Date(this.options.end).getTime()
           : "";
         this.options.page = 1;
+
+        console.log('A')
         this.$router.push({ query: { ...this.$route.query, ...this.options } });
         this.moveTo();
       }

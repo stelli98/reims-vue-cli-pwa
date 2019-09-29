@@ -38,7 +38,7 @@ export default {
     return data;
   },
   deleteTransaction: ({ commit, rootState }, id) => {
-    commit("DELETE_TRANSACTION", id);
+    // commit("DELETE_TRANSACTION", id);
     const { token } = rootState.auth;
     transactionApi.deleteTransaction(id, token);
   },
