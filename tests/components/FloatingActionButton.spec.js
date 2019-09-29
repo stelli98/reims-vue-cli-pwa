@@ -5,8 +5,8 @@ import VueRouter from "vue-router";
 
 const routes = [
     {
-        path: "/transaction/create/:step", 
-        name: "create"
+        path: "/transaction/create/1", 
+        name: "create-transaction-1"
     }
 ]
 

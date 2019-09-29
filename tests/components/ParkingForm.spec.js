@@ -3,11 +3,13 @@ import ParkingForm from "@/components/ParkingForm";
 import TextFilter from "@/filters/text";
 import Vuelidate from "vuelidate";
 import Vuex from "vuex";
+import Vue from "vue";
 
 describe("ParkingForm.vue", () => {
   let store;
   let wrapper;
   let localVue;
+
   const ParkingData = {
     id: 500000026,
     image:
@@ -79,13 +81,18 @@ describe("ParkingForm.vue", () => {
     return lv;
   }
 
-  function createWrapper(store) {
-    return shallowMount(ParkingForm, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
+      propsData:{
+        bus: new Vue()
+      },
       stubs: ["Datetime"],
       sync: false
-    });
+    }
+    const mergeConfig = {...options, ...defaultConfig}
+    return shallowMount(ParkingForm, mergeConfig);
   }
 
   beforeEach(() => {
@@ -100,58 +107,92 @@ describe("ParkingForm.vue", () => {
     expect(wrapper.vm.parking.date).toBe(1565692009000);
   });
 
-  test("methods toggle", () => {
-    wrapper.vm.toggle();
-    expect(wrapper.vm.isSwitchOn).toBe(false);
-  });
-
   test("methods reformatPrice", () => {
     wrapper.vm.reformatPrice();
     expect(wrapper.vm.parking.amount).toBe(9000);
   });
 
-  test("methods calculateDuration", () => {
-    wrapper.vm.parking.out = "2019-08-13T11:27:50.000Z";
-    wrapper.vm.calculateDuration();
-    expect(wrapper.vm.parking.hours).toBe(2);
-  });
-
-  test("sendParkingForm method", () => {
-    // store.state.transaction.fuel = {
-    //     id: 500000026,
-    //     title: "Test 1",
-    //     image:
-    //         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
-    //     category: "FUEL",
-    //     date: "2018-05-12T17:19:06.151Z",
-    //     type: "Premium",
-    //     liters: "5.0",
-    //     amount: 9000,
-    //     created_at: "2018-05-12T17:19:06.151Z",
-    //     modified_at: ""
-    // }
-    // wrapper.vm.reformatVolume = jest.fn()
-    // const spyFormatVolume = jest.spyOn(wrapper.vm, 'reformatVolume')
-    // const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, 'convertDateToEpoch')
-    // const spySaveTransactions = jest.spyOn(store.actions.transaction, 'saveTransaction')
-    // wrapper.vm.sendParkingForm();
-    // expect(wrapper.vm.reformatVolume).toHaveBeenCalled();
-    // expect(spyConvertDateToEpoch).toHaveBeenCalled();
-    // expect(spySaveTransactions).toHaveBeenCalled();
-  });
-
-  test("formatInDate computed", () => {
-    wrapper.setData({ formatInDate: 1565419259000 });
-    expect(wrapper.vm.formatInDate).toBe("2019-08-10T06:40:59.000Z");
-  });
-
-  test("formatOutDate computed", () => {
-    wrapper.setData({ formatOutDate: 1565695670000 });
-    expect(wrapper.vm.formatOutDate).toBe("2019-08-13T11:27:50.000Z");
+  test("formaDate computed", () => {
+    wrapper.setData({ formatDate: 1565695670000 });
+    expect(wrapper.vm.formatDate).toBe("2019-08-13T11:27:50.000Z");
   });
 
   test("parkingAmount computed setter getter", () => {
     wrapper.setData({ parkingAmount: 20000 });
     expect(wrapper.vm.parkingAmount).toBe("20.000");
   });
+
+  test("amountInt computed", () => {
+    wrapper.vm.parking.amount = "2.000"
+    expect(wrapper.vm.amountInt).toBe(2000)
+  });
+
+  test("sendParkingForm Method is succeeded", async ()=>{
+    const options = {
+      mocks : {
+        $router : {
+          push: jest.fn()
+        }
+      }
+    }
+    wrapper = createWrapper(store.store, options)
+    store.state.transaction.parking = {
+      category: "PARKING",
+      date: "2018-05-12T17:19:06.151Z",
+      amount: 100,
+      title: "Title",
+      userId: "UserId-2",
+      image: "image.jpg"
+    }
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
+    const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
+    const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
+    await wrapper.vm.sendParkingForm()
+    wrapper.vm.$nextTick(()=>{
+      expect(spyConvertDateToEpoch).toHaveBeenCalled()
+      expect(spySaveTransaction).toHaveBeenCalled()
+      expect(spyAddNotification).toHaveBeenCalled()
+      expect(spySetFormEmpty).toHaveBeenCalled()
+    })
+  });
+
+  test("sendParkingForm Method is failed", async ()=>{
+    const options = {
+      mocks : {
+        $router : {
+          push: jest.fn()
+        }
+      }
+    }
+    wrapper = createWrapper(store.store, options)
+    store.state.transaction.parking = {
+      category: "PARKING",
+      date: "2018-05-12T17:19:06.151Z",
+      amount: 100,
+      title: "Title",
+      userId: "UserId-2",
+      image: "image.jpg"
+    }
+    store.actions.transaction.saveTransaction.mockRejectedValue(() =>
+      Promise.reject()
+    );
+
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
+    const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
+    const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
+   
+    try{
+      await wrapper.vm.sendParkingForm() 
+    }catch{
+      wrapper.vm.$nextTick(()=>{
+        expect(spyConvertDateToEpoch).toHaveBeenCalled()
+        expect(spySaveTransaction).toHaveBeenCalled()
+        expect(spyAddNotification).toHaveBeenCalled()
+        expect(spySetFormEmpty).toHaveBeenCalled()
+      })
+    }
+  })
+
 });

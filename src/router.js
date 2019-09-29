@@ -7,6 +7,9 @@ import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
 import UserForm from "./views/UserForm";
 import EditProfile from "./views/EditProfile";
+import CropImage from "./components/CropImage";
+import FilterImage from "./components/FilterImage";
+import TransactionForm from "./components/TransactionForm";
 import store from "./store";
 
 Vue.use(Router);
@@ -26,10 +29,26 @@ const router = new Router({
       component: HomePage
     },
     {
-      path: "/transaction/create/:step",
+      path: "/transaction/create/",
       // beforeEnter: checkAuthUser,
-      name: "create",
-      component: CreateTransaction
+      component: CreateTransaction, 
+      children: [
+        {
+          path: '1',
+          name:"create-transaction-1",
+          component: CropImage
+        },
+        {
+          path: '2',
+          name:"create-transaction-2",
+          component: FilterImage
+        },
+        {
+          path: '3',
+          name:"create-transaction-3",
+          component: TransactionForm
+        }
+      ]
     },
     {
       path: "/transaction/:id",

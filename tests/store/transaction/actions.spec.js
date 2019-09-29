@@ -93,8 +93,8 @@ describe("Actions for Transactions Module", () => {
   test("get list of transactions", async () => {
     api.getTransactions = jest.fn();
     const options = {
-      page: 1,
-      size: 5,
+      page: "1",
+      size: "5",
       sortBy: "createdAt"
     };
     const expectedValue = data.find(

@@ -10,6 +10,12 @@
     font-family: "Nunito-Extrabold";
     background-color: $color-white;
     font-size: 1.3rem;
+
+    &-circle {
+      border-radius: 100%;
+      display: block;
+    }
+
   }
   
   .btn-green {

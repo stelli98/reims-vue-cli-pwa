@@ -4,21 +4,22 @@
       <div v-show="image" class="transaction-form__image">
         <img crossorigin="Anonymous" :src="image" />
       </div>
+
       <div class="transaction-form__menu">
         <div class="title--big" :class="{ active: !isSwitchOn }" @click="toggle">Fuel</div>
         <div class="title--big" :class="{ active: isSwitchOn }" @click="toggle">Parking</div>
       </div>
-      <Component :is="currentComponent" ref="sendForm" />
-    </div>
 
+      <Component :is="currentComponent" :bus="bus"/>
+    </div>
     <div class="bottom-navigation filter-image__navigation">
-      <div>
+      <div class="bottom-navigation__left" @click="moveTo">
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>
         <h3 class="title--navigation">Re-Upload</h3>
       </div>
-      <div>
+      <div class="bottom-navigation__right"  @click="submitForm">
         <h3 class="title--navigation">Save</h3>
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-save" />
@@ -67,7 +68,6 @@
     align-items: center;
     justify-content: center;
     margin: 1.5rem 0;
-
     & > div {
       padding: 0.5rem 1rem;
       width: 8rem;
@@ -76,7 +76,6 @@
     }
   }
 }
-
 .active {
   color: $color-white;
   background-color: $color-green;

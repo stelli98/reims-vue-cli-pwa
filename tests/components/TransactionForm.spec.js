@@ -1,22 +1,11 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import TransactionForm from "@/components/TransactionForm.vue";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
+import Vue from "vue";
 
 const url = config.api.transactions;
-
-const routes = [
-  {
-    path: "/transactions/create/:step",
-    name: "create"
-  },
-  {
-    path: "/home",
-    name: "home"
-  }
-];
 
 describe("TransactionForm.vue", () => {
   let store;
@@ -26,15 +15,26 @@ describe("TransactionForm.vue", () => {
     d => d.url == url.transaction && d.method == "POST"
   );
 
+  // const EventBus = new Vue();
+
+  // const GlobalPlugins = {
+  //   install(v) {
+  //     // Event bus
+  //     v.prototype.bus = EventBus;
+  //   },
+  // };
+
   function initializeStore() {
     const state = {
-      OCRResultType: fuelData.data.category
+      OCRResultType: fuelData.data.category,
+      image: fuelData.data.image
     };
     const actions = {
       setFormEmpty: jest.fn(),
       setOCRResultType: jest.fn()
     };
     const getters = {
+      image: state => state.image,
       OCRResultType: state => state.OCRResultType
     };
     const store = new Vuex.Store({
@@ -59,144 +59,79 @@ describe("TransactionForm.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
+    // lv.use(GlobalPlugins);
     return lv;
   }
 
   function createWrapper(store, options) {
-    const router = new VueRouter({ routes });
-    const defaultOptions = {
-      store,
-      localVue,
-      router,
-      stub: ["FuelForm", "ParkingForm"],
-      sync: false
-    };
-    const mergeOptions = { ...options, ...defaultOptions };
-    return shallowMount(TransactionForm, mergeOptions);
+     const defaultConfig = {
+        store,
+        localVue,
+        stub: ["FuelForm", "ParkingForm"],
+        sync: false
+     }
+     const mergeConfig = {...options,...defaultConfig}
+    return shallowMount(TransactionForm, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-  });
-
-  test("if there's no pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: ""
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.$route.name).toBe("create");
-    expect(wrapper.vm.$route.params.step).toBe(1);
-  });
-
-  test("if there's pictureUrl props", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.$route.name).toBe("create");
-    expect(wrapper.vm.$route.params.step).not.toEqual(1);
-  });
-
-  test("computed parkingTemplate", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedValue = {
-      data: {
-        category: "PARKING",
-        date: "",
-        out: "",
-        amount: 100,
-        title: "",
-        parkingType: "",
-        license: "",
-        location: "",
-        hours: 0,
-        userId: "",
-        image: ""
-      }
-    };
-    expect(wrapper.vm.parkingTemplate).toEqual(expectedValue);
-  });
-
-  test("computed  fuelTemplate", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedValue = {
-      data: {
-        category: "FUEL",
-        date: "",
-        fuelType: "",
-        liters: 0.01,
-        amount: 100,
-        title: "",
-        userId: "",
-        image: ""
-      }
-    };
-    expect(wrapper.vm.fuelTemplate).toEqual(expectedValue);
+    wrapper = createWrapper(store.store);
   });
 
   test("computed isSwitchOn", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.isSwitchOn).toEqual(false);
   });
 
   test("toggle method", () => {
-    const options = {
-      propsData: {
-        pictureUrl: "image.jpg"
-      }
-    };
-    wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(store.actions, "setOCRResultType");
     wrapper.vm.toggle();
     expect(spy).toHaveBeenCalled();
   });
 
-  test("emptyAllForm method", () => {
-    const spy = jest.spyOn(wrapper.vm, "setFormEmpty");
-    wrapper.vm.emptyAllForm();
-    expect(spy).toHaveBeenCalledTimes(2);
+  test("moveTo method ", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options)
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.moveTo();
+    expect(spy).toHaveBeenCalled();
   });
 
-  // test("saveData method", async () => {
+  test("checkContainsImage method",() =>{
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    store.state.image = ""
+    wrapper = createWrapper(store.store,options);
+    const spy = jest.spyOn(wrapper.vm, "moveTo");
+    wrapper.vm.checkContainsImage();
+    expect(spy).toHaveBeenCalled();
+  })
+
+  // test("Emit event bus submitForm method", () => {
   //   const options = {
-  //     mocks: {
-  //       // $refs: {
-  //       //   sendForm: {
-  //       //     sendParkingForm: () => Promise.resolve('true'),
-  //       //     sendFuelForm: () => Promise.resolve('true')
-  //       //   }
-  //       // },
-  //       isSwitchOn: () => false
-  //     },
-  //     propsData: {
-  //       pictureUrl: "image.jpg"
-  //     }
+  //       data () {
+  //         return {
+  //           bus: GlobalPlugins
+  //         }
+  //       }
   //   }
-  //   wrapper = createWrapper(store.store, options);
-  //   console.log(wrapper.vm)
-  //   const spy = jest.spyOn(wrapper.vm, 'setFormEmpty');
-  //   await wrapper.vm.saveData();
-  //   expect(spy).toHaveBeenCalledTimes(2);
+  //   wrapper = createWrapper(store.store,options);
+  //   // console.log(wrapper.vm.bus)
+  //   // const spy = jest.spyOn(wrapper.vm.bus.$emit,"submitFuelForm")
+  //   wrapper.vm.submitForm();
+  //   // expect(spy).toHaveBeenCalled();
+  //   expect(wrapper.vm.bus.emitted().submitFuelForm).toEqual([[]])
   // });
 });
