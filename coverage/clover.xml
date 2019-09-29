@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1569507027811" clover="3.2.0">
-  <project timestamp="1569507027811" name="All files">
-    <metrics statements="452" coveredstatements="391" conditionals="121" coveredconditionals="73" methods="66" coveredmethods="45" elements="639" coveredelements="509" complexity="0" loc="452" ncloc="452" packages="9" files="44" classes="44">
+<coverage generated="1569736692590" clover="3.2.0">
+  <project timestamp="1569736692590" name="All files">
+    <metrics statements="452" coveredstatements="397" conditionals="121" coveredconditionals="73" methods="66" coveredmethods="45" elements="639" coveredelements="515" complexity="0" loc="452" ncloc="452" packages="9" files="44" classes="44">
       <package name="src">
         <metrics statements="59" coveredstatements="17" conditionals="20" coveredconditionals="0" methods="13" coveredmethods="2"/>
         <file name="App.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/App.vue">
@@ -68,17 +68,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="169" coveredstatements="162" conditionals="51" coveredconditionals="39" methods="12" coveredmethods="9"/>
-        <file name="ActionButton.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/ActionButton.vue">
-          <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
-          <line num="4" count="6" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-        </file>
+        <metrics statements="169" coveredstatements="167" conditionals="51" coveredconditionals="39" methods="12" coveredmethods="9"/>
         <file name="CropImage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/CropImage.vue">
           <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
@@ -130,6 +120,16 @@
           <line num="90" count="5" type="stmt"/>
           <line num="93" count="6" type="cond" truecount="2" falsecount="0"/>
           <line num="94" count="2" type="stmt"/>
+        </file>
+        <file name="FloatingActionButton.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FloatingActionButton.vue">
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="4" count="10" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
         </file>
         <file name="FuelForm.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/FuelForm.vue">
           <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="3" methods="2" coveredmethods="2"/>
@@ -495,7 +495,7 @@
         </file>
       </package>
       <package name="src.views">
-        <metrics statements="95" coveredstatements="83" conditionals="42" coveredconditionals="27" methods="16" coveredmethods="9"/>
+        <metrics statements="95" coveredstatements="84" conditionals="42" coveredconditionals="27" methods="16" coveredmethods="9"/>
         <file name="CreateTransaction.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/CreateTransaction.vue">
           <metrics statements="11" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
@@ -526,27 +526,27 @@
           <line num="51" count="2" type="stmt"/>
         </file>
         <file name="HomePage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/HomePage.vue">
-          <metrics statements="20" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="3"/>
+          <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="3"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="3" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
-          <line num="15" count="6" type="stmt"/>
-          <line num="28" count="7" type="stmt"/>
+          <line num="15" count="7" type="stmt"/>
+          <line num="28" count="8" type="stmt"/>
           <line num="36" count="2" type="stmt"/>
           <line num="39" count="1" type="stmt"/>
-          <line num="42" count="13" type="stmt"/>
-          <line num="43" count="13" type="cond" truecount="2" falsecount="0"/>
+          <line num="42" count="14" type="stmt"/>
+          <line num="43" count="14" type="cond" truecount="2" falsecount="0"/>
           <line num="44" count="1" type="stmt"/>
           <line num="49" count="1" type="stmt"/>
           <line num="52" count="1" type="stmt"/>
           <line num="53" count="1" type="stmt"/>
           <line num="57" count="1" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
+          <line num="60" count="1" type="stmt"/>
           <line num="65" count="6" type="stmt"/>
-          <line num="69" count="6" type="stmt"/>
-          <line num="70" count="6" type="stmt"/>
+          <line num="69" count="7" type="stmt"/>
+          <line num="70" count="7" type="stmt"/>
         </file>
         <file name="LoginPage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/LoginPage.vue">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>

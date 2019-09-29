@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       displayMenu: false
-    };
+    }; 
   },
   methods: {
     ...mapActions("transaction", ["setImage"]),

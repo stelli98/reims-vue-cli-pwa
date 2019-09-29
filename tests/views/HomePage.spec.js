@@ -79,7 +79,6 @@ describe("HomePage.vue", () => {
 
   function initializeTransactionStore() {
     const actions = {
-      setImage: jest.fn(),
       getTransactions: jest.fn()
     };
     const state = {
@@ -139,18 +138,6 @@ describe("HomePage.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  // test("methods onFileChange", () => {
-  //   global.URL.createObjectURL = jest.fn();
-  //   const spy = jest.spyOn(store.actions.transaction, "setImage");
-  //   const e = {
-  //     target: {
-  //       files: ["image.jpg"]
-  //     }
-  //   };
-  //   wrapper.vm.onFileChange(e);
-  //   expect(spy).toHaveBeenCalled();
-  // });
-
   test("methods updateTransaction if there is no transactions", async () => {
     const spyAction = jest.spyOn(store.actions.transaction, "getTransactions");
     store.state.transaction.transactions = [];
@@ -168,4 +155,11 @@ describe("HomePage.vue", () => {
     wrapper.vm.download();
     expect(spy).toHaveBeenCalled();
   });
+
+  test("methods toggleActionButton", () => {
+    var expectedValue = true
+    wrapper.vm.toggleActionButton(expectedValue)
+    expect(wrapper.vm.actionButtonActive).toBe(expectedValue);
+  });
+
 });
