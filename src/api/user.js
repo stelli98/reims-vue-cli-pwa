@@ -1,7 +1,6 @@
 import axios from "axios";
 import config from "@/config";
 const api = config.api.users;
-// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
   getUser(id, token) {

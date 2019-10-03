@@ -3,9 +3,20 @@ import TransactionForm from "@/components/TransactionForm.vue";
 import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
-import Vue from "vue";
 
 const url = config.api.transactions;
+const TOGGLE_BUTTON = {
+  true: {
+    component: "PARKING",
+    action: "submitParkingForm",
+    show: true
+  },
+  false: {
+    component: "FUEL",
+    action: "submitFuelForm",
+    show: false
+  }
+};
 
 describe("TransactionForm.vue", () => {
   let store;
@@ -14,15 +25,6 @@ describe("TransactionForm.vue", () => {
   const fuelData = data.find(
     d => d.url == url.transaction && d.method == "POST"
   );
-
-  // const EventBus = new Vue();
-
-  // const GlobalPlugins = {
-  //   install(v) {
-  //     // Event bus
-  //     v.prototype.bus = EventBus;
-  //   },
-  // };
 
   function initializeStore() {
     const state = {
@@ -59,7 +61,6 @@ describe("TransactionForm.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    // lv.use(GlobalPlugins);
     return lv;
   }
 
@@ -119,19 +120,22 @@ describe("TransactionForm.vue", () => {
     expect(spy).toHaveBeenCalled();
   })
 
-  // test("Emit event bus submitForm method", () => {
-  //   const options = {
-  //       data () {
-  //         return {
-  //           bus: GlobalPlugins
-  //         }
-  //       }
-  //   }
-  //   wrapper = createWrapper(store.store,options);
-  //   // console.log(wrapper.vm.bus)
-  //   // const spy = jest.spyOn(wrapper.vm.bus.$emit,"submitFuelForm")
-  //   wrapper.vm.submitForm();
-  //   // expect(spy).toHaveBeenCalled();
-  //   expect(wrapper.vm.bus.emitted().submitFuelForm).toEqual([[]])
-  // });
+  test("Emit event bus submitForm method", () => {
+    const options = {
+      mocks: {
+        bus: {
+          $emit: jest.fn()
+        }
+      },
+      computed: {
+        isSwitchOn(){
+          return false
+        }
+      }
+    };
+    wrapper = createWrapper(store.store,options);
+    const spy = jest.spyOn(wrapper.vm.bus, '$emit')
+    wrapper.vm.submitForm();
+    expect(spy).toHaveBeenCalledWith(TOGGLE_BUTTON[(false).toString()].action);
+  });
 });

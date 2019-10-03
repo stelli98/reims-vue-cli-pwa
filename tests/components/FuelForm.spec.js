@@ -194,4 +194,22 @@ describe("FuelForm.vue", () => {
     }
   })
 
+  test("formatAmount int if fuel.amount is not empty", ()=>{
+    const options = {
+      computed : {
+        amountInt () {
+          return 20000
+        }
+      }
+    }
+    wrapper = createWrapper(store.store, options)
+    expect(wrapper.vm.formatAmountToInt).toEqual(20000)
+  })
+
+  test("formatAmount int if fuel.amount is empty return string", ()=>{
+    store.state.transaction.fuel.amount= ""
+    expect(wrapper.vm.formatAmountToInt).toEqual("")
+  })
+
+
 });
