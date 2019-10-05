@@ -39,7 +39,7 @@ const router = new Router({
     },
     {
       path: "/users",
-      beforeEnter: checkAuthAdmin,
+      // beforeEnter: checkAuthAdmin, 
       name: "user",
       component: ManageUser
     },

@@ -54,8 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-
+  
   & > div {
     text-align: center;
     padding: 0.5rem 0.8rem;

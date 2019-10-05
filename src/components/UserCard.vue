@@ -32,7 +32,7 @@
     grid-column: span 1;
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
-    padding: 1rem 0;
+    padding: .85rem 0;
 
     &__center {
       flex-grow: 1;
