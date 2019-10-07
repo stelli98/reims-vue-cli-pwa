@@ -4,12 +4,17 @@
     <div class="user-detail__content">
       <div class="heading user-detail__heading">User Profile Detail</div>
       <div class="user-detail__tab">
-        <h6 class="title--medium user-detail__tab-active">Personal</h6>
-        <h6 class="title--medium">Family</h6>
+        <h6
+          class="title--medium"
+          :class="{'user-detail__tab-active' : isComponentActive }"
+          @click="switchTab"
+        >Personal</h6>
+        <h6 class="title--medium"
+         :class="{'user-detail__tab-active' : !isComponentActive }" 
+         @click="switchTab">Family</h6>
       </div>
     </div>
-    <!-- <UserPersonalDetail></UserPersonalDetail> -->
-    <UserFamilyDetail></UserFamilyDetail>
+    <Component :is="currentComponent"></Component>
   </div>
 </template>
 
@@ -42,6 +47,11 @@
     & > h6 {
       margin-right: 1rem;
       display: inline;
+    }
+
+    &-active {
+      color: $color-green;
+      border-bottom: solid 0.1rem $color-green;
     }
   }
 }

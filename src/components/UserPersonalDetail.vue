@@ -75,12 +75,9 @@ export default {};
     justify-content: space-between;
   }
   
-  &__personal{
-      margin-bottom: 2rem;
-  }
-
-  &__vehicle {
-      margin: 2rem 0;
+  &__personal,
+  &__vehicle{
+      margin: 1.5rem 0;
   }
 
 }
