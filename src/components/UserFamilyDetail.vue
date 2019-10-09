@@ -1,16 +1,16 @@
 <template>
   <div class="user-family">
     <div class="user-family__detail" v-for="(user,index) in userData" :key="index" >
-      <div class="user-family__markdown" @click="expandFamilyData">
-        <div class="user-family__heading">
+      <div class="user-family__markdown" @click="expandFamilyData(index)">
+        <div class="user-family__heading" :class="{'active': user.expanding}">
           <h4>{{user.relationshipStatus}}</h4>
-          <svg class="icon-small">
+          <svg class="icon-small" :class="{'icon-small-green': user.expanding}">
             <use xlink:href="icons.svg#icon-down" />
           </svg>
         </div>
         <hr />
       </div>
-      <transition v-if="isExpanding" name="fade">
+      <transition v-if="user.expanding" name="fade">
       <div class="user-family__data">
         <div class="user-family__box">
           <p class="title--big">Name</p>
@@ -32,6 +32,10 @@
 .user-family {
   &__detail {
     margin: 0 1.5rem;
+  }
+
+  .active {
+    color: $color-green;
   }
 
   &__heading {

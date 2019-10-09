@@ -44,7 +44,7 @@
 
 <script src="./js/home-page.js"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .action-button-false {
   position: absolute;
   bottom: 1rem;
