@@ -1,37 +1,52 @@
 <template>
   <div class="user-family">
-    <div class="user-family__detail" v-for="(user,index) in userData" :key="index" >
-      <div class="user-family__markdown" @click="expandFamilyData(index)">
-        <div class="user-family__heading" :class="{'active': user.expanding}">
-          <h4>{{user.relationshipStatus}}</h4>
-          <svg class="icon-small" :class="{'icon-small-green': user.expanding}">
-            <use xlink:href="icons.svg#icon-down" />
-          </svg>
+    <div class="user-family__content">
+      <div class="user-family__detail" v-for="(user, index) in userFamily" :key="index">
+        <div class="user-family__markdown" @click="expandFamilyData(index)">
+          <div class="user-family__heading" :class="{'active': isExpandedGroup(index)}">
+            <h4>{{user.relationship | textFormatter }}</h4>
+            <svg class="icon-small" :class="{'icon-small-green': user.expanding}">
+              <use xlink:href="icons.svg#icon-down" />
+            </svg>
+          </div>
+          <hr />
         </div>
-        <hr />
+        <transition v-if="isExpandedGroup(index)" name="fade">
+          <div class="user-family__data">
+            <div class="user-family__box">
+              <p class="title--big">Name</p>
+              <span>{{user.name}}</span>
+            </div>
+            <div class="user-family__box">
+              <p class="title--big">{{user.detail}}</p>
+              <span>{{user.marriedDate || user.dateOfBirth}}</span>
+            </div>
+          </div>
+        </transition>
       </div>
-      <transition v-if="user.expanding" name="fade">
-      <div class="user-family__data">
-        <div class="user-family__box">
-          <p class="title--big">Name</p>
-          <span>{{user.name}}</span>
-        </div>
-        <div class="user-family__box">
-          <p class="title--big">{{user.detail}}</p>
-          <span>{{user.marriedDate || user.bornDate}}</span>
-        </div>
-      </div>
-      </transition>
+    </div>
+    <div class="bottom-navigation user-family__navigation">
+      <div class="title--navigation">Add Family</div>
+      <div class="title--navigation">Edit Family</div>
     </div>
   </div>
 </template>
 
-<script src="./js/user-family-detail.js"> </script>
+<script src="./js/user-family-detail.js">
+</script>
 
 <style lang="scss" scoped>
 .user-family {
+  &__content {
+    min-height: 65vh;
+  }
+
   &__detail {
-    margin: 0 1.5rem;
+    margin: 1rem 1.5rem;
+    @include respond(large-phone) {
+      width: 50vw;
+      margin: 2rem 25vw;
+    }
   }
 
   .active {
@@ -42,7 +57,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
     padding: 0.5rem;
   }
 
@@ -53,12 +67,24 @@
       font-size: 1rem;
     }
   }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include respond(large-phone) {
+      justify-content: space-evenly;
+    }
+  }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import config from "@/config";
 const api = config.api.users;
-// process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
   getUser(id, token) {
@@ -61,5 +60,14 @@ export default {
         Authorization: token
       }
     });
+  },
+  getFamilyDetailByUserId(id,token){
+    const path = api.family(id);
+    console.log(path)
+    return axios.get(path, {
+      headers: {
+        Authorization: token
+      }
+    })
   }
 };

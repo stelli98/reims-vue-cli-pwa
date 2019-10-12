@@ -1,35 +1,30 @@
+import { mapActions, mapGetters} from "vuex"
 export default {
   data() {
     return {
-      isExpanding: false,
-      userData: [
-        {
-          relationshipStatus: "Wife",
-          name: "Tika",
-          detail: "Marriage Date",
-          marriedDate: "29-09-2020", 
-          expanding: true
-        },
-        { 
-          relationshipStatus: "Child", 
-          name: "Bobi", 
-          detail: "Birth Date",
-          bornDate: "29-09-2025",
-          expanding: false 
-        },
-        {
-          relationshipStatus: "Child",
-          name: "Tina",
-          detail: "Birth Date",
-          bornDate: "29-09-2026",
-          expanding: false
-        }
-      ]
+      expandedGroup : []
     };
   },
+  computed: {
+    ...mapGetters('user',['userFamily']),
+      userId() {
+        return this.$route.params.id;
+      }
+  },
   methods: {
+    ...mapActions('user',['getUserFamilyDetail']),
     expandFamilyData(index) {
-      this.userData[index].expanding = !this.userData[index].expanding
+      if (this.isExpandedGroup(index)){
+         this.expandedGroup.splice(this.expandedGroup.indexOf(index), 1);
+      } else {
+        this.expandedGroup.push(index);
+      }
+    },
+    isExpandedGroup(index){
+      return this.expandedGroup.indexOf(index) !== -1
     }
+  },
+  created () {
+    this.getUserFamilyDetail(this.userId);
   }
 };

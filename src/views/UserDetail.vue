@@ -14,7 +14,7 @@
          @click="switchTab">Family</h6>
       </div>
     </div>
-    <Component :is="currentComponent"></Component>
+    <Component :is="currentComponent" class="user-detail__component"></Component>
   </div>
 </template>
 
@@ -36,11 +36,13 @@
       margin: 1.8rem 15vw;
     }
 
-    @include respond(large-phone) {
+    @include respond(tab) {
       width: 50vw;
       margin: 2rem 25vw;
     }
   }
+
+ 
 
   &__tab {
     margin-bottom: 0.5rem;

@@ -7,5 +7,8 @@ export default {
   },
   pagination(state) {
     return state.pagination;
+  },
+  userFamily(state){
+    return state.userFamily;
   }
 };

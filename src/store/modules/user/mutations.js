@@ -13,5 +13,8 @@ export default {
   },
   DELETE_USER(state, id) {
     state.users = state.users.filter(x => x.id != id);
+  },
+  SET_USER_FAMILY(state, { data }){
+    state.userFamily = data
   }
 };

@@ -9,19 +9,19 @@
         <div class="user-personal__list">
           <div class="user-personal__box">
             <p class="title--big">Username</p>
-            <span>TEST</span>
+            <span>{{user.username}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Date of Birth</p>
-            <span>TEST</span>
+            <span>{{user.dateOfBirth | dateFormatter}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Gender</p>
-            <p>Gender</p>
+            <span>{{user.gender | textFormatter }}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Division</p>
-            <span>TEST</span>
+            <span>{{user.division | textFormatter}}</span>
           </div>
         </div>
       </div>
@@ -33,11 +33,11 @@
         <div class="user-personal__list">
           <div class="user-personal__box">
             <p class="title--big">Plate Number</p>
-            <span>TEST</span>
+            <span>{{user.vehicle.plateNumber}}</span>
           </div>
           <div class="user-personal__box">
-            <p>Vehicle Type</p>
-            <span>TEST</span>
+            <p class="title--big">Vehicle Type</p>
+            <span>{{user.vehicle.type}}</span>
           </div>
         </div>
       </div>
@@ -49,14 +49,16 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script src="./js/user-personal-detail.js"></script>
 
 <style lang="scss" scoped>
 .user-personal {
-  &__detail {
+  &__detail { 
     margin: 0 1.5rem;
+    @include respond(large-phone) {
+      width: 50vw;
+      margin: 2rem 25vw;
+    }
   }
 
   &__box {
@@ -73,6 +75,10 @@ export default {};
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+    @include respond(large-phone) {
+      justify-content: space-evenly;
+    }
   }
   
   &__personal,
