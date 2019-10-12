@@ -63,7 +63,6 @@ export default {
   },
   getFamilyDetailByUserId(id,token){
     const path = api.family(id);
-    console.log(path)
     return axios.get(path, {
       headers: {
         Authorization: token

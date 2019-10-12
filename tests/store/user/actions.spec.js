@@ -78,6 +78,25 @@ describe("Actions for User Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_PAGINATION", expectedValue.data);
   });
 
+  test("Get list of user family", async () => {
+    api.getFamilyDetailByUserId = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const id = "1559058600"
+    const expectedValue = data.find(
+      d =>
+        d.url === `${url.user}/${id}/family-members` &&
+        d.method === "GET" 
+    );
+    api.getFamilyDetailByUserId.mockResolvedValue(expectedValue);
+    const commit = jest.fn();
+    await actions.getUserFamilyDetail({ commit, rootState }, id);
+    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
+  });
+
   test("Update user actions", () => {
     api.updateUser = jest.fn();
 

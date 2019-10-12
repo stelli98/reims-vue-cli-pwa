@@ -3,10 +3,10 @@ import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.users;
-const expectedValue = data.find(d => d.url == url.user && d.method == "GET");
 
 describe("user getters", () => {
   test("Get users from user module", () => {
+    const expectedValue = data.find(d => d.url == url.user && d.method == "GET");
     const state = {
       users: expectedValue.data
     };
@@ -24,10 +24,20 @@ describe("user getters", () => {
   });
 
   test("Get paginations from user module", () => {
+    const expectedValue = data.find(d => d.url == url.user && d.method == "GET");
     const state = {
       pagination: expectedValue.data.pagination
     };
     const pagination = getters.pagination(state);
     expect(pagination).toBe(state.pagination);
+  });
+
+  test("Get userFamily from user module", () => {
+    const expectedValue = data.find(d => d.url == url.user+ "/1559058600/family-members" && d.method == "GET");
+    const state = {
+      userFamily: expectedValue.data
+    };
+    const userFamily = getters.userFamily(state);
+    expect(userFamily).toBe(state.userFamily);
   });
 });

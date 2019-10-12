@@ -2,7 +2,7 @@
   <div class="user-family">
     <div class="user-family__content">
       <div class="user-family__detail" v-for="(user, index) in userFamily" :key="index">
-        <div class="user-family__markdown" @click="expandFamilyData(index)">
+        <div class="user-family__markdown" @click="toggleExpandFamilyData(index)">
           <div class="user-family__heading" :class="{'active': isExpandedGroup(index)}">
             <h4>{{user.relationship | textFormatter }}</h4>
             <svg class="icon-small" :class="{'icon-small-green': user.expanding}">

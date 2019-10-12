@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     ...mapActions('user',['getUserFamilyDetail']),
-    expandFamilyData(index) {
+    toggleExpandFamilyData(index) {
       if (this.isExpandedGroup(index)){
          this.expandedGroup.splice(this.expandedGroup.indexOf(index), 1);
       } else {

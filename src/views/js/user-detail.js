@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     switchTab() {
-        console.log('click')
-          this.isComponentActive = !this.isComponentActive
+        this.isComponentActive = !this.isComponentActive
       }
   },
 };

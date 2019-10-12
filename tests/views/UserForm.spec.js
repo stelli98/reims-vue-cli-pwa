@@ -110,12 +110,12 @@ describe("UserForm.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("method submitForm succed", () => {
-    const spy = jest.spyOn(wrapper.vm, "sendForm");
-    wrapper.vm.submitForm();
-    expect(spy).toHaveBeenCalled();
-    expect(wrapper.vm.$route.path).toEqual("/users");
-  });
+  // test("method submitForm succed", () => {
+  //   const spy = jest.spyOn(wrapper.vm, "sendForm");
+  //   wrapper.vm.submitForm();
+  //   expect(spy).toHaveBeenCalled();
+  //   expect(wrapper.vm.$route.path).toEqual("/users");
+  // });
 
   test("formTitle must be Edit User", () => {
     wrapper.vm.$router.push("users/edit/1559058600");
