@@ -7,6 +7,7 @@ import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
 import UserForm from "./views/UserForm";
 import EditProfile from "./views/EditProfile";
+import UserDetail from "./views/UserDetail";
 import store from "./store";
 
 Vue.use(Router);
@@ -50,10 +51,10 @@ const router = new Router({
       component: UserForm
     },
     {
-      path: "/users/edit/:id",
-      beforeEnter: checkAuthAdmin,
+      path: "/users/:id",
+      // beforeEnter: checkAuthAdmin,
       name: "user-edit",
-      component: UserForm
+      component: UserDetail
     },
     {
       path: "/users/edit-profile",

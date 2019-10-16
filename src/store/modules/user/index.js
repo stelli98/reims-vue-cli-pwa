@@ -6,7 +6,8 @@ const namespaced = true;
 const state = {
   users: [],
   user: {},
-  pagination: {}
+  pagination: {},
+  userFamily: []
 };
 
 export default { state, actions, mutations, getters, namespaced };

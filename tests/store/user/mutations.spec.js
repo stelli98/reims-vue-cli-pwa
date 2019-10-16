@@ -64,4 +64,16 @@ describe("mutations", () => {
     mutations.DELETE_USER(state, 1559058600);
     expect(state.users).toEqual(expectedValue);
   });
+
+  test("SET_USER_FAMILY sets state.user", () => {
+    const expectedValue = data.find(
+      d => d.url === url.user+ "/1559058600/family-members" && d.method === "GET"
+    );
+    const state = {
+      userFamily: []
+    };
+    mutations.SET_USER_FAMILY(state, expectedValue);
+    expect(state.userFamily).toBe(expectedValue.data);
+  });
+
 });

@@ -503,10 +503,37 @@ export default [
     data: {
       id: 1559058600,
       username: "Munawan Sadakh",
-      password: "Test123",
+      gender: "MALE", 
+      dateOfBirth: "2019-05-06T12:06:00.000Z",
       role: "ADMIN",
+      division: "TECHNOLOGY", 
+      vehicle : {
+        plateNumber: "BL 123 AA",
+        type: "Avanza Silver White"
+      },
       created_at: 1559058410
     }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.users.user + "/1559058600/family-members",
+    status: "OK",
+    data: [
+      {
+        id:92769,
+        name:"Andre Forbes",
+        relationship:"CHILDREN",
+        dateOfBirth:"1993-01-01"
+    },
+    {
+        id:92768,
+        name:"Zendaya",
+        relationship:"SPOUSE",
+        dateOfBirth:"1979-02-06"
+    }
+    ],
+    "success": true
   },
   {
     code: 200,

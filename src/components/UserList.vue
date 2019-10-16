@@ -1,11 +1,12 @@
 <template>
   <div class="user__list">
-    <UserCard
-      v-for="(user, index) in users"
+    <div  v-for="(user, index) in users">
+      <UserCard
       :key="user.id"
       :user="user"
       :index="index"
     />
+    </div>
   </div>
 </template>
 

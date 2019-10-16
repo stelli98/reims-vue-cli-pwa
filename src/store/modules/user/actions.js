@@ -14,6 +14,11 @@ export default {
     const { data } = await userApi.getUser(id, token);
     commit("SET_USER", data);
   },
+  getUserFamilyDetail: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getFamilyDetailByUserId(id, token);
+    commit("SET_USER_FAMILY", data);
+  },
   getUsers: async ({ commit, rootState }, options) => {
     const { token } = rootState.auth;
     const { data } = await userApi.getUsers(options, token);
