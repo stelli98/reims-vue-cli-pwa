@@ -18,7 +18,7 @@
               <span>{{user.name}}</span>
             </div>
             <div class="user-family__box">
-              <p class="title--big">{{user.detail}}</p>
+              <p class="title--big">Date of Birth</p>
               <span>{{user.marriedDate || user.dateOfBirth}}</span>
             </div>
           </div>
@@ -26,14 +26,13 @@
       </div>
     </div>
     <div class="bottom-navigation user-family__navigation">
-      <div class="title--navigation">Add Family</div>
-      <div class="title--navigation">Edit Family</div>
+      <div class="title--navigation" @click="moveTo('add-family')">Add Family</div>
+      <div class="title--navigation" @click="moveTo('edit-family-profile')">Edit Family</div>
     </div>
   </div>
 </template>
 
-<script src="./js/user-family-detail.js">
-</script>
+<script src="./js/user-family-detail.js"></script>
 
 <style lang="scss" scoped>
 .user-family {

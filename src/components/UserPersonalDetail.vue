@@ -43,8 +43,8 @@
       </div>
     </div>
     <div class="bottom-navigation user-personal__navigation">
-      <div class="title--navigation">Change Password</div>
-      <div class="title--navigation">Edit Profile</div>
+      <div class="title--navigation" @click="moveTo('change-password')">Change Password</div>
+      <div class="title--navigation" @click="moveTo('edit-personal-profile')">Edit Profile</div>
     </div>
   </div>
 </template>

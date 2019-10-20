@@ -5,9 +5,13 @@ import HomePage from "./views/HomePage";
 import CreateTransaction from "./views/CreateTransaction";
 import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
-import UserForm from "./views/UserForm";
-import EditProfile from "./views/EditProfile";
+// import UserForm from "./views/UserForm";
+// import EditProfile from "./views/EditProfile";
+import EditUserPersonalProfile from "./views/EditUserPersonalProfile";
+import EditUserFamilyProfile from "./views/EditUserFamilyProfile";
+import ChangePasswordPage from "./views/ChangePasswordPage";
 import UserDetail from "./views/UserDetail";
+import CreateUser from "./views/CreateUser";
 import store from "./store";
 
 Vue.use(Router);
@@ -46,21 +50,32 @@ const router = new Router({
     },
     {
       path: "/users/create",
-      beforeEnter: checkAuthAdmin,
+      // beforeEnter: checkAuthAdmin,
       name: "user-create",
-      component: UserForm
+      component: CreateUser
     },
     {
       path: "/users/:id",
       // beforeEnter: checkAuthAdmin,
-      name: "user-edit",
+      name: "user-detail",
       component: UserDetail
     },
     {
-      path: "/users/edit-profile",
-      beforeEnter: checkAuthUser,
-      name: "edit-profile",
-      component: EditProfile
+      path: "/users/personal/:id/edit",
+      // beforeEnter: checkAuthUser,
+      name: "edit-personal-profile",
+      component: EditUserPersonalProfile
+    },
+    {
+      path: "/users/family/:id/edit",
+      // beforeEnter: checkAuthUser,
+      name: "edit-family-profile",
+      component: EditUserFamilyProfile
+    },
+    {
+      path: "/users/:id/change-password",
+      name:"change-password", 
+      component: ChangePasswordPage
     },
     {
       path: "*",

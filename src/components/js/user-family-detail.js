@@ -1,30 +1,33 @@
-import { mapActions, mapGetters} from "vuex"
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      expandedGroup : []
+      expandedGroup: []
     };
   },
   computed: {
-    ...mapGetters('user',['userFamily']),
-      userId() {
-        return this.$route.params.id;
-      }
+    ...mapGetters("user", ["userFamily"]),
+    userId() {
+      return this.$route.params.id;
+    }
   },
   methods: {
-    ...mapActions('user',['getUserFamilyDetail']),
+    ...mapActions("user", ["getUserFamilyDetail"]),
     toggleExpandFamilyData(index) {
-      if (this.isExpandedGroup(index)){
-         this.expandedGroup.splice(this.expandedGroup.indexOf(index), 1);
+      if (this.isExpandedGroup(index)) {
+        this.expandedGroup.splice(this.expandedGroup.indexOf(index), 1);
       } else {
         this.expandedGroup.push(index);
       }
     },
-    isExpandedGroup(index){
-      return this.expandedGroup.indexOf(index) !== -1
+    isExpandedGroup(index) {
+      return this.expandedGroup.indexOf(index) !== -1;
+    },
+    moveTo(page) {
+      this.$router.push({ name: page });
     }
   },
-  created () {
+  created() {
     this.getUserFamilyDetail(this.userId);
   }
 };

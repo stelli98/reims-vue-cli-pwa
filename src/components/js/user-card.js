@@ -19,7 +19,7 @@ export default {
     },
     moveTo(userId) {
       this.$router.push({
-        name: "user-edit",
+        name: "user-detail",
         params: { id: userId }
       });
     }

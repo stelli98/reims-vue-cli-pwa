@@ -7,7 +7,10 @@ export default {
       }
     },
     methods: {
-        ...mapActions('user',[ 'getUser'])
+        ...mapActions('user',[ 'getUser']),
+        moveTo(page){
+          this.$router.push({ name : page , params: {id : this.userId}});
+        }
     },
     created () {  
       this.getUser(this.userId);
