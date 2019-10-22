@@ -531,18 +531,6 @@ export default [
         name: "Andre Forbes",
         relationship: "CHILDREN",
         dateOfBirth: "898362000000"
-      },
-      {
-        id: 92762,
-        name: "Vanessa Chung",
-        relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
-      },
-      {
-        id: 92763,
-        name: "Caitlin Jamg",
-        relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
       }
     ],
     success: true

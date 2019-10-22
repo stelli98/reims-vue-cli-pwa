@@ -26,7 +26,11 @@
       </div>
     </div>
     <div class="bottom-navigation user-family__navigation">
-      <div class="title--navigation" @click="moveTo('add-family')">Add Family</div>
+      <div
+        class="title--navigation"
+        :class="{'disabled' : userFamily.length == 4 }"
+        @click.stop="userFamily.length == 4 ? null: moveTo('add-family')"
+      >Add Family</div>
       <div class="title--navigation" @click="moveTo('edit-family-profile')">Edit Family</div>
     </div>
   </div>
@@ -76,6 +80,10 @@
       justify-content: space-evenly;
     }
   }
+}
+
+.disabled {
+  color: $color-dark-grey;
 }
 
 .fade-enter-active,

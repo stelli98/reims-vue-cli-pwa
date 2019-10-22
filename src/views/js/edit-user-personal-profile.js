@@ -13,11 +13,19 @@ export default {
       vehicle: {
         plateNumber: { required },
         type: { required }
+      },
+      family: {
+        name: { required, minLength: minLength(3) },
+        relationship: { required },
+        dateOfBirth: { required }
       }
     }
   },
   data() {
     return {
+      isExpandedFamily: true,
+      isExpandedPersonal: true,
+      showFamilyField: false,
       user: {
         username: "",
         dateOfBirth: "",
@@ -27,6 +35,11 @@ export default {
         vehicle: {
           plateNumber: "",
           type: ""
+        },
+        family: {
+          name: "",
+          relationship: "SPOUSE",
+          dateOfBirth: ""
         }
       },
       genderType: ["MALE", "FEMALE"],
@@ -61,6 +74,22 @@ export default {
     },
     moveTo(page) {
       this.$router.push({ name: page, params: { id: this.userId } });
+    },
+    toggleExpandFamilyData() {
+      this.isExpandedFamily = !this.isExpandedFamily;
+    },
+    toggleExpandPersonalData(){
+      this.isExpandedPersonal = !this.isExpandedPersonal
+    }
+  },
+  watch: {
+    "user.status"(value) {
+      if (value === "MARRIED") {
+        this.showFamilyField = true;
+      } else {
+        this.showFamilyField = false;
+        this.user.family = {};
+      }
     }
   }
 };

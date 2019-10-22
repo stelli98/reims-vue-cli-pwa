@@ -12,6 +12,7 @@ import EditUserFamilyProfile from "./views/EditUserFamilyProfile";
 import ChangePasswordPage from "./views/ChangePasswordPage";
 import UserDetail from "./views/UserDetail";
 import CreateUser from "./views/CreateUser";
+import AddFamily from "./views/AddFamily";
 import store from "./store";
 
 Vue.use(Router);
@@ -53,6 +54,12 @@ const router = new Router({
       // beforeEnter: checkAuthAdmin,
       name: "user-create",
       component: CreateUser
+    },
+    {
+      path: "/users/family/:id/add",
+      // beforeEnter: checkAuthAdmin,
+      name: "add-family",
+      component: AddFamily
     },
     {
       path: "/users/:id",
