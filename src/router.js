@@ -5,8 +5,6 @@ import HomePage from "./views/HomePage";
 import CreateTransaction from "./views/CreateTransaction";
 import TransactionDetail from "./views/TransactionDetail";
 import ManageUser from "./views/ManageUser";
-// import UserForm from "./views/UserForm";
-// import EditProfile from "./views/EditProfile";
 import EditUserPersonalProfile from "./views/EditUserPersonalProfile";
 import EditUserFamilyProfile from "./views/EditUserFamilyProfile";
 import ChangePasswordPage from "./views/ChangePasswordPage";

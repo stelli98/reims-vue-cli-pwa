@@ -37,22 +37,16 @@
           />
           <div v-if="$v.user.confirmPassword.$error">
             <p
-              v-if="!$v.user.confirmPassword.required"
+              v-if="!$v.user.confirmPassword.sameAs"
               class="input__error-message"
-            >Confirm Password must be filled</p>
-          </div>
-          <div v-if="$v.user.confirmPassword.$error">
-            <p
-              v-if="!$v.user.confirmPassword.minLength"
-              class="input__error-message"
-            >Confirm Password must have at least 6 characters</p>
+            >Confirm Password must same as password</p>
           </div>
         </div>
       </form>
     </div>
     <div class="bottom-navigation change-password__navigation">
       <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
-      <div class="title--navigation" @click="moveTo('user')">Save</div>
+      <div class="title--navigation" @click="submitChangePasswordForm">Save</div>
     </div>
   </div>
 </template>
@@ -65,6 +59,7 @@
   height: 100vh;
 
   &__content {
+    min-height: 80vh;
     width: 65vw;
     margin: 0 auto;
     @include respond(large-phone) {
@@ -77,12 +72,10 @@
   }
 
    &__navigation {
-    position: absolute;
-    bottom: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: space-evenly;
+
     @include respond(large-phone) {
       justify-content: space-evenly;
     }

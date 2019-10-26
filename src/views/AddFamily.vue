@@ -11,7 +11,7 @@
             @click="addFamilyField()"
           >Add Family Member</h5>
           <div v-for="(family,index) in family" :key="index">
-            <div class="create-add-family__heading">
+            <div>
               <h5></h5>
               <h5
                 class="add-family__action"
@@ -68,14 +68,14 @@
     </div>
     <div class="bottom-navigation add-family__navigation">
       <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
-      <div class="title--navigation" @click="sendCreateUserForm">Save</div>
+      <div class="title--navigation" @click="submitAddFamilyToUserForm">Save</div>
     </div>
   </div>
 </template>
 
 <script src="./js/add-family.js"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .add-family {
   &__content {
@@ -94,18 +94,13 @@
   &__navigation {
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    @include respond(large-phone) {
-      justify-content: space-evenly;
-    }
+    justify-content: space-evenly;
   }
 
   .active {
     color: $color-green;
   }
 
-  //   &-family {
   &__action {
     display: flex;
     align-items: center;
@@ -124,12 +119,5 @@
   &__line {
     margin-bottom: 1rem;
   }
-
-  &__heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  //   }
 }
 </style>

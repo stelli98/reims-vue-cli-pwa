@@ -23,17 +23,6 @@ describe("Actions for User Module", () => {
     expect(api.createUser).toHaveBeenCalledWith(user, rootState.auth.token);
   });
 
-  test("Empty user actions", () => {
-    const user = {
-      username: "",
-      password: "",
-      role: ""
-    };
-    const commit = jest.fn();
-    actions.emptyUser({ commit }, user);
-    expect(commit).toHaveBeenCalledWith("SET_USER_EMPTY", user);
-  });
-
   test("Get a user", async () => {
     api.getUser = jest.fn();
     const rootState = {

@@ -33,11 +33,11 @@
         <div class="user-personal__list">
           <div class="user-personal__box">
             <p class="title--big">Plate Number</p>
-            <span>{{user.vehicle.plateNumber}}</span>
+            <span>{{user.vehicle.plateNumber || ""}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Vehicle Type</p>
-            <span>{{user.vehicle.type}}</span>
+            <span>{{user.vehicle.type || ""}}</span>
           </div>
         </div>
       </div>
@@ -53,11 +53,13 @@
 
 <style lang="scss" scoped>
 .user-personal {
-  &__detail { 
+  &__detail {
+    min-height: 65vh;
     margin: 0 1.5rem;
     @include respond(large-phone) {
       width: 50vw;
       margin: 2rem 25vw;
+      min-height: 55vh;
     }
   }
 
@@ -70,21 +72,14 @@
   }
 
   &__navigation {
-    position: absolute;
-    bottom: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    
-    @include respond(large-phone) {
-      justify-content: space-evenly;
-    }
-  }
-  
-  &__personal,
-  &__vehicle{
-      margin: 1.5rem 0;
+    justify-content: space-evenly;
   }
 
+  &__personal,
+  &__vehicle {
+    margin: 1.5rem 0;
+  }
 }
 </style>

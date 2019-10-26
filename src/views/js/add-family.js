@@ -18,13 +18,17 @@ export default {
   },
   data() {
     return {
-      family: [
-        {
-          name: "",
-          relationship: "CHILDREN",
-          dateOfBirth: ""
-        }
-      ],
+      family: [],
+      childrenData: {
+        name: "",
+        relationship: "CHILDREN",
+        dateOfBirth: ""
+      },
+      spouseData: {
+        name: "",
+        relationship: "SPOUSE",
+        dateOfBirth: ""
+      }
     };
   },
   computed: {
@@ -35,22 +39,15 @@ export default {
     userId() {
       return this.$route.params.id;
     },
-    formatDate: {
-      set(newValue) {
-        this.user.dateOfBirth = newValue;
-      },
-      get() {
-        return this.user.dateOfBirth
-          ? new Date(this.user.dateOfBirth).toISOString()
-          : "";
-      }
-    },
     maxFamilyField() {
       return 4 - this.userFamily.length;
+    },
+    isSpouseDataAvailable(){
+      return this.userFamily.find(user=> user.relationship == "SPOUSE")
     }
   },
   methods: {
-    ...mapActions("user", ["createUser", "getUserFamilyDetail"]),
+    ...mapActions("user", ["addFamilyToUser", "getUserFamilyDetail"]),
     submitChangePasswordForm() {
       this.moveTo("user");
     },
@@ -59,32 +56,35 @@ export default {
     },
     addFamilyField() {
       if (this.family.length < this.maxFamilyField) {
-        this.family.push({
-            name: "",
-            relationship: "CHILDREN",
-            dateOfBirth: ""
-          });
+        this.family.push(this.childrenData);
       }
     },
     removeFamilyField(index) {
-        console.log(index)
       this.family.splice(index, 1);
     },
-    sendCreateUserForm() {
-      this.convertDateToEpoch();
-      this.createUser(this.user);
-      this.moveTo("user");
+    submitAddFamilyToUserForm() {
+      this.$v.family.$touch();
+      if (!this.$v.family.$invalid) {
+        let familyRawData = JSON.parse(JSON.stringify(this.family));
+        let familyData = this.convertDateToEpoch(familyRawData);
+        this.addFamilyToUser(familyData);
+      }
     },
-    convertDateToEpoch() {
-      this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
-      this.userFamily.map(user => {
-        user.dateOfBirth = new Date(user.dateOfBirth).getTime();
-        return user;
+    convertDateToEpoch(familyData) {
+      familyData.map(family => {
+        family.dateOfBirth = new Date(family.dateOfBirth).getTime();
       });
-      this.user.family = [...this.userFamily];
+      return familyData
+    },
+    checkUserFamilyData() {
+      !!this.isSpouseDataAvailable
+        ? this.family.push(this.childrenData)
+        : this.family.push(this.spouseData);
     }
   },
   created() {
-    this.getUserFamilyDetail(this.userId);
+    this.getUserFamilyDetail(this.userId).then(() => {
+      this.checkUserFamilyData();
+    });
   }
 };

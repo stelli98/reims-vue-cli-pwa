@@ -68,5 +68,21 @@ export default {
         Authorization: token
       }
     })
+  }, 
+  addFamilyToUser(id, data, token){
+    const path = api.family(id);
+    return axios.post(path, data, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
+  updateUserFamily(id, data, token){
+    const path = api.family(id);
+    return axios.post(path, data, {
+      headers: {
+        Authorization: token
+      }
+    });
   }
 };

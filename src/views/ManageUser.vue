@@ -18,9 +18,6 @@
       <Pagination :paging="pagination" @changePage="changePage" />
     </div>
     <div class="bottom-navigation manage-user__navigation" @click="moveTo">
-      <svg class="icon icon-medium-green">
-        <use xlink:href="icons.svg#icon-plus" />
-      </svg>
       <h3 class="title--navigation">Add User</h3>
     </div>
   </div>

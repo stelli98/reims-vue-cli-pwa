@@ -74,11 +74,7 @@
   &__navigation {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    @include respond(large-phone) {
-      justify-content: space-evenly;
-    }
+    justify-content: space-evenly;
   }
 }
 

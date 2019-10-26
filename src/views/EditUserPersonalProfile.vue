@@ -3,101 +3,109 @@
     <div class="header edit-personal-profile__header"></div>
     <div class="edit-personal-profile__content">
       <div class="heading">Edit Personal Profile</div>
+      {{user}}
       <form class="user-form__form">
-        <div class="edit-personal-profile__markdown" @click="toggleExpandPersonalData()">
-          <div class="edit-personal-profile__heading" :class="{'active': isExpandedPersonal}">
-            <h3>Personal</h3>
-            <svg class="icon-small" :class="{'icon-small-green': isExpandedPersonal}">
-              <use xlink:href="icons.svg#icon-down" />
-            </svg>
+        <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Username</label>
+          <input
+            v-model="user.username"
+            type="username"
+            name="type"
+            class="form__input"
+            @blur="$v.user.username.$touch()"
+          />
+          <div v-if="$v.user.username.$error">
+            <p
+              v-if="!$v.user.username.required"
+              class="input__error-message"
+            >Username must be filled</p>
           </div>
-          <hr />
+          <div v-if="$v.user.username.$error">
+            <p
+              v-if="!$v.user.username.minLength"
+              class="input__error-message"
+            >Username must have at least 3 characters</p>
+          </div>
         </div>
-        <div v-if="isExpandedPersonal">
-          <div class="form__child">
-            <label class="input__label title--medium-form" for="type">Username</label>
-            <input
-              v-model="user.username"
-              type="username"
-              name="type"
-              class="form__input"
-              @blur="$v.user.username.$touch()"
-            />
-            <div v-if="$v.user.username.$error">
-              <p
-                v-if="!$v.user.username.required"
-                class="input__error-message"
-              >Username must be filled</p>
-            </div>
-            <div v-if="$v.user.username.$error">
-              <p
-                v-if="!$v.user.username.minLength"
-                class="input__error-message"
-              >Username must have at least 3 characters</p>
-            </div>
+        <div class="form__child">
+          <label class="input__label title--medium-form" for="date">Date of Birth</label>
+          <Datetime
+            v-model="formatDate"
+            type="datetime"
+            class="form__input"
+            :max-datetime="currentDateTime"
+            @close="$v.user.dateOfBirth.$touch()"
+          />
+          <div v-if="$v.user.dateOfBirth.$error">
+            <p v-if="!$v.user.dateOfBirth.required" class="input__error-message">Date must be filled</p>
           </div>
-          <div class="form__child">
-            <label class="input__label title--medium-form" for="date">Date of Birth</label>
-            <Datetime
-              v-model="formatDate"
-              type="datetime"
-              class="form__input"
-              :max-datetime="currentDateTime"
-              @close="$v.user.dateOfBirth.$touch()"
-            />
-            <div v-if="$v.user.dateOfBirth.$error">
-              <p
-                v-if="!$v.user.dateOfBirth.required"
-                class="input__error-message"
-              >Date must be filled</p>
-            </div>
+        </div>
+        <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Gender</label>
+          <select
+            v-model="user.gender"
+            class="form__input form__input__select"
+            @blur="$v.user.gender.$touch()"
+          >
+            <option
+              v-for="gender in genderType"
+              :key="gender"
+              :value="gender"
+              :selected="user.gender"
+            >{{ gender | textFormatter }}</option>
+          </select>
+          <div v-if="$v.user.gender.$error">
+            <p v-if="!$v.user.gender.required" class="input__error-message">Gender must be filled</p>
           </div>
-          <div class="form__child">
-            <label class="input__label title--medium-form" for="type">Gender</label>
-            <select
-              v-model="user.gender"
-              class="form__input form__input__select"
-              @blur="$v.user.gender.$touch()"
-            >
-              <option
-                v-for="gender in genderType"
-                :key="gender"
-                :value="gender"
-                :selected="user.gender"
-              >{{ gender | textFormatter }}</option>
-            </select>
-          </div>
-          <div class="form__child">
-            <label class="input__label title--medium-form" for="type">Division</label>
-            <select
-              v-model="user.division"
-              class="form__input form__input__select"
-              @blur="$v.user.division.$touch()"
-            >
-              <option
-                v-for="division in divisionType"
-                :key="division"
-                :value="division"
-                :selected="user.division"
-              >{{ division | textFormatter }}</option>
-            </select>
-          </div>
-          <div class="form__child">
-            <label class="input__label title--medium-form" for="type">Status</label>
-            <select
-              v-model="user.status"
-              class="form__input form__input__select"
-              @blur="$v.user.status.$touch()"
-            >
-              <option
-                v-for="status in statusType"
-                :key="status"
-                :value="status"
-                :selected="user.status"
-              >{{ status | textFormatter }}</option>
-            </select>
-          </div>
+        </div>
+        <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Division</label>
+          <select
+            v-model="user.division"
+            class="form__input form__input__select"
+            @blur="$v.user.division.$touch()"
+          >
+            <option
+              v-for="division in divisionType"
+              :key="division"
+              :value="division"
+              :selected="user.division"
+            >{{ division | textFormatter }}</option>
+          </select>
 
+          <div v-if="$v.user.division.$error">
+            <p
+              v-if="!$v.user.division.required"
+              class="input__error-message"
+            >Division must be filled</p>
+          </div>
+        </div>
+        <div class="form__child">
+          Does the user have a vehicle ?
+          <div class="form__radio">
+            <span>
+              <input
+                type="radio"
+                name="gender"
+                value="yes"
+                :checked="userHaveVehicle"
+                v-model="userHaveVehicle"
+              />
+              Yes
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="gender"
+                value="no"
+                :checked="userHaveVehicle"
+                v-model="userHaveVehicle"
+              />
+              No
+            </span>
+          </div>
+        </div>
+        <div v-if="isShowingVehicleField">
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Plate Number</label>
             <input
@@ -131,74 +139,18 @@
             </div>
           </div>
         </div>
-        <div v-show="showFamilyField" class="edit-personal-profile">
-          <div class="edit-personal-profile__markdown" @click="toggleExpandFamilyData()">
-            <div class="edit-personal-profile__heading" :class="{'active': isExpandedFamily}">
-              <h3>User Family</h3>
-              <svg class="icon-small" :class="{'icon-small-green': isExpandedFamily}">
-                <use xlink:href="icons.svg#icon-down" />
-              </svg>
-            </div>
-            <hr />
-          </div>
-          <div v-show="isExpandedFamily">
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="type">Name</label>
-              <input
-                v-model="user.family.name"
-                type="name"
-                name="type"
-                class="form__input"
-                @blur="$v.user.family.name.$touch()"
-              />
-              <div v-if="$v.user.family.name.$error">
-                <p
-                  v-if="!$v.user.family.name.required"
-                  class="input__error-message"
-                >Name must be filled</p>
-              </div>
-
-              <div v-if="$v.user.family.name.$error">
-                <p
-                  v-if="!$v.user.family.name.minLength"
-                  class="input__error-message"
-                >Name must have at least 3 characters</p>
-              </div>
-            </div>
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="date">Date of Birth</label>
-              <Datetime
-                v-model="user.family.dateOfBirth"
-                type="date"
-                class="form__input"
-                :max-datetime="currentDateTime"
-                @close="$v.user.family.dateOfBirth.$touch()"
-              />
-              <div v-if="$v.user.family.dateOfBirth.$error">
-                <p
-                  v-if="!$v.user.family.dateOfBirth.required"
-                  class="input__error-message"
-                >Date must be filled</p>
-              </div>
-            </div>
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="type">Relationship</label>
-              <p>{{user.family.relationship | textFormatter}}</p>
-            </div>
-          </div>
-        </div>
       </form>
     </div>
     <div class="bottom-navigation edit-personal-profile__navigation">
       <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
-      <div class="title--navigation" @click="moveTo('user')">Save</div>
+      <div class="title--navigation" @click="validateUserForm">Save</div>
     </div>
   </div>
 </template>
 
 <script src="./js/edit-user-personal-profile.js"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .edit-personal-profile {
   &__content {
@@ -213,32 +165,25 @@
       margin: 2rem 0;
     }
   }
-  &__markdown {
-    margin-bottom: 1rem;
-  }
-
-  &__line {
-    margin-bottom: 1rem;
-  }
-
-  &__heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 
   &__navigation {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 
-    @include respond(large-phone) {
-      justify-content: space-evenly;
-    }
   }
 
-  .active {
-    color: $color-green;
+  .form__radio {
+    display: flex;
+    margin-top: 0.25rem;
+    & > span {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+    input[type="radio"] {
+      margin-right: 0.25rem;
+    }
   }
 }
 </style>

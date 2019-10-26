@@ -9,9 +9,11 @@
           :class="{'user-detail__tab-active' : isComponentActive }"
           @click="switchTab"
         >Personal</h6>
-        <h6 class="title--medium"
-         :class="{'user-detail__tab-active' : !isComponentActive }" 
-         @click="switchTab">Family</h6>
+        <h6
+          class="title--medium"
+          :class="{'user-detail__tab-active' : !isComponentActive }"
+          @click="switchTab"
+        >Family</h6>
       </div>
     </div>
     <Component :is="currentComponent" class="user-detail__component"></Component>
@@ -22,8 +24,8 @@
 
 <style lang="scss" scoped>
 .user-detail {
-  position: relative;
-  height: 100vh;
+  // position: relative;
+  // height: 100vh;
 
   &__content {
     display: flex;
@@ -41,8 +43,6 @@
       margin: 2rem 25vw;
     }
   }
-
- 
 
   &__tab {
     margin-bottom: 0.5rem;
