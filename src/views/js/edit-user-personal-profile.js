@@ -1,4 +1,4 @@
-import { minLength, required } from "vuelidate/lib/validators";
+import { minLength, required, requiredIf } from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapActions, mapGetters } from "vuex";
 export default {
@@ -6,36 +6,39 @@ export default {
   validations: {
     user: {
       username: { required, minLength: minLength(3) },
+      role: { required },
       dateOfBirth: { required },
       gender: { required },
       division: { required },
+      license: {
+        required: requiredIf(function() {
+          return this.isShowingVehicleField;
+        })
+      },
       vehicle: {
-        plateNumber: { required },
-        type: { required }
+        required: requiredIf(function() {
+          return this.isShowingVehicleField;
+        })
       }
     }
   },
   data() {
     return {
-      vehicle: {
-        plateNumber: "",
-        type: ""
-      },
       userHaveVehicle: "no",
       genderType: ["MALE", "FEMALE"],
-      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"]
+      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"],
+      roleType: ["USER", "ADMIN"]
     };
   },
   computed: {
-    ...mapGetters('user', ['user']),
+    ...mapGetters("user", ["user"]),
     currentDateTime() {
       return new Date().toISOString();
     },
-    userId(){
-      return this.$route.params.id
+    userId() {
+      return this.$route.params.id;
     },
     isShowingVehicleField() {
-      console.log(this.userHaveVehicle)
       return this.userHaveVehicle == "yes";
     },
     formatDate: {
@@ -43,55 +46,33 @@ export default {
         this.user.dateOfBirth = newValue;
       },
       get() {
-        return this.user.dateOfBirth ? new Date(this.user.dateOfBirth).toISOString() : "";
+        return this.user.dateOfBirth
+          ? new Date(this.user.dateOfBirth).toISOString()
+          : "";
       }
-    },
-    ifuserHaveVehicle:{
-      set(newValue) {
-        this.userHaveVehicle = newValue;
-      },
-      get() {
-        return !!this.user.vehicle ? "yes" : "no";
-      } 
     }
   },
   methods: {
-    ...mapActions("user", ["getUser","updateUser"]),
+    ...mapActions("user", ["getUser", "updateUser"]),
     moveTo(page) {
       this.$router.push({ name: page });
     },
-    sendCreateUserForm() {
-      this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
-      this.updateUser(this.user);
-      this.moveTo('user')
-    },
-    validateUserForm() {
+    sendEditUserForm() {
       this.$v.user.$touch();
-      // if (this.isShowingVehicleField) {
-      //   this.$v.vehicle.$touch();
-      //   this.user.vehicle = this.vehicle;
-      //   if (!this.$v.user.$invalid && !this.$v.vehicle.$invalid) {
-      //     this.sendCreateUserForm();
-      //   }
-      // } else {
-        if (!this.$v.user.$invalid) {
-          this.sendCreateUserForm();
-        }
-      // }
-    },
-    checkUserHaveVehicle(){
-      console.log('HELO')
-      if(!!this.user.vehicle) {
-        this.user.vehicle = {
-          plateNumber: "",
-          type: ""
-        }
+      if (!this.$v.user.$invalid) {
+        this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
+        this.updateUser(this.user);
+        this.moveTo("user");
       }
-
-      console.log(this.user)
+    },
+    checkUserHaveVehicle() {
+      if (!!this.user.vehicle) {
+        this.user.license = ""
+        this.user.vehicle = ""
+      }
     }
   },
-  created(){
-    this.getUser(this.userId).then(()=>this.checkUserHaveVehicle())
+  created() {
+    this.getUser(this.userId).then(() => this.checkUserHaveVehicle());
   }
 };

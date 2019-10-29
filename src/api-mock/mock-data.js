@@ -507,10 +507,8 @@ export default [
       dateOfBirth: "2019-05-06T12:06:00.000Z",
       role: "ADMIN",
       division: "TECHNOLOGY",
-      vehicle: {
-        plateNumber: "BL 123 AA",
-        type: "Avanza Silver White"
-      },
+      license: "BL 123 AA",
+      vehicle: "Avanza Silver White",
       created_at: 1559058410
     }
   },

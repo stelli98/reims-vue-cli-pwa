@@ -3,7 +3,6 @@
     <div class="header edit-personal-profile__header"></div>
     <div class="edit-personal-profile__content">
       <div class="heading">Edit Personal Profile</div>
-      {{user}}
       <form class="user-form__form">
         <div class="form__child">
           <label class="input__label title--medium-form" for="type">Username</label>
@@ -25,6 +24,24 @@
               v-if="!$v.user.username.minLength"
               class="input__error-message"
             >Username must have at least 3 characters</p>
+          </div>
+        </div>
+         <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Role</label>
+          <select
+            v-model="user.role"
+            class="form__input form__input__select"
+            @blur="$v.user.role.$touch()"
+          >
+            <option
+              v-for="role in roleType"
+              :key="role"
+              :value="role"
+              :selected="user.role"
+            >{{ role | textFormatter }}</option>
+          </select>
+          <div v-if="$v.user.role.$error">
+            <p v-if="!$v.user.role.required" class="input__error-message">Role must be filled</p>
           </div>
         </div>
         <div class="form__child">
@@ -107,35 +124,35 @@
         </div>
         <div v-if="isShowingVehicleField">
           <div class="form__child">
-            <label class="input__label title--medium-form" for="type">Plate Number</label>
+            <label class="input__label title--medium-form" for="type">License</label>
             <input
-              v-model="user.vehicle.plateNumber"
+              v-model="user.license"
               type="username"
               name="type"
               class="form__input"
-              @blur="$v.user.vehicle.plateNumber.$touch()"
+              @blur="$v.user.license.$touch()"
             />
-            <div v-if="$v.user.vehicle.plateNumber.$error">
+            <div v-if="$v.user.license.$error">
               <p
-                v-if="!$v.user.vehicle.plateNumber.required"
+                v-if="!$v.user.license.required"
                 class="input__error-message"
-              >Plate Number must be filled</p>
+              >License must be filled</p>
             </div>
           </div>
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Vehicle Type</label>
             <input
-              v-model="user.vehicle.type"
+              v-model="user.vehicle"
               type="username"
               name="type"
               class="form__input"
-              @blur="$v.user.vehicle.type.$touch()"
+              @blur="$v.user.vehicle.$touch()"
             />
-            <div v-if="$v.user.vehicle.type.$error">
+            <div v-if="$v.user.vehicle.$error">
               <p
-                v-if="!$v.user.vehicle.type.required"
+                v-if="!$v.user.vehicle.required"
                 class="input__error-message"
-              >Vehicle Type must be filled</p>
+              >Vehicle must be filled</p>
             </div>
           </div>
         </div>
@@ -143,7 +160,7 @@
     </div>
     <div class="bottom-navigation edit-personal-profile__navigation">
       <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
-      <div class="title--navigation" @click="validateUserForm">Save</div>
+      <div class="title--navigation" @click="sendEditUserForm">Save</div>
     </div>
   </div>
 </template>

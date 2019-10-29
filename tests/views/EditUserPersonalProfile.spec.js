@@ -1,21 +1,37 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import CreateUser from "@/views/CreateUser";
+import EditUserPersonalProfile from "@/views/EditUserPersonalProfile";
 import TextFilter from "@/filters/text";
 import Vuelidate from "vuelidate";
 import Vuex from "vuex";
+import data from "@/api-mock/mock-data";
+import config from "@/config";
 
-describe("FuelForm.vue", () => {
+const url = config.api.users;
+
+describe("EditUserPersonalProfile.vue", () => {
   let store;
   let wrapper;
   let localVue;
+  const userData = data.find(
+    d => d.url === url.user + "/1559058600" && d.method == "GET"
+  );
 
   function initializeStore() {
     const actions = {
-      createUser: jest.fn()
+      getUser: jest.fn(),
+      updateUser: jest.fn()
+    };
+    const state = {
+      user: userData.data
+    };
+    const getters = {
+      user: state => state.user
     };
     const store = new Vuex.Store({
       modules: {
         user: {
+          state,
+          getters,
           actions,
           namespaced: true
         }
@@ -44,13 +60,12 @@ describe("FuelForm.vue", () => {
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
-    return shallowMount(CreateUser, mergeConfig);
+    return shallowMount(EditUserPersonalProfile, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-    wrapper = createWrapper(store.store);
   });
 
   test("moveTo method", () => {
@@ -58,52 +73,72 @@ describe("FuelForm.vue", () => {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          params: {
+            id: "1559058600"
+          }
         }
       }
     };
     wrapper = createWrapper(store.store, options);
+
     const spy = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.moveTo("user");
     expect(spy).toHaveBeenCalled();
   });
 
-  test("sendCreateUserForm method if user data is filled", () => {
+  test("sendEditUserForm method if user data isn't filled", () => {
     const options = {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          params: {
+            id: "1559058600"
+          }
+        },
+      },
+      computed: {
+        user() {
+          return {}
         }
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spyCreateUser = jest.spyOn(store.actions, "createUser");
+    const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
     const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
-    wrapper.vm.sendCreateUserForm();
-    expect(spyCreateUser).not.toHaveBeenCalled();
+    wrapper.vm.sendEditUserForm();
+    expect(spyUpdateUser).not.toHaveBeenCalled();
     expect(spyMoveTo).not.toHaveBeenCalled();
   });
 
-  test("sendCreateUserForm method if user data is filled", () => {
+  test("sendEditUserForm method if user data is filled", () => {
     const options = {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          params: {
+            id: "1559058600"
+          }
         }
       }
     };
     wrapper = createWrapper(store.store, options);
     wrapper.vm.user = {
       username: "Stelli",
-      password: "1234567",
       role: "USER",
       dateOfBirth: "2000-08-25T03:00:00.000Z",
       gender: "FEMALE",
       division: "TECHNOLOGY"
     };
-    const spyCreateUser = jest.spyOn(store.actions, "createUser");
+    const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
     const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
-    wrapper.vm.sendCreateUserForm();
-    expect(spyCreateUser).toHaveBeenCalled();
+    wrapper.vm.sendEditUserForm();
+    expect(spyUpdateUser).toHaveBeenCalled();
     expect(spyMoveTo).toHaveBeenCalled();
   });
 

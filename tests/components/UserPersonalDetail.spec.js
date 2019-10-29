@@ -8,7 +8,7 @@ import config from "@/config";
 
 const url = config.api.users;
 
-describe("FuelForm.vue", () => {
+describe("UserPersonalDetail.vue", () => {
   let store;
   let wrapper;
   let localVue;

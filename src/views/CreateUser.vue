@@ -27,6 +27,46 @@
           </div>
         </div>
         <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Password</label>
+          <input
+            v-model="user.password"
+            type="password"
+            name="type"
+            class="form__input"
+            @blur="$v.user.password.$touch()"
+          />
+          <div v-if="$v.user.password.$error">
+            <p
+              v-if="!$v.user.password.required"
+              class="input__error-message"
+            >Password must be filled</p>
+          </div>
+          <div v-if="$v.user.password.$error">
+            <p
+              v-if="!$v.user.password.minLength"
+              class="input__error-message"
+            >Password must have at least 6 characters</p>
+          </div>
+        </div>
+        <div class="form__child">
+          <label class="input__label title--medium-form" for="type">Role</label>
+          <select
+            v-model="user.role"
+            class="form__input form__input__select"
+            @blur="$v.user.role.$touch()"
+          >
+            <option
+              v-for="role in roleType"
+              :key="role"
+              :value="role"
+              :selected="user.role"
+            >{{ role | textFormatter }}</option>
+          </select>
+          <div v-if="$v.user.role.$error">
+            <p v-if="!$v.user.role.required" class="input__error-message">Role must be filled</p>
+          </div>
+        </div>
+        <div class="form__child">
           <label class="input__label title--medium-form" for="date">Date of Birth</label>
           <Datetime
             v-model="formatDate"
@@ -108,33 +148,33 @@
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Plate Number</label>
             <input
-              v-model="vehicle.plateNumber"
+              v-model="user.license"
               type="username"
               name="type"
               class="form__input"
-              @blur="$v.vehicle.plateNumber.$touch()"
+              @blur="$v.user.license.$touch()"
             />
-            <div v-if="$v.vehicle.plateNumber.$error">
+            <div v-if="$v.user.license.$error">
               <p
-                v-if="!$v.vehicle.plateNumber.required"
+                v-if="!$v.user.license.required"
                 class="input__error-message"
-              >Plate Number must be filled</p>
+              >License must be filled</p>
             </div>
           </div>
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Vehicle Type</label>
             <input
-              v-model="vehicle.type"
+              v-model="user.vehicle"
               type="username"
               name="type"
               class="form__input"
-              @blur="$v.vehicle.type.$touch()"
+              @blur="$v.user.vehicle.$touch()"
             />
-            <div v-if="$v.vehicle.type.$error">
+            <div v-if="$v.user.vehicle.$error">
               <p
-                v-if="!$v.vehicle.type.required"
+                v-if="!$v.user.vehicle.required"
                 class="input__error-message"
-              >Vehicle Type must be filled</p>
+              >Vehicle must be filled</p>
             </div>
           </div>
         </div>
@@ -142,7 +182,7 @@
     </div>
     <div class="bottom-navigation create-user__navigation">
       <div class="title--navigation" @click="moveTo('user')">Cancel</div>
-      <div class="title--navigation" @click="validateUserForm">Save</div>
+      <div class="title--navigation" @click="sendCreateUserForm">Save</div>
     </div>
   </div>
 </template>

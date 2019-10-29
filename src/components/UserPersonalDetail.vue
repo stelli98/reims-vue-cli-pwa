@@ -12,6 +12,10 @@
             <span>{{user.username}}</span>
           </div>
           <div class="user-personal__box">
+            <p class="title--big">Role</p>
+            <span>{{user.role | textFormatter}}</span>
+          </div>
+          <div class="user-personal__box">
             <p class="title--big">Date of Birth</p>
             <span>{{user.dateOfBirth | dateFormatter}}</span>
           </div>
@@ -32,12 +36,12 @@
         </div>
         <div class="user-personal__list">
           <div class="user-personal__box">
-            <p class="title--big">Plate Number</p>
-            <span>{{user.vehicle.plateNumber || ""}}</span>
+            <p class="title--big">License</p>
+            <span>{{user.license || ""}}</span>
           </div>
           <div class="user-personal__box">
-            <p class="title--big">Vehicle Type</p>
-            <span>{{user.vehicle.type || ""}}</span>
+            <p class="title--big">Vehicle</p>
+            <span>{{user.vehicle || ""}}</span>
           </div>
         </div>
       </div>
@@ -59,7 +63,7 @@
     @include respond(large-phone) {
       width: 50vw;
       margin: 2rem 25vw;
-      min-height: 55vh;
+      min-height: 62vh;
     }
   }
 

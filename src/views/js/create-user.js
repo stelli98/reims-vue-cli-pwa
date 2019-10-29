@@ -1,4 +1,4 @@
-import { minLength, required } from "vuelidate/lib/validators";
+import { minLength, required, requiredIf } from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapActions } from "vuex";
 export default {
@@ -7,12 +7,20 @@ export default {
     user: {
       username: { required, minLength: minLength(3) },
       dateOfBirth: { required },
+      password: { required, minLength: minLength(6) },
+      role: { required },
       gender: { required },
-      division: { required }
-    },
-    vehicle: {
-      plateNumber: { required },
-      type: { required }
+      division: { required },
+      license: {
+        required: requiredIf(function() {
+          return this.isShowingVehicleField;
+        })
+      },
+      vehicle: {
+        required: requiredIf(function() {
+          return this.isShowingVehicleField;
+        })
+      }
     }
   },
   data() {
@@ -21,15 +29,16 @@ export default {
       user: {
         username: "",
         dateOfBirth: "",
+        password: "",
+        role: "",
         gender: "",
-        division: ""
-      },
-      vehicle: {
-        plateNumber: "",
-        type: ""
+        division: "",
+        license: "",
+        vehicle: ""
       },
       genderType: ["MALE", "FEMALE"],
-      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"]
+      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"],
+      roleType: ["USER", "ADMIN"]
     };
   },
   computed: {
@@ -44,7 +53,9 @@ export default {
         this.user.dateOfBirth = newValue;
       },
       get() {
-        return this.user.dateOfBirth ? new Date(this.user.dateOfBirth).toISOString() : "";
+        return this.user.dateOfBirth
+          ? new Date(this.user.dateOfBirth).toISOString()
+          : "";
       }
     }
   },
@@ -54,22 +65,11 @@ export default {
       this.$router.push({ name: page });
     },
     sendCreateUserForm() {
-      this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
-      this.createUser(this.user);
-      this.moveTo('user')
-    },
-    validateUserForm() {
       this.$v.user.$touch();
-      if (this.isShowingVehicleField) {
-        this.$v.vehicle.$touch();
-        this.user.vehicle = this.vehicle;
-        if (!this.$v.user.$invalid && !this.$v.vehicle.$invalid) {
-          this.sendCreateUserForm();
-        }
-      } else {
-        if (!this.$v.user.$invalid) {
-          this.sendCreateUserForm();
-        }
+      if (!this.$v.user.$invalid) {
+        this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
+        this.createUser(this.user);
+        this.moveTo("user");
       }
     }
   }
