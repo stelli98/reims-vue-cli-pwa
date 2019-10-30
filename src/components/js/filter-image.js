@@ -1,13 +1,7 @@
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
-  props: {
-    pictureUrl: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       filterFunctions: null,
@@ -16,21 +10,20 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("transaction",["image"]), 
     filters() {
       return this.makeFilter();
     }
   },
   created() {
-    if (!this.pictureUrl) {
-      this.$router.push({ name: "create", params: { step: 1 } });
-    }
-    this.filterFunctions = this.defaultValues();
+    this.checkContainsImage();
+    this.setFilterToDefault();
   },
   methods: {
     ...mapActions("transaction", [
       "createTransaction",
-      "setImage",
-      "setOCRResultType"
+      "setOCRResultType",
+      "setImage"
     ]),
     ...mapActions("notification", ["addNotification"]),
     makeFilter() {
@@ -52,6 +45,12 @@ export default {
         brightness: 1.1,
         contrast: 1
       };
+    },
+    setFilterToDefault(){
+      this.filterFunctions = this.defaultValues();
+    },
+    filterImage(){
+      this.setImage(this.generateImage())
     },
     generateImage() {
       const canvas = document.createElement("canvas");
@@ -88,7 +87,12 @@ export default {
           };
           this.addNotification(notification);
         });
-      this.$router.push({ name: "create", params: { step: 3 } });
+      this.$router.push({ name: "create-transaction-3"});
+    },
+    checkContainsImage(){
+      if (!this.image) {
+        this.$router.push({ name: "create-transaction-1" });
+      }
     }
   }
 };

@@ -10,7 +10,7 @@ export default {
     fuel: {
       date: { required },
       fuelType: { required },
-      liters: {
+      kilometer: {
         required,
         float(input) {
           return /^[0-9]+([.][0-9]+)?$/g.test(input);
@@ -33,15 +33,7 @@ export default {
       minValue: minValue(100)
     }
   },
-  data() {
-    return {
-      isSwitchOn: {
-        type: Boolean,
-        default: true
-      },
-      fuelType: ["PERTALITE", "SOLAR", "PREMIUM"]
-    };
-  },
+  props: ['bus'],
   computed: {
     ...mapGetters("transaction", ["fuel"]),
     fuelAmount: {
@@ -54,13 +46,6 @@ export default {
           .replace(/\./g, "")
           .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
-    },
-    totalPrice() {
-      const value = (this.formatAmountToInt * this.fuel.liters).toFixed(2);
-      if (value.includes("e")) {
-        return value || 0;
-      }
-      return value.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") || 0;
     },
     formatAmountToInt() {
       return this.fuel.amount ? this.amountInt : "";
@@ -80,29 +65,38 @@ export default {
       get() {
         return this.fuel.date ? new Date(this.fuel.date).toISOString() : "";
       }
+    },
+    fuelTemplate () {
+      return {
+        data: {
+          category: "FUEL",
+          date: "",
+          fuelType: "",
+          kilometer: 1,
+          amount: 100,
+          title: "",
+          userId: "",
+          image: ""
+        }
+      };
     }
   },
   methods: {
     ...mapActions("transaction", ["saveTransaction", "setFormEmpty"]),
     ...mapActions("notification", ["addNotification"]),
-    toggle() {
-      this.isSwitchOn = !this.isSwitchOn;
-    },
     sendFuelForm() {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.reformatVolume();
         this.convertDateToEpoch();
-        this.fuel.amount = this.amountInt * this.fuel.liters;
-        return this.saveTransaction(this.fuel)
-          .then(response => {
+        this.saveTransaction(this.fuel)
+          .then(() => {
             const notification = {
               type: "success",
               message: "Fuel form has been submitted."
             };
             this.addNotification(notification);
           })
-          .catch(error => {
+          .catch(() => {
             const notification = {
               type: "error",
               message:
@@ -110,13 +104,15 @@ export default {
             };
             this.addNotification(notification);
           });
+          this.setFormEmpty(this.fuelTemplate);
+          this.$router.push({name:"home"});
       }
-    },
-    reformatVolume() {
-      this.fuel.liters = parseFloat(this.fuel.liters);
     },
     convertDateToEpoch() {
       this.fuel.date = new Date(this.fuel.date).getTime();
     }
-  }
+  },
+  mounted () {
+    this.bus.$on('submitFuelForm', this.sendFuelForm);
+  },
 };

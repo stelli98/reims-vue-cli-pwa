@@ -186,10 +186,11 @@ export default [
       image:
         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
       category: "FUEL",
-      date: "2018-05-12T17:19:06.151Z",
-      type: "Premium",
-      liters: 5.0,
-      amount: 9000,
+      date: "2018-05-12T00:00:00.000Z",
+      fuelType: "Premium",
+      kilometer: 500,
+      amount: 90000,
+      userId: 1,
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: ""
     }
@@ -216,7 +217,7 @@ export default [
       category: "PARKING",
       license: "BL 6728 POW",
       type: "Motor",
-      "in ": "2018-05-12T17:19:06.151Z",
+      in : "2018-05-12T17:19:06.151Z",
       out: "2018-05-12T17:19:06.151Z",
       amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",

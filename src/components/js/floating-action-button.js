@@ -14,10 +14,7 @@ export default {
     onFileChange(e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
-      this.$router.push({
-        name: "create",
-        params: { step: 1 }
-      });
+      this.$router.push({name:"create-transaction-1"});
     }
   }
 };

@@ -15,6 +15,10 @@ const routes = [
   {
     path: "/users/edit/:id",
     name: "user-edit"
+  },
+  {
+    path: "/users",
+    name: "user",
   }
 ];
 

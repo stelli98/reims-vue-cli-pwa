@@ -137,3 +137,12 @@ input {
   background-color: $color-black;
   height: 100vh;
 }
+
+.bottom-navigation{
+  margin: 0;
+  width: 100vw;
+  padding: 2rem;
+  font-size: 1.4rem;
+  border-top: solid .5px #eee;
+  bottom: 0;
+}
