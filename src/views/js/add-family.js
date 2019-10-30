@@ -6,9 +6,6 @@ export default {
   components: { Datetime },
   validations: {
     family: {
-      name: { required, minLength: minLength(3) },
-      relationship: { required },
-      dateOfBirth: { required },
       $each: {
         name: { required, minLength: minLength(3) },
         relationship: { required },
@@ -42,21 +39,22 @@ export default {
     maxFamilyField() {
       return 4 - this.userFamily.length;
     },
-    isSpouseDataAvailable(){
-      return this.userFamily.find(user=> user.relationship == "SPOUSE")
+    isSpouseDataAvailable() {
+      return this.userFamily.find(user => user.relationship == "SPOUSE");
     }
   },
   methods: {
     ...mapActions("user", ["addFamilyToUser", "getUserFamilyDetail"]),
-    submitChangePasswordForm() {
-      this.moveTo("user");
-    },
     moveTo(page) {
       this.$router.push({ name: page, params: { id: this.userId } });
     },
     addFamilyField() {
       if (this.family.length < this.maxFamilyField) {
-        this.family.push(this.childrenData);
+        this.family.push({
+          name: "",
+          relationship: "CHILDREN",
+          dateOfBirth: ""
+        });
       }
     },
     removeFamilyField(index) {
@@ -74,12 +72,20 @@ export default {
       familyData.map(family => {
         family.dateOfBirth = new Date(family.dateOfBirth).getTime();
       });
-      return familyData
+      return familyData;
     },
     checkUserFamilyData() {
       !!this.isSpouseDataAvailable
-        ? this.family.push(this.childrenData)
-        : this.family.push(this.spouseData);
+        ? this.family.push({
+            name: "",
+            relationship: "CHILDREN",
+            dateOfBirth: ""
+          })
+        : this.family.push({
+            name: "",
+            relationship: "SPOUSE",
+            dateOfBirth: ""
+          });
     }
   },
   created() {

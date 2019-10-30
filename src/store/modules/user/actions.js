@@ -11,11 +11,6 @@ export default {
     const { data } = await userApi.getUser(id, token);
     commit("SET_USER", data);
   },
-  getUserFamilyDetail: async ({ commit, rootState }, id) => {
-    const { token } = rootState.auth;
-    const { data } = await userApi.getFamilyDetailByUserId(id, token);
-    commit("SET_USER_FAMILY", data);
-  },
   getUsers: async ({ commit, rootState }, options) => {
     const { token } = rootState.auth;
     const { data } = await userApi.getUsers(options, token);
@@ -42,7 +37,12 @@ export default {
     const response = await userApi.updatePersonalProfile(data, token);
     return response;
   },
-  addFamilyToUser: async ({ rootState }, id, data) => {
+  getUserFamilyDetail: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getFamilyDetailByUserId(id, token);
+    commit("SET_USER_FAMILY", data);
+  },
+  addFamilyToUser: async ({ rootState }, [id, data]) => {
     const { token } = rootState.auth;
     await userApi.addFamilyToUser(id, data, token);
   },

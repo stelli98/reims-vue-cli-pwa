@@ -62,24 +62,24 @@ export default {
     });
   },
   getFamilyDetailByUserId(id,token){
-    const path = api.family(id);
-    return axios.get(path, {
+    const path = api.family;
+    return axios.get(`${path}?user-id=${id}`, {
       headers: {
         Authorization: token
       }
     })
   }, 
   addFamilyToUser(id, data, token){
-    const path = api.family(id);
-    return axios.post(path, data, {
+    const path = api.family;
+    return axios.post(`${path}?user-id=${id}`, data, {
       headers: {
         Authorization: token
       }
     });
   },
   updateUserFamily(id, data, token){
-    const path = api.family(id);
-    return axios.post(path, data, {
+    const path = api.family;
+    return axios.post(`${path}?user-id=${id}`, data, {
       headers: {
         Authorization: token
       }

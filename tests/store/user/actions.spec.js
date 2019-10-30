@@ -74,11 +74,9 @@ describe("Actions for User Module", () => {
         token: "Bearer 123"
       }
     };
-    const id = "1559058600"
+    const id = "1559058600";
     const expectedValue = data.find(
-      d =>
-        d.url === `${url.user}/${id}/family-members` &&
-        d.method === "GET" 
+      d => d.url === `${url.user}/${id}/family-members` && d.method === "GET"
     );
     api.getFamilyDetailByUserId.mockResolvedValue(expectedValue);
     const commit = jest.fn();
@@ -156,6 +154,52 @@ describe("Actions for User Module", () => {
     actions.updatePersonalProfile({ rootState }, user);
     expect(api.updatePersonalProfile).toHaveBeenCalledWith(
       user,
+      rootState.auth.token
+    );
+  });
+
+  test("addFamilyToUser actions", () => {
+    api.addFamilyToUser = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const id = 1
+    const userFamily = [
+      {
+        name: "Stelli",
+        relationship: "CHILDREN",
+        dateOfBirth: ""
+      }
+    ];
+    actions.addFamilyToUser({ rootState }, [id, userFamily]);
+    expect(api.addFamilyToUser).toHaveBeenCalledWith(
+      id,userFamily,
+      rootState.auth.token
+    );
+  });
+
+  test("updateUserFamily actions", () => {
+    api.updateUserFamily = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const id = 1
+    const userFamily = [
+      {
+        name: "Stelli",
+        relationship: "CHILDREN",
+        dateOfBirth: ""
+      }
+    ];
+    actions.updateUserFamily({ rootState }, [id, userFamily]);
+    expect(api.updateUserFamily).toHaveBeenCalledWith(
+      id,userFamily,
       rootState.auth.token
     );
   });
