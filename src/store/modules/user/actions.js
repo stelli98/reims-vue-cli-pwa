@@ -39,5 +39,10 @@ export default {
     const { token } = rootState.auth;
     const response = await userApi.updatePersonalProfile(data, token);
     return response;
-  }
+  }, 
+  getUserFamilyDetail: async ({ commit, rootState }, id) => {
+    const { token } = rootState.auth;
+    const { data } = await userApi.getFamilyDetailByUserId(id, token);
+    commit("SET_USER_FAMILY", data);
+  },
 };

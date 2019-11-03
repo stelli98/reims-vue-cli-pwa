@@ -116,6 +116,117 @@ export default [
     code: 200,
     method: "GET",
     url: api.transactions.transaction,
+    headers: {
+      authorization: "Bearer 123"
+    },
+    params: {
+      page: "1",
+      size: "5",
+      sortBy: "date"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 1,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 2,
+        category: "fuel",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Bensin PP Thamrin - GI",
+        amount: 25000
+      },
+      {
+        id: 3,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 4,
+        category: "fuel",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Bensin PP Thamrin - GI",
+        amount: 25000
+      },
+      {
+        id: 5,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPages: 2,
+      totalRecords: 10
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction,
+    params: {
+      page: "2",
+      size: "5",
+      sortBy: "createdAt"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 6,
+        category: "fuel",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Bensin PP Jakarta - Bandung",
+        amount: 25000
+      },
+      {
+        id: 7,
+        category: "fuel",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Bensin Town Hall",
+        amount: 25000
+      },
+      {
+        id: 8,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Bus Mini",
+        amount: 25000
+      },
+      {
+        id: 9,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Motor GI",
+        amount: 25000
+      },
+      {
+        id: 10,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 6",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPages: 2,
+      totalRecords: 10
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction,
     params: {
       page: 1,
       size: 5,
@@ -186,11 +297,10 @@ export default [
       image:
         "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
       category: "FUEL",
-      date: "2018-05-12T00:00:00.000Z",
-      fuelType: "Premium",
-      kilometer: 500,
-      amount: 90000,
-      userId: 1,
+      date: "2018-05-12T17:19:06.151Z",
+      type: "Premium",
+      liters: 5.0,
+      amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
       modified_at: ""
     }
@@ -217,7 +327,7 @@ export default [
       category: "PARKING",
       license: "BL 6728 POW",
       type: "Motor",
-      in : "2018-05-12T17:19:06.151Z",
+      "in ": "2018-05-12T17:19:06.151Z",
       out: "2018-05-12T17:19:06.151Z",
       amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
@@ -535,5 +645,26 @@ export default [
       username: "Hefriza Munaf",
       role: "ADMIN"
     }
-  }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.users.family + "?user-id=1559058600",
+    status: "OK",
+    data: [
+      {
+        id: 92768,
+        name: "Zendaya",
+        relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      }
+    ],
+    success: true
+  },
 ];

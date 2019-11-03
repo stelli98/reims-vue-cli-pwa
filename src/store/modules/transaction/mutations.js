@@ -2,6 +2,9 @@ export default {
   SET_IMAGE(state, img) {
     state.image = img;
   },
+  SET_IMAGES(state, images){
+    state.images = images;
+  },
   SET_OCR_RESULT(state, { data }) {
     state[data.category.toLowerCase()] = {
       ...state[data.category.toLowerCase()],

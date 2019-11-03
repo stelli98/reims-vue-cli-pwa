@@ -4,6 +4,9 @@ export default {
   setImage({ commit }, img) {
     commit("SET_IMAGE", img);
   },
+  setImages({ commit }, img) {
+    commit("SET_IMAGES", img);
+  },
   setOCRResultType({ commit }, data) {
     commit("SET_OCR_RESULT_TYPE", data);
   },
@@ -46,5 +49,9 @@ export default {
     const { token } = rootState.auth;
     const { data } = await transactionApi.getViewImage(link, token);
     commit("SET_VIEW_IMAGE", data);
+  },
+  createMedicalTransaction: async ({ rootState },data) => {
+    const { token } = rootState.auth;
+    await transactionApi.createMedicalTransaction(data, token);
   }
 };

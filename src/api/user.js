@@ -60,5 +60,13 @@ export default {
         Authorization: token
       }
     });
-  }
+  },  
+  getFamilyDetailByUserId(id,token){
+    const path = api.family;
+    return axios.get(`${path}?user-id=${id}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+  }, 
 };
