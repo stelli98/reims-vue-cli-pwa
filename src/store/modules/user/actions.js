@@ -6,9 +6,6 @@ export default {
     const response = await userApi.createUser(data, token);
     return response;
   },
-  emptyUser: ({ commit }, data) => {
-    commit("SET_USER_EMPTY", data);
-  },
   getUser: async ({ commit, rootState }, id) => {
     const { token } = rootState.auth;
     const { data } = await userApi.getUser(id, token);

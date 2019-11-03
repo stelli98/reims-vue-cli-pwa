@@ -23,17 +23,6 @@ describe("Actions for User Module", () => {
     expect(api.createUser).toHaveBeenCalledWith(user, rootState.auth.token);
   });
 
-  test("Empty user actions", () => {
-    const user = {
-      username: "",
-      password: "",
-      role: ""
-    };
-    const commit = jest.fn();
-    actions.emptyUser({ commit }, user);
-    expect(commit).toHaveBeenCalledWith("SET_USER_EMPTY", user);
-  });
-
   test("Get a user", async () => {
     api.getUser = jest.fn();
     const rootState = {
@@ -151,4 +140,22 @@ describe("Actions for User Module", () => {
       rootState.auth.token
     );
   });
+
+  test("Get user family data", async () => {
+    api.getFamilyDetailByUserId = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const expectedValue = data.find(
+      d => d.url === url.family + "?user-id=1559058600" && d.method == "GET"
+    );
+    api.getFamilyDetailByUserId.mockResolvedValue(expectedValue);
+    const commit = jest.fn();
+    const id = 1559058600;
+    await actions.getUserFamilyDetail({ commit, rootState }, id);
+    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
+  });
+
 });

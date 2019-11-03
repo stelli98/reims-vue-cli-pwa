@@ -38,19 +38,6 @@ describe("mutations", () => {
     expect(state.pagination).toBe(expectedValue.paging);
   });
 
-  test("SET_USER_EMPTY sets state.user", () => {
-    const expectedValue = {
-      username: "",
-      password: "",
-      role: ""
-    };
-    const state = {
-      user: {}
-    };
-    mutations.SET_USER_EMPTY(state, expectedValue);
-    expect(state.user).toBe(expectedValue);
-  });
-
   test("DELETE_USER remove deleted id from state.users", () => {
     const initialValue = data.find(
       d => d.url === url.user && d.method === "GET"
@@ -63,5 +50,17 @@ describe("mutations", () => {
     );
     mutations.DELETE_USER(state, 1559058600);
     expect(state.users).toEqual(expectedValue);
+  });
+
+  test("SET_USER_FAMILY sets state.user", () => {
+    const expectedValue = data.find(
+      d =>
+        d.url === url.family + "?user-id=1559058600" && d.method === "GET"
+    );
+    const state = {
+      userFamily: []
+    };
+    mutations.SET_USER_FAMILY(state, expectedValue);
+    expect(state.userFamily).toBe(expectedValue.data);
   });
 });

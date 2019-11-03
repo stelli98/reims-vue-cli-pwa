@@ -93,20 +93,49 @@ describe("CreateMedicalTransaction.vue", () => {
     return lv;
   }
 
-  function createWrapper(store) {
-    return shallowMount(CreateMedicalTransaction, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
       stubs: ["Datetime", "Carousel", "Slide"],
       sync: false
-    });
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(CreateMedicalTransaction, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-    // wrapper = createWrapper(store.store);
-    // console.log(wrapper.vm);
+  });
+
+  test("if images doesn't exist", async () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    store.state.transaction.images = [];
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm, "moveTo");
+    wrapper.vm.$nextTick(() => {
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  test("if images exist", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(store.actions.user, "getUserFamilyDetail");
+    expect(spy).toHaveBeenCalled();
   });
 
   test("medicalAmount computed setter getter", () => {
@@ -126,7 +155,7 @@ describe("CreateMedicalTransaction.vue", () => {
     expect(wrapper.vm.formatDate).toBe("2019-08-13T11:27:50.000Z");
   });
 
-  test("moveTo", () => {
+  test("moveTo method", () => {
     const options = {
       mocks: {
         $router: {
@@ -136,7 +165,57 @@ describe("CreateMedicalTransaction.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo();
+    wrapper.vm.moveTo("user");
     expect(spy).toHaveBeenCalled();
+  });
+
+  test("submitMedicalForm method if medical is invalid", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spyActionsCreateMedicalTransaction = jest.spyOn(
+      store.actions.transaction,
+      "createMedicalTransaction"
+    );
+    wrapper.vm.submitMedicalForm();
+    expect(spyConvertDateToEpoch).not.toHaveBeenCalled();
+    expect(spyActionsCreateMedicalTransaction).not.toHaveBeenCalled();
+  });
+
+  test("submitMedicalForm method if medical is valid", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    wrapper.vm.medical = {
+      date: "2019-08-13T11:27:50.000Z",
+      title: "Ibu Sakit",
+      amount: "10000",
+      attachment: ["image.jpg"],
+      patient: {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      }
+    };
+    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
+    const spyActionsCreateMedicalTransaction = jest.spyOn(
+      store.actions.transaction,
+      "createMedicalTransaction"
+    );
+    wrapper.vm.submitMedicalForm();
+    expect(spyConvertDateToEpoch).toHaveBeenCalled();
+    expect(spyActionsCreateMedicalTransaction).toHaveBeenCalled();
   });
 });

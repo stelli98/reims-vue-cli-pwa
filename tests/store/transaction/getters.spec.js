@@ -66,6 +66,15 @@ describe("transaction getters", () => {
     expect(image).toBe(state.image);
   });
 
+
+  test("Get images from images module", () => {
+    const state = {
+      images: ["image.jpg"]
+    };
+    const images = getters.images(state);
+    expect(images).toBe(state.images);
+  });
+
   test("Get viewImage from image module", () => {
     const expectedValue = data.find(
       d => d.url == url.transaction + "/3278/12345abc"

@@ -667,4 +667,27 @@ export default [
     ],
     success: true
   },
+  {
+    code: 200,
+    method: "POST",
+    url: api.transactions.medical,
+    status: "OK",
+    data: [
+      {
+        "title":"Istri Demam",
+        "date":"2020-01-01",
+        "amount":1000000,
+        "attachment":[
+          "92769/lqeigbhqohjgpoq313019504185.jpg",
+          "92769/1gr2hbo23gbfo12332r5m5.jpg"
+        ],
+        "patient":{
+          "id":92768,
+          "name":"Zendaya",
+          "relationship":"SPOUSE",
+          "dateOfBirth":"1979-02-06"
+        }
+      }
+    ]
+  }
 ];

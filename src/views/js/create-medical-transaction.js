@@ -40,9 +40,6 @@ export default {
     ...mapGetters("user", ["userFamily"]),
     ...mapGetters("auth", ["id"]),
     ...mapGetters("transaction", ["images"]),
-    userId() {
-      return this.$route.params.id || "1559058600";
-    },
     currentDateTime() {
       return new Date().toISOString();
     },
@@ -90,9 +87,9 @@ export default {
   created() {
     this.$nextTick(() => {
       if (this.images.length === 0) {
-        this.$router.push({ name: "home" });
+        this.moveTo("home")
       }
     });
-    this.getUserFamilyDetail(this.userId);
+    this.getUserFamilyDetail(this.id);
   }
 };

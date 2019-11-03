@@ -23,9 +23,6 @@ export default {
       });
       this.setImages(fileResult);
       this.$router.push({ name: "create-medical" });
-    },
-    inputMedicalForm() {
-      this.$router.push({ name: "create-medical" });
     }
   }
 };
