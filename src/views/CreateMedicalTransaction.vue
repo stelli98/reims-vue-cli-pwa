@@ -61,7 +61,7 @@
                 :key="medical.id"
                 :value="medical"
                 :selected="medical.patient"
-              >{{ `${medical.name} - ${medical.relationship}` | textFormatter }}</option>
+              >{{ formatfamilyNameAndRelationship(medical.name, medical.relationship) | textFormatter }}</option>
             </select>
 
             <div v-if="$v.medical.patient.$error">

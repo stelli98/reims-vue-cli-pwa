@@ -63,6 +63,9 @@ export default {
           .replace(/\./g, "")
           .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
+    },
+    isImagesExist() {
+      this.images.length === 0 ? this.moveTo("home") : "";
     }
   },
   methods: {
@@ -82,14 +85,13 @@ export default {
     },
     convertDateToEpoch() {
       this.medical.date = new Date(this.medical.date).getTime();
+    },
+    formatfamilyNameAndRelationship(name, relationship) {
+      return `${name}-${relationship}`;
     }
   },
   created() {
-    this.$nextTick(() => {
-      if (this.images.length === 0) {
-        this.moveTo("home")
-      }
-    });
-    this.getUserFamilyDetail(this.id);
+    this.isImagesExist;
+    this.getUserFamilyDetail("1559058600");
   }
 };
