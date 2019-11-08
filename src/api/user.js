@@ -69,6 +69,14 @@ export default {
       }
     })
   }, 
+  getFamilyDetailByFamilyId(id,token){
+    const path = api.family;
+    return axios.get(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+  }, 
   addFamilyToUser(id, data, token){
     const path = api.family;
     return axios.post(`${path}?user-id=${id}`, data, {
@@ -80,6 +88,14 @@ export default {
   updateUserFamily(id, data, token){
     const path = api.family;
     return axios.post(`${path}?user-id=${id}`, data, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
+  deleteUserFamilyById(id, token){
+    const path = api.family;
+    return axios.delete(`${path}?user-id=${id}`, {
       headers: {
         Authorization: token
       }

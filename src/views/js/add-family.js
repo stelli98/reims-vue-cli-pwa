@@ -29,7 +29,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["userFamily"]),
+    ...mapGetters("user", ["userFamilies"]),
     currentDateTime() {
       return new Date().toISOString();
     },
@@ -37,14 +37,14 @@ export default {
       return this.$route.params.id;
     },
     maxFamilyField() {
-      return 4 - this.userFamily.length;
+      return 4 - this.userFamilies.length;
     },
     isSpouseDataAvailable() {
-      return this.userFamily.find(user => user.relationship == "SPOUSE");
+      return this.userFamilies.find(user => user.relationship == "SPOUSE");
     }
   },
   methods: {
-    ...mapActions("user", ["addFamilyToUser", "getUserFamilyDetail"]),
+    ...mapActions("user", ["addFamilyToUser", "getUserFamilyDetailByUserId"]),
     moveTo(page) {
       this.$router.push({ name: page, params: { id: this.userId } });
     },
@@ -89,7 +89,7 @@ export default {
     }
   },
   created() {
-    this.getUserFamilyDetail(this.userId).then(() => {
+    this.getUserFamilyDetailByUserId(this.userId).then(() => {
       this.checkUserFamilyData();
     });
   }

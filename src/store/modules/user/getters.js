@@ -8,6 +8,9 @@ export default {
   pagination(state) {
     return state.pagination;
   },
+  userFamilies(state){
+    return state.userFamilies;
+  },
   userFamily(state){
     return state.userFamily;
   }

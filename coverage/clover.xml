@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1572405842519" clover="3.2.0">
-  <project timestamp="1572405842519" name="All files">
-    <metrics statements="583" coveredstatements="453" conditionals="155" coveredconditionals="85" methods="81" coveredmethods="48" elements="819" coveredelements="586" complexity="0" loc="583" ncloc="583" packages="9" files="50" classes="50">
+<coverage generated="1573224900919" clover="3.2.0">
+  <project timestamp="1573224900920" name="All files">
+    <metrics statements="576" coveredstatements="458" conditionals="149" coveredconditionals="85" methods="80" coveredmethods="50" elements="805" coveredelements="593" complexity="0" loc="576" ncloc="576" packages="9" files="50" classes="50">
       <package name="src">
         <metrics statements="59" coveredstatements="17" conditionals="20" coveredconditionals="0" methods="13" coveredmethods="2"/>
         <file name="App.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/App.vue">
@@ -68,7 +68,7 @@
         </file>
       </package>
       <package name="src.components">
-        <metrics statements="186" coveredstatements="165" conditionals="63" coveredconditionals="45" methods="13" coveredmethods="5"/>
+        <metrics statements="187" coveredstatements="165" conditionals="63" coveredconditionals="45" methods="13" coveredmethods="5"/>
         <file name="CropImage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/CropImage.vue">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
@@ -274,13 +274,13 @@
         <file name="UserCard.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/UserCard.vue">
           <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="1" count="1" type="stmt"/>
-          <line num="10" count="3" type="stmt"/>
+          <line num="10" count="5" type="stmt"/>
           <line num="16" count="1" type="stmt"/>
           <line num="17" count="1" type="stmt"/>
           <line num="21" count="1" type="stmt"/>
         </file>
         <file name="UserFamilyDetail.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/UserFamilyDetail.vue">
-          <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+          <metrics statements="10" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
           <line num="1" count="2" type="stmt"/>
           <line num="4" count="2" type="stmt"/>
           <line num="11" count="2" type="stmt"/>
@@ -289,7 +289,8 @@
           <line num="20" count="1" type="stmt"/>
           <line num="24" count="28" type="stmt"/>
           <line num="27" count="1" type="stmt"/>
-          <line num="31" count="2" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="34" count="2" type="stmt"/>
         </file>
         <file name="UserList.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/components/UserList.vue">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -320,12 +321,12 @@
         </file>
         <file name="text.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/filters/text.js">
           <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-          <line num="2" count="391" type="cond" truecount="2" falsecount="0"/>
-          <line num="4" count="409" type="stmt"/>
+          <line num="2" count="393" type="cond" truecount="2" falsecount="0"/>
+          <line num="4" count="411" type="stmt"/>
         </file>
         <file name="trimText.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/filters/trimText.js">
           <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-          <line num="2" count="8" type="cond" truecount="2" falsecount="0"/>
+          <line num="2" count="10" type="cond" truecount="2" falsecount="0"/>
         </file>
       </package>
       <package name="src.store">
@@ -470,9 +471,9 @@
         </file>
       </package>
       <package name="src.store.modules.user">
-        <metrics statements="41" coveredstatements="41" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
+        <metrics statements="48" coveredstatements="48" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="13"/>
         <file name="actions.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/store/modules/user/actions.js">
-          <metrics statements="29" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="10"/>
+          <metrics statements="34" coveredstatements="34" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="12"/>
           <line num="5" count="1" type="stmt"/>
           <line num="6" count="1" type="stmt"/>
           <line num="7" count="1" type="stmt"/>
@@ -500,15 +501,21 @@
           <line num="43" count="1" type="stmt"/>
           <line num="46" count="1" type="stmt"/>
           <line num="47" count="1" type="stmt"/>
-          <line num="50" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
           <line num="51" count="1" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="60" count="1" type="stmt"/>
         </file>
         <file name="getters.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/store/modules/user/getters.js">
-          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="3" count="1" type="stmt"/>
           <line num="6" count="1" type="stmt"/>
           <line num="9" count="1" type="stmt"/>
-          <line num="12" count="1" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
         </file>
         <file name="index.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/store/modules/user/index.js">
           <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -516,44 +523,43 @@
           <line num="6" count="4" type="stmt"/>
         </file>
         <file name="mutations.js" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/store/modules/user/mutations.js">
-          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="3" count="1" type="stmt"/>
           <line num="6" count="1" type="stmt"/>
           <line num="9" count="1" type="stmt"/>
           <line num="12" count="1" type="stmt"/>
           <line num="15" count="10" type="stmt"/>
           <line num="18" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
         </file>
       </package>
       <package name="src.views">
-        <metrics statements="201" coveredstatements="134" conditionals="64" coveredconditionals="33" methods="28" coveredmethods="14"/>
+        <metrics statements="186" coveredstatements="132" conditionals="58" coveredconditionals="33" methods="25" coveredmethods="14"/>
         <file name="AddFamily.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/AddFamily.vue">
-          <metrics statements="25" coveredstatements="25" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
+          <metrics statements="23" coveredstatements="23" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
           <line num="3" count="1" type="stmt"/>
-          <line num="20" count="6" type="stmt"/>
+          <line num="17" count="6" type="stmt"/>
+          <line num="34" count="6" type="stmt"/>
           <line num="37" count="6" type="stmt"/>
-          <line num="40" count="6" type="stmt"/>
-          <line num="43" count="4" type="stmt"/>
-          <line num="46" count="8" type="stmt"/>
-          <line num="52" count="1" type="stmt"/>
-          <line num="55" count="2" type="cond" truecount="2" falsecount="0"/>
-          <line num="56" count="1" type="stmt"/>
+          <line num="40" count="4" type="stmt"/>
+          <line num="43" count="8" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="52" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
           <line num="64" count="1" type="stmt"/>
+          <line num="65" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="66" count="1" type="stmt"/>
           <line num="67" count="1" type="stmt"/>
           <line num="68" count="1" type="stmt"/>
-          <line num="69" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="70" count="1" type="stmt"/>
-          <line num="71" count="1" type="stmt"/>
           <line num="72" count="1" type="stmt"/>
           <line num="73" count="1" type="stmt"/>
-          <line num="77" count="1" type="stmt"/>
-          <line num="78" count="1" type="stmt"/>
-          <line num="80" count="1" type="stmt"/>
-          <line num="83" count="8" type="cond" truecount="2" falsecount="0"/>
-          <line num="97" count="6" type="stmt"/>
-          <line num="98" count="6" type="stmt"/>
+          <line num="75" count="1" type="stmt"/>
+          <line num="78" count="8" type="cond" truecount="2" falsecount="0"/>
+          <line num="92" count="6" type="stmt"/>
+          <line num="93" count="6" type="stmt"/>
         </file>
         <file name="ChangePasswordPage.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/ChangePasswordPage.vue">
           <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
@@ -630,34 +636,21 @@
           <line num="72" count="1" type="stmt"/>
         </file>
         <file name="EditUserFamilyProfile.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/EditUserFamilyProfile.vue">
-          <metrics statements="27" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="4" coveredmethods="0"/>
+          <metrics statements="14" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
           <line num="3" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="33" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
           <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="45" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="67" count="0" type="stmt"/>
-          <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="71" count="0" type="stmt"/>
-          <line num="73" count="0" type="stmt"/>
-          <line num="77" count="0" type="stmt"/>
-          <line num="81" count="0" type="stmt"/>
         </file>
         <file name="EditUserPersonalProfile.vue" path="/Users/stelli/Desktop/Blibli Future Phase 2/reims-vue-cli-pwa/src/views/EditUserPersonalProfile.vue">
           <metrics statements="21" coveredstatements="21" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>

@@ -12,18 +12,18 @@ describe("UserFamilyDetail.vue", async () => {
   let localVue;
   let wrapper;
   const UserFamilydata = data.find(
-    d => d.url == url.user + "/1559058600/family-members" && d.method == "GET"
+    d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
   );
 
   function initializeStore() {
     const state = {
-      userFamily: UserFamilydata.data
+      userFamilies: UserFamilydata.data
     };
     const actions = {
-      getUserFamilyDetail: jest.fn()
+      getUserFamilyDetailByUserId: jest.fn()
     };
     const getters = {
-      userFamily: state => state.userFamily
+      userFamilies: state => state.userFamilies
     };
     const store = new Vuex.Store({
       modules: {
@@ -66,7 +66,7 @@ describe("UserFamilyDetail.vue", async () => {
     localVue = generateLocalVue();
     store = initializeStore();
   });
-  
+
   test("Get userId from url param", () => {
     const params = {
       id: "1559058600"

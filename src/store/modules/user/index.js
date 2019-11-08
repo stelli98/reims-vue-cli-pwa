@@ -7,7 +7,8 @@ const state = {
   users: [],
   user: {},
   pagination: {},
-  userFamily: []
+  userFamilies: [],
+  userFamily: {}
 };
 
 export default { state, actions, mutations, getters, namespaced };

@@ -515,7 +515,7 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.users.user + "/1559058600/family-members",
+    url: api.users.family + "?user-id=1559058600",
     status: "OK",
     data: [
       {
@@ -532,6 +532,18 @@ export default [
       }
     ],
     success: true
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.users.family + "/92768",
+    status: "OK",
+    data: {
+      id: 92768,
+      name: "Zendaya",
+      relationship: "SPOUSE",
+      dateOfBirth: "898362000000"
+    }
   },
   {
     code: 200,

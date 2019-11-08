@@ -6,13 +6,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["userFamily"]),
+    ...mapGetters("user", ["userFamilies"]),
     userId() {
       return this.$route.params.id;
     }
   },
   methods: {
-    ...mapActions("user", ["getUserFamilyDetail"]),
+    ...mapActions("user", ["getUserFamilyDetailByUserId", "deleteUserFamily"]),
     toggleExpandFamilyData(index) {
       if (this.isExpandedGroup(index)) {
         this.expandedGroup.splice(this.expandedGroup.indexOf(index), 1);
@@ -23,11 +23,14 @@ export default {
     isExpandedGroup(index) {
       return this.expandedGroup.indexOf(index) !== -1;
     },
-    moveTo(page) {
-      this.$router.push({ name: page });
+    moveTo(page, id) {
+      this.$router.push({ name: page , params: {id: id}});
+    },
+    removeUserFamily(id) {
+      this.deleteUserFamily(id);
     }
   },
   created() {
-    this.getUserFamilyDetail(this.userId);
+    this.getUserFamilyDetailByUserId(this.userId);
   }
 };

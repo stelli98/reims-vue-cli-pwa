@@ -5,18 +5,10 @@ import dateFilter from "@/filters/date";
 import priceFilter from "@/filters/price";
 import textFilter from "@/filters/text";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.users;
-
-const routes = [
-  {
-    path: "/users/edit/:id",
-    name: "user-edit"
-  }
-];
 
 describe("UserCard.vue", () => {
   let store;
@@ -47,7 +39,6 @@ describe("UserCard.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
     lv.filter("dateFormatter", dateFilter);
     lv.filter("priceFormatter", priceFilter);
     lv.filter("trimTextFormatter", trimTextFilter);
@@ -55,16 +46,17 @@ describe("UserCard.vue", () => {
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes });
-    return shallowMount(UserCard, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
-      router,
       localVue,
       propsData: {
         user: userData.data[1]
-      }
-    });
+      },
+      sync: false
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(UserCard, mergeConfig);
   }
 
   beforeEach(() => {
@@ -78,15 +70,30 @@ describe("UserCard.vue", () => {
   });
 
   test("Should be calling deleteUser actions", () => {
-    const spy = jest.spyOn(store.actions, "deleteUser");
-    const userId = 1;
-    wrapper.vm.removeUser(userId);
-    expect(spy).toHaveBeenCalled();
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActionDeleteUser = jest.spyOn(store.actions, "deleteUser");
+    wrapper.vm.removeUser(1);
+    expect(spyActionDeleteUser).toHaveBeenCalled();
   });
 
   test("Should be move to user detail page", () => {
-    const userId = 1;
-    wrapper.vm.moveTo(userId);
-    expect(wrapper.vm.$route.path).toBe("/users/edit/1");
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.moveTo(1);
+    expect(spyRouterPush).toHaveBeenCalled();
   });
 });

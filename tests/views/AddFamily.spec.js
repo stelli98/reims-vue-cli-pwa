@@ -19,24 +19,24 @@ const spouseData = {
   dateOfBirth: ""
 };
 
-describe("FuelForm.vue", () => {
+describe("AddFamily.vue", () => {
   let store;
   let wrapper;
   let localVue;
   const userData = data.find(
-    d => d.url === `${url.user}/1559058600/family-members` && d.method == "GET"
+    d => d.url === `${url.family}?user-id=1559058600` && d.method == "GET"
   );
 
   function initializeStore() {
     const state = {
-      userFamily: userData.data
+      userFamilies: userData.data
     };
     const actions = {
-      getUserFamilyDetail: jest.fn(),
+      getUserFamilyDetailByUserId: jest.fn(),
       addFamilyToUser: jest.fn()
     };
     const getters = {
-      userFamily: state => state.userFamily
+      userFamilies: state => state.userFamilies
     };
     const store = new Vuex.Store({
       modules: {

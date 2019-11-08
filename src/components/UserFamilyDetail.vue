@@ -1,7 +1,7 @@
 <template>
   <div class="user-family">
     <div class="user-family__content">
-      <div class="user-family__detail" v-for="(user, index) in userFamily" :key="index">
+      <div class="user-family__detail" v-for="(user, index) in userFamilies" :key="index">
         <div class="user-family__markdown" @click="toggleExpandFamilyData(index)">
           <div class="user-family__heading" :class="{'active': isExpandedGroup(index)}">
             <h4>{{user.relationship | textFormatter }}</h4>
@@ -13,25 +13,31 @@
         </div>
         <transition v-if="isExpandedGroup(index)" name="fade">
           <div class="user-family__data">
-            <div class="user-family__box">
-              <p class="title--big">Name</p>
-              <span>{{user.name}}</span>
+            <div class="user-family__container">
+              <div class="user-family__box">
+                <p class="title--big">Name</p>
+                <span>{{user.name}}</span>
+              </div>
+              <div class="user-family__box">
+                <p class="title--big">Date of Birth</p>
+                <span>{{user.marriedDate || user.dateOfBirth}}</span>
+              </div>
             </div>
-            <div class="user-family__box">
-              <p class="title--big">Date of Birth</p>
-              <span>{{user.marriedDate || user.dateOfBirth}}</span>
+            <div class="user-family__action">
+              <h4 class="user-family__edit" @click="moveTo('edit-family-profile', user.id)">Edit</h4>
+              <h4 class="user-family__remove" @click="removeUserFamily(user.id)">Remove</h4>
             </div>
           </div>
         </transition>
       </div>
     </div>
     <div class="bottom-navigation user-family__navigation">
+      <div class="title--navigation" @click="moveTo('user')">Cancel</div>
       <div
         class="title--navigation"
-        :class="{'disabled' : userFamily.length == 4 }"
-        @click.stop="userFamily.length == 4 ? null: moveTo('add-family')"
+        :class="{'disabled' : userFamilies.length == 4 }"
+        @click.stop="userFamilies.length == 4 ? null: moveTo('add-family')"
       >Add Family</div>
-      <div class="title--navigation" @click="moveTo('edit-family-profile')">Edit Family</div>
     </div>
   </div>
 </template>
@@ -63,6 +69,13 @@
     padding: 0.5rem;
   }
 
+  &__data,
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__box {
     padding: 0 1rem;
     p {
@@ -75,6 +88,17 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  &__edit,
+  &__remove {
+    margin-right: 1rem;
+    color: $color-green;
+    margin-top: 0.5rem;
+    font-family: "Nunito-Semibold";
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

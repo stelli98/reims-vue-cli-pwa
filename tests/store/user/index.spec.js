@@ -4,7 +4,8 @@ const state = {
   users: [],
   user: {},
   pagination: {},
-  userFamily:[]
+  userFamilies:[],
+  userFamily: {}
 };
 
 describe("user store", () => {

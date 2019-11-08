@@ -32,8 +32,32 @@ describe("user getters", () => {
     expect(pagination).toBe(state.pagination);
   });
 
+  test("Get userFamilies from user module", () => {
+    const expectedValue = data.find(
+      d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
+    );
+    const state = {
+      userFamilies: expectedValue.data
+    };
+    const userFamilies = getters.userFamilies(state);
+    expect(userFamilies).toBe(state.userFamilies);
+  });
+
+  test("Get userFamilies from user module", () => {
+    const expectedValue = data.find(
+      d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
+    );
+    const state = {
+      userFamilies: expectedValue.data
+    };
+    const userFamilies = getters.userFamilies(state);
+    expect(userFamilies).toBe(state.userFamilies);
+  });
+
   test("Get userFamily from user module", () => {
-    const expectedValue = data.find(d => d.url == url.user+ "/1559058600/family-members" && d.method == "GET");
+    const expectedValue = data.find(
+      d => d.url == url.family + "/92768" && d.method == "GET"
+    );
     const state = {
       userFamily: expectedValue.data
     };
