@@ -86,22 +86,6 @@ describe("EditUserFamilyProfile.vue", () => {
     wrapper.vm.moveToPreviousPage();
     expect(spy).toHaveBeenCalled();
   });
-
-  test("convertToIsoString method", () => {
-    const options = {
-      mocks: {
-        $route: {
-          params: {
-            id: "92768"
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    wrapper.vm.userFamily.dateOfBirth = 898362000000;
-    wrapper.vm.convertToIsoString();
-    expect(wrapper.vm.userFamily.dateOfBirth).toEqual("1998-06-20T17:00:00.000Z")
-  });
   
   test("submitEditUserFamilyForm method if user data isn't filled", () => {
     const options = {
@@ -144,5 +128,10 @@ describe("EditUserFamilyProfile.vue", () => {
     const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
     wrapper.vm.submitEditUserFamilyForm();
     expect(spyUpdateUser).toHaveBeenCalled();
+  });
+
+  test("formatDate computed setter getter", () => {
+    wrapper.setData({ formatDate: 1565419259000 });
+    expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z");
   });
 });

@@ -17,6 +17,14 @@ export default {
     },
     currentDateTime() {
       return new Date().toISOString();
+    },
+    formatDate: {
+      set(newValue) {
+        this.userFamily.dateOfBirth = newValue;
+      },
+      get() {
+        return this.userFamily.dateOfBirth ? new Date(parseInt(this.userFamily.dateOfBirth)).toISOString() : "";
+      }
     }
   },
   methods: {
@@ -37,6 +45,6 @@ export default {
     }
   },
   created() {
-    this.getUserFamilyDetailByFamilyId(this.userFamilyId).then(() => this.convertToIsoString());
+    this.getUserFamilyDetailByFamilyId(this.userFamilyId)
   }
 };

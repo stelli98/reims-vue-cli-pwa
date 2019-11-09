@@ -26,7 +26,7 @@
         <div class="form__child">
           <label class="input__label title--medium-form" for="date">Date of Birth</label>
           <Datetime
-            v-model="userFamily.dateOfBirth"
+            v-model="formatDate"
             type="date"
             class="form__input"
             :max-datetime="currentDateTime"
