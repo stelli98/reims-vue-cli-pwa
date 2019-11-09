@@ -24,8 +24,8 @@
 
 <style lang="scss" scoped>
 .user-detail {
-  // position: relative;
-  // height: 100vh;
+  position: relative;
+  height: 100vh;
 
   &__content {
     display: flex;

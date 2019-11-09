@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     ...mapActions("user", ["updateUserFamily", "getUserFamilyDetailByFamilyId"]),
-    moveTo() {
+    moveToPreviousPage() {
       this.$router.go(-1)
     },
     convertToIsoString() {
@@ -30,13 +30,10 @@ export default {
     submitEditUserFamilyForm() {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
-        this.convertDateToEpoch();
+        this.userFamily.dateOfBirth = new Date(this.userFamily.dateOfBirth).getTime();
         this.updateUserFamily([this.userFamilyId, this.userFamily]);
-        this.$router.push({name: 'user'})
+        this.moveToPreviousPage();
       } 
-    },
-    convertDateToEpoch() {
-      this.userFamily.dateOfBirth = new Date(this.userFamily.dateOfBirth).getTime();
     }
   },
   created() {

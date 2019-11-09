@@ -26,7 +26,13 @@ export default {
   },
   methods: {
     switchTab() {
-        this.isComponentActive = !this.isComponentActive
-      }
+      this.isComponentActive = !this.isComponentActive;
+      this.$router.push({ query: {
+        activeTab : this.currentComponent
+      }});
+  }
+  },
+  created () {
+    this.isComponentActive = this.$route.query.activeTab === "UserPersonalDetail" ? true : false;
   },
 };

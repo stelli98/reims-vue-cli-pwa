@@ -54,15 +54,12 @@ export default {
   },
   methods: {
     ...mapActions("user", ["getUser", "updateUser"]),
-    moveTo(page) {
-      this.$router.push({ name: page });
-    },
     sendEditUserForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
         this.updateUser(this.user);
-        this.moveTo("user");
+        this.moveToPreviousPage();
       }
     },
     checkUserHaveVehicle() {
@@ -70,6 +67,9 @@ export default {
         this.user.license = ""
         this.user.vehicle = ""
       }
+    },
+    moveToPreviousPage(){
+      return this.$router.go(-1)
     }
   },
   created() {

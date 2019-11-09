@@ -1,5 +1,6 @@
 import {shallowMount, createLocalVue} from "@vue/test-utils";
 import UserDetail from "@/views/UserDetail";
+import stripJsonComments from "strip-json-comments";
 
 describe("UserDetail.vue", ()=>{
     let wrapper;
@@ -12,6 +13,16 @@ describe("UserDetail.vue", ()=>{
 
     function createWrapper(){
         return shallowMount(UserDetail, {
+            mocks: {
+                $route: {
+                  query: {
+                    activeTab: "UserPersonalDetail"
+                  }
+                },
+                $router: {
+                    push: jest.fn()
+                }
+            },
             localVue,
             stubs: ['UserPersonalDetail','UserFamilyDetail'],
             sync: false

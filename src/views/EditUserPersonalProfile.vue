@@ -159,7 +159,7 @@
       </form>
     </div>
     <div class="bottom-navigation edit-personal-profile__navigation">
-      <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
+      <div class="title--navigation" @click="moveToPreviousPage">Cancel</div>
       <div class="title--navigation" @click="sendEditUserForm">Save</div>
     </div>
   </div>

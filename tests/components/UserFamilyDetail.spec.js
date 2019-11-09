@@ -20,7 +20,8 @@ describe("UserFamilyDetail.vue", async () => {
       userFamilies: UserFamilydata.data
     };
     const actions = {
-      getUserFamilyDetailByUserId: jest.fn()
+      getUserFamilyDetailByUserId: jest.fn(),
+      deleteUserFamily: jest.fn()
     };
     const getters = {
       userFamilies: state => state.userFamilies
@@ -127,4 +128,24 @@ describe("UserFamilyDetail.vue", async () => {
     wrapper.vm.moveTo("edit-family-profile");
     expect(spy).toHaveBeenCalled();
   });
+
+  test("removeUserFamily method", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(store.actions, "deleteUserFamily")
+    wrapper.vm.removeUserFamily(params.id);
+    expect(spy).toHaveBeenCalled();
+  })
 });

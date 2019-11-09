@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
+    min-height: 75vh;
     margin: 1.5rem 5vw;
 
     @include respond(large-phone) {

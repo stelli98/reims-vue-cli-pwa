@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import EditUserPersonalProfile from "@/views/EditUserPersonalProfile";
+import EditUserFamilyProfile from "@/views/EditUserFamilyProfile";
 import TextFilter from "@/filters/text";
 import Vuelidate from "vuelidate";
 import Vuex from "vuex";
@@ -8,24 +8,24 @@ import config from "@/config";
 
 const url = config.api.users;
 
-describe("EditUserPersonalProfile.vue", () => {
+describe("EditUserFamilyProfile.vue", () => {
   let store;
   let wrapper;
   let localVue;
   const userData = data.find(
-    d => d.url === url.user + "/1559058600" && d.method == "GET"
+    d => d.url === url.family + "/92768" && d.method == "GET"
   );
 
   function initializeStore() {
     const actions = {
-      getUser: jest.fn(),
-      updateUser: jest.fn()
+      updateUserFamily: jest.fn(),
+      getUserFamilyDetailByFamilyId: jest.fn()
     };
     const state = {
-      user: userData.data
+      userFamily: userData.data
     };
     const getters = {
-      user: state => state.user
+      userFamily: state => state.userFamily
     };
     const store = new Vuex.Store({
       modules: {
@@ -40,8 +40,6 @@ describe("EditUserPersonalProfile.vue", () => {
 
     return {
       store,
-      state,
-      getters,
       actions
     };
   }
@@ -62,7 +60,7 @@ describe("EditUserPersonalProfile.vue", () => {
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
-    return shallowMount(EditUserPersonalProfile, mergeConfig);
+    return shallowMount(EditUserFamilyProfile, mergeConfig);
   }
 
   beforeEach(() => {
@@ -78,7 +76,7 @@ describe("EditUserPersonalProfile.vue", () => {
         },
         $route: {
           params: {
-            id: "1559058600"
+            id: "92768"
           }
         }
       }
@@ -89,26 +87,23 @@ describe("EditUserPersonalProfile.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("sendEditUserForm method if user data isn't filled", () => {
+  test("convertToIsoString method", () => {
     const options = {
       mocks: {
         $route: {
           params: {
-            id: "1559058600"
+            id: "92768"
           }
         }
       }
     };
-    store.state.user = {};
     wrapper = createWrapper(store.store, options);
-    const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
-    const spyMoveToPreviousPage = jest.spyOn(wrapper.vm, "moveToPreviousPage");
-    wrapper.vm.sendEditUserForm();
-    expect(spyUpdateUser).not.toHaveBeenCalled();
-    expect(spyMoveToPreviousPage).not.toHaveBeenCalled();
+    wrapper.vm.userFamily.dateOfBirth = 898362000000;
+    wrapper.vm.convertToIsoString();
+    expect(wrapper.vm.userFamily.dateOfBirth).toEqual("1998-06-20T17:00:00.000Z")
   });
-
-  test("sendEditUserForm method if user data is filled", () => {
+  
+  test("submitEditUserFamilyForm method if user data isn't filled", () => {
     const options = {
       mocks: {
         $router: {
@@ -116,28 +111,38 @@ describe("EditUserPersonalProfile.vue", () => {
         },
         $route: {
           params: {
-            id: "1559058600"
+            id: "92768"
+          }
+        },
+      },
+      computed: {
+        userFamily() {
+          return {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
+    wrapper.vm.submitEditUserFamilyForm();
+    expect(spyUpdateUser).not.toHaveBeenCalled();
+  });
+
+  test("submitEditUserFamilyForm method if user data is filled", () => {
+    const options = {
+      mocks: {
+        $router: {
+          go: jest.fn()
+        },
+        $route: {
+          params: {
+            id: "92768"
           }
         }
       }
     };
-    store.state.user = {
-      username: "Stelli",
-      role: "USER",
-      dateOfBirth: "2000-08-25T03:00:00.000Z",
-      gender: "FEMALE",
-      division: "TECHNOLOGY"
-    };
     wrapper = createWrapper(store.store, options);
-    const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
-    const spyMoveToPreviousPage = jest.spyOn(wrapper.vm, "moveToPreviousPage");
-    wrapper.vm.sendEditUserForm();
+    const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
+    wrapper.vm.submitEditUserFamilyForm();
     expect(spyUpdateUser).toHaveBeenCalled();
-    expect(spyMoveToPreviousPage).toHaveBeenCalled();
-  });
-
-  test("formatDate computed setter getter", () => {
-    wrapper.setData({ formatDate: 1565419259000 });
-    expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z");
   });
 });

@@ -24,10 +24,14 @@ export default {
       return this.expandedGroup.indexOf(index) !== -1;
     },
     moveTo(page, id) {
-      this.$router.push({ name: page , params: {id: id}});
+      const ID = id ? id : this.userId
+      this.$router.push({ name: page , params: {id: ID}});
     },
     removeUserFamily(id) {
       this.deleteUserFamily(id);
+    },
+    disabledAddFamilyButton(){
+      return this.userFamilies.length == 4 ? null: this.moveTo('add-family')
     }
   },
   created() {

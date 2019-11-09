@@ -36,7 +36,7 @@
       <div
         class="title--navigation"
         :class="{'disabled' : userFamilies.length == 4 }"
-        @click.stop="userFamilies.length == 4 ? null: moveTo('add-family')"
+        @click.stop="disabledAddFamilyButton"
       >Add Family</div>
     </div>
   </div>
@@ -47,7 +47,7 @@
 <style lang="scss" scoped>
 .user-family {
   &__content {
-    min-height: 65vh;
+    min-height: 66vh;
   }
 
   &__detail {

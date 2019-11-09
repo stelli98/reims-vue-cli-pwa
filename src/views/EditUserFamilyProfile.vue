@@ -41,12 +41,12 @@
         </div>
         <div class="form__child">
           <label class="input__label title--medium-form">Relationship</label>
-          <p>{{userFamily.relationship}}</p>
+          <p>{{userFamily.relationship | textFormatter}}</p>
         </div>
       </form>
     </div>
     <div class="bottom-navigation edit-family-profile__navigation">
-      <div class="title--navigation" @click="moveTo()">Cancel</div>
+      <div class="title--navigation" @click="moveToPreviousPage()">Cancel</div>
       <div class="title--navigation" @click="submitEditUserFamilyForm">Save</div>
     </div>
   </div>
