@@ -72,6 +72,14 @@ export default {
       }
     });
   },
+  createMedicalTransaction(data, token) {
+    const path = api.medical;
+    return axios.post(path, data, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
   isOnline() {
     return navigator.onLine;
   }

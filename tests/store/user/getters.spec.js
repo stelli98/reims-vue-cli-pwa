@@ -23,6 +23,17 @@ describe("user getters", () => {
     expect(user).toBe(state.user);
   });
 
+  test("Get userFamily from user module", () => {
+    const expectedValue = data.find(
+      d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
+    );
+    const state = {
+      userFamily: expectedValue.data
+    };
+    const userFamily = getters.userFamily(state);
+    expect(userFamily).toBe(state.userFamily);
+  });
+
   test("Get paginations from user module", () => {
     const state = {
       pagination: expectedValue.data.pagination

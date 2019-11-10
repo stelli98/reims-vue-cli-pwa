@@ -6,6 +6,7 @@ const namespaced = true;
 const state = {
   users: [],
   user: {},
+  userFamily: [],
   pagination: {}
 };
 

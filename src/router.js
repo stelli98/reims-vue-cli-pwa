@@ -10,6 +10,7 @@ import EditProfile from "./views/EditProfile";
 import CropImage from "./components/CropImage";
 import FilterImage from "./components/FilterImage";
 import TransactionForm from "./components/TransactionForm";
+import CreateMedicalTransaction from "./views/CreateMedicalTransaction";
 import store from "./store";
 
 Vue.use(Router);
@@ -79,6 +80,12 @@ const router = new Router({
       beforeEnter: checkAuthUser,
       name: "edit-profile",
       component: EditProfile
+    },
+    {
+      path: "/transaction/non-ocr/medical",
+      // beforeEnter: checkAuthUser,
+      name: "create-medical",
+      component: CreateMedicalTransaction
     },
     {
       path: "*",
