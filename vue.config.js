@@ -10,8 +10,14 @@ module.exports = {
       }
     }
   },
+  
   configureWebpack: config => {
-    if (process.env.NODE_ENV === "development") {
+    const isDevelopment = process.env.NODE_ENV === "development"
+    const isDevNomock = process.env.NODE_ENV === "dev-nomock"
+    if (isDevelopment || isDevNomock) {
+      const mockApi = isDevelopment ? 
+        path.resolve(__dirname, "src/api-mock") : 
+        path.resolve(__dirname, "src/empty.js")
       return {
         mode: "development",
         optimization: {
@@ -22,7 +28,7 @@ module.exports = {
         },
         resolve: {
           alias: {
-            "@mock-api": path.resolve(__dirname, "src/api-mock")
+            "@mock-api": mockApi
           }
         },
         devServer: {

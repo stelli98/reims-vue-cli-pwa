@@ -30,10 +30,26 @@ const router = new Router({
       component: HomePage
     },
     {
-      path: "/transaction/create/:step",
+      path: "/transaction/create/",
       // beforeEnter: checkAuthUser,
-      name: "create",
-      component: CreateTransaction
+      component: CreateTransaction, 
+      children: [
+        {
+          path: '1',
+          name:"create-transaction-1",
+          component: CropImage
+        },
+        {
+          path: '2',
+          name:"create-transaction-2",
+          component: FilterImage
+        },
+        {
+          path: '3',
+          name:"create-transaction-3",
+          component: TransactionForm
+        }
+      ]
     },
     {
       path: "/transaction/:id",
@@ -81,6 +97,12 @@ const router = new Router({
       path: "/users/:id/change-password",
       name:"change-password", 
       component: ChangePasswordPage
+    },
+    {
+      path: "/transaction/non-ocr/medical",
+      // beforeEnter: checkAuthUser,
+      name: "create-medical",
+      component: CreateMedicalTransaction
     },
     {
       path: "*",

@@ -14,6 +14,15 @@ describe("mutations for transaction module", () => {
     expect(state.image).toBe(expectedValue);
   });
 
+  test("SET_IMAGES sets state.images", () => {
+    const expectedValue = ["image.jpg"];
+    const state = {
+      images: []
+    };
+    mutations.SET_IMAGES(state, expectedValue);
+    expect(state.images).toBe(expectedValue);
+  });
+
   test("SET_OCR_RESULT sets state.fuel", () => {
     const expectedValue = data.find(
       d => d.url === url.transaction && d.method === "POST"

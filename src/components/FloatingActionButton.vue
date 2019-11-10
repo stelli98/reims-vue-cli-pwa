@@ -3,15 +3,16 @@
     <div class="FAB__mini-action-button" v-if="displayMenu">
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Medical</p>
-        <div class="mini-action-button__icon ">
+        <input type="file" id="medical" @change="onNonOCRFileChange" multiple />
+        <label for="medical" class="mini-action-button__icon">
           <svg class="icon icon-medium">
-            <use xlink:href="icons.svg#icon-pills" />
+            <use xlink:href="icons.svg#icon-traffic" />
           </svg>
-        </div>
+        </label>
       </div>
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Fuel/Parking</p>
-        <input type="file" id="fuel-parking" @change="onFileChange" />
+        <input type="file" id="fuel-parking" @change="onOCRFileChange" />
         <label for="fuel-parking" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-traffic" />
@@ -19,33 +20,21 @@
         </label>
       </div>
     </div>
-    <div
-      class="FAB__action-button"
-      @click="toggleDisplayMenu"
-      v-if="!displayMenu"
-    >
+    <div class="FAB__action-button" @click="toggleDisplayMenu" v-if="!displayMenu">
       <div class="action-button__icon">
         <svg class="icon icon-medium">
-          <use
-            v-bind="{
+          <use v-bind="{
               'xlink:href': `icons.svg#icon-plus`
-            }"
-          />
+            }" />
         </svg>
       </div>
     </div>
-    <div
-      class="FAB__action-button"
-      @click="toggleDisplayMenu"
-      v-if="displayMenu"
-    >
+    <div class="FAB__action-button" @click="toggleDisplayMenu" v-if="displayMenu">
       <div class="action-button__icon">
         <svg class="icon icon-medium">
-          <use
-            v-bind="{
+          <use v-bind="{
               'xlink:href': `icons.svg#icon-cancel`
-            }"
-          />
+            }" />
         </svg>
       </div>
     </div>
@@ -70,7 +59,7 @@
   &__action-button {
     bottom: 0;
     right: 0;
-    
+
     &:hover {
       .action-button__icon {
         @include circleShadow(8px);
@@ -160,11 +149,12 @@
   }
 }
 
-#fuel-parking {
-    position: absolute;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    display: none;
+#fuel-parking,
+#medical   {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: none;
 }
 </style>

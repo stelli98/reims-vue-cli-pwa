@@ -23,7 +23,7 @@
       </label>
       <Datetime
         v-model="formatDate"
-        type="datetime"
+        type="date"
         class="form__input"
         :max-datetime="currentDateTime"
         @close="$v.fuel.date.$touch()"
@@ -38,21 +38,13 @@
       <label class="input__label title--medium-form" for="type">
         Fuel Type
       </label>
-      <select
+      <input
         v-model="fuel.fuelType"
-        class="form__input form__input__select"
+        type="text"
+        name="type"
+        class="form__input"
         @blur="$v.fuel.fuelType.$touch()"
-      >
-        <option
-          v-for="fuel in fuelType"
-          :key="fuel"
-          :value="fuel"
-          :selected="fuel.fuelType"
-        >
-          {{ fuel | textFormatter }}
-        </option>
-      </select>
-
+      />
       <div v-if="$v.fuel.fuelType.$error">
         <p v-if="!$v.fuel.fuelType.required" class="input__error-message">
           Fuel Type must be filled
@@ -61,36 +53,35 @@
     </div>
     <div class="form__child">
       <label class="input__label title--medium-form" for="type">
-        Volume
+        Kilometer
       </label>
       <input
-        v-model="fuel.liters"
+        v-model="fuel.kilometer"
         type="text"
         name="type"
         class="form__input"
-        placeholder=" ex: 1000.34, 1.34, 1.00, 1"
-        @blur="$v.fuel.liters.$touch()"
+        placeholder=" ex: 1.000, 30.000, 300"
+        @blur="$v.fuel.kilometer.$touch()"
       />
       <p
-        v-if="!$v.fuel.liters.float && $v.fuel.liters.required"
+        v-if="!$v.fuel.kilometer.float && $v.fuel.kilometer.required"
         class="input__error-message"
       >
-        Volume must be decimal ex: 100.34, 1.34, 1.00, 1
+        Kilometer must be decimal ex: 100.34, 1.34, 1.00, 1
       </p>
-      <p v-if="!$v.fuel.liters.required" class="input__error-message">
-        Volume must be filled
+      <p v-if="!$v.fuel.kilometer.required" class="input__error-message">
+        Kilometer must be filled
       </p>
     </div>
-
     <p
-      v-if="!$v.fuel.liters.minValue && $v.fuel.liters.float"
+      v-if="!$v.fuel.kilometer.minValue && $v.fuel.kilometer.float"
       class="input__error-message"
     >
-      Volume must more than 0.01
+      Kilometer must more than 0.01
     </p>
     <div class="form__child">
       <label class="input__label title--medium-form" for="type">
-        Unit Price
+        Amount
       </label>
       <div class="form__currency">
         <p class="form__currency__symbol">
@@ -118,23 +109,6 @@
       >
         Unit Price must more than 100
       </p>
-    </div>
-    <div class="form__child">
-      <label class="input__label title--medium-form" for="type">
-        Total Price
-      </label>
-      <div class="form__currency">
-        <p class="form__currency__symbol">
-          Rp.
-        </p>
-        <input
-          v-model="totalPrice"
-          type="text"
-          name="type"
-          class="form__currency__input"
-          disabled="true"
-        />
-      </div>
     </div>
   </form>
 </template>

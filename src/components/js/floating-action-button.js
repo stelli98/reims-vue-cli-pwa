@@ -3,21 +3,26 @@ export default {
   data() {
     return {
       displayMenu: false
-    }; 
+    };
   },
   methods: {
-    ...mapActions("transaction", ["setImage"]),
+    ...mapActions("transaction", ["setImages", "setImage"]),
     toggleDisplayMenu() {
       this.displayMenu = !this.displayMenu;
       this.$emit("isActionButtonActive", this.displayMenu);
     },
-    onFileChange(e) {
+    onOCRFileChange(e) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
-      this.$router.push({
-        name: "create",
-        params: { step: 1 }
+      this.$router.push({ name: "create-transaction-1" });
+    },
+    onNonOCRFileChange(e) {
+      const fileResult = [];
+      Object.values(e.target.files).forEach(image => {
+        fileResult.push(URL.createObjectURL(image));
       });
+      this.setImages(fileResult);
+      this.$router.push({ name: "create-medical" });
     }
   }
 };

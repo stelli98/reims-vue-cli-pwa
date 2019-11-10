@@ -11,6 +11,9 @@ export default {
   image(state) {
     return state.image;
   },
+  images(state) {
+    return state.images;
+  },
   OCRResultType(state) {
     return state.OCRResultType;
   },

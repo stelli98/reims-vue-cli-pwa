@@ -3,7 +3,6 @@ import config from "@/config";
 import offlineService from "@/api/transaction-offline";
 
 const api = config.api.transactions;
-process.env.NODE_ENV === "development" ? require("@mock-api") : "";
 
 export default {
   getTransaction(id, token) {
@@ -68,6 +67,14 @@ export default {
   getViewImage(url, token) {
     const path = api.transaction;
     return axios.get(`${path}/${url}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
+  createMedicalTransaction(data, token) {
+    const path = api.medical;
+    return axios.post(path, data, {
       headers: {
         Authorization: token
       }

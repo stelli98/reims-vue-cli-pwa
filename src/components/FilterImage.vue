@@ -1,10 +1,10 @@
 <template>
   <div class="filter-image">
-    <div v-show="pictureUrl" class="filter-image__image">
+    <div v-show="image" class="filter-image__image">
       <img
         id="image"
         crossorigin="Anonymous"
-        :src="pictureUrl"
+        :src="image"
         :style="filters"
       />
     </div>
@@ -20,7 +20,7 @@
           step="0.1"
           min="0"
           max="1"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
       </div>
       <div>
@@ -34,7 +34,7 @@
           step="0.01"
           min="0"
           max="5"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
       </div>
       <div>
@@ -48,8 +48,22 @@
           step="0.01"
           min="0"
           max="10"
-          :disabled="!pictureUrl"
+          :disabled="!image"
         />
+      </div>
+    </div>
+    <div class="bottom-navigation filter-image__navigation">
+      <div @click="setFilterToDefault">
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-circular-clockwise" />
+          </svg>
+          <h3 class="title--navigation">Reset</h3>
+      </div>
+      <div @click="filterImage">
+          <h3 class="title--navigation">Next</h3>
+          <svg class="icon icon-medium-green">
+            <use xlink:href="icons.svg#icon-next" />
+          </svg>
       </div>
     </div>
   </div>
@@ -64,14 +78,11 @@
   justify-content: center;
   align-items: center;
 
-  & > div {
-    margin: 1.2rem 0;
-  }
-
   &__image {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1.2rem 0;
 
     & img {
       width: 80vw;
@@ -91,12 +102,14 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    margin: 1.2rem 0;
+  }
 
-    & > div {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+  &__navigation, 
+  &__navigation > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>

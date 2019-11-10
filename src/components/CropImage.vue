@@ -9,30 +9,44 @@
       />
     </div>
     <div class="crop-image__button">
-      <div class="btn-green" @click="flipXImage">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="flipXImage">
+        <div class="circle">
+          <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-flip-x" />
         </svg>
+        </div>
         <span>Flip Horizontally</span>
       </div>
-      <div class="btn-green" @click="flipYImage">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="flipYImage">
+        <div class="circle">
+        <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-flip-y" />
         </svg>
+        </div>
         <span>Flip Vertically</span>
       </div>
-      <div class="btn-green" @click="rotateRight">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="rotateRight">
+        <div class="circle">
+        <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-circular-clockwise" />
         </svg>
+        </div>
         <span>Rotate Right</span>
       </div>
-      <div class="btn-green" @click="rotateLeft">
-        <svg class="icon icon-small">
+      <div class="btn-white-circle" @click="rotateLeft">
+        <div class="circle">
+          <svg class="icon icon-small-green">
           <use xlink:href="icons.svg#icon-circular-counter-clockwise" />
         </svg>
+        </div>
         <span>Rotate Left</span>
       </div>
+    </div>
+    <div class="bottom-navigation crop-image__navigation" @click="moveTo" >
+        <h3 class="title--navigation">Next</h3>
+        <svg class="icon icon-medium-green">
+          <use xlink:href="icons.svg#icon-next" />
+        </svg>
     </div>
   </div>
 </template>
@@ -40,6 +54,26 @@
 <script src="./js/crop-image.js"></script>
 
 <style lang="scss">
+.circle {
+  border: solid 1px green;
+  padding: 1.2rem;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover{
+    background-color: green;
+
+    .icon-small-green{
+      fill: $color-white;
+    }
+
+  }
+
+}
+
 .croppa-container.croppa-canvas {
   width: 80vw;
   height: 55vh;
@@ -55,14 +89,14 @@
   }
 }
 
-.crop-image {
+.crop-image{
   display: flex;
   flex-flow: column;
   align-items: center;
 
-  & > div {
+  &__container,
+  &__button{
     display: flex;
-    flex-flow: column;
     margin: 1.5rem 0;
 
     @include respond(medium-phone) {
@@ -82,10 +116,19 @@
   }
 
   &__button {
-    margin-bottom: 1.5rem;
     & > div {
-      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      flex-flow: column;
+      margin-left: 1rem;
     }
+  }
+
+  &__navigation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
   }
 }
 </style>

@@ -4,7 +4,8 @@ const baseUrl =
 module.exports = {
   api: {
     transactions: {
-      transaction: `${baseUrl}/api/transactions`
+      transaction: `${baseUrl}/api/transactions`,
+      medical:`${baseUrl}/api/medicals`
     },
     users: {
       user: `${baseUrl}/api/admin/users`,

@@ -5,17 +5,13 @@ import getters from "./getters";
 const namespaced = true;
 const state = {
   image: "",
+  images: [],
   OCRResultType: "",
   parking: {
     category: "PARKING",
     date: "",
-    out: "",
     amount: 100,
     title: "",
-    parkingType: "",
-    license: "",
-    location: "",
-    hours: 0,
     userId: "",
     image: ""
   },
@@ -23,7 +19,7 @@ const state = {
     category: "FUEL",
     date: "",
     fuelType: "",
-    liters: 0.01,
+    kilometer: 1,
     amount: 100,
     title: "",
     userId: "",

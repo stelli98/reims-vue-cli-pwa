@@ -38,19 +38,6 @@ describe("mutations", () => {
     expect(state.pagination).toBe(expectedValue.paging);
   });
 
-  test("SET_USER_EMPTY sets state.user", () => {
-    const expectedValue = {
-      username: "",
-      password: "",
-      role: ""
-    };
-    const state = {
-      user: {}
-    };
-    mutations.SET_USER_EMPTY(state, expectedValue);
-    expect(state.user).toBe(expectedValue);
-  });
-
   test("DELETE_USER remove deleted id from state.users", () => {
     const initialValue = data.find(
       d => d.url === url.user && d.method === "GET"

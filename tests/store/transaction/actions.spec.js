@@ -15,6 +15,12 @@ describe("Actions for Transactions Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_IMAGE", image);
   });
 
+  test("set images for transaction", () => {
+    const commit = jest.fn();
+    actions.setImages({ commit }, image);
+    expect(commit).toHaveBeenCalledWith("SET_IMAGES", image);
+  });
+
   test("set OCR Result Type for transaction", () => {
     const type = "FUEL";
     const commit = jest.fn();
@@ -179,5 +185,35 @@ describe("Actions for Transactions Module", () => {
     api.getViewImage.mockResolvedValue(expectedValue);
     await actions.getViewImage({ commit, rootState }, link);
     expect(commit).toHaveBeenCalledWith("SET_VIEW_IMAGE", expectedValue.data);
+  });
+
+  test("createMedicalTransaction", async () => {
+    const expectedValue = data.find(
+      d => d.url === url.medical && d.method == "POST"
+    );
+    api.createMedicalTransaction = jest.fn().mockResolvedValue(expectedValue);
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const medical = {
+      date: "2019-08-13T11:27:50.000Z",
+      title: "Ibu Sakit",
+      amount: "10000",
+      attachment: ["image.jpg"],
+      patient: {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      }
+    };
+
+    await actions.createMedicalTransaction({  rootState }, medical);
+    expect(api.createMedicalTransaction).toHaveBeenCalledWith(
+      medical,
+      rootState.auth.token
+    );
   });
 });

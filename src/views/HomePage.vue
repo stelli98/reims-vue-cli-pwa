@@ -76,7 +76,7 @@
 .home {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .home__header {
@@ -163,7 +163,7 @@
       font-size: 1.6rem;
       font-family: "Nunito-Bold";
       margin: 2rem auto;
-      width: 70%;
+      width: 92%;
       @include respond(large-phone) {
         width: 100%;
       }
