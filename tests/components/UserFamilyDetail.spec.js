@@ -109,7 +109,116 @@ describe("UserFamilyDetail.vue", async () => {
     expect(wrapper.vm.expandedGroup.indexOf(2)).toEqual(1);
   });
 
-  test("moveTo method", () => {
+
+  test("disabledAddFamilyButton computed if userFamily length below 4", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    expect( wrapper.vm.disabledAddFamilyButton).toBe(false);
+  })
+
+
+  test("disabledAddFamilyButton computed if userFamily length equal 4", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      }
+    };
+    store.state.userFamilies = [
+      {
+        id: 92768,
+        name: "Zendaya",
+        relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92762,
+        name: "Zendaya",
+        relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92763,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      }
+    ] 
+    wrapper = createWrapper(store.store, options);
+    expect( wrapper.vm.disabledAddFamilyButton).toBe(true);
+  })
+
+  test("addNewUserFamily method if userFamily length below 4", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
+    wrapper.vm.addNewUserFamily();
+    expect(spyMoveTo).toHaveBeenCalled();
+  })
+
+  test("addNewUserFamily method if userFamily length already 4", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      },
+      computed: {
+        disabledAddFamilyButton() {
+          return true;
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
+    wrapper.vm.addNewUserFamily();
+    expect(spyMoveTo).not.toHaveBeenCalled();
+  })
+
+  test("moveTo method if there is no param id in route", () => {
     const params = {
       id: "1559058600"
     };
@@ -126,6 +235,26 @@ describe("UserFamilyDetail.vue", async () => {
     wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.moveTo("edit-family-profile");
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test("moveTo method if there is param id in route", () => {
+    const params = {
+      id: "1559058600"
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.moveTo("edit-family-profile", "92768");
     expect(spy).toHaveBeenCalled();
   });
 

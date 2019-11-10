@@ -31,12 +31,13 @@
         </transition>
       </div>
     </div>
+    {{disabledAddFamilyButton}}
     <div class="bottom-navigation user-family__navigation">
       <div class="title--navigation" @click="moveTo('user')">Cancel</div>
       <div
         class="title--navigation"
         :class="{'disabled' : userFamilies.length == 4 }"
-        @click.stop="disabledAddFamilyButton"
+        @click.stop="addNewUserFamily"
       >Add Family</div>
     </div>
   </div>

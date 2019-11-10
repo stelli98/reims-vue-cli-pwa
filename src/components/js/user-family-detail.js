@@ -9,6 +9,9 @@ export default {
     ...mapGetters("user", ["userFamilies"]),
     userId() {
       return this.$route.params.id;
+    },
+    disabledAddFamilyButton(){
+      return this.userFamilies.length == 4 ? true : false
     }
   },
   methods: {
@@ -30,8 +33,8 @@ export default {
     removeUserFamily(id) {
       this.deleteUserFamily(id);
     },
-    disabledAddFamilyButton(){
-      return this.userFamilies.length == 4 ? null: this.moveTo('add-family')
+    addNewUserFamily(){
+      this.disabledAddFamilyButton ? null : this.moveTo('add-family')
     }
   },
   created() {

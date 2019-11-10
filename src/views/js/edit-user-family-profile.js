@@ -32,9 +32,6 @@ export default {
     moveToPreviousPage() {
       this.$router.go(-1)
     },
-    convertToIsoString() {
-      this.userFamily.dateOfBirth = new Date(parseInt(this.userFamily.dateOfBirth)).toISOString();
-    },
     submitEditUserFamilyForm() {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
