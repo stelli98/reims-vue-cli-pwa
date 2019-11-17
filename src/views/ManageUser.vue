@@ -17,7 +17,7 @@
       <UserList v-if="users.length" :users="users" />
       <Pagination :paging="pagination" @changePage="changePage" />
     </div>
-    <div class="bottom-navigation manage-user__navigation" @click="moveTo">
+    <div class="bottom-navigation manage-user__navigation" @click="moveTo('user-create')">
       <h3 class="title--navigation">Add User</h3>
     </div>
   </div>

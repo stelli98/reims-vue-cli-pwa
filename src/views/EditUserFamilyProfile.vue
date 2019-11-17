@@ -1,6 +1,6 @@
 <template>
   <div class="edit-family-profile">
-    <div class="header edit-family-profile__header"></div>
+    <GlobalHeader/>
     <div class="edit-family-profile__content">
       <div class="heading edit-family-profile__heading">Edit Family Profile</div>
       <form class="user-form__form edit-family-profile__form">
@@ -62,7 +62,7 @@
 
   &__content {
     min-height: 78vh;
-    width: 65vw;
+    width: 70vw;
     margin: 0 auto;
     @include respond(large-phone) {
       width: 40vw;

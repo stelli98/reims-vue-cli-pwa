@@ -1,67 +1,66 @@
 <template>
   <div class="add-family">
-    <div class="header add-family__header"></div>
+    <GlobalHeader/>
     <div class="add-family__content">
       <div class="heading add-family__heading">Add Family</div>
       <form class="user-form__form">
         <div class="add-family">
-          <h5
-            class="add-family__action"
-            v-if="family.length < maxFamilyField"
-            @click="addFamilyField()"
-          >Add Family Member</h5>
-          <div v-for="(family,index) in family" :key="index">
-            <div>
-              <h5></h5>
-              <h5
-                class="add-family__action"
-                v-if="index > 0"
-                @click="removeFamilyField(index)"
-              >Remove this user</h5>
+          <div class="form__child">
+            <label class="input__label title--medium-form" for="type">Name</label>
+            <input
+              v-model="family.name"
+              type="name"
+              name="type"
+              class="form__input"
+              @blur="$v.family.name.$touch()"
+            />
+            <div v-if="$v.family.name.$error">
+              <p v-if="!$v.family.name.required" class="input__error-message">Name must be filled</p>
             </div>
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="type">Name</label>
-              <input
-                v-model="family.name"
-                type="name"
-                name="type"
-                class="form__input"
-                @blur="$v.family.$each[index].name.$touch()"
-              />
-              <div v-if="$v.family.$each[index].name.$error">
-                <p
-                  v-if="!$v.family.$each[index].name.required"
-                  class="input__error-message"
-                >Name must be filled</p>
-              </div>
 
-              <div v-if="$v.family.$each[index].name.$error">
-                <p
-                  v-if="!$v.family.$each[index].name.minLength"
-                  class="input__error-message"
-                >Name must have at least 3 characters</p>
-              </div>
+            <div v-if="$v.family.name.$error">
+              <p
+                v-if="!$v.family.name.minLength"
+                class="input__error-message"
+              >Name must have at least 3 characters</p>
             </div>
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="date">Date of Birth</label>
-              <Datetime
-                v-model="family.dateOfBirth"
-                type="date"
-                class="form__input"
-                :max-datetime="currentDateTime"
-                @close="$v.family.$each[index].dateOfBirth.$touch()"
-              />
-              <div v-if="$v.family.$each[index].dateOfBirth.$error">
-                <p
-                  v-if="!$v.family.$each[index].dateOfBirth.required"
-                  class="input__error-message"
-                >Date must be filled</p>
-              </div>
+          </div>
+          <div class="form__child">
+            <label class="input__label title--medium-form" for="date">Date of Birth</label>
+            <Datetime
+              v-model="formatDate"
+              type="date"
+              class="form__input"
+              :max-datetime="maxDateOfBirth"
+              :min-datetime="minDateOfBirth"
+              @close="$v.family.dateOfBirth.$touch()"
+            />
+            <div v-if="$v.family.dateOfBirth.$error">
+              <p
+                v-if="!$v.family.dateOfBirth.required"
+                class="input__error-message"
+              >Date must be filled</p>
             </div>
-            <div class="form__child">
-              <label class="input__label title--medium-form" for="type">Relationship</label>
-              <p>{{family.relationship | textFormatter}}</p>
-            </div>
+          </div>
+          <div class="form__child">
+            <label class="input__label title--medium-form" for="type">Relationship</label>
+            <select
+              v-model="family.relationship"
+              class="form__input form__input__select"
+              @blur="$v.family.relationship.$touch()"
+            >
+              <option
+                v-for="relationship in relationshipType"
+                :key="relationship"
+                :value="relationship"
+                :selected="family.relationship"
+              >{{ relationship | textFormatter }}</option>
+            </select>
+            <div v-if="$v.family.relationship.$error">
+        <p v-if="!$v.family.relationship.required" class="input__error-message">
+          Relationship must be filled
+        </p>
+      </div>
           </div>
         </div>
       </form>

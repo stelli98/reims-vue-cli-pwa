@@ -91,20 +91,6 @@ describe("TransactionForm.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("moveTo method ", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options)
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo();
-    expect(spy).toHaveBeenCalled();
-  });
-
   test("checkContainsImage method",() =>{
     const options = {
       mocks: {

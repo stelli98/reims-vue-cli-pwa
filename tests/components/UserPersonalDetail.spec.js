@@ -67,12 +67,9 @@ describe("UserPersonalDetail.vue", () => {
     store = initializeStore();
   });
 
-  test("moveTo method", () => {
+  test("getUser when mounted", () => {
     const options = {
       mocks: {
-        $router: {
-          push: jest.fn()
-        },
         $route: {
           params :{
             id : "1559058600"
@@ -81,8 +78,7 @@ describe("UserPersonalDetail.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("user");
+    const spy = jest.spyOn(store.actions, "getUser");
     expect(spy).toHaveBeenCalled();
   });
 

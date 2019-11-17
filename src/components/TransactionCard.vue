@@ -1,6 +1,6 @@
 <template>
   <div class="transaction__card">
-    <div class="transaction__card__content" @click="moveTo(transaction.id)">
+    <div class="transaction__card__content" @click="moveToWithParamsId(transaction.id)">
       <div class="transaction__card__left">
         <svg class="icon icon-big">
           <use

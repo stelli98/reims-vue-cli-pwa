@@ -47,9 +47,9 @@ export default {
     const { data } = await userApi.getFamilyDetailByFamilyId(id, token);
     commit("SET_USER_FAMILY", data);
   },
-  addFamilyToUser: async ({ rootState }, [id, data]) => {
+  addFamilyToUser: async ({ rootState }, [id,data]) => {
     const { token } = rootState.auth;
-    await userApi.addFamilyToUser(id, data, token);
+    await userApi.addFamilyToUser(id,data, token);
   },
   updateUserFamily: async ({ rootState }, [id, data]) => {
     const { token } = rootState.auth;

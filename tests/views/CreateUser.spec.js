@@ -40,7 +40,7 @@ describe("FuelForm.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime"],
+      stubs: ["Datetime","GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -51,20 +51,6 @@ describe("FuelForm.vue", () => {
     localVue = generateLocalVue();
     store = initializeStore();
     wrapper = createWrapper(store.store);
-  });
-
-  test("moveTo method", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("user");
-    expect(spy).toHaveBeenCalled();
   });
 
   test("sendCreateUserForm method if user data is filled", () => {

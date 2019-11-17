@@ -1,7 +1,11 @@
 import { minLength, required, sameAs } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
+  mixins: [CommonMixins],
+  components: {GlobalHeader},
   validations: {
     user: {
       password: { required, minLength: minLength(6) },
@@ -16,11 +20,6 @@ export default {
       }
     };
   },
-  computed: {
-    userId() {
-      return this.$route.params.id;
-    }
-  },
   methods: {
     ...mapActions("user", ["changePassword"]),
     submitChangePasswordForm() {
@@ -29,9 +28,6 @@ export default {
         this.changePassword(this.userId, this.user);
         this.moveTo("user-detail");
       }
-    },
-    moveTo(page) {
-      this.$router.push({ name: page, params: { id: this.userId } });
     }
   }
 };

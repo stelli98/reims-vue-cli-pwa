@@ -1,10 +1,12 @@
 import UserPersonalDetail from "@/components/UserPersonalDetail" ;
 import UserFamilyDetail from "@/components/UserFamilyDetail" ;
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
   components: {
     UserPersonalDetail,
-    UserFamilyDetail
+    UserFamilyDetail,
+    GlobalHeader
   },
   data() {
     return {

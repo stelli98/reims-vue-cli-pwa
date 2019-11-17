@@ -145,7 +145,7 @@ describe("CropImage.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("moveTo",()=>{
+  test("moveToFilterImage",()=>{
     const options = {
       data: () => {
         return {
@@ -164,7 +164,7 @@ describe("CropImage.vue", () => {
     wrapper = createWrapper(store.store,options);
     const spyGenerateImage = jest.spyOn(wrapper.vm, "generateImage");
     const spyRouterPush = jest.spyOn(wrapper.vm.$router, 'push')
-    wrapper.vm.moveTo();
+    wrapper.vm.moveToFilterImage();
     expect(spyGenerateImage).toHaveBeenCalled()
     expect(spyRouterPush).toHaveBeenCalled()
   })

@@ -1,13 +1,6 @@
 <template>
   <div>
-    <div class="create-medical-transaction">
-      <div class="header create-medical-transaction__header">
-        <div class="create-medical-transaction__close" @click="moveTo('home')">
-          <svg class="icon icon-small">
-            <use xlink:href="icons.svg#icon-back" />
-          </svg>
-        </div>
-      </div>
+      <GlobalHeader/>
       <div class="create-medical-transaction__content">
         <carousel class="create-medical-transaction__carousel" :perPage="1">
           <slide
@@ -57,7 +50,7 @@
               @blur="$v.medical.patient.$touch()"
             >
               <option
-                v-for="medical in userFamily"
+                v-for="medical in userFamilies"
                 :key="medical.id"
                 :value="medical"
                 :selected="medical.patient"
@@ -94,9 +87,8 @@
           </div>
         </form>
       </div>
-    </div>
     <div class="bottom-navigation filter-image__navigation">
-      <h3 class="title--navigation" @click="moveTo">Cancel</h3>
+      <h3 class="title--navigation" @click="moveToPreviousPage">Cancel</h3>
       <h3 class="title--navigation" @click="submitMedicalForm">Save</h3>
     </div>
   </div>
@@ -108,7 +100,7 @@
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .create-medical-transaction {
   &__content {
-    width: 65vw;
+    width: 70vw;
     margin: 0 auto;
     @include respond(large-phone) {
       width: 40vw;

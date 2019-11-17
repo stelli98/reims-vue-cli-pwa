@@ -1,6 +1,5 @@
 import {shallowMount, createLocalVue} from "@vue/test-utils";
 import UserDetail from "@/views/UserDetail";
-import stripJsonComments from "strip-json-comments";
 
 describe("UserDetail.vue", ()=>{
     let wrapper;
@@ -24,7 +23,7 @@ describe("UserDetail.vue", ()=>{
                 }
             },
             localVue,
-            stubs: ['UserPersonalDetail','UserFamilyDetail'],
+            stubs: ['UserPersonalDetail','UserFamilyDetail','GlobalHeader'],
             sync: false
         });
     }

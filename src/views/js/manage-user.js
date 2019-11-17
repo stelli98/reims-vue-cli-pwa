@@ -2,7 +2,10 @@ const UserList = () => import("@/components/UserList.vue");
 const Pagination = () => import("@/components/Pagination.vue");
 
 import { mapActions, mapGetters } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+
 export default {
+  mixins: [CommonMixins],
   components: {
     UserList,
     Pagination
@@ -21,9 +24,6 @@ export default {
   methods: {
     ...mapActions("user", ["getUsers"]),
     ...mapActions("auth", ["logout"]),
-    moveTo() {
-      this.$router.push({ name: "user-create" });
-    },
     updateUser() {
       this.getUsers(this.options);
     },
@@ -39,7 +39,7 @@ export default {
     },
     doLogout() {
       this.logout().then(() => {
-        this.$router.push({ name: "login" });
+        this.moveTo("login")
       });
     }
   },
@@ -48,8 +48,8 @@ export default {
       this.updateUser();
     }
   },
-  mounted () {
-    this.$router.push({ query: { ...this.options, ...this.$route.query } })
+  mounted() {
+    this.$router.push({ query: { ...this.options, ...this.$route.query } });
     this.updateUser();
   }
 };

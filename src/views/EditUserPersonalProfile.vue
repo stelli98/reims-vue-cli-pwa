@@ -1,6 +1,6 @@
 <template>
   <div class="edit-personal-profile">
-    <div class="header edit-personal-profile__header"></div>
+    <GlobalHeader/>
     <div class="edit-personal-profile__content">
       <div class="heading">Edit Personal Profile</div>
       <form class="user-form__form">
@@ -171,7 +171,7 @@
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .edit-personal-profile {
   &__content {
-    width: 65vw;
+    width: 70vw;
     min-height: 78vh;
     margin: 0 auto;
     @include respond(large-phone) {

@@ -120,5 +120,9 @@
 <title>down-chevron</title>
 <path d="M30.337 7.192l-14.337 14.29-14.337-14.29-1.663 1.669 16 15.948 16-15.948z"></path>
 </symbol>
+<symbol id="icon-up" viewBox="0 0 32 32">
+<title>up-chevron</title>
+<path d="M16 7.192l-16 15.948 1.663 1.669 14.337-14.29 14.337 14.29 1.663-1.669z"></path>
+</symbol>
 </defs>
 </svg>

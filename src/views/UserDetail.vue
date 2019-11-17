@@ -1,6 +1,6 @@
 <template>
   <div class="user-detail">
-    <div class="header user-detail__header"></div>
+    <GlobalHeader/>
     <div class="user-detail__content">
       <div class="heading user-detail__heading">User Profile Detail</div>
       <div class="user-detail__tab">

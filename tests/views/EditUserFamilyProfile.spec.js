@@ -68,24 +68,6 @@ describe("EditUserFamilyProfile.vue", () => {
     store = initializeStore();
   });
 
-  test("moveToPreviousPage method", () => {
-    const options = {
-      mocks: {
-        $router: {
-          go: jest.fn()
-        },
-        $route: {
-          params: {
-            id: "92768"
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "go");
-    wrapper.vm.moveToPreviousPage();
-    expect(spy).toHaveBeenCalled();
-  });
   
   test("submitEditUserFamilyForm method if user data isn't filled", () => {
     const options = {

@@ -1,6 +1,6 @@
 <template>
   <div class="create-user">
-    <div class="header create-user__header"></div>
+    <GlobalHeader/>
     <div class="create-user__content">
       <div class="heading create-user__heading">Create User</div>
       <form class="user-form__form">
@@ -193,7 +193,7 @@
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .create-user {
   &__content {
-    width: 65vw;
+    width: 70vw;
     min-height: 78vh;
     margin: 0 auto;
     @include respond(large-phone) {

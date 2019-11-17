@@ -1,6 +1,8 @@
 import { mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
 
 export default {
+  mixins: [CommonMixins],
   props: {
     user: Object,
     index: 0
@@ -14,13 +16,7 @@ export default {
     ...mapActions("user", ["deleteUser"]),
     removeUser(id) {
       this.deleteUser(id).then(() => {
-        this.$router.push({ name: "user" });
-      });
-    },
-    moveTo(userId) {
-      this.$router.push({
-        name: "user-detail",
-        params: { id: userId }
+        this.moveTo('user')
       });
     }
   }

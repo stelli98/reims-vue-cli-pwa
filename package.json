@@ -96,6 +96,7 @@
       "src/views/**/*.vue",
       "src/store/**/*.js",
       "src/filters/**/*.js",
+      "src/mixins/**/*.js",
       "!**/node_modules/**"
     ]
   }

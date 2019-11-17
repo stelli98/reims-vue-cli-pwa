@@ -38,6 +38,7 @@ describe("FuelForm.vue", () => {
     const defaultConfig = {
       store,
       localVue,
+      stubs: ["GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -48,25 +49,6 @@ describe("FuelForm.vue", () => {
     localVue = generateLocalVue();
     store = initializeStore();
     wrapper = createWrapper(store.store);
-  });
-
-  test("moveTo method", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          params: {
-            id: "1559058600"
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("user-detail");
-    expect(spy).toHaveBeenCalled();
   });
 
   test("submitChangePasswordForm method if user data isn't filled", () => {

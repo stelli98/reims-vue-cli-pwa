@@ -83,17 +83,4 @@ describe("UserCard.vue", () => {
     expect(spyActionDeleteUser).toHaveBeenCalled();
   });
 
-  test("Should be move to user detail page", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo(1);
-    expect(spyRouterPush).toHaveBeenCalled();
-  });
 });

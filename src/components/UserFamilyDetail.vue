@@ -3,10 +3,11 @@
     <div class="user-family__content">
       <div class="user-family__detail" v-for="(user, index) in userFamilies" :key="index">
         <div class="user-family__markdown" @click="toggleExpandFamilyData(index)">
-          <div class="user-family__heading" :class="{'active': isExpandedGroup(index)}">
-            <h4>{{user.relationship | textFormatter }}</h4>
-            <svg class="icon-small" :class="{'icon-small-green': user.expanding}">
-              <use xlink:href="icons.svg#icon-down" />
+          <div class="user-family__heading" :class="{'icon-small-green': user.expanding}">
+            <h4  :class="{'active-selected': isExpandedGroup(index)}">{{user.relationship | textFormatter }}</h4>
+            <svg class="icon-small" :class="{'icon-small-green': isExpandedGroup(index)}" >
+              <use  v-bind="{
+              'xlink:href': `icons.svg#icon-${iconClass(index)}`}"/>
             </svg>
           </div>
           <hr />
@@ -31,7 +32,6 @@
         </transition>
       </div>
     </div>
-    {{disabledAddFamilyButton}}
     <div class="bottom-navigation user-family__navigation">
       <div class="title--navigation" @click="moveTo('user')">Cancel</div>
       <div
@@ -59,7 +59,7 @@
     }
   }
 
-  .active {
+  .active-selected{
     color: $color-green;
   }
 

@@ -5,9 +5,6 @@ export default {
   users(state) {
     return state.users;
   },
-  userFamily(state){
-    return state.userFamily;
-  },
   pagination(state) {
     return state.pagination;
   },

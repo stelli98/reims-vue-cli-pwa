@@ -126,12 +126,7 @@ describe("HomePage.vue", () => {
     wrapper.vm.changePage(2);
     expect(wrapper.vm.$route.query.page).toBe(2);
   });
-
-  test("method moveTo", async () => {
-    wrapper.vm.moveTo("edit-profile");
-    expect(wrapper.vm.$route.path).toEqual("/transactions/edit-profile");
-  });
-
+  
   test("methods doLogout", () => {
     const spy = jest.spyOn(store.actions.auth, "logout");
     wrapper.vm.doLogout();

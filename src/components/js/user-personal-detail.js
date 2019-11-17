@@ -1,18 +1,15 @@
 import { mapGetters, mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+
 export default {
+    mixins: [CommonMixins],
     computed: {
-      ...mapGetters('user',['user']),
-      userId() {
-        return this.$route.params.id;
-      }
+      ...mapGetters('user',['user'])
     },
     methods: {
-        ...mapActions('user',[ 'getUser']),
-        moveTo(page){
-          this.$router.push({ name : page , params: {id : this.userId}});
-        }
+        ...mapActions('user',[ 'getUser'])
     },
     created () {  
-      this.getUser(this.userId);
+      this.getUser(this.id);
     }
 }

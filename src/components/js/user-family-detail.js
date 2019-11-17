@@ -11,7 +11,7 @@ export default {
       return this.$route.params.id;
     },
     disabledAddFamilyButton(){
-      return this.userFamilies.length == 4 ? true : false
+      return this.userFamilies.length == 4
     }
   },
   methods: {
@@ -35,6 +35,9 @@ export default {
     },
     addNewUserFamily(){
       this.disabledAddFamilyButton ? null : this.moveTo('add-family')
+    },
+    iconClass(index){
+      return this.isExpandedGroup(index) ? "up" : "down"
     }
   },
   created() {

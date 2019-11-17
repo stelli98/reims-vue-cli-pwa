@@ -1,9 +1,12 @@
 import { minLength, required } from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapGetters, mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
-  components: { Datetime },
+  mixins: [CommonMixins],  
+  components: { Datetime, GlobalHeader },
   validations: {
     userFamily: {
       name: { required, minLength: minLength(3) },
@@ -12,12 +15,6 @@ export default {
   },
   computed: {
     ...mapGetters("user", ["userFamily"]),
-    userFamilyId() {
-      return this.$route.params.id;
-    },
-    currentDateTime() {
-      return new Date().toISOString();
-    },
     formatDate: {
       set(newValue) {
         this.userFamily.dateOfBirth = newValue;
@@ -29,19 +26,16 @@ export default {
   },
   methods: {
     ...mapActions("user", ["updateUserFamily", "getUserFamilyDetailByFamilyId"]),
-    moveToPreviousPage() {
-      this.$router.go(-1)
-    },
     submitEditUserFamilyForm() {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
         this.userFamily.dateOfBirth = new Date(this.userFamily.dateOfBirth).getTime();
-        this.updateUserFamily([this.userFamilyId, this.userFamily]);
+        this.updateUserFamily([this.id, this.userFamily]);
         this.moveToPreviousPage();
       } 
     }
   },
   created() {
-    this.getUserFamilyDetailByFamilyId(this.userFamilyId)
+    this.getUserFamilyDetailByFamilyId(this.id)
   }
 };

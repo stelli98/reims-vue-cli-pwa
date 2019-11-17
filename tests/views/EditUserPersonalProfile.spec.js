@@ -58,7 +58,7 @@ describe("EditUserPersonalProfile.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime"],
+      stubs: ["Datetime","GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -70,12 +70,10 @@ describe("EditUserPersonalProfile.vue", () => {
     store = initializeStore();
   });
 
-  test("moveToPreviousPage method", () => {
+
+  test("checkUserHaveVehicle method if user doesn't have vehicle", () => {
     const options = {
       mocks: {
-        $router: {
-          go: jest.fn()
-        },
         $route: {
           params: {
             id: "1559058600"
@@ -83,10 +81,31 @@ describe("EditUserPersonalProfile.vue", () => {
         }
       }
     };
+    store.state.user = {};
     wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "go");
-    wrapper.vm.moveToPreviousPage();
-    expect(spy).toHaveBeenCalled();
+    wrapper.vm.checkUserHaveVehicle();
+    expect(wrapper.vm.user.license).toBe("");
+    expect(wrapper.vm.user.vehicle).toBe("");
+  });
+
+  test("checkUserHaveVehicle method if user doesn't have vehicle", () => {
+    const options = {
+      mocks: {
+        $route: {
+          params: {
+            id: "1559058600"
+          }
+        }
+      }
+    };
+    store.state.user = {
+      license : "BL 123 AA",
+      vehicle : "Avanza" 
+    };
+    wrapper = createWrapper(store.store, options);
+    wrapper.vm.checkUserHaveVehicle();
+    expect(wrapper.vm.user.license).not.toBe("");
+    expect(wrapper.vm.user.vehicle).not.toBe("");
   });
 
   test("sendEditUserForm method if user data isn't filled", () => {

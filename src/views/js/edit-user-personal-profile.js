@@ -1,8 +1,11 @@
 import { minLength, required, requiredIf } from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapActions, mapGetters } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+const GlobalHeader = () => import("@/components/GlobalHeader");
 export default {
-  components: { Datetime },
+  mixins: [CommonMixins],
+  components: { Datetime , GlobalHeader},
   validations: {
     user: {
       username: { required, minLength: minLength(3) },
@@ -32,12 +35,6 @@ export default {
   },
   computed: {
     ...mapGetters("user", ["user"]),
-    currentDateTime() {
-      return new Date().toISOString();
-    },
-    userId() {
-      return this.$route.params.id;
-    },
     isShowingVehicleField() {
       return this.userHaveVehicle == "yes";
     },
@@ -63,16 +60,13 @@ export default {
       }
     },
     checkUserHaveVehicle() {
-      if (!!this.user.vehicle) {
+      if (!!!this.user.vehicle) {
         this.user.license = ""
         this.user.vehicle = ""
       }
-    },
-    moveToPreviousPage(){
-      return this.$router.go(-1)
     }
   },
   created() {
-    this.getUser(this.userId).then(() => this.checkUserHaveVehicle());
+    this.getUser(this.id).then(() => this.checkUserHaveVehicle());
   }
 };

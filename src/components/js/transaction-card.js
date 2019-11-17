@@ -1,5 +1,8 @@
 import { mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+
 export default {
+  mixins: [CommonMixins],
   name: "TransactionCard",
   props: {
     transaction: Object
@@ -16,13 +19,7 @@ export default {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
       this.deleteTransaction(id).then(() => {
-        this.$router.push({ name: "home" });
-      });
-    },
-    moveTo(transactionId) {
-      this.$router.push({
-        name: "transaction-detail",
-        params: { id: transactionId }
+        this.moveTo("home")
       });
     }
   }

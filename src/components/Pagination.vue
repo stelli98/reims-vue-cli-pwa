@@ -1,6 +1,6 @@
 <template>
   <div v-show="paging.totalPages > 1" class="pagination">
-    <div class="first" @click="moveTo(1)">
+    <div class="first" @click="changePageTo(1)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-first" />
       </svg>
@@ -8,7 +8,7 @@
     <div
       v-show="paging.pageNumber != 1"
       class="prev"
-      @click="moveTo(paging.pageNumber - 1)"
+      @click="changePageTo(paging.pageNumber - 1)"
     >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-prev" />
@@ -21,10 +21,11 @@
         onfocus="this.size=2;"
         onblur="this.size=1;"
         onchange="this.size=1; this.blur();"
-        @click="moveTo(currentPage)"
+        @click="changePageTo(currentPage)"
       >
         <option
           :selected="currentPage"
+          :key="index"
           class="pagination__option"
           v-for="(n, index) in paging.totalPages"
           >{{ index + 1 }}</option
@@ -34,13 +35,13 @@
     <div
       v-show="paging.pageNumber != paging.totalPages"
       class="next"
-      @click="moveTo(paging.pageNumber + 1)"
+      @click="changePageTo(paging.pageNumber + 1)"
     >
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-next" />
       </svg>
     </div>
-    <div class="last" @click="moveTo(paging.totalPages)">
+    <div class="last" @click="changePageTo(paging.totalPages)">
       <svg class="icon-green">
         <use xlink:href="icons.svg#icon-arrow-last" />
       </svg>

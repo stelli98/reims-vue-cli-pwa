@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    moveTo() {
+    closeFilterForm() {
       this.$emit("closeFilter", false);
     },
     applyFilter() {
@@ -51,7 +51,7 @@ export default {
           : "";
         this.options.page = 1;
         this.$router.push({ query: { ...this.$route.query, ...this.options } });
-        this.moveTo();
+        this.closeFilterForm();
       }
     },
     emptyOptions() {

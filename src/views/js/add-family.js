@@ -1,96 +1,51 @@
 import { minLength, required } from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapGetters, mapActions } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
-  components: { Datetime },
+  mixins: [CommonMixins],
+  components: { Datetime,GlobalHeader },
   validations: {
     family: {
-      $each: {
         name: { required, minLength: minLength(3) },
         relationship: { required },
         dateOfBirth: { required }
-      }
     }
   },
   data() {
     return {
-      family: [],
-      childrenData: {
+      family: {
         name: "",
-        relationship: "CHILDREN",
+        relationship: "",
         dateOfBirth: ""
       },
-      spouseData: {
-        name: "",
-        relationship: "SPOUSE",
-        dateOfBirth: ""
-      }
+      relationshipType : ["CHILDREN","SPOUSE"]
     };
   },
   computed: {
     ...mapGetters("user", ["userFamilies"]),
-    currentDateTime() {
-      return new Date().toISOString();
-    },
-    userId() {
-      return this.$route.params.id;
-    },
-    maxFamilyField() {
-      return 4 - this.userFamilies.length;
-    },
-    isSpouseDataAvailable() {
-      return this.userFamilies.find(user => user.relationship == "SPOUSE");
+    formatDate: {
+      set(newValue) {
+        this.family.dateOfBirth = newValue;
+      },
+      get() {
+        return this.family.dateOfBirth
+          ? new Date(this.family.dateOfBirth).toISOString()
+          : "";
+      }
     }
   },
   methods: {
-    ...mapActions("user", ["addFamilyToUser", "getUserFamilyDetailByUserId"]),
-    moveTo(page) {
-      this.$router.push({ name: page, params: { id: this.userId } });
-    },
-    addFamilyField() {
-      if (this.family.length < this.maxFamilyField) {
-        this.family.push({
-          name: "",
-          relationship: "CHILDREN",
-          dateOfBirth: ""
-        });
-      }
-    },
-    removeFamilyField(index) {
-      this.family.splice(index, 1);
-    },
+    ...mapActions("user", ["addFamilyToUser"]),
     submitAddFamilyToUserForm() {
       this.$v.family.$touch();
       if (!this.$v.family.$invalid) {
-        let familyRawData = JSON.parse(JSON.stringify(this.family));
-        let familyData = this.convertDateToEpoch(familyRawData);
-        this.addFamilyToUser(familyData);
+        this.family.dateOfBirth = new Date(this.family.dateOfBirth).getTime();
+        this.addFamilyToUser([this.userId, this.family]);
+        this.moveToWithParamsRouteId('user-detail')
       }
-    },
-    convertDateToEpoch(familyData) {
-      familyData.map(family => {
-        family.dateOfBirth = new Date(family.dateOfBirth).getTime();
-      });
-      return familyData;
-    },
-    checkUserFamilyData() {
-      !!this.isSpouseDataAvailable
-        ? this.family.push({
-            name: "",
-            relationship: "CHILDREN",
-            dateOfBirth: ""
-          })
-        : this.family.push({
-            name: "",
-            relationship: "SPOUSE",
-            dateOfBirth: ""
-          });
     }
-  },
-  created() {
-    this.getUserFamilyDetailByUserId(this.userId).then(() => {
-      this.checkUserFamilyData();
-    });
   }
 };

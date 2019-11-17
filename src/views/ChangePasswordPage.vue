@@ -1,6 +1,6 @@
 <template>
   <div class="change-password">
-    <div class="header change-password__header"></div>
+    <GlobalHeader/>
     <div class="change-password__content">
       <div class="heading change-password__heading">Change Password</div>
       <form class="user-form__form">
@@ -45,7 +45,7 @@
       </form>
     </div>
     <div class="bottom-navigation change-password__navigation">
-      <div class="title--navigation" @click="moveTo('user-detail')">Cancel</div>
+      <div class="title--navigation" @click="moveToWithParamsRouteId('user-detail')">Cancel</div>
       <div class="title--navigation" @click="submitChangePasswordForm">Save</div>
     </div>
   </div>
@@ -60,7 +60,7 @@
 
   &__content {
     min-height: 78vh;
-    width: 65vw;
+    width: 70vw;
     margin: 0 auto;
     @include respond(large-phone) {
       width: 40vw;
