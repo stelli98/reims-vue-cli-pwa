@@ -3,8 +3,10 @@ const Pagination = () => import("@/components/Pagination.vue");
 const SortFilter = () => import("@/components/SortFilter.vue");
 const FloatingActionButton = () => import("@/components/FloatingActionButton.vue");
 import { mapActions, mapGetters } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
 
 export default {
+  mixins: [CommonMixins],
   components: {
     TransactionList,
     Pagination,
@@ -45,9 +47,6 @@ export default {
         }
       });
     },
-    moveTo(toPage) {
-      this.$router.push({ name: toPage });
-    },
     doLogout() {
       this.logout().then(() => {
         this.$router.push({ name: "login" });
@@ -65,8 +64,8 @@ export default {
       this.updateTransaction();
     }
   },
-  mounted () {
-    this.$router.push({ query: { ...this.options, ...this.$route.query } })
+  mounted() {
+    this.$router.push({ query: { ...this.options, ...this.$route.query } });
     this.updateTransaction();
   }
 };

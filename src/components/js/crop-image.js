@@ -1,6 +1,5 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "App",
   data() {
     return {
       myCroppa: null,
@@ -28,7 +27,7 @@ export default {
     rotateLeft() {
       this.myCroppa.rotate(-1);
     }, 
-    moveTo(){ 
+    moveToFilterImage(){ 
       this.setImage(this.generateImage())
       this.$router.push({name:"create-transaction-2"});
     }

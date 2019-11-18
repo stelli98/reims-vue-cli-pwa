@@ -1,11 +1,13 @@
 const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue");
 const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue");
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ViewFuelDetail,
-    ViewParkingDetail
+    ViewParkingDetail,
+    GlobalHeader
   },
   data() {
     return {

@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="sort-filter">
       <div class="header sort-filter__header">
-        <div class="sort-filter__close" @click="moveTo">
+        <div class="sort-filter__close" @click="closeFilterForm">
           <svg class="icon icon-small">
             <use xlink:href="icons.svg#icon-cancel" />
           </svg>

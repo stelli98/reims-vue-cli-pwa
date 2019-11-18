@@ -106,11 +106,6 @@ describe("ManageUser.vue", () => {
     wrapper = createWrapper(store.store);
   });
 
-  test("methods moveTo", () => {
-    wrapper.vm.moveTo();
-    expect(wrapper.vm.$route.path).toBe("/users/create");
-  });
-
   test("methods changePage", () => {
     const spy = jest.spyOn(store.actions.user, "getUsers");
     wrapper.vm.changePage(2);

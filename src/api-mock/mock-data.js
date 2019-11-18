@@ -327,7 +327,7 @@ export default [
       category: "PARKING",
       license: "BL 6728 POW",
       type: "Motor",
-      "in ": "2018-05-12T17:19:06.151Z",
+      in: "2018-05-12T17:19:06.151Z",
       out: "2018-05-12T17:19:06.151Z",
       amount: 9000,
       created_at: "2018-05-12T17:19:06.151Z",
@@ -614,9 +614,46 @@ export default [
     data: {
       id: 1559058600,
       username: "Munawan Sadakh",
-      password: "Test123",
+      gender: "MALE",
+      dateOfBirth: "2019-05-06T12:06:00.000Z",
       role: "ADMIN",
+      division: "TECHNOLOGY",
+      license: "BL 123 AA",
+      vehicle: "Avanza Silver White",
       created_at: 1559058410
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.users.family + "?user-id=1559058600",
+    status: "OK",
+    data: [
+      {
+        id: 92768,
+        name: "Zendaya",
+        relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      }
+    ],
+    success: true
+  },
+  {
+    code: 200,
+    method: "GET",
+    url: api.users.family + "/92768",
+    status: "OK",
+    data: {
+      id: 92768,
+      name: "Zendaya",
+      relationship: "SPOUSE",
+      dateOfBirth: "898362000000"
     }
   },
   {

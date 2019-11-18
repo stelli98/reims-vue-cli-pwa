@@ -42,7 +42,7 @@
         <span>Rotate Left</span>
       </div>
     </div>
-    <div class="bottom-navigation crop-image__navigation" @click="moveTo" >
+    <div class="bottom-navigation crop-image__navigation" @click="moveToFilterImage" >
         <h3 class="title--navigation">Next</h3>
         <svg class="icon icon-medium-green">
           <use xlink:href="icons.svg#icon-next" />

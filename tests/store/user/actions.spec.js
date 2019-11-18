@@ -67,6 +67,40 @@ describe("Actions for User Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_PAGINATION", expectedValue.data);
   });
 
+  test("Get user family data", async () => {
+    api.getFamilyDetailByUserId = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const expectedValue = data.find(
+      d => d.url === url.family + "?user-id=1559058600" && d.method == "GET"
+    );
+    api.getFamilyDetailByUserId.mockResolvedValue(expectedValue);
+    const commit = jest.fn();
+    const id = 1559058600;
+    await actions.getUserFamilyDetailByUserId({ commit, rootState }, id);
+    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILIES", expectedValue.data);
+  });
+
+  test("GetUserFamilyDetailByFamily Id", async () => {
+    api.getFamilyDetailByFamilyId = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const expectedValue = data.find(
+      d => d.url === url.family + "/92768" && d.method == "GET"
+    );
+    api.getFamilyDetailByFamilyId.mockResolvedValue(expectedValue);
+    const commit = jest.fn();
+    const id = 92768;
+    await actions.getUserFamilyDetailByFamilyId({ commit, rootState }, id);
+    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
+  });
+
   test("Update user actions", () => {
     api.updateUser = jest.fn();
 
@@ -141,21 +175,64 @@ describe("Actions for User Module", () => {
     );
   });
 
-  test("Get user family data", async () => {
-    api.getFamilyDetailByUserId = jest.fn();
+  test("addFamilyToUser actions", () => {
+    api.addFamilyToUser = jest.fn();
+
     const rootState = {
       auth: {
         token: "Bearer 123"
       }
     };
-    const expectedValue = data.find(
-      d => d.url === url.family + "?user-id=1559058600" && d.method == "GET"
+    const id = 1;
+    const userFamilies = [
+      {
+        name: "Stelli",
+        relationship: "CHILDREN",
+        dateOfBirth: ""
+      }
+    ];
+    actions.addFamilyToUser({ rootState }, [id, userFamilies]);
+    expect(api.addFamilyToUser).toHaveBeenCalledWith(
+      id,
+      userFamilies,
+      rootState.auth.token
     );
-    api.getFamilyDetailByUserId.mockResolvedValue(expectedValue);
-    const commit = jest.fn();
+  });
+
+  test("updateUserFamily actions", () => {
+    api.updateUserFamily = jest.fn();
+
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
+    const id = 1;
+    const userFamilies = [
+      {
+        name: "Stelli",
+        relationship: "CHILDREN",
+        dateOfBirth: ""
+      }
+    ];
+    actions.updateUserFamily({ rootState }, [id, userFamilies]);
+    expect(api.updateUserFamily).toHaveBeenCalledWith(
+      id,
+      userFamilies,
+      rootState.auth.token
+    );
+  });
+
+  test("Delete user family", async () => {
+    api.deleteUserFamilyById = jest.fn();
+    const rootState = {
+      auth: {
+        token: "Bearer 123"
+      }
+    };
     const id = 1559058600;
-    await actions.getUserFamilyDetail({ commit, rootState }, id);
-    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
+    await actions.deleteUserFamily({ rootState }, id);
+    expect(api.deleteUserFamilyById).toHaveBeenCalledWith(id, rootState.auth.token);
   });
 
 });

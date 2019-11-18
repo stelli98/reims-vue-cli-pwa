@@ -11,7 +11,7 @@ describe("CreateMedicalTransaction.vue", () => {
   let store;
   let wrapper;
   let localVue;
-  const userFamilyData = data.find(
+  const userFamiliesData = data.find(
     d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
   );
 
@@ -59,13 +59,13 @@ describe("CreateMedicalTransaction.vue", () => {
 
   function initializeUserStore() {
     const state = {
-      userFamily: userFamilyData.data
+      userFamilies: userFamiliesData.data
     };
     const getters = {
-      userFamily: state => state.userFamily
+      userFamilies: state => state.userFamilies
     };
     const actions = {
-      getUserFamilyDetail: jest.fn()
+      getUserFamilyDetailByUserId: jest.fn()
     };
     const namespaced = true;
     return { state, getters, actions, namespaced };
@@ -97,7 +97,7 @@ describe("CreateMedicalTransaction.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime", "Carousel", "Slide"],
+      stubs: ["Datetime", "Carousel", "Slide","GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -109,22 +109,6 @@ describe("CreateMedicalTransaction.vue", () => {
     store = initializeStore();
   });
 
-  test("if images doesn't exist", async () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    store.state.transaction.images = [];
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm, "moveTo");
-    wrapper.vm.$nextTick(() => {
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
   test("if images exist", () => {
     const options = {
       mocks: {
@@ -134,7 +118,7 @@ describe("CreateMedicalTransaction.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions.user, "getUserFamilyDetail");
+    const spy = jest.spyOn(store.actions.user, "getUserFamilyDetailByUserId");
     expect(spy).toHaveBeenCalled();
   });
 
@@ -153,20 +137,6 @@ describe("CreateMedicalTransaction.vue", () => {
   test("formaDate computed", () => {
     wrapper.setData({ formatDate: 1565695670000 });
     expect(wrapper.vm.formatDate).toBe("2019-08-13T11:27:50.000Z");
-  });
-
-  test("moveTo method", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("user");
-    expect(spy).toHaveBeenCalled();
   });
 
   test("submitMedicalForm method if medical is invalid", () => {

@@ -88,10 +88,4 @@ describe("TransactionCard.vue", () => {
     wrapper.vm.removeTransaction(transactionId);
     expect(spy).toHaveBeenCalled();
   });
-
-  test("Should be move to transaction detail page", () => {
-    const transactionId = 1;
-    wrapper.vm.moveTo(transactionId);
-    expect(wrapper.vm.$route.path).toBe("/transaction/1");
-  });
 });

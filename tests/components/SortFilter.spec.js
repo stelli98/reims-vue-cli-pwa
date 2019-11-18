@@ -37,15 +37,15 @@ describe("SortFilter.vue", () => {
     wrapper = createWrapper();
   });
 
-  test("Emit moveTo", () => {
-    wrapper.vm.moveTo();
+  test("Emit closeFilterForm", () => {
+    wrapper.vm.closeFilterForm();
     expect(wrapper.emitted().closeFilter).toEqual([[false]]);
   });
 
   test("Emit applyFilter", () => {
     wrapper.vm.options.start = "2019-08-10T06:40:59.000Z";
     wrapper.vm.options.end = "2019-08-12T06:40:59.000Z";
-    const spy = jest.spyOn(wrapper.vm, "moveTo");
+    const spy = jest.spyOn(wrapper.vm, "closeFilterForm");
     wrapper.vm.applyFilter();
     const options = {
       search: "",

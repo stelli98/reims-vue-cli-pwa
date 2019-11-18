@@ -41,7 +41,6 @@ body {
     color: $color-black;
     position: relative;
     z-index: 1;
-
 }
 
 input {
@@ -66,7 +65,7 @@ input {
 }
 
 .form {
-    &__child {
+  &__child{
       margin-bottom: 1.5rem;
     }
   
@@ -144,5 +143,8 @@ input {
   padding: 2rem;
   font-size: 1.4rem;
   border-top: solid .5px #eee;
-  bottom: 0;
+}
+
+hr{
+  border: solid .05rem #eee;
 }

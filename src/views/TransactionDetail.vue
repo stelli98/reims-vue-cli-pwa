@@ -1,12 +1,6 @@
 <template>
   <div>
-    <div class="header transaction-detail__header">
-      <div class="transaction-detail__close" @click="$router.go(-1)">
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-back" />
-        </svg>
-      </div>
-    </div>
+    <GlobalHeader/>
     <div class="transaction-detail__content" v-if="isLoading">
       <h3>{{ transactionCategory + " Expenses" }}</h3>
       <p>

@@ -1,7 +1,8 @@
 import { mapActions, mapGetters } from "vuex";
 import ParkingForm from "@/components/ParkingForm.vue";
 import FuelForm from "@/components/FuelForm.vue";
-import Vue from 'vue'
+import Vue from "vue";
+import CommonMixins from "@/mixins/common-mixins";
 
 const TOGGLE_BUTTON = {
   true: {
@@ -17,51 +18,48 @@ const TOGGLE_BUTTON = {
 };
 
 export default {
+  mixins: [CommonMixins],
   components: {
     PARKING: ParkingForm,
     FUEL: FuelForm
   },
-  data () {
+  data() {
     return {
       tabs: {
         PARKING: TOGGLE_BUTTON["true"],
         FUEL: TOGGLE_BUTTON["false"]
       },
-      isLoading: false, 
+      isLoading: false,
       bus: new Vue()
     };
   },
   computed: {
     ...mapGetters("transaction", ["OCRResultType"]),
     ...mapGetters("transaction", ["image"]),
-    currentComponent () {
+    currentComponent() {
       return this.OCRResultType;
     },
-    isSwitchOn () {
+    isSwitchOn() {
       return this.currentComponent ? this.tabs[this.currentComponent].show : "";
     }
   },
-  created () {
-    this.checkContainsImage()
+  created() {
+    this.checkContainsImage();
   },
   methods: {
     ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),
-    toggle () {
+    toggle() {
       this.setOCRResultType(
         TOGGLE_BUTTON[(!this.isSwitchOn).toString()].component
       );
     },
-    submitForm(){
-      this.bus.$emit(
-        TOGGLE_BUTTON[(this.isSwitchOn).toString()].action)
+    submitForm() {
+      this.bus.$emit(TOGGLE_BUTTON[this.isSwitchOn.toString()].action);
     },
-    checkContainsImage(){
+    checkContainsImage() {
       if (!this.image) {
-        this.moveTo()
+        this.moveTo("create-transaction-1");
       }
-    }, 
-    moveTo(){
-      this.$router.push({ name: "create-transaction-1" });
     }
   }
 };

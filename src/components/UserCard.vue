@@ -1,6 +1,6 @@
 <template>
   <div class="user__card">
-    <div class="user__card__center" @click="moveTo(user.id)">
+    <div class="user__card__center" @click="moveToWithParamsId('user-detail',user.id)">
       <div
         class="
       title--big
@@ -32,7 +32,7 @@
     grid-column: span 1;
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
-    padding: 1rem 0;
+    padding: .85rem 0;
 
     &__center {
       flex-grow: 1;

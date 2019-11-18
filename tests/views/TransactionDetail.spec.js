@@ -79,7 +79,7 @@ describe("TransactionDetail.vue", () => {
       store,
       localVue,
       router,
-      stubs: ["ViewParkingDetail", "ViewFuelDetail"],
+      stubs: ["ViewParkingDetail", "ViewFuelDetail","GlobalHeader"],
       sync: false
     });
   }

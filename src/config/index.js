@@ -10,7 +10,8 @@ module.exports = {
     users: {
       user: `${baseUrl}/api/admin/users`,
       report: `${baseUrl}/api/users/report`,
-      personalUser: `${baseUrl}/api/users`
+      personalUser: `${baseUrl}/api/users`, 
+      family: `${baseUrl}/api/family-members`
     },
     auth: {
       login: `${baseUrl}/api/login`,

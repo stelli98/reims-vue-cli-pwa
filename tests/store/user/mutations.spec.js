@@ -52,13 +52,25 @@ describe("mutations", () => {
     expect(state.users).toEqual(expectedValue);
   });
 
-  test("SET_USER_FAMILY sets state.user", () => {
+  test("SET_USER_FAMILIES sets state.userFamilies", () => {
     const expectedValue = data.find(
       d =>
         d.url === url.family + "?user-id=1559058600" && d.method === "GET"
     );
     const state = {
-      userFamily: []
+      userFamilies: []
+    };
+    mutations.SET_USER_FAMILIES(state, expectedValue);
+    expect(state.userFamilies).toBe(expectedValue.data);
+  });
+
+  test("SET_USER_FAMILY sets state.userFamily", () => {
+    const expectedValue = data.find(
+      d =>
+        d.url === url.family + "/92768" && d.method === "GET"
+    );
+    const state = {
+      userFamily: {}
     };
     mutations.SET_USER_FAMILY(state, expectedValue);
     expect(state.userFamily).toBe(expectedValue.data);

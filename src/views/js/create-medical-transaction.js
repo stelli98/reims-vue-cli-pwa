@@ -2,9 +2,12 @@ import { required, minValue } from "vuelidate/lib/validators";
 import { mapGetters, mapActions } from "vuex";
 import { Datetime } from "vue-datetime";
 import { Carousel, Slide } from "vue-carousel";
+import CommonMixins from "@/mixins/common-mixins";
+const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
-  components: { Datetime, Carousel, Slide },
+  mixins: [CommonMixins],
+  components: { Datetime, Carousel, Slide, GlobalHeader },
   validations: {
     medical: {
       date: { required },
@@ -37,12 +40,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["userFamily"]),
+    ...mapGetters("user", ["userFamilies"]),
     ...mapGetters("auth", ["id"]),
     ...mapGetters("transaction", ["images"]),
-    currentDateTime() {
-      return new Date().toISOString();
-    },
     formatDate: {
       set(newValue) {
         this.medical.date = newValue;
@@ -69,11 +69,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["getUserFamilyDetail"]),
+    ...mapActions("user", ["getUserFamilyDetailByUserId"]),
     ...mapActions("transaction", ["createMedicalTransaction"]),
-    moveTo(page) {
-      this.$router.push({ name: page });
-    },
     submitMedicalForm() {
       this.$v.medical.$touch();
       if (!this.$v.medical.$invalid) {
@@ -92,6 +89,6 @@ export default {
   },
   created() {
     this.isImagesExist;
-    this.getUserFamilyDetail("1559058600");
+    this.getUserFamilyDetailByUserId("1559058600");
   }
 };

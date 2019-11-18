@@ -2,36 +2,23 @@
   <div class="manage-user">
     <div class="header manage-user__header">
       <div class="title--menu manage-user__title"></div>
-      <div class="title--menu manage-user__title" @click="doLogout">
-        Logout
-      </div>
+      <div class="title--menu manage-user__title" @click="doLogout">Logout</div>
     </div>
     <div class="manage-user__content">
-      <div class="heading manage-user__heading">
-        List of User
-      </div>
+      <div class="heading manage-user__heading">List of User</div>
       <div class="manage-user__action">
-        <div class="manage-user__create" @click="moveTo">
-          <div class="btn-green">
-            <svg class="icon icon-small">
-              <use xlink:href="icons.svg#icon-plus" />
-            </svg>
-            <span>Add User</span>
-          </div>
-        </div>
         <div class="manage-user__search">
           <svg class="icon-green">
             <use xlink:href="icons.svg#icon-search" />
           </svg>
-          <input
-            type="text"
-            placeholder="search by name"
-            @keyup="submitSearch"
-          />
+          <input type="text" placeholder="search by name" @keyup="submitSearch" />
         </div>
       </div>
       <UserList v-if="users.length" :users="users" />
       <Pagination :paging="pagination" @changePage="changePage" />
+    </div>
+    <div class="bottom-navigation manage-user__navigation" @click="moveTo('user-create')">
+      <h3 class="title--navigation">Add User</h3>
     </div>
   </div>
 </template>
@@ -44,6 +31,7 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
+    min-height: 75vh;
     margin: 1.5rem 5vw;
 
     @include respond(large-phone) {
@@ -79,6 +67,13 @@
     & input {
       width: 100%;
     }
+  }
+
+  &__navigation,
+  &__navigation > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>
