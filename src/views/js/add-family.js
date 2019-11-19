@@ -6,7 +6,7 @@ const GlobalHeader = () => import("@/components/GlobalHeader");
 
 export default {
   mixins: [CommonMixins],
-  components: { Datetime,GlobalHeader },
+  components: { Datetime, GlobalHeader},
   validations: {
     family: {
         name: { required, minLength: minLength(3) },

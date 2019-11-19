@@ -1,12 +1,6 @@
 <template>
   <div class="create-transaction">
-    <div class="header create-transaction__header">
-      <div class="create-transaction__close" @click="moveTo">
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-back" />
-        </svg>
-      </div>
-    </div>
+    <GlobalHeader/>
     <div class="create-transaction__order">
       <div class="create-transaction__progress">
         <div class="create-transaction__progress-bar progress-bar-active" id="progress-bar-first"></div>

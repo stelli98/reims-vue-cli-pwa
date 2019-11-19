@@ -34,14 +34,6 @@ describe("transaction getters", () => {
     expect(pagination).toBe(state.pagination);
   });
 
-  test("Get OCRResultType from OCRResultType module", () => {
-    const state = {
-      OCRResultType: expectedValue.data.category
-    };
-    const OCRResultType = getters.OCRResultType(state);
-    expect(OCRResultType).toBe(state.OCRResultType);
-  });
-
   test("Get parking from parking module", () => {
     const state = {
       parking: expectedValueParking.data

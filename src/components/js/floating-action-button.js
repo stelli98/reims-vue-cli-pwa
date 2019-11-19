@@ -11,10 +11,10 @@ export default {
       this.displayMenu = !this.displayMenu;
       this.$emit("isActionButtonActive", this.displayMenu);
     },
-    onOCRFileChange(e) {
+    onOCRFileChange(e,type) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
-      this.$router.push({ name: "create-transaction-1" });
+      this.$router.push({ name: "create-transaction-1" , query:{type}});
     },
     onNonOCRFileChange(e) {
       const fileResult = [];

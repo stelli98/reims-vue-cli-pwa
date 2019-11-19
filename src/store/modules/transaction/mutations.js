@@ -11,21 +11,6 @@ export default {
       ...data
     };
   },
-  SET_OCR_RESULT_TYPE(state, category) {
-    state.OCRResultType = category;
-  },
-  ADD_IMAGE_FUEL(state, image) {
-    state.fuel.image = image;
-  },
-  ADD_IMAGE_PARKING(state, image) {
-    state.parking.image = image;
-  },
-  ADD_USER_ID_FUEL(state, id) {
-    state.fuel.userId = id;
-  },
-  ADD_USER_ID_PARKING(state, id) {
-    state.parking.userId = id;
-  },
   SET_TRANSACTION(state, { data }) {
     state.transaction = data;
   },

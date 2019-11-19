@@ -1,6 +1,9 @@
 import offlineService from "@/api/transaction-offline";
 import { mapActions } from "vuex";
+const GlobalHeader = () => import("@/components/GlobalHeader");
+
 export default {
+  components: { GlobalHeader},
   computed: {
     activeSecondProgressBar(){
       return this.$route.name === "create-transaction-2" ? "progress-bar-active" : ""

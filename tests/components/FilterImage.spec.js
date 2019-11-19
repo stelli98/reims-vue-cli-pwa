@@ -94,11 +94,29 @@ describe("FilterImage.vue", () => {
     store = initializeStore();
   });
 
+  test("FilterImage created", async () => {
+    const obj = {
+      checkContainsType: jest.fn(),
+      checkContainsImage: jest.fn(),
+      setFilterToDefault: jest.fn()
+    };
+    const created = FilterImage.created.bind(obj);
+    created();
+    expect(obj.checkContainsType).toHaveBeenCalled();
+    expect(obj.checkContainsImage).toHaveBeenCalled();
+    expect(obj.setFilterToDefault).toHaveBeenCalled();
+  });
+
   test("uploadImageOCR method if app is online", async () => {
     const options = {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
         }
       }
     };
@@ -124,6 +142,11 @@ describe("FilterImage.vue", () => {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
         }
       }
     };
@@ -155,6 +178,11 @@ describe("FilterImage.vue", () => {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
         }
       }
     };
@@ -185,6 +213,11 @@ describe("FilterImage.vue", () => {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
         }
       }
     };
@@ -194,7 +227,6 @@ describe("FilterImage.vue", () => {
     wrapper.vm.filterImage();
     expect(spyGenerateImage).toHaveBeenCalled();
     expect(spyActionSetImage).toHaveBeenCalled();
-
   })
 
   test("checkContainsImage method", ()=>{
@@ -202,6 +234,11 @@ describe("FilterImage.vue", () => {
           mocks: {
             $router: {
               push: jest.fn()
+            },
+            $route: {
+              query: {
+                type: "fuel"
+              }
             }
           }
         };
@@ -211,4 +248,45 @@ describe("FilterImage.vue", () => {
         const spyRouterPush = jest.spyOn(wrapper.vm.$router, 'push');
         expect(spyRouterPush).toHaveBeenCalled()
   })
+
+
+  test("checkContainsType method if params type is found", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.checkContainsType();
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  test("checkContainsType method if params type is not found", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: ""
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.checkContainsType();
+    expect(spy).toHaveBeenCalled();
+  });
+
+
 });

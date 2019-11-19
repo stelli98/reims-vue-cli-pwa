@@ -40,65 +40,6 @@ describe("mutations for transaction module", () => {
     expect(state.fuel).toEqual(expectedValue.data);
   });
 
-  test("SET_OCR_RESULT_TYPE sets state.OCRResultType", () => {
-    const expectedValue = data.find(
-      d => d.url === url.transaction && d.method === "POST"
-    );
-    const state = {
-      OCRResultType: ""
-    };
-    mutations.SET_OCR_RESULT_TYPE(state, expectedValue.data.category);
-    expect(state.OCRResultType).toBe(expectedValue.data.category);
-  });
-
-  test("ADD_IMAGE_FUEL sets state.fuel.image", () => {
-    const expectedValue = data.find(
-      d => d.url === url.transaction && d.method === "POST"
-    );
-    const state = {
-      fuel: {
-        image: ""
-      }
-    };
-    mutations.ADD_IMAGE_FUEL(state, expectedValue.data.image);
-    expect(state.fuel.image).toBe(expectedValue.data.image);
-  });
-
-  test("ADD_IMAGE_PARKING sets state.parking.image", () => {
-    const expectedValue = data.find(
-      d => d.url === url.transaction && d.method === "POST"
-    );
-    const state = {
-      parking: {
-        image: ""
-      }
-    };
-    mutations.ADD_IMAGE_PARKING(state, expectedValue.data.image);
-    expect(state.parking.image).toBe(expectedValue.data.image);
-  });
-
-  test("ADD_USER_ID_FUEL sets state.parking.image", () => {
-    const expectedValue = 123;
-    const state = {
-      fuel: {
-        userId: ""
-      }
-    };
-    mutations.ADD_USER_ID_FUEL(state, expectedValue);
-    expect(state.fuel.userId).toBe(expectedValue);
-  });
-
-  test("ADD_USER_ID_PARKING sets state.parking.image", () => {
-    const expectedValue = 123;
-    const state = {
-      parking: {
-        userId: ""
-      }
-    };
-    mutations.ADD_USER_ID_PARKING(state, expectedValue);
-    expect(state.parking.userId).toBe(expectedValue);
-  });
-
   test("SET_TRANSACTION sets state.transaction", () => {
     const expectedValue = data.find(
       d => d.url === url.transaction + "/1" && d.method === "GET"
