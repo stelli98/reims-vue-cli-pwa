@@ -11,15 +11,19 @@ export default {
       this.displayMenu = !this.displayMenu;
       this.$emit("isActionButtonActive", this.displayMenu);
     },
-    onOCRFileChange(e,type) {
+    onOCRFileChange(e, type) {
       const file = URL.createObjectURL(e.target.files[0]);
       this.setImage(file);
-      this.$router.push({ name: "create-transaction-1" , query:{type}});
+      this.$router.push({ name: "create-transaction-1", query: { type } });
     },
     onNonOCRFileChange(e) {
-      const fileResult = [];
+      const fileResult = [];  
       Object.values(e.target.files).forEach(image => {
-        fileResult.push(URL.createObjectURL(image));
+        var reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onloadend = function() {
+          fileResult.push(reader.result);
+        };
       });
       this.setImages(fileResult);
       this.$router.push({ name: "create-medical" });

@@ -55,12 +55,14 @@ export default {
     },
     checkContainsImage(){
       if (!this.image && this.isContainingType) {
-        this.$router.push({ name: "create-transaction-1" , 
-        query: {...this.$route.query}});
+        this.reUploadImage();
       }
     },
     checkContainsType(){
-      this.isContainingType ? "" : this.$router.push({name: "home"})
+      this.isContainingType ? "" : this.moveTo('home')
+    },
+    reUploadImage(){
+      this.$router.push({name:"create-transaction-1", query:{...this.$route.query}})
     }
   }
 };
