@@ -9,7 +9,24 @@
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <img class="transaction-detail__image" :src="imageBase64" />
+      <div v-if="!isNonOCRTransaction">
+       <img class="transaction-detail__ocr-image" :src="imageBase64" />
+      </div>
+      <div v-else>
+       <carousel class="transaction-detail__carousel" :perPage="1">
+          <slide
+            v-for="(image,index) in images"
+            :key="index"
+            class="transaction-detail__slide"
+          >
+            <img
+              :src="image"
+              class="transaction-detail__image"
+              style="width: 300px; max-width: 100%;"
+            />
+          </slide>
+        </carousel>
+      </div>
       <Component :is="activeComponent" :transaction="transaction" />
     </div>
   </div>
@@ -19,11 +36,12 @@
 
 <style lang="scss">
 .transaction-detail {
-  &__image {
+  &__ocr-image {
     margin: 1.2rem auto;
     display: flex;
     width: 25rem;
   }
+
 
   &__content {
     width: 80vw;
@@ -50,6 +68,19 @@
   &__box {
     display: flex;
     flex-direction: column;
+  }
+
+  &__image {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 0 auto !important;
+  }
+
+  .VueCarousel-dot-container,
+  .VueCarousel-dot,
+  .VueCarousel-dot--active {
+    margin: 0 !important;
   }
 }
 </style>
