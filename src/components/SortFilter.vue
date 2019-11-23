@@ -7,9 +7,6 @@
             <use xlink:href="icons.svg#icon-cancel" />
           </svg>
         </div>
-        <div class="title--menu user-form__next" @click="resetFilter">
-          RESET
-        </div>
       </div>
       <div class="sort-filter__content">
         <div class="heading sort-filter__heading">
@@ -76,7 +73,7 @@
             </label>
             <Datetime
               v-model="formatStart"
-              type="datetime"
+              type="date"
               class="form__input"
               :max-datetime="formatEnd || currentDateTime"
             />
@@ -92,7 +89,7 @@
               v-model="formatEnd"
               :min-datetime="formatStart"
               :max-datetime="currentDateTime"
-              type="datetime"
+              type="date"
               class="form__input"
             />
             <p v-if="isEndSelected" class="input__error-message">
@@ -101,13 +98,9 @@
           </div>
         </form>
       </div>
-      <div class="sort-filter__button" @click="applyFilter">
-        <div class="btn-green ">
-          <svg class="icon icon-small">
-            <use xlink:href="icons.svg#icon-filter" />
-          </svg>
-          <span>Apply Filter</span>
-        </div>
+      <div class="bottom-navigation sort-filter__navigation">
+        <div class="title--navigation" @click="resetFilter">Reset</div>
+        <div class="title--navigation" @click="applyFilter">Apply Filter</div>
       </div>
     </div>
   </transition>
@@ -160,6 +153,7 @@
   &__content {
     width: 65vw;
     margin: 0 auto;
+    min-height: 75vh;
     @include respond(large-phone) {
       width: 40vw;
     }
@@ -173,6 +167,12 @@
     margin-top: 2rem;
     display: flex;
     justify-content: center;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>
