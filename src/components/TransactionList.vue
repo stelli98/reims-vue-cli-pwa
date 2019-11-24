@@ -21,10 +21,11 @@
       </div>
     </div>
     <div class="transaction__list">
-      <div v-for="transaction in transactions">
+      <div v-for="(transaction,index) in transactions" :key="index">
         <TransactionCard :key="transaction.id" :transaction="transaction" />
       </div>
     </div>
+    <PopUpModalRoot/>
   </div>
 </template>
 

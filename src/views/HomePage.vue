@@ -29,7 +29,6 @@
     <TransactionList
       :transactions="transactions"
       @openFilter="toogleFilter"
-      @downloadReport="download"
     />
     <Pagination :paging="pagination" @changePage="changePage" />
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>

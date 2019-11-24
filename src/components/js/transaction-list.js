@@ -1,7 +1,12 @@
-const TransactionCard = () =>import("@/components/TransactionCard.vue");
+const TransactionCard = () => import("@/components/TransactionCard.vue");
+const DownloadPopUp = () => import("@/components/DownloadPopUp.vue");
+import { ModalBus } from "@/components/js/event-bus.js";
+import PopUpModalRoot from "@/components/PopUpModalRoot.vue";
+
 export default {
   components: {
-    TransactionCard
+    TransactionCard,
+    PopUpModalRoot
   },
   props: {
     transactions: Array
@@ -22,7 +27,10 @@ export default {
       this.$emit("openFilter", true);
     },
     downloadReport() {
-      this.$emit("downloadReport");
+      ModalBus.$emit("open", {
+        component: DownloadPopUp,
+        title: "Download Report"
+      });
     }
   }
 };

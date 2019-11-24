@@ -52,7 +52,6 @@
             <label class="input__label title--medium-form" for="type">
               Category
             </label>
-
             <select
               v-model="options.category"
               class="form__input form__input__select"
@@ -153,7 +152,7 @@
   &__content {
     width: 65vw;
     margin: 0 auto;
-    min-height: 75vh;
+    min-height: 76vh;
     @include respond(large-phone) {
       width: 40vw;
     }
