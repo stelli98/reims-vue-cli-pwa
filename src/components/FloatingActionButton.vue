@@ -6,16 +6,25 @@
         <input type="file" id="medical" @change="onNonOCRFileChange" multiple />
         <label for="medical" class="mini-action-button__icon">
           <svg class="icon icon-medium">
-            <use xlink:href="icons.svg#icon-traffic" />
+            <use xlink:href="icons.svg#icon-medical" />
           </svg>
         </label>
       </div>
       <div class="mini-action-button mini-action-button">
-        <p class="mini-action-button__text">Fuel/Parking</p>
-        <input type="file" id="fuel-parking" @change="onOCRFileChange" />
+        <p class="mini-action-button__text">Parking</p>
+        <input type="file" id="fuel-parking" @change="onOCRFileChange($event,'parking')" />
         <label for="fuel-parking" class="mini-action-button__icon">
           <svg class="icon icon-medium">
-            <use xlink:href="icons.svg#icon-traffic" />
+            <use xlink:href="icons.svg#icon-parking" />
+          </svg>
+        </label>
+      </div>
+      <div class="mini-action-button mini-action-button">
+        <p class="mini-action-button__text">Fuel</p>
+        <input type="file" id="fuel-parking" @change="onOCRFileChange($event,'fuel')" />
+        <label for="fuel-parking" class="mini-action-button__icon">
+          <svg class="icon icon-medium">
+            <use xlink:href="icons.svg#icon-fuel" />
           </svg>
         </label>
       </div>
@@ -54,6 +63,7 @@
   &__mini-action-button {
     cursor: pointer;
     position: absolute;
+    margin-right: 1.2rem;
   }
 
   &__action-button {

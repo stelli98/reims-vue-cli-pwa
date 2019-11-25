@@ -13,9 +13,13 @@ export default {
     ...mapGetters("transaction",["image"]), 
     filters() {
       return this.makeFilter();
+    },
+    isContainingType(){
+      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
     }
   },
   created() {
+    this.checkContainsType();
     this.checkContainsImage();
     this.setFilterToDefault();
   },
@@ -28,7 +32,6 @@ export default {
     ...mapActions("notification", ["addNotification"]),
     makeFilter() {
       const filterSet = this.filterFunctions;
-
       let filterString = "";
       const defaultValues = this.defaultValues();
       for (const filterFunc in filterSet) {
@@ -56,7 +59,6 @@ export default {
       const canvas = document.createElement("canvas");
       canvas.width = document.getElementById("image").clientWidth;
       canvas.height = document.getElementById("image").clientHeight;
-
       const ctx = canvas.getContext("2d");
       ctx.filter = this.filters.filter;
       const img = new Image();
@@ -87,12 +89,17 @@ export default {
           };
           this.addNotification(notification);
         });
-      this.$router.push({ name: "create-transaction-3"});
+      this.$router.push({ name: "create-transaction-3" , 
+      query: {...this.$route.query}});
     },
     checkContainsImage(){
-      if (!this.image) {
-        this.$router.push({ name: "create-transaction-1" });
+      if (!this.image && this.isContainingType) {
+        this.$router.push({ name: "create-transaction-1" , 
+        query: {...this.$route.query}});
       }
+    },
+    checkContainsType(){
+      this.isContainingType ? "" : this.$router.push({name: "home"})
     }
   }
 };

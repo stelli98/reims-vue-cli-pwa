@@ -72,7 +72,7 @@ describe("FloatingActionButton.vue", () => {
     expect(spyRoute).toHaveBeenCalled();
   });
 
-  test("methods onNonOCRFileChange", () => {
+  test("methods onNonOCRFileChange",  async(done) => {
     const options = {
       mocks: {
         $router: {
@@ -81,7 +81,11 @@ describe("FloatingActionButton.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    global.URL.createObjectURL = jest.fn();
+    const fileReaderFunction = {
+      readAsDataURL: jest.fn(),
+      onloadend: jest.fn()
+    };
+    window.FileReader = jest.fn(() => fileReaderFunction);
     const spySetImages = jest.spyOn(store.actions, "setImages");
     const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
     const e = {
@@ -90,8 +94,13 @@ describe("FloatingActionButton.vue", () => {
       }
     };
     wrapper.vm.onNonOCRFileChange(e);
-    expect(spySetImages).toHaveBeenCalled();
-    expect(spyRoute).toHaveBeenCalled();
+    
+    setTimeout(() => {
+      fileReaderFunction.onloadend()
+      expect(spySetImages).toHaveBeenCalled();
+      expect(spyRoute).toHaveBeenCalled();
+      done()
+    }, 500)
   });
 
   test("toggleDisplayMenu before it's clicked", () => {

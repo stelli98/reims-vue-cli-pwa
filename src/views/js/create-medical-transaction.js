@@ -65,7 +65,7 @@ export default {
       }
     },
     isImagesExist() {
-      this.images.length === 0 ? this.moveTo("home") : "";
+      this.images.length === 0 && this.moveTo("home") ;
     }
   },
   methods: {

@@ -7,22 +7,10 @@ export default {
   setImages({ commit }, img) {
     commit("SET_IMAGES", img);
   },
-  setOCRResultType({ commit }, data) {
-    commit("SET_OCR_RESULT_TYPE", data);
-  },
-  setFormEmpty({ commit }, data) {
-    commit("SET_OCR_RESULT", data);
-  },
   createTransaction: async ({ commit, rootState }, image) => {
     const { token } = rootState.auth;
-    const { id } = rootState.auth;
     const { data } = await transactionApi.createTransaction(image, token);
     commit("SET_OCR_RESULT", data);
-    commit("SET_OCR_RESULT_TYPE", data.data.category);
-    commit("ADD_IMAGE_FUEL", data.data.image);
-    commit("ADD_IMAGE_PARKING", data.data.image);
-    commit("ADD_USER_ID_FUEL", id);
-    commit("ADD_USER_ID_PARKING", id);
   },
   getTransaction: async ({ commit, rootState }, id) => {
     const { token } = rootState.auth;

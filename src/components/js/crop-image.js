@@ -1,5 +1,8 @@
 import { mapActions, mapGetters } from "vuex";
+import CommonMixins from "@/mixins/common-mixins";
+
 export default {
+  mixins: [CommonMixins],
   data() {
     return {
       myCroppa: null,
@@ -8,8 +11,14 @@ export default {
       height: 0
     };
   },
+  computed: {
+    ...mapGetters("transaction", ["image"]),
+    isContainingType(){
+      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
+    }
+  },
   methods: {
-    ...mapActions("transaction",["setImage"]), 
+    ...mapActions("transaction", ["setImage"]),
     generateImage() {
       if (this.myCroppa.hasImage()) {
         return this.myCroppa.generateDataUrl("image/jpg", 0.7);
@@ -26,11 +35,17 @@ export default {
     },
     rotateLeft() {
       this.myCroppa.rotate(-1);
-    }, 
-    moveToFilterImage(){ 
-      this.setImage(this.generateImage())
-      this.$router.push({name:"create-transaction-2"});
+    },
+    moveToFilterImage() {
+      this.setImage(this.generateImage());
+      this.$router.push({ name: "create-transaction-2" , 
+      query: {...this.$route.query}});
+    },
+    checkContainsType(){
+      this.isContainingType ? "" : this.$router.push({name: "home"})
     }
   },
-  computed: mapGetters("transaction", ["image"])
+  created() {
+    this.checkContainsType();
+  }
 };

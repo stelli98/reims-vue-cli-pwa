@@ -37,7 +37,7 @@ describe("CreateTransaction.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["router-view"],
+      stubs: ["router-view","GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };

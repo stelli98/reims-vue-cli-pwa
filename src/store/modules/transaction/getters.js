@@ -14,9 +14,6 @@ export default {
   images(state) {
     return state.images;
   },
-  OCRResultType(state) {
-    return state.OCRResultType;
-  },
   parking(state) {
     return state.parking;
   },

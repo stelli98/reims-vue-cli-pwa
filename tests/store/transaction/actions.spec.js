@@ -21,29 +21,6 @@ describe("Actions for Transactions Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_IMAGES", image);
   });
 
-  test("set OCR Result Type for transaction", () => {
-    const type = "FUEL";
-    const commit = jest.fn();
-    actions.setOCRResultType({ commit }, type);
-    expect(commit).toHaveBeenCalledWith("SET_OCR_RESULT_TYPE", type);
-  });
-
-  test("set form to be empty", () => {
-    const data = {
-      in: "",
-      out: "",
-      price: 0,
-      title: "",
-      type: "",
-      license: "",
-      location: "",
-      category: "PARKING"
-    };
-    const commit = jest.fn();
-    actions.setFormEmpty({ commit }, data);
-    expect(commit).toHaveBeenCalledWith("SET_OCR_RESULT", data);
-  });
-
   test("create Transaction for image, set ocr result and its type", async () => {
     api.createTransaction = jest.fn();
     const expectedValue = data.find(
@@ -61,23 +38,6 @@ describe("Actions for Transactions Module", () => {
     };
     await actions.createTransaction({ commit, rootState }, image);
     expect(commit).toHaveBeenCalledWith("SET_OCR_RESULT", expectedValue);
-    expect(commit).toHaveBeenCalledWith(
-      "SET_OCR_RESULT_TYPE",
-      expectedValue.data.category
-    );
-    expect(commit).toHaveBeenCalledWith(
-      "ADD_IMAGE_FUEL",
-      expectedValue.data.image
-    );
-    expect(commit).toHaveBeenCalledWith(
-      "ADD_IMAGE_PARKING",
-      expectedValue.data.image
-    );
-    expect(commit).toHaveBeenCalledWith("ADD_USER_ID_FUEL", rootState.auth.id);
-    expect(commit).toHaveBeenCalledWith(
-      "ADD_USER_ID_PARKING",
-      rootState.auth.id
-    );
   });
 
   test("get a transaction", async () => {

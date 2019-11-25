@@ -63,7 +63,57 @@ describe("CropImage.vue", () => {
     store = initializeStore();
   });
 
-  test("method generateImage", () => {
+
+  test("CropImage created", async () => {
+    const obj = {
+      checkContainsType: jest.fn(),
+     };
+    const created = CropImage.created.bind(obj);
+    created();
+    expect(obj.checkContainsType).toHaveBeenCalled();
+  });
+
+
+
+  test("checkContainsType method if params type is found", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.checkContainsType();
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  test("checkContainsType method if params type is not found", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: ""
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.checkContainsType();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test("method generateImage if hasImage is true", () => {
     const options = {
       data: () => {
         return {
@@ -72,6 +122,16 @@ describe("CropImage.vue", () => {
             generateDataUrl: jest.fn().mockReturnValue("data/image.png")
           }
         };
+      },
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
       }
     };
     wrapper = createWrapper(store.store, options);
@@ -79,6 +139,34 @@ describe("CropImage.vue", () => {
     wrapper.vm.generateImage();
     expect(spy1).toHaveBeenCalled();
     expect(wrapper.vm.generateImage()).toBe("data/image.png");
+  });
+
+  test("method generateImage if hasImage is false", () => {
+    const options = {
+      data: () => {
+        return {
+          myCroppa: {
+            hasImage: jest.fn().mockReturnValue(false),
+            generateDataUrl: jest.fn().mockReturnValue("data/image.png")
+          }
+        };
+      },
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy1 = jest.spyOn(wrapper.vm.myCroppa, "hasImage");
+    wrapper.vm.generateImage();
+    expect(spy1).toHaveBeenCalled();
+    expect(wrapper.vm.generateImage()).not.toBe("data/image.png");
   });
 
   test("method filpXImage", () => {
@@ -89,6 +177,16 @@ describe("CropImage.vue", () => {
             flipX: jest.fn()
           }
         };
+      },
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
       }
     };
     wrapper = createWrapper(store.store, options);
@@ -105,6 +203,16 @@ describe("CropImage.vue", () => {
             flipY: jest.fn()
           }
         };
+      },
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
       }
     };
     wrapper = createWrapper(store.store, options);
@@ -121,6 +229,16 @@ describe("CropImage.vue", () => {
             rotate: jest.fn()
           }
         };
+      },
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
       }
     };
     wrapper = createWrapper(store.store, options);
@@ -137,6 +255,16 @@ describe("CropImage.vue", () => {
             rotate: jest.fn()
           }
         };
+      },  
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
+        }
       }
     };
     wrapper = createWrapper(store.store, options);
@@ -158,6 +286,11 @@ describe("CropImage.vue", () => {
       mocks: {
         $router: {
           push: jest.fn()
+        },
+        $route: {
+          query: {
+            type: "fuel"
+          }
         }
       }
     };

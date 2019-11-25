@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import ParkingForm from "@/components/ParkingForm.vue";
 import FuelForm from "@/components/FuelForm.vue";
 import Vue from "vue";
@@ -34,32 +34,35 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("transaction", ["OCRResultType"]),
     ...mapGetters("transaction", ["image"]),
     currentComponent() {
-      return this.OCRResultType;
+      return this.$route.query.type.toUpperCase();
     },
     isSwitchOn() {
       return this.currentComponent ? this.tabs[this.currentComponent].show : "";
+    },
+    isContainingType(){
+      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
     }
   },
   created() {
+    this.checkContainsType();
     this.checkContainsImage();
   },
   methods: {
-    ...mapActions("transaction", ["setOCRResultType", "setFormEmpty"]),
-    toggle() {
-      this.setOCRResultType(
-        TOGGLE_BUTTON[(!this.isSwitchOn).toString()].component
-      );
-    },
     submitForm() {
       this.bus.$emit(TOGGLE_BUTTON[this.isSwitchOn.toString()].action);
     },
-    checkContainsImage() {
-      if (!this.image) {
-        this.moveTo("create-transaction-1");
+    checkContainsImage(){
+      if (!this.image && this.isContainingType) {
+        this.reUploadImage();
       }
+    },
+    checkContainsType(){
+      this.isContainingType ? "" : this.moveTo('home')
+    },
+    reUploadImage(){
+      this.$router.push({name:"create-transaction-1", query:{...this.$route.query}})
     }
   }
 };
