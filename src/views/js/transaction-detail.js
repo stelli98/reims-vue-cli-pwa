@@ -16,6 +16,9 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["transaction", "viewImage"]),
+    isNonOCRTransaction(){
+        this.transaction.category === "MEDICAL" 
+    },
     transactionId() {
       return this.$route.params.id;
     },

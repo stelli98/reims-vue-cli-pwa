@@ -104,7 +104,7 @@
     }
 
     &--show {
-      background-color: #212121;
+      background-color: $color-black;
       border-radius: 3px;
       color: #fff;
       right: 75px;
