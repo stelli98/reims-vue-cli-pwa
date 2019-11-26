@@ -11,7 +11,7 @@ import ChangePasswordPage from "./views/ChangePasswordPage";
 import CropImage from "./components/CropImage";
 import FilterImage from "./components/FilterImage";
 import TransactionForm from "./components/TransactionForm";
-import CreateMedicalTransaction from "./views/CreateMedicalTransaction"; 
+import CreateMedicalTransaction from "./views/CreateMedicalTransaction";
 import UserDetail from "./views/UserDetail";
 import CreateUser from "./views/CreateUser";
 import AddFamily from "./views/AddFamily";
@@ -29,28 +29,28 @@ const router = new Router({
     },
     {
       path: "/home",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/",
-      // beforeEnter: checkAuthUser,
-      component: CreateTransaction, 
+      beforeEnter: checkAuthUser,
+      component: CreateTransaction,
       children: [
         {
           path: '1',
-          name:"create-transaction-1",
+          name: "create-transaction-1",
           component: CropImage
         },
         {
           path: '2',
-          name:"create-transaction-2",
+          name: "create-transaction-2",
           component: FilterImage
         },
         {
           path: '3',
-          name:"create-transaction-3",
+          name: "create-transaction-3",
           component: TransactionForm
         }
       ]
@@ -63,7 +63,7 @@ const router = new Router({
     },
     {
       path: "/users",
-      // beforeEnter: checkAuthAdmin, 
+      beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
@@ -99,7 +99,7 @@ const router = new Router({
     },
     {
       path: "/users/:id/change-password",
-      name:"change-password", 
+      name: "change-password",
       component: ChangePasswordPage
     },
     {
@@ -115,29 +115,29 @@ const router = new Router({
   ]
 });
 
-function checkAuthUser(to, from, next) {
-  // if (!!store.state.auth.token && store.state.auth.role === "USER") {
-  //   next();
-  // } else {
-  //   const notification = {
-  //     type: "error",
-  //     message: "You are not authorized. Please login again."
-  //   };
-  //   store.dispatch("notification/addNotification", notification);
-  // next("/login");
-  // }
+function checkAuthUser (to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "USER") {
+    next();
+  } else {
+    const notification = {
+      type: "error",
+      message: "You are not authorized. Please login again."
+    };
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
+  }
 }
 
-function checkAuthAdmin(to, from, next) {
-  // if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
-  //   next();
-  // } else {
-  //   const notification = {
-  //     type: "error",
-  //     message: "You are not authorized. Please login again."
-  //   };
-  //   store.dispatch("notification/addNotification", notification);
-  // next("/login");
-  // }
+function checkAuthAdmin (to, from, next) {
+  if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
+    next();
+  } else {
+    const notification = {
+      type: "error",
+      message: "You are not authorized. Please login again."
+    };
+    store.dispatch("notification/addNotification", notification);
+    next("/login");
+  }
 }
 export default router;
