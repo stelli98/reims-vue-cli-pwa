@@ -28,26 +28,24 @@ export default {
       this.isSending = value;
     },
     async checkDataInIDB() {
-      const images = await offlineService
-        .getAllDataFromIndexedDB(imageIdb)
-        .then(images =>
-          images.filter(x => {
-            return x.userId == this.id;
-          })
-        );
-      const forms = await offlineService
-        .getAllDataFromIndexedDB(formIdb)
-        .then(forms => {
-          return forms.filter(x => {
-            return x.userId == this.id;
-          });
-        });
+      const images = await this.getAllImagesFromCurrentUserId();
+      const forms = await this.getAllFormsFromCurrentUserId();
       if (images.length > 0 || forms.length > 0) {
         this.setSendingData(true);
         this.sendDataToServer(images, forms);
       } else {
         this.setSendingData(false);
       }
+    },
+    async getAllImagesFromCurrentUserId() {
+      return await offlineService
+        .getAllDataFromIndexedDB(imageIdb)
+        .then(images => this.checkImagesByUserId(images));
+    },
+    async getAllFormsFromCurrentUserId() {
+      return await offlineService
+        .getAllDataFromIndexedDB(formIdb)
+        .then(forms => this.checkFormsByUserId(forms));
     },
     sendDataToServer(images, forms) {
       if (images.length > 0 && forms.length > 0) {
@@ -59,10 +57,10 @@ export default {
       }
     },
     checkImagesByUserId(images) {
-      return images.find(image => image.userId == this.id);
+      return images.filter(image => image.userId == this.id);
     },
     checkFormsByUserId(forms) {
-      return forms.find(form => form.userId == this.id);
+      return forms.filter(form => form.userId == this.id);
     },
     sendOnlyFormToServer(form) {
       transactionApi.saveTransaction(form, this.token).then(() => {
