@@ -69,7 +69,7 @@ describe("UserCard.vue", () => {
     expect(wrapper.vm.userName).toBe("Munawan Sa...");
   });
 
-  test("Should be calling deleteUser actions", () => {
+  test("Should be calling deleteUser actions", async () => {
     const options = {
       mocks: {
         $router: {
@@ -79,8 +79,10 @@ describe("UserCard.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     const spyActionDeleteUser = jest.spyOn(store.actions, "deleteUser");
-    wrapper.vm.removeUser(1);
+    await wrapper.vm.removeUser(1);
     expect(spyActionDeleteUser).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.emitted("deleteAnUser")).toBeTruthy();
+    });
   });
-
 });

@@ -10,8 +10,8 @@ export default {
     userId() {
       return this.$route.params.id;
     },
-    disabledAddFamilyButton(){
-      return this.userFamilies.length == 4
+    disabledAddFamilyButton() {
+      return this.userFamilies.length == 4;
     }
   },
   methods: {
@@ -27,17 +27,19 @@ export default {
       return this.expandedGroup.indexOf(index) !== -1;
     },
     moveTo(page, id) {
-      const ID = id ? id : this.userId
-      this.$router.push({ name: page , params: {id: ID}});
+      const ID = id ? id : this.userId;
+      this.$router.push({ name: page, params: { id: ID } });
     },
     removeUserFamily(id) {
-      this.deleteUserFamily(id);
+      this.deleteUserFamily(id).then(() => {
+        this.getUserFamilyDetailByUserId(this.userId);
+      });
     },
-    addNewUserFamily(){
-      this.disabledAddFamilyButton ? null : this.moveTo('add-family')
+    addNewUserFamily() {
+      this.disabledAddFamilyButton ? null : this.moveTo("add-family");
     },
-    iconClass(index){
-      return this.isExpandedGroup(index) ? "up" : "down"
+    iconClass(index) {
+      return this.isExpandedGroup(index) ? "up" : "down";
     }
   },
   created() {

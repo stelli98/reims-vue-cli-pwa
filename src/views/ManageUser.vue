@@ -14,7 +14,7 @@
           <input type="text" placeholder="search by name" @keyup="submitSearch" />
         </div>
       </div>
-      <UserList v-if="users.length" :users="users" />
+      <UserList v-if="users.length" :users="users" @deleteUser="updateUser"/>
       <Pagination :paging="pagination" @changePage="changePage" />
     </div>
     <div class="bottom-navigation manage-user__navigation" @click="moveTo('user-create')">

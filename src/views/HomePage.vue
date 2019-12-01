@@ -29,6 +29,7 @@
     <TransactionList
       :transactions="transactions"
       @openFilter="toogleFilter"
+      @deleteTransaction="updateTransaction"
     />
     <Pagination :paging="pagination" @changePage="changePage" />
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>

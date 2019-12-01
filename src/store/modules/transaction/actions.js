@@ -28,17 +28,16 @@ export default {
     const { data } = await transactionApi.saveTransaction(transaction, token);
     return data;
   },
-  deleteTransaction: ({ commit, rootState }, id) => {
-    commit("DELETE_TRANSACTION", id);
+  deleteTransaction: async ({ rootState }, id) => {
     const { token } = rootState.auth;
-    transactionApi.deleteTransaction(id, token);
+    await transactionApi.deleteTransaction(id, token);
   },
   getViewImage: async ({ commit, rootState }, link) => {
     const { token } = rootState.auth;
     const { data } = await transactionApi.getViewImage(link, token);
     commit("SET_VIEW_IMAGE", data);
   },
-  createMedicalTransaction: async ({ rootState },data) => {
+  createMedicalTransaction: async ({ rootState }, data) => {
     const { token } = rootState.auth;
     await transactionApi.createMedicalTransaction(data, token);
   }

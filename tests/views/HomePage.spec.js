@@ -1,29 +1,10 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import HomePage from "@/views/HomePage";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.transactions;
-const routes = [
-  {
-    path: "/login",
-    name: "login"
-  },
-  {
-    path: "/transactions/create/:step",
-    name: "create"
-  },
-  {
-    path: "/transactions/edit-profile",
-    name: "edit-profile"
-  },
-  {
-    path: "/home",
-    name: "home"
-  }
-];
 
 describe("HomePage.vue", () => {
   let store;
@@ -96,65 +77,145 @@ describe("HomePage.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes });
-    return shallowMount(HomePage, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
-      router,
       stubs: ["TransactionList", "Pagination", "SortFilter"],
       sync: false
-    });
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(HomePage, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-    wrapper = createWrapper(store.store);
   });
 
   test("method toogleFilter", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
     wrapper.vm.toogleFilter(true);
     expect(wrapper.vm.showFilter).toBe(true);
   });
 
   test("methods changePage", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            page: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.changePage(2);
-    expect(wrapper.vm.$route.query.page).toBe(2);
+    expect(spyRouterPush).toHaveBeenCalled();
   });
-  
+
   test("methods doLogout", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            page: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(store.actions.auth, "logout");
     wrapper.vm.doLogout();
     expect(spy).toHaveBeenCalled();
   });
 
   test("methods updateTransaction if there is no transactions", async () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            page: 2
+          }
+        }
+      },
+      computed:{
+        transactions(){
+          return []
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
     const spyAction = jest.spyOn(store.actions.transaction, "getTransactions");
     store.state.transaction.transactions = [];
     const spyChangePage = jest.spyOn(wrapper.vm, "changePage");
+    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
     await wrapper.vm.updateTransaction();
     expect(spyAction).toHaveBeenCalled();
     wrapper.vm.$nextTick(() => {
       expect(spyChangePage).toHaveBeenCalled();
-      expect(wrapper.vm.$route.query.page).toBe(1);
+      expect(spyRouterPush).toHaveBeenCalled();
     });
   });
 
   test("methods download", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            page: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(store.actions.user, "downloadPersonalReport");
     wrapper.vm.download();
     expect(spy).toHaveBeenCalled();
   });
 
   test("methods toggleActionButton", () => {
-    var expectedValue = true
-    wrapper.vm.toggleActionButton(expectedValue)
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            page: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    var expectedValue = true;
+    wrapper.vm.toggleActionButton(expectedValue);
     expect(wrapper.vm.actionButtonActive).toBe(expectedValue);
   });
-
 });

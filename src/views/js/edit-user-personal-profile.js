@@ -45,7 +45,7 @@ export default {
       get() {
         return this.user.dateOfBirth
           ? new Date(this.user.dateOfBirth).toISOString()
-          : "";
+          : this.minDateOfBirth;
       }
     }
   },

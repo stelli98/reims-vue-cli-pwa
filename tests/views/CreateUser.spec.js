@@ -40,7 +40,7 @@ describe("FuelForm.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime","GlobalHeader"],
+      stubs: ["Datetime", "GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -69,7 +69,7 @@ describe("FuelForm.vue", () => {
     expect(spyMoveTo).not.toHaveBeenCalled();
   });
 
-  test("sendCreateUserForm method if user data is filled", () => {
+  test("sendCreateUserForm method if user data is filled", async () => {
     const options = {
       mocks: {
         $router: {
@@ -88,9 +88,11 @@ describe("FuelForm.vue", () => {
     };
     const spyCreateUser = jest.spyOn(store.actions, "createUser");
     const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
-    wrapper.vm.sendCreateUserForm();
+    await wrapper.vm.sendCreateUserForm();
     expect(spyCreateUser).toHaveBeenCalled();
-    expect(spyMoveTo).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyMoveTo).toHaveBeenCalled();
+    });
   });
 
   test("formatDate computed setter getter", () => {

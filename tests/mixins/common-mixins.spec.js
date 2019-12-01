@@ -30,7 +30,7 @@ describe("CommonMixins", () => {
 
     it("minDateOfBirth computed", () => {
       const mixins = CommonMixins.computed.minDateOfBirth
-      expect(mixins()).toBe(new Date(1954,1,1).toISOString())
+      expect(mixins()).toBe(new Date(1979,1,1).toISOString())
     });
 
     it("moveTo method", () => {

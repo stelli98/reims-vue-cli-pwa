@@ -25,7 +25,11 @@ export default {
     ...mapActions("user", ["getUsers"]),
     ...mapActions("auth", ["logout"]),
     updateUser() {
-      this.getUsers(this.options);
+      this.getUsers(this.options).then(() => {
+        if (this.users.length === 0 && this.$route.query.page != 1) {
+          this.changePage(1);
+        }
+      });
     },
     changePage(toPage) {
       this.options.page = parseInt(toPage);
@@ -39,16 +43,11 @@ export default {
     },
     doLogout() {
       this.logout().then(() => {
-        this.moveTo("login")
+        this.moveTo("login");
       });
     }
   },
-  watch: {
-    options() {
-      this.updateUser();
-    }
-  },
-  mounted() {
+  created() {
     this.$router.push({ query: { ...this.options, ...this.$route.query } });
     this.updateUser();
   }

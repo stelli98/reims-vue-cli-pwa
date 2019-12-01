@@ -119,9 +119,7 @@ describe("Actions for Transactions Module", () => {
         token: "Bearer 123"
       }
     };
-    const commit = jest.fn();
-    actions.deleteTransaction({ commit, rootState }, id);
-    expect(commit).toHaveBeenCalledWith("DELETE_TRANSACTION", id);
+    actions.deleteTransaction({ rootState }, id);
     expect(api.deleteTransaction).toHaveBeenCalledWith(
       id,
       rootState.auth.token
@@ -170,7 +168,7 @@ describe("Actions for Transactions Module", () => {
       }
     };
 
-    await actions.createMedicalTransaction({  rootState }, medical);
+    await actions.createMedicalTransaction({ rootState }, medical);
     expect(api.createMedicalTransaction).toHaveBeenCalledWith(
       medical,
       rootState.auth.token

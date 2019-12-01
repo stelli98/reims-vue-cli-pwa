@@ -82,10 +82,13 @@ describe("TransactionCard.vue", () => {
     expect(wrapper.vm.transactionTitle).toBe("Bensin PP Thamrin - ...");
   });
 
-  test("Should be calling deleteTransaction actions", () => {
+  test("Should be calling deleteTransaction actions", async () => {
     const spy = jest.spyOn(store.actions, "deleteTransaction");
     const transactionId = 1;
-    wrapper.vm.removeTransaction(transactionId);
+    await wrapper.vm.removeTransaction(transactionId);
     expect(spy).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.emitted("deleteATransaction")).toBeTruthy();
+    });
   });
 });

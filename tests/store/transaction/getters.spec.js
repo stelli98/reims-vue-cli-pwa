@@ -18,6 +18,14 @@ describe("transaction getters", () => {
     expect(transactions).toBe(state.transactions);
   });
 
+  test("Get transactions from transaction module", () => {
+    const state = {
+      transactions: undefined
+    };
+    const transactions = getters.transactions(state);
+    expect(transactions).toEqual([]);
+  });
+
   test("Get transaction from transaction module", () => {
     const state = {
       transaction: expectedValueParking.data

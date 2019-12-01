@@ -1,4 +1,10 @@
-import { minLength, required, requiredIf } from "vuelidate/lib/validators";
+import {
+  minLength,
+  required,
+  not,
+  requiredIf,
+  sameAs
+} from "vuelidate/lib/validators";
 import { Datetime } from "vue-datetime";
 import { mapActions } from "vuex";
 import CommonMixins from "@/mixins/common-mixins";
@@ -11,7 +17,11 @@ export default {
     user: {
       username: { required, minLength: minLength(3) },
       dateOfBirth: { required },
-      password: { required, minLength: minLength(6) },
+      password: {
+        required,
+        minLength: minLength(6),
+        isNotSameAsUsername: not(sameAs("username"))
+      },
       role: { required },
       gender: { required },
       division: { required },
@@ -56,7 +66,7 @@ export default {
       get() {
         return this.user.dateOfBirth
           ? new Date(this.user.dateOfBirth).toISOString()
-          : "";
+          : this.minDateOfBirth;
       }
     }
   },
@@ -66,8 +76,9 @@ export default {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
-        this.createUser(this.user);
-        this.moveTo("user");
+        this.createUser(this.user).then(() => {
+          this.moveTo("user");
+        });
       }
     }
   }
