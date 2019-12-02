@@ -26,7 +26,6 @@ export default {
   methods: {
     ...mapActions("transaction", [
       "createTransaction",
-      "setOCRResultType",
       "setImage"
     ]),
     ...mapActions("notification", ["addNotification"]),
@@ -81,7 +80,6 @@ export default {
           this.addNotification(notification);
         })
         .catch(() => {
-          this.setOCRResultType("FUEL");
           const notification = {
             type: "error",
             message:

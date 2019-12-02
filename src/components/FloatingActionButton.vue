@@ -12,8 +12,8 @@
       </div>
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Parking</p>
-        <input type="file" id="fuel-parking" @change="onOCRFileChange($event,'parking')" />
-        <label for="fuel-parking" class="mini-action-button__icon">
+        <input type="file" id="parking" @change="onOCRFileChange($event,'parking')" />
+        <label for="parking" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-parking" />
           </svg>
@@ -21,8 +21,8 @@
       </div>
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Fuel</p>
-        <input type="file" id="fuel-parking" @change="onOCRFileChange($event,'fuel')" />
-        <label for="fuel-parking" class="mini-action-button__icon">
+        <input type="file" id="fuel" @change="onOCRFileChange($event,'fuel')" />
+        <label for="fuel" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-fuel" />
           </svg>
@@ -159,7 +159,8 @@
   }
 }
 
-#fuel-parking,
+#fuel,
+#parking,
 #medical   {
   position: absolute;
   width: 4rem;
