@@ -1,5 +1,5 @@
 const baseUrl =
-  !process.env.NODE_ENV === "development" ? `http://localhost:9095` : "";
+  process.env.NODE_ENV === "production" ? `http://localhost:9095` : "";
 
 module.exports = {
   api: {

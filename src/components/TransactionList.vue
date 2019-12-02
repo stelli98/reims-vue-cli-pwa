@@ -22,7 +22,7 @@
     </div>
     <div class="transaction__list">
       <div v-for="(transaction,index) in transactions" :key="index">
-        <TransactionCard :key="transaction.id" :transaction="transaction" />
+        <TransactionCard :key="transaction.id" :transaction="transaction" @deleteATransaction="deleteTransaction"/>
       </div>
     </div>
     <PopUpModalRoot/>

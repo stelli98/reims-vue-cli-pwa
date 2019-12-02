@@ -16,7 +16,7 @@ export default {
     ...mapActions("user", ["deleteUser"]),
     removeUser(id) {
       this.deleteUser(id).then(() => {
-        this.moveTo('user')
+        this.$emit('deleteAnUser');
       });
     }
   }

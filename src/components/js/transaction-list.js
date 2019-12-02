@@ -31,6 +31,9 @@ export default {
         component: DownloadPopUp,
         title: "Download Report"
       });
+    },
+    deleteTransaction(){
+      this.$emit('deleteTransaction')
     }
   }
 };

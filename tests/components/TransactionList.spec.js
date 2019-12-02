@@ -51,4 +51,10 @@ describe("TransactionList.vue", () => {
     wrapper.vm.downloadReport();
     expect(spyModalBus).toHaveBeenCalled();
   });
+
+  test("Emit deleteTransaction", () => {
+    wrapper = createWrapper();
+    wrapper.vm.deleteTransaction();
+    expect(wrapper.emitted('deleteTransaction')).toBeTruthy();
+  });
 });

@@ -7,7 +7,7 @@ export default {
             return new Date(2000,0,1).toISOString();
         },
         minDateOfBirth(){
-            return new Date(1954,1,1).toISOString();
+            return new Date(1979,1,1).toISOString();
         },
         id() {
             return this.$route.params.id;

@@ -33,7 +33,7 @@ export default {
       get() {
         return this.family.dateOfBirth
           ? new Date(this.family.dateOfBirth).toISOString()
-          : "";
+          : this.minDateOfBirth;
       }
     }
   },

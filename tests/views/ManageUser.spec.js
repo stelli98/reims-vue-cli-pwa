@@ -1,29 +1,10 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import ManageUser from "@/views/ManageUser.vue";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.users;
-const routes = [
-  {
-    path: "/login",
-    name: "login"
-  },
-  {
-    path: "/users",
-    name: "user"
-  },
-  {
-    path: "/users/create",
-    name: "user-create"
-  },
-  {
-    path: "/home",
-    name: "home"
-  }
-];
 
 describe("ManageUser.vue", () => {
   let store;
@@ -85,49 +66,128 @@ describe("ManageUser.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes });
-    return shallowMount(ManageUser, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
-      router,
       stubs: ["UserList", "Pagination"],
       sync: false
-    });
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(ManageUser, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-    wrapper = createWrapper(store.store);
+  });
+
+  test("created Method", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
+    const spyActionGetUser = jest.spyOn(store.actions.user, "getUsers");
+    expect(spyRouter).toHaveBeenCalled();
+    expect(spyActionGetUser).toHaveBeenCalled();
   });
 
   test("methods changePage", () => {
-    const spy = jest.spyOn(store.actions.user, "getUsers");
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActionGetUser = jest.spyOn(store.actions.user, "getUsers");
+    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.changePage(2);
-    expect(wrapper.vm.$route.query.page).toBe(2);
-    expect(spy).toHaveBeenCalled();
+    expect(spyRouter).toHaveBeenCalled();
+    expect(spyActionGetUser).toHaveBeenCalled();
   });
 
   test("methods submitSearch", () => {
-    const spy = jest.spyOn(store.actions.user, "getUsers");
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActionGetUser = jest.spyOn(store.actions.user, "getUsers");
+    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
     const event = {
       target: {
         value: "Fuel"
       }
     };
     wrapper.vm.submitSearch(event);
-    expect(wrapper.vm.$route.query.search).toBe(event.target.value);
-    expect(spy).toHaveBeenCalled();
+    expect(spyActionGetUser).toHaveBeenCalled();
+    expect(spyRouter).toHaveBeenCalled();
   });
 
   test("methods doLogout", () => {
-    const spy = jest.spyOn(store.actions.auth, "logout");
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActionLogout = jest.spyOn(store.actions.auth, "logout");
+    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.doLogout();
-    expect(spy).toHaveBeenCalled();
+    expect(spyActionLogout).toHaveBeenCalled();
+    expect(spyRouter).toHaveBeenCalled();
+  });
+
+  test("methods updateUser", async () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {}
+        }
+      },
+      computed: {
+        users() {
+          return [];
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActionGetUser = jest.spyOn(store.actions.user, "getUsers");
+    const spyChangePage = jest.spyOn(wrapper.vm, "changePage");
+    await wrapper.vm.updateUser();
+    expect(spyActionGetUser).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyChangePage).toHaveBeenCalled();
+    });
   });
 });

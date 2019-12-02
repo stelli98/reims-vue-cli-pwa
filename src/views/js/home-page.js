@@ -1,7 +1,8 @@
 const TransactionList = () => import("@/components/TransactionList");
 const Pagination = () => import("@/components/Pagination.vue");
 const SortFilter = () => import("@/components/SortFilter.vue");
-const FloatingActionButton = () => import("@/components/FloatingActionButton.vue");
+const FloatingActionButton = () =>
+  import("@/components/FloatingActionButton.vue");
 import { mapActions, mapGetters } from "vuex";
 import CommonMixins from "@/mixins/common-mixins";
 
@@ -42,7 +43,7 @@ export default {
     },
     updateTransaction() {
       this.getTransactions(this.$route.query).then(() => {
-        if (this.transactions.length == 0) {
+        if (this.transactions.length == 0 && this.$route.query.page != 1) {
           this.changePage(1);
         }
       });
@@ -57,11 +58,6 @@ export default {
     },
     toggleActionButton(value) {
       this.actionButtonActive = value;
-    }
-  },
-  watch: {
-    $route() {
-      this.updateTransaction();
     }
   },
   mounted() {

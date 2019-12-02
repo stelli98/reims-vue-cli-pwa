@@ -29,5 +29,8 @@ describe("UserList.vue", () => {
     wrapper = createWrapper();
   });
 
-  test("Emit updateUsers", () => {});
+  test("Emit deleteUser", () => {
+    wrapper.vm.deleteUser();
+    expect(wrapper.emitted('deleteUser')).toBeTruthy()
+  });
 });

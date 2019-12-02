@@ -20,7 +20,7 @@ export default {
         this.userFamily.dateOfBirth = newValue;
       },
       get() {
-        return this.userFamily.dateOfBirth ? new Date(parseInt(this.userFamily.dateOfBirth)).toISOString() : "";
+        return this.userFamily.dateOfBirth ? new Date(parseInt(this.userFamily.dateOfBirth)).toISOString() : this.minDateOfBirth;
       }
     }
   },

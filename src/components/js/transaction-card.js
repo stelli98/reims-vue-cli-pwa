@@ -19,7 +19,7 @@ export default {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
       this.deleteTransaction(id).then(() => {
-        this.moveTo("home")
+        this.$emit('deleteATransaction')
       });
     }
   }

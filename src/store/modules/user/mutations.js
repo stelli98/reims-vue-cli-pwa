@@ -8,14 +8,10 @@ export default {
   SET_PAGINATION(state, { paging }) {
     state.pagination = paging;
   },
-  DELETE_USER(state, id) {
-    state.users = state.users.filter(x => x.id != id);
-  },
   SET_USER_FAMILIES(state, { data }){
     state.userFamilies = data
   },
   SET_USER_FAMILY(state, { data }){
     state.userFamily = data
   }
-
 };

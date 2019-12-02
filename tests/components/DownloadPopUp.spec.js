@@ -85,7 +85,7 @@ describe("DownloadPopUp.vue", () => {
         }
       }
     };
-    const expectedValue = [
+    const monthsData = [
       "January",
       "February",
       "March",
@@ -96,10 +96,12 @@ describe("DownloadPopUp.vue", () => {
       "August",
       "September",
       "October",
-      "November"
+      "November",
+      "December"
     ];
+    const expectedValue = new Date().getMonth();
     wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.months).toEqual(expectedValue);
+    expect(wrapper.vm.months[wrapper.vm.months.length-1]).toEqual(monthsData[expectedValue]);
   });
 
   test("selectedMonth computed if selectedYear is before the current year", () => {

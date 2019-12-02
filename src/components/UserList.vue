@@ -5,6 +5,7 @@
       :key="user.id"
       :user="user"
       :index="index"
+      @deleteAnUser="deleteUser"
     />
     </div>
   </div>

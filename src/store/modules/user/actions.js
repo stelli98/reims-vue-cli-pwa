@@ -22,11 +22,9 @@ export default {
     const response = await userApi.updateUser(data.id, data, token);
     return response;
   },
-  deleteUser: async ({ commit, rootState }, id) => {
-    commit("DELETE_USER", id);
+  deleteUser: async ({ rootState }, id) => {
     const { token } = rootState.auth;
-    const data = await userApi.deleteUser(id, token);
-    return data;
+    await userApi.deleteUser(id, token);
   },
   downloadPersonalReport: ({ rootState }, options) => {
     const { token } = rootState.auth;
@@ -47,9 +45,9 @@ export default {
     const { data } = await userApi.getFamilyDetailByFamilyId(id, token);
     commit("SET_USER_FAMILY", data);
   },
-  addFamilyToUser: async ({ rootState }, [id,data]) => {
+  addFamilyToUser: async ({ rootState }, [id, data]) => {
     const { token } = rootState.auth;
-    await userApi.addFamilyToUser(id,data, token);
+    await userApi.addFamilyToUser(id, data, token);
   },
   updateUserFamily: async ({ rootState }, [id, data]) => {
     const { token } = rootState.auth;
