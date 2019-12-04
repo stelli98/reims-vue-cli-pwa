@@ -16,4 +16,16 @@ if (workbox) {
     new RegExp("/api"),
     new workbox.strategies.NetworkOnly()
   );
+  
+  const bgSyncPlugin = new workbox.backgroundSync.Plugin("medicalsOffline", {
+    maxRetentionTime: 24 * 60 // Retry for max of 24 Hours
+  });
+
+  workbox.routing.registerRoute(
+    new RegExp("/api/medicals"),
+    workbox.strategies.networkOnly({
+      plugins: [bgSyncPlugin]
+    }),
+    "POST"
+  );
 }
