@@ -43,7 +43,7 @@ export default {
       this.$v.family.$touch();
       if (!this.$v.family.$invalid) {
         this.family.dateOfBirth = new Date(this.family.dateOfBirth).getTime();
-        this.addFamilyToUser([this.userId, this.family]);
+        this.addFamilyToUser([this.id, this.family]);
         this.moveToWithParamsRouteId('user-detail')
       }
     }

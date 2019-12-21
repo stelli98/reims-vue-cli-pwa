@@ -1,6 +1,7 @@
 import config from "@/config";
 const api = config.api;
 export default [
+  //get transaction fuel category first page (INT)
   {
     code: 200,
     method: "GET",
@@ -11,15 +12,16 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "date"
+      sortBy: "date",
+      category: "fuel"
     },
     status: "OK",
     data: [
       {
         id: 1,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel1 Tanggal 20",
         amount: 25000
       },
       {
@@ -31,9 +33,9 @@ export default [
       },
       {
         id: 3,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel Tanggal 20",
         amount: 25000
       },
       {
@@ -45,9 +47,9 @@ export default [
       },
       {
         id: 5,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel Tanggal 20",
         amount: 25000
       }
     ],
@@ -58,6 +60,7 @@ export default [
       totalRecords: 10
     }
   },
+  //get transaction fuel category second page (INT)
   {
     code: 200,
     method: "GET",
@@ -65,7 +68,8 @@ export default [
     params: {
       page: 2,
       size: 5,
-      sortBy: "createdAt"
+      sortBy: "date",
+      category: "fuel"
     },
     status: "OK",
     data: [
@@ -73,7 +77,7 @@ export default [
         id: 6,
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Jakarta - Bandung",
+        title: "Fuel Page 2 PP Jakarta - Bandung",
         amount: 25000
       },
       {
@@ -85,33 +89,27 @@ export default [
       },
       {
         id: 8,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Bus Mini",
+        title: "Fuel Bus Mini",
         amount: 25000
       },
       {
         id: 9,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Motor GI",
-        amount: 25000
-      },
-      {
-        id: 10,
-        category: "parking",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 6",
+        title: "Fuel Motor GI",
         amount: 25000
       }
     ],
     paging: {
-      pageNumber: 1,
+      pageNumber: 2,
       pageSize: 5,
       totalPages: 2,
-      totalRecords: 10
+      totalRecords: 9
     }
   },
+  //get transaction fuel category first page (STRING)
   {
     code: 200,
     method: "GET",
@@ -122,15 +120,16 @@ export default [
     params: {
       page: "1",
       size: "5",
-      sortBy: "date"
+      sortBy: "date",
+      category: "fuel"
     },
     status: "OK",
     data: [
       {
         id: 1,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel1 Tanggal 20",
         amount: 25000
       },
       {
@@ -142,9 +141,9 @@ export default [
       },
       {
         id: 3,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel Tanggal 20",
         amount: 25000
       },
       {
@@ -156,9 +155,9 @@ export default [
       },
       {
         id: 5,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
+        title: "Fuel Tanggal 20",
         amount: 25000
       }
     ],
@@ -169,6 +168,7 @@ export default [
       totalRecords: 10
     }
   },
+  //get transaction fuel category second page (STRING)
   {
     code: 200,
     method: "GET",
@@ -176,7 +176,8 @@ export default [
     params: {
       page: "2",
       size: "5",
-      sortBy: "createdAt"
+      sortBy: "date",
+      category: "fuel"
     },
     status: "OK",
     data: [
@@ -184,7 +185,7 @@ export default [
         id: 6,
         category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Jakarta - Bandung",
+        title: "Fuel Page 2 PP Jakarta - Bandung",
         amount: 25000
       },
       {
@@ -196,31 +197,218 @@ export default [
       },
       {
         id: 8,
-        category: "parking",
+        category: "fuel",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Bus Mini",
+        title: "Fuel Bus Mini",
         amount: 25000
       },
       {
         id: 9,
+        category: "fuel",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Fuel Motor GI",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 2,
+      pageSize: 5,
+      totalPages: 2,
+      totalRecords: 9
+    }
+  },
+  //get transaction parking first page (INT)
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction,
+    headers: {
+      authorization: "Bearer 123"
+    },
+    params: {
+      page: 1,
+      size: 5,
+      sortBy: "date",
+      category: "parking"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 11,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Motor GI",
+        title: "Parkir Tanggal 20",
         amount: 25000
       },
       {
-        id: 10,
+        id: 12,
         category: "parking",
         date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 6",
+        title: "Parkir Tanggal 21",
+        amount: 25000
+      },
+      {
+        id: 13,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 22",
         amount: 25000
       }
     ],
     paging: {
       pageNumber: 1,
       pageSize: 5,
-      totalPages: 2,
-      totalRecords: 10
+      totalPages: 1,
+      totalRecords: 3
+    }
+  },
+  //get transaction parking first page (STRING)
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.transaction,
+    headers: {
+      authorization: "Bearer 123"
+    },
+    params: {
+      page: "1",
+      size: "5",
+      sortBy: "date",
+      category: "parking"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 11,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 12,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 21",
+        amount: 25000
+      },
+      {
+        id: 13,
+        category: "parking",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Parkir Tanggal 22",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPages: 1,
+      totalRecords: 3
+    }
+  },
+  //get transaction medical first page (INT)
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.medical,
+    headers: {
+      authorization: "Bearer 123"
+    },
+    params: {
+      page: 1,
+      size: 5,
+      sortBy: "date",
+      category: "medical"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 14,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Obat Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 15,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Medical Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 16,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Obat Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 17,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Medical Tanggal 20",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPages: 1,
+      totalRecords: 3
+    }
+  },
+  //get transaction medical first page (STRING)
+  {
+    code: 200,
+    method: "GET",
+    url: api.transactions.medical,
+    headers: {
+      authorization: "Bearer 123"
+    },
+    params: {
+      page: "1",
+      size: "5",
+      sortBy: "date",
+      category: "medical"
+    },
+    status: "OK",
+    data: [
+      {
+        id: 14,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Obat Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 15,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Medical Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 16,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Obat Tanggal 20",
+        amount: 25000
+      },
+      {
+        id: 17,
+        category: "medical",
+        date: "2019-05-06T12:06:00.000Z",
+        title: "Medical Tanggal 20",
+        amount: 25000
+      }
+    ],
+    paging: {
+      pageNumber: 1,
+      pageSize: 5,
+      totalPages: 1,
+      totalRecords: 3
     }
   },
   {
@@ -711,18 +899,18 @@ export default [
     status: "OK",
     data: [
       {
-        "title":"Istri Demam",
-        "date":"2020-01-01",
-        "amount":1000000,
-        "attachment":[
+        title: "Istri Demam",
+        date: "2020-01-01",
+        amount: 1000000,
+        attachment: [
           "92769/lqeigbhqohjgpoq313019504185.jpg",
           "92769/1gr2hbo23gbfo12332r5m5.jpg"
         ],
-        "patient":{
-          "id":92768,
-          "name":"Zendaya",
-          "relationship":"SPOUSE",
-          "dateOfBirth":"1979-02-06"
+        patient: {
+          id: 92768,
+          name: "Zendaya",
+          relationship: "SPOUSE",
+          dateOfBirth: "1979-02-06"
         }
       }
     ]

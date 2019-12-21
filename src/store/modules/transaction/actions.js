@@ -17,9 +17,9 @@ export default {
     const { data } = await transactionApi.getTransaction(id, token);
     commit("SET_TRANSACTION", data);
   },
-  getTransactions: async ({ commit, rootState }, options) => {
+  getTransactionsByCategory: async ({ commit, rootState }, [options,isOCR]) => {
     const { token } = rootState.auth;
-    const { data } = await transactionApi.getTransactions(options, token);
+    const { data } = await transactionApi.getTransactionsByCategory(options,isOCR, token);
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },

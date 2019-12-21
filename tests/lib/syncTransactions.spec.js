@@ -127,7 +127,6 @@ describe("SyncTransactions Lib", () => {
   }
 
   beforeEach(() => {
-    jest.useFakeTimers();
     localVue = generateLocalVue();
     store = initializeStore();
     wrapper = createWrapper(store.store);
@@ -138,31 +137,27 @@ describe("SyncTransactions Lib", () => {
     global.navigator = {
       onLine: true
     };
-    const spy = jest.spyOn(wrapper.vm, "checkDataInIDB");
+    wrapper.vm.checkDataInIDB = jest.fn();
+    jest.useFakeTimers();
     wrapper.vm.checkConnectivityStatus();
     jest.advanceTimersByTime(10000);
-    expect(spy).toHaveBeenCalled();
+    expect(wrapper.vm.checkDataInIDB).toHaveBeenCalled();
   });
 
-  test("checkDataInIDB method if form and image are exist", async () => {
-    const options = {
-      methods: {
-        getAllImagesFromCurrentUserId() {
-          return images;
-        },
-        getAllFormsFromCurrentUserId() {
-          return forms;
-        }
-      }
-    };
-
-    wrapper = createWrapper(store.store, options);
+  test("checkDataInIDB method if form and image are exist", async done => {
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getAllImagesFromCurrentUserId = jest.fn();
+    wrapper.vm.getAllImagesFromCurrentUserId.mockResolvedValue(images);
+    wrapper.vm.getAllFormsFromCurrentUserId = jest.fn();
+    wrapper.vm.getAllFormsFromCurrentUserId.mockResolvedValue(forms);
+    wrapper.vm.sendDataToServer = jest.fn();
     const spySetSendingData = jest.spyOn(wrapper.vm, "setSendingData");
     const spySendDataToServer = jest.spyOn(wrapper.vm, "sendDataToServer");
     await wrapper.vm.checkDataInIDB();
     wrapper.vm.$nextTick(() => {
       expect(spySetSendingData).toHaveBeenCalled();
       expect(spySendDataToServer).toHaveBeenCalled();
+      done();
     });
   });
 
@@ -206,13 +201,14 @@ describe("SyncTransactions Lib", () => {
     expect(wrapper.vm.isSending).toBe(true);
   });
 
-  test("getAllImagesFromCurrentUserId methods", async () => {
+  test("getAllImagesFromCurrentUserId methods", async done => {
     offlineService.getAllDataFromIndexedDB = jest.fn();
     offlineService.getAllDataFromIndexedDB.mockResolvedValue(images);
     const spy = jest.spyOn(wrapper.vm, "checkImagesByUserId");
-    await wrapper.vm.getAllImagesFromCurrentUserId();
+    wrapper.vm.getAllImagesFromCurrentUserId();
     wrapper.vm.$nextTick(() => {
       expect(spy).toHaveBeenCalledWith(images);
+      done();
     });
   });
 
@@ -250,9 +246,9 @@ describe("SyncTransactions Lib", () => {
         title: "Fuel Example"
       }
     ];
-    const spy = jest.spyOn(wrapper.vm, "sendImageAndFormToServer");
+    wrapper.vm.sendImageAndFormToServer= jest.fn();
     wrapper.vm.sendDataToServer(images, forms);
-    expect(spy).toHaveBeenCalled();
+    expect(wrapper.vm.sendImageAndFormToServer).toHaveBeenCalled();
   });
 
   test("sendDataToServer method if only forms exists", () => {

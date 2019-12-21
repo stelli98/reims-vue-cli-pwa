@@ -56,8 +56,9 @@ describe("Actions for Transactions Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_TRANSACTION", expectedValue.data);
   });
 
-  test("get list of transactions", async () => {
-    api.getTransactions = jest.fn();
+  test("get list of transactions by category", async () => {
+    api.getTransactionsByCategory = jest.fn();
+    const isOCR = true;
     const options = {
       page: 1,
       size: 5,
@@ -67,16 +68,17 @@ describe("Actions for Transactions Module", () => {
       d =>
         d.url === url.transaction &&
         d.method == "GET" &&
-        d.params.page === options.page
+        d.params.page === options.page &&
+        d.params.category === "fuel"
     );
-    api.getTransactions.mockResolvedValue(expectedValue);
+    api.getTransactionsByCategory.mockResolvedValue(expectedValue);
     const commit = jest.fn();
     const rootState = {
       auth: {
         token: "Bearer 123"
       }
     };
-    await actions.getTransactions({ commit, rootState }, options);
+    await actions.getTransactionsByCategory({ commit, rootState }, [options,isOCR]);
     expect(commit).toHaveBeenCalledWith("SET_TRANSACTIONS", expectedValue.data);
     expect(commit).toHaveBeenCalledWith("SET_PAGINATION", expectedValue.data);
   });

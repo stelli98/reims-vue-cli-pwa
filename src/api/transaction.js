@@ -13,8 +13,8 @@ export default {
       }
     });
   },
-  getTransactions(options, token) {
-    const path = api.transaction;
+  getTransactionsByCategory(options, isOCR, token) {
+    const path = isOCR ? api.transaction : api.medical;
     return axios.get(path, {
       params: options,
       headers: {
