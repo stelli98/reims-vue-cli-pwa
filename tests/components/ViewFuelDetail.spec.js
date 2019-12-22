@@ -11,7 +11,7 @@ describe("TransactionDetail.vue", () => {
   let store;
   let wrapper;
   let localVue;
-  const transactionData = data.find(d => d.url === url.transaction + "/2");
+  const transactionData = data.find(d => d.url === url.transaction + "/1");
 
   function generateLocalVue() {
     const lv = createLocalVue();

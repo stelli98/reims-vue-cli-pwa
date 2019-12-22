@@ -13,13 +13,23 @@ export default {
         this.transaction.title,
         20
       );
+    },
+    transactionCategory() {
+      return this.transaction.category.toLowerCase();
     }
   },
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
       this.deleteTransaction(id).then(() => {
-        this.$emit('deleteATransaction')
+        this.$emit("deleteATransaction");
+      });
+    },
+    viewTransactionDetail(id) {
+      this.$router.push({
+        name: "transaction-detail",
+        params: { id: id },
+        query: { category: this.transactionCategory }
       });
     }
   }

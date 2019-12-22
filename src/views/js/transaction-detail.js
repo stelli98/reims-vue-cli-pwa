@@ -1,13 +1,19 @@
 const ViewFuelDetail = () => import("@/components/ViewFuelDetail.vue");
 const ViewParkingDetail = () => import("@/components/ViewParkingDetail.vue");
+const ViewMedicalDetail = () => import("@/components/ViewMedicalDetail.vue");
 const GlobalHeader = () => import("@/components/GlobalHeader");
 
+import { Carousel, Slide } from "vue-carousel";
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ViewFuelDetail,
     ViewParkingDetail,
-    GlobalHeader
+    ViewMedicalDetail,
+    GlobalHeader,
+    ViewMedicalDetail,
+    Carousel,
+    Slide
   },
   data() {
     return {
@@ -16,14 +22,14 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["transaction", "viewImage"]),
-    isNonOCRTransaction(){
-        this.transaction.category === "MEDICAL" 
+    isOCR() {
+      return this.transactionCategory != "medical";
     },
     transactionId() {
       return this.$route.params.id;
     },
     transactionCategory() {
-      return this.$options.filters.textFormatter(this.transaction.category);
+      return this.$options.filters.textFormatter(this.$route.query.category);
     },
     activeComponent() {
       return this.transactionCategory
@@ -38,13 +44,16 @@ export default {
     },
     imageBase64() {
       return `data:image/${this.imageExt};base64,${this.viewImage}`;
+    },
+    transactionDate(){
+      return this.$options.filters.dateFormatter(this.transaction.date);
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransaction", "getViewImage"])
+    ...mapActions("transaction", ["getTransactionByCategory", "getViewImage"])
   },
   mounted() {
-    this.getTransaction(this.transactionId).then(() => {
+    this.getTransactionByCategory(this.transactionId).then(() => {
       this.getViewImage(this.imagePath);
       this.isLoading = true;
     });

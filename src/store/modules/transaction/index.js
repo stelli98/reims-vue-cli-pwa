@@ -24,6 +24,7 @@ const state = {
     userId: "",
     image: ""
   },
+  transactionMedical: {},
   transactions: [],
   transaction: {},
   pagination: {},

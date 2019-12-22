@@ -5,7 +5,6 @@ import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.transactions;
-
 describe("HomePage.vue", () => {
   let store;
   let wrapper;
@@ -32,8 +31,8 @@ describe("HomePage.vue", () => {
         transaction: transaction.state
       },
       actions: {
-        transaction: transaction.actions,
         auth: auth.actions,
+        transaction: transaction.actions,
         user: user.actions
       },
       getters: {
@@ -60,7 +59,7 @@ describe("HomePage.vue", () => {
 
   function initializeTransactionStore() {
     const actions = {
-      getTransactions: jest.fn()
+      getTransactionsByCategory: jest.fn()
     };
     const state = {
       transactions: transactionData.data,
@@ -71,7 +70,7 @@ describe("HomePage.vue", () => {
       pagination: state => state.pagination
     };
     const namespaced = true;
-    return { state, actions, getters, namespaced };
+    return { state, getters, actions, namespaced };
   }
 
   function generateLocalVue() {
@@ -81,14 +80,13 @@ describe("HomePage.vue", () => {
   }
 
   function createWrapper(store, options) {
-    const defaultConfig = {
+    return shallowMount(HomePage, {
+      ...options,
       store,
       localVue,
       stubs: ["TransactionList", "Pagination", "SortFilter"],
       sync: false
-    };
-    const mergeConfig = { ...options, ...defaultConfig };
-    return shallowMount(HomePage, mergeConfig);
+    });
   }
 
   beforeEach(() => {
@@ -96,14 +94,48 @@ describe("HomePage.vue", () => {
     store = initializeStore();
   });
 
+  test("transactionOptions watch", async(done) => {
+    const options = {
+      mocks: {
+        $route: {
+          query: {
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "medical"
+          }
+        },
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    wrapper.vm.updateTransaction = jest.fn();
+    const spy = jest.spyOn(wrapper.vm, "updateTransaction");
+    wrapper.vm.$router.push = jest.fn(function() {
+      wrapper.vm.$route.query.page = 2;
+    })
+    wrapper.vm.$router.push();
+    wrapper.vm.$nextTick(() => {
+      expect(spy).toHaveBeenCalled();
+      done()
+    })
+  });
+
   test("method toogleFilter", () => {
     const options = {
       mocks: {
+        $route: {
+          query: {
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
+          }
+        },
         $router: {
           push: jest.fn()
-        },
-        $route: {
-          query: {}
         }
       }
     };
@@ -115,13 +147,16 @@ describe("HomePage.vue", () => {
   test("methods changePage", () => {
     const options = {
       mocks: {
-        $router: {
-          push: jest.fn()
-        },
         $route: {
           query: {
-            page: 1
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
           }
+        },
+        $router: {
+          push: jest.fn()
         }
       }
     };
@@ -131,66 +166,19 @@ describe("HomePage.vue", () => {
     expect(spyRouterPush).toHaveBeenCalled();
   });
 
-  test("methods doLogout", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            page: 1
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions.auth, "logout");
-    wrapper.vm.doLogout();
-    expect(spy).toHaveBeenCalled();
-  });
-
-  test("methods updateTransaction if there is no transactions", async () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            page: 2
-          }
-        }
-      },
-      computed:{
-        transactions(){
-          return []
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spyAction = jest.spyOn(store.actions.transaction, "getTransactions");
-    store.state.transaction.transactions = [];
-    const spyChangePage = jest.spyOn(wrapper.vm, "changePage");
-    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
-    await wrapper.vm.updateTransaction();
-    expect(spyAction).toHaveBeenCalled();
-    wrapper.vm.$nextTick(() => {
-      expect(spyChangePage).toHaveBeenCalled();
-      expect(spyRouterPush).toHaveBeenCalled();
-    });
-  });
-
   test("methods download", () => {
     const options = {
       mocks: {
-        $router: {
-          push: jest.fn()
-        },
         $route: {
           query: {
-            page: 1
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
           }
+        },
+        $router: {
+          push: jest.fn()
         }
       }
     };
@@ -203,13 +191,16 @@ describe("HomePage.vue", () => {
   test("methods toggleActionButton", () => {
     const options = {
       mocks: {
-        $router: {
-          push: jest.fn()
-        },
         $route: {
           query: {
-            page: 1
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
           }
+        },
+        $router: {
+          push: jest.fn()
         }
       }
     };
@@ -217,5 +208,94 @@ describe("HomePage.vue", () => {
     var expectedValue = true;
     wrapper.vm.toggleActionButton(expectedValue);
     expect(wrapper.vm.actionButtonActive).toBe(expectedValue);
+  });
+
+  test("updateTransaction method", () => {
+    const options = {
+      mocks: {
+        $route: {
+          query: {
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
+          }
+        },
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActions = jest.spyOn(
+      store.actions.transaction,
+      "getTransactionsByCategory"
+    );
+    wrapper.vm.updateTransaction();
+    expect(spyActions).toHaveBeenCalled();
+  });
+
+  test("methods doLogout", () => {
+    const options = {
+      mocks: {
+        $route: {
+          query: {
+            page: 1,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
+          }
+        },
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyActions = jest.spyOn(store.actions.auth, "logout");
+    wrapper.vm.doLogout();
+    expect(spyActions).toHaveBeenCalled();
+  });
+
+  test("methods updateTransaction", async(done) => {
+    const options = {
+      mocks: {
+        $route: {
+          query: {
+            page: 2,
+            size: 5,
+            sortBy: "date",
+            category: "fuel"
+          }
+        },
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    const transaction = { 
+      state: store.state.transaction, 
+      getters: {
+        transactions: () => [],
+        pagination: state => state.pagination
+      }, 
+      actions: store.actions.transaction, 
+      namespaced: true
+    };
+
+    const modifiedStore = new Vuex.Store({
+      modules: {
+        transaction
+      }
+    });
+    
+    wrapper = createWrapper(modifiedStore, options);
+    wrapper.vm.changePage = jest.fn()
+    const spyActions = jest.spyOn(wrapper.vm, "changePage");
+    await wrapper.vm.updateTransaction();
+    wrapper.vm.$nextTick(() => {
+      expect(spyActions).toHaveBeenCalled();
+      done()
+    })
   });
 });

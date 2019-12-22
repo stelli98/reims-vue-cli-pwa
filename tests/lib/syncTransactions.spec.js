@@ -146,10 +146,12 @@ describe("SyncTransactions Lib", () => {
 
   test("checkDataInIDB method if form and image are exist", async done => {
     wrapper = createWrapper(store.store);
-    wrapper.vm.getAllImagesFromCurrentUserId = jest.fn();
-    wrapper.vm.getAllImagesFromCurrentUserId.mockResolvedValue(images);
-    wrapper.vm.getAllFormsFromCurrentUserId = jest.fn();
-    wrapper.vm.getAllFormsFromCurrentUserId.mockResolvedValue(forms);
+    wrapper.vm.getAllImagesFromCurrentUserId = jest
+      .fn()
+      .mockResolvedValue(images);
+    wrapper.vm.getAllFormsFromCurrentUserId = jest
+      .fn()
+      .mockResolvedValue(forms);
     wrapper.vm.sendDataToServer = jest.fn();
     const spySetSendingData = jest.spyOn(wrapper.vm, "setSendingData");
     const spySendDataToServer = jest.spyOn(wrapper.vm, "sendDataToServer");
@@ -172,7 +174,6 @@ describe("SyncTransactions Lib", () => {
         }
       }
     };
-
     wrapper = createWrapper(store.store, options);
     const spySetSendingData = jest.spyOn(wrapper.vm, "setSendingData");
     const spySendDataToServer = jest.spyOn(wrapper.vm, "sendDataToServer");
@@ -202,8 +203,9 @@ describe("SyncTransactions Lib", () => {
   });
 
   test("getAllImagesFromCurrentUserId methods", async done => {
-    offlineService.getAllDataFromIndexedDB = jest.fn();
-    offlineService.getAllDataFromIndexedDB.mockResolvedValue(images);
+    offlineService.getAllDataFromIndexedDB = jest
+      .fn()
+      .mockResolvedValue(images);
     const spy = jest.spyOn(wrapper.vm, "checkImagesByUserId");
     wrapper.vm.getAllImagesFromCurrentUserId();
     wrapper.vm.$nextTick(() => {
@@ -213,8 +215,7 @@ describe("SyncTransactions Lib", () => {
   });
 
   test("getAllFormsFromCurrentUserId methods", async () => {
-    offlineService.getAllDataFromIndexedDB = jest.fn();
-    offlineService.getAllDataFromIndexedDB.mockResolvedValue(forms);
+    offlineService.getAllDataFromIndexedDB = jest.fn().mockResolvedValue(forms);
     const spy = jest.spyOn(wrapper.vm, "checkFormsByUserId");
     await wrapper.vm.getAllFormsFromCurrentUserId();
     wrapper.vm.$nextTick(() => {
@@ -246,15 +247,15 @@ describe("SyncTransactions Lib", () => {
         title: "Fuel Example"
       }
     ];
-    wrapper.vm.sendImageAndFormToServer= jest.fn();
+    wrapper.vm.sendImageAndFormToServer = jest.fn();
     wrapper.vm.sendDataToServer(images, forms);
     expect(wrapper.vm.sendImageAndFormToServer).toHaveBeenCalled();
   });
 
   test("sendDataToServer method if only forms exists", () => {
-    const spy = jest.spyOn(wrapper.vm, "sendOnlyFormToServer");
+    wrapper.vm.sendOnlyFormToServer = jest.fn();
     wrapper.vm.sendDataToServer([], forms);
-    expect(spy).toHaveBeenCalled();
+    expect(wrapper.vm.sendOnlyFormToServer).toHaveBeenCalled();
   });
 
   test("sendDataToServer method if only images exists", () => {
@@ -263,11 +264,24 @@ describe("SyncTransactions Lib", () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  test("sendDataToServer method if both images and form doesn't exists", () => {
+    const spyBothImageAndForm = jest.spyOn(
+      wrapper.vm,
+      "sendImageAndFormToServer"
+    );
+    const spyOnlyImage = jest.spyOn(wrapper.vm, "sendOnlyImageToServer");
+    const spyOnlyForm = jest.spyOn(wrapper.vm, "sendOnlyFormToServer");
+    wrapper.vm.sendDataToServer([], []);
+    expect(spyBothImageAndForm).not.toHaveBeenCalled();
+    expect(spyOnlyImage).not.toHaveBeenCalled();
+    expect(spyOnlyForm).not.toHaveBeenCalled();
+  });
+
   test("sendOnlyFormToServer", async () => {
-    transactionApi.saveTransaction = jest.fn();
-    offlineService.deleteDataByKeyFromIndexedDB = jest.fn();
-    transactionApi.saveTransaction.mockResolvedValue(forms[0]);
-    offlineService.deleteDataByKeyFromIndexedDB.mockResolvedValue(forms[0]);
+    transactionApi.saveTransaction = jest.fn().mockResolvedValue(forms[0]);
+    offlineService.deleteDataByKeyFromIndexedDB = jest
+      .fn()
+      .mockResolvedValue(forms[0]);
     const spyGetTransaction = jest.spyOn(
       store.actions.transaction,
       "getTransactions"
@@ -301,37 +315,35 @@ describe("SyncTransactions Lib", () => {
     expect(wrapper.vm.sendImageObject(data)).toEqual(expectedValue);
   });
 
-  test("sendImageAndFormToServer method", () => {
+  test("sendImageAndFormToServer method", async done => {
     const expectedValue = {
       id: 500000026,
       image:
-        "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379",
-      category: "FUEL",
-      date: "2018-05-12T17:19:06.151Z",
-      type: "Premium",
-      liters: 5.0,
-      unitPrice: 9000,
-      created_at: "2018-05-12T17:19:06.151Z",
-      modified_at: ""
+        "https://blogiin.files.wordpress.com/2016/03/struk-spbu.png?w=259&h=379"
     };
-    transactionApi.createTransaction = jest.fn();
-    offlineService.deleteDataByKeyFromIndexedDB = jest.fn();
-    transactionApi.createTransaction.mockResolvedValue(expectedValue);
-    offlineService.deleteDataByKeyFromIndexedDB.mockResolvedValue(
-      expectedValue
-    );
-    const spySendImageObject = jest.spyOn(wrapper.vm, "sendImageObject");
-    const spySendFormAfterImageToServer = jest.spyOn(
-      wrapper.vm,
-      "sendFormAfterImageToServer"
-    );
-    wrapper.vm.sendImageAndFormToServer(images, 0);
+    transactionApi.createTransaction = jest
+      .fn()
+      .mockResolvedValue(expectedValue);
+    wrapper.vm.sendImageObject = jest.fn();
+    wrapper.vm.successCreateTransaction = jest.fn();
+    await wrapper.vm.sendImageAndFormToServer(images, 0);
     wrapper.vm.$nextTick(() => {
       expect(transactionApi.createTransaction).toHaveBeenCalled();
-      expect(offlineService.deleteDataByKeyFromIndexedDB).toHaveBeenCalled();
-      expect(spySendImageObject).toHaveBeenCalled();
-      expect(spySendFormAfterImageToServer).toHaveBeenCalled();
+      expect(wrapper.vm.sendImageObject).toHaveBeenCalled();
+      expect(wrapper.vm.successCreateTransaction).toHaveBeenCalled();
+      done();
     });
+  });
+
+  test("successCreateTransaction method", () => {
+    offlineService.deleteDataByKeyFromIndexedDB = jest.fn();
+    wrapper.vm.sendFormAfterImageToServer = jest.fn(function(a,b,c){
+      c.success()
+    });
+  
+    wrapper.vm.successCreateTransaction(forms[0], images, 0);
+    expect(offlineService.deleteDataByKeyFromIndexedDB).toHaveBeenCalled();
+    expect(wrapper.vm.sendFormAfterImageToServer).toHaveBeenCalled();
   });
 
   test("sendImageAndFormToServer at the end of loop", () => {
@@ -341,7 +353,7 @@ describe("SyncTransactions Lib", () => {
     expect(transactionApi.createTransaction).not.toHaveBeenCalled();
   });
 
-  test("sendFormAfterImageToServer method", async () => {
+  test("sendFormAfterImageToServer method", async done => {
     const formID = 1;
     const response = {
       data: {
@@ -350,19 +362,18 @@ describe("SyncTransactions Lib", () => {
         }
       }
     };
-    const success = {
-      success: () => {
-        this.getTransactions();
-        this.sendImageAndFormToServer(images, index + 1);
-      }
+    const functions = {
+      getTransactions: jest.fn(),
+      sendImageAndFormToServer: jest.fn()
     };
-    const spyFindFormByImageID = jest.spyOn(wrapper.vm, "findFormByImageID");
-    transactionApi.saveTransaction = jest.fn();
-    transactionApi.saveTransaction.mockResolvedValue(expectedValueResponse);
+    const success = {
+      success: () => functions
+    };
+    wrapper.vm.findFormByImageID = jest.fn().mockResolvedValue(forms[0]);
+    transactionApi.saveTransaction = jest
+      .fn()
+      .mockResolvedValue(expectedValueResponse);
     offlineService.deleteDataByKeyFromIndexedDB = jest.fn();
-    offlineService.deleteDataByKeyFromIndexedDB.mockResolvedValue(
-      expectedValueResponse
-    );
     const spyAddSuccessImageNotification = jest.spyOn(
       wrapper.vm,
       "addSuccessImageNotification"
@@ -373,13 +384,14 @@ describe("SyncTransactions Lib", () => {
     );
     const spySetSendingData = jest.spyOn(wrapper.vm, "setSendingData");
     await wrapper.vm.sendFormAfterImageToServer(formID, response, success);
-    expect(spyFindFormByImageID).toHaveBeenCalled();
-    expect(transactionApi.saveTransaction).toHaveBeenCalled();
     wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.findFormByImageID).toHaveBeenCalled();
+      expect(transactionApi.saveTransaction).toHaveBeenCalled();
       expect(offlineService.deleteDataByKeyFromIndexedDB).toHaveBeenCalled();
       expect(spyAddSuccessImageNotification).toHaveBeenCalled();
       expect(spyAddSuccessFormNotification).toHaveBeenCalled();
       expect(spySetSendingData).toHaveBeenCalled();
+      done();
     });
   });
 

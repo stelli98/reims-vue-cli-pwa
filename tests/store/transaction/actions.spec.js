@@ -41,18 +41,19 @@ describe("Actions for Transactions Module", () => {
   });
 
   test("get a transaction", async () => {
-    api.getTransaction = jest.fn();
+    api.getTransactionByCategory = jest.fn();
     const expectedValue = data.find(
       d => d.url === url.transaction + "/1" && d.method == "GET"
     );
-    api.getTransaction.mockResolvedValue(expectedValue);
+    const isOCR = true
+    api.getTransactionByCategory.mockResolvedValue(expectedValue);
     const commit = jest.fn();
     const rootState = {
       auth: {
         token: "Bearer 123"
       }
     };
-    await actions.getTransaction({ commit, rootState }, id);
+    await actions.getTransactionByCategory({ commit, rootState }, [id,isOCR]);
     expect(commit).toHaveBeenCalledWith("SET_TRANSACTION", expectedValue.data);
   });
 

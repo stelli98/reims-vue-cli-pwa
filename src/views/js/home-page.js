@@ -20,7 +20,8 @@ export default {
       options: {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: "date"
+        sortBy: this.$route.query.sortBy || "date",
+        category: this.$route.query.category || "fuel"
       },
       actionButtonActive: false
     };
@@ -29,10 +30,21 @@ export default {
     ...mapGetters("transaction", ["transactions", "pagination"]),
     actionButtonClass() {
       return `action-button action-button-${this.transactions.length == 5}`;
+    },
+    isOCR() {
+      return this.$route.query.category.toLowerCase() != "medical";
+    },
+    transactionOptions() {
+      return {
+        page: this.$route.query.page,
+        size: this.$route.query.size,
+        sortBy: this.$route.query.sortBy,
+        category: this.$route.query.category
+      };
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransactions"]),
+    ...mapActions("transaction", ["getTransactionsByCategory"]),
     ...mapActions("user", ["downloadPersonalReport"]),
     ...mapActions("auth", ["logout"]),
     changePage(page) {
@@ -42,11 +54,13 @@ export default {
       this.showFilter = value;
     },
     updateTransaction() {
-      this.getTransactions(this.$route.query).then(() => {
-        if (this.transactions.length == 0 && this.$route.query.page != 1) {
-          this.changePage(1);
+      this.getTransactionsByCategory([this.$route.query, this.isOCR]).then(
+        () => {
+          if (this.transactions.length == 0 && this.$route.query.page != 1) {
+            this.changePage(1);
+          }
         }
-      });
+      );
     },
     doLogout() {
       this.logout().then(() => {
@@ -63,5 +77,10 @@ export default {
   mounted() {
     this.$router.push({ query: { ...this.options, ...this.$route.query } });
     this.updateTransaction();
+  },
+  watch: {
+    transactionOptions() {
+      this.updateTransaction();
+    }
   }
 };

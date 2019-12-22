@@ -1,28 +1,28 @@
 <template>
   <div>
-    <GlobalHeader/>
+    <GlobalHeader />
     <div class="transaction-detail__content" v-if="isLoading">
       <h3>{{ transactionCategory + " Expenses" }}</h3>
       <p>
-        {{ transaction.date || transaction.in | dateFormatter }}
+        {{ transactionDate }}
       </p>
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <div v-if="!isNonOCRTransaction">
-       <img class="transaction-detail__ocr-image" :src="imageBase64" />
+      <div v-if="isOCR">
+        <img class="transaction-detail__ocr-image" :src="imageBase64" />
       </div>
       <div v-else>
-       <carousel class="transaction-detail__carousel" :perPage="1">
+        <carousel class="transaction-detail__carousel" :perPage="1">
           <slide
-            v-for="(image,index) in images"
+            v-for="(image, index) in transaction.attachment"
             :key="index"
             class="transaction-detail__slide"
           >
             <img
               :src="image"
               class="transaction-detail__image"
-              style="width: 300px; max-width: 100%;"
+              style="width: 250px; max-width: 100%;"
             />
           </slide>
         </carousel>
@@ -34,14 +34,13 @@
 
 <script src="./js/transaction-detail.js"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .transaction-detail {
   &__ocr-image {
     margin: 1.2rem auto;
     display: flex;
     width: 25rem;
   }
-
 
   &__content {
     width: 80vw;
@@ -75,12 +74,6 @@
     align-content: center;
     justify-content: center;
     margin: 0 auto !important;
-  }
-
-  .VueCarousel-dot-container,
-  .VueCarousel-dot,
-  .VueCarousel-dot--active {
-    margin: 0 !important;
   }
 }
 </style>

@@ -4,28 +4,45 @@
       Transaction List
     </div>
     <div class="transaction__actions">
-      <div class="btn-green transaction__filter" @click="openFilter">
-        <div class="transaction__icon">
-          <div v-if="isFiltering" class="notification-circle"></div>
-          <svg class="icon icon-small">
-            <use xlink:href="icons.svg#icon-filter" />
+      <div class="transaction__actions__left">
+        <div class="custom-selection">
+          <select class="custom-select" v-model="selectedTransactionType">
+            <option
+              v-for="(type, index) in transactionType"
+              :selected="selectedTransactionType"
+              :key="index"
+              :value="type"
+            >
+              {{ type | textFormatter }} List</option
+            >
+          </select>
+        </div>
+      </div>
+      <div class="transaction__actions__right">
+        <div class="btn-white transaction__filter" @click="openFilter">
+          <div class="transaction__icon">
+            <svg class="icon icon-green">
+              <use xlink:href="icons.svg#icon-filter" />
+            </svg>
+          </div>
+        </div>
+        <div class="btn-white transaction__download" @click="downloadReport">
+          <svg class="icon icon-green">
+            <use xlink:href="icons.svg#icon-download" />
           </svg>
         </div>
-        <span>Filter and Sort</span>
-      </div>
-      <div class="btn-green transaction__download" @click="downloadReport">
-        <svg class="icon icon-small">
-          <use xlink:href="icons.svg#icon-download" />
-        </svg>
-        <span>Download Report</span>
       </div>
     </div>
     <div class="transaction__list">
-      <div v-for="(transaction,index) in transactions" :key="index">
-        <TransactionCard :key="transaction.id" :transaction="transaction" @deleteATransaction="deleteTransaction"/>
+      <div >
+        <TransactionCard
+        v-for="transaction in transactions" :key="transaction.id"
+          :transaction="transaction"
+          @deleteATransaction="deleteTransaction"
+        />
       </div>
     </div>
-    <PopUpModalRoot/>
+    <PopUpModalRoot />
   </div>
 </template>
 
@@ -45,7 +62,12 @@
 
   &__actions {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+
+    &__right {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__icon {
@@ -68,6 +90,42 @@
   left: 12px;
   @include respond(large-phone) {
     left: 14px;
+  }
+}
+
+.custom-selection {
+  position: relative;
+  &:after {
+    content: "\25BE";
+    position: absolute;
+    top: 12.5%;
+    right: -5%;
+    color: $color-white;
+    font-size: 1.5rem;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+.custom-select {
+  position: relative;
+  background-color: $color-green;
+  color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  border: 0 !important;
+  background-image: none;
+  height: 100%;
+  width: 120%;
+  font-size: 1.2rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+
+  &:active{
+    border: solid 10px red;
   }
 }
 </style>

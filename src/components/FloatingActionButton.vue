@@ -3,7 +3,7 @@
     <div class="FAB__mini-action-button" v-if="displayMenu">
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Medical</p>
-        <input type="file" id="medical" @change="onNonOCRFileChange" multiple />
+        <input type="file" id="medical" @change="onNonOCRFileChange" multiple  accept=".jpg, .jpeg, .png"/>
         <label for="medical" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-medical" />
@@ -12,7 +12,7 @@
       </div>
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Parking</p>
-        <input type="file" id="parking" @change="onOCRFileChange($event,'parking')" />
+        <input type="file" id="parking" @change="onOCRFileChange($event,'parking')" accept=".jpg, .jpeg, .png"/>
         <label for="parking" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-parking" />
@@ -21,7 +21,7 @@
       </div>
       <div class="mini-action-button mini-action-button">
         <p class="mini-action-button__text">Fuel</p>
-        <input type="file" id="fuel" @change="onOCRFileChange($event,'fuel')" />
+        <input type="file" id="fuel" @change="onOCRFileChange($event,'fuel')" accept=".jpg, .jpeg, .png"/>
         <label for="fuel" class="mini-action-button__icon">
           <svg class="icon icon-medium">
             <use xlink:href="icons.svg#icon-fuel" />

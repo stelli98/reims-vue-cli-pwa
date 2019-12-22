@@ -12,14 +12,22 @@ export default {
     const { data } = await transactionApi.createTransaction(image, token);
     commit("SET_OCR_RESULT", data);
   },
-  getTransaction: async ({ commit, rootState }, id) => {
+  getTransactionByCategory: async ({ commit, rootState }, [id, isOCR]) => {
     const { token } = rootState.auth;
-    const { data } = await transactionApi.getTransaction(id, token);
+    const { data } = await transactionApi.getTransactionByCategory(
+      id,
+      isOCR,
+      token
+    );
     commit("SET_TRANSACTION", data);
   },
-  getTransactionsByCategory: async ({ commit, rootState }, [options,isOCR]) => {
+  getTransactionsByCategory: async ({ commit, rootState },[options, isOCR]) => {
     const { token } = rootState.auth;
-    const { data } = await transactionApi.getTransactionsByCategory(options,isOCR, token);
+    const { data } = await transactionApi.getTransactionsByCategory(
+      options,
+      isOCR,
+      token
+    );
     commit("SET_TRANSACTIONS", data);
     commit("SET_PAGINATION", data);
   },
