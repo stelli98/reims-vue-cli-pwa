@@ -1,8 +1,8 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
+  margin: 0;
+  padding: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -10,37 +10,42 @@
 }
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%; //10px
+  box-sizing: border-box;
+  font-size: 62.5%; //10px
 
-    @include respond(medium-phone) { //10.5
-      font-size: 65.25%;
-    }
+  @include respond(medium-phone) {
+    //10.5
+    font-size: 65.25%;
+  }
 
-    @include respond(large-phone) { //12.5
-      font-size: 78.125%;
-    }
-    
-    @include respond(tab) { //13
-      font-size: 81.25%;
-    }
+  @include respond(large-phone) {
+    //12.5
+    font-size: 78.125%;
+  }
 
-    @include respond(desktop) { //14
-      font-size: 87.5%;
-    }
+  @include respond(tab) {
+    //13
+    font-size: 81.25%;
+  }
 
-    @include respond(large-desktop) { //15
-      font-size: 93.75%;
-    }
+  @include respond(desktop) {
+    //14
+    font-size: 87.5%;
+  }
+
+  @include respond(large-desktop) {
+    //15
+    font-size: 93.75%;
+  }
 }
-  
+
 body {
-    font-family: "Nunito Regular", Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-    color: $color-black;
-    position: relative;
-    z-index: 1;
+  font-family: "Nunito Regular", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-black;
+  position: relative;
+  z-index: 1;
 }
 
 input {
@@ -51,7 +56,7 @@ input {
   }
 }
 
-.header{
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,70 +64,70 @@ input {
   height: 5rem;
   padding: 0 1.5rem;
 
-& > div {
+  & > div {
     cursor: pointer;
   }
 }
 
 .form {
-  &__child{
-      margin-bottom: 1.5rem;
-    }
-  
-    &__input {
-      border: none;
-      background: transparent;
-      border-bottom: $color-black solid 0.1rem;
-      color: $color-black;
-      width: 100%;
-  
-      @include respond(large-phone) {
-        font-size: 1.2rem;
-      }
-  
-      &__select {
-        padding: 0.5rem;
-  
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-  
-    &__currency {
-      display: flex;
-      align-items: center;
-      background: transparent;
-      border-bottom: $color-black solid 0.1rem;
-      color: $color-black;
+  &__child {
+    margin-bottom: 1.5rem;
+  }
+
+  &__input {
+    border: none;
+    background: transparent;
+    border-bottom: $color-black solid 0.1rem;
+    color: $color-black;
+    width: 100%;
+
+    @include respond(large-phone) {
       font-size: 1.2rem;
-      width: 100%;
-  
-      &__symbol {
-        padding: 0.5rem;
-      }
-  
-      &__input {
-        width: 100%;
-        padding: 0.5rem 0;
-        font-size: 1.2rem;
-  
-        &:disabled {
-          background-color: transparent;
-        }
+    }
+
+    &__select {
+      padding: 0.5rem;
+
+      &:focus {
+        outline: none;
       }
     }
-}
-  
-.input {
-    &__label {
-      display: block;
-    }
-    &__error-message {
-      color: $color-red;
-      font-weight: bold;
+  }
+
+  &__currency {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-bottom: $color-black solid 0.1rem;
+    color: $color-black;
+    font-size: 1.2rem;
+    width: 100%;
+
+    &__symbol {
       padding: 0.5rem;
     }
+
+    &__input {
+      width: 100%;
+      padding: 0.5rem 0;
+      font-size: 1.2rem;
+
+      &:disabled {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.input {
+  &__label {
+    display: block;
+  }
+  &__error-message {
+    color: $color-red;
+    font-weight: bold;
+    padding: 0.5rem;
+  }
 }
 
 .background-dark {
@@ -137,14 +142,20 @@ input {
   height: 100vh;
 }
 
-.bottom-navigation{
+.bottom-navigation {
   margin: 0;
   width: 100vw;
   padding: 2rem;
   font-size: 1.4rem;
-  border-top: solid .5px #eee;
+  border-top: solid 0.5px #eee;
 }
 
-hr{
-  border: solid .05rem #eee;
+hr {
+  border: solid 0.05rem #eee;
+}
+
+.VueCarousel-dot-container,
+.VueCarousel-dot,
+.VueCarousel-dot--active {
+  margin: 0 !important;
 }

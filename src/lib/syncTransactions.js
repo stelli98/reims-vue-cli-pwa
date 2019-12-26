@@ -90,17 +90,17 @@ export default {
       transactionApi
         .createTransaction(this.sendImageObject(images[index]), this.token)
         .then(response => {
-          offlineService.deleteDataByKeyFromIndexedDB(
-            imageIdb,
-            images[index].id
-          );
-          this.sendFormAfterImageToServer(images[index].id, response, {
-            success: () => {
-              this.getTransactions();
-              this.sendImageAndFormToServer(images, index + 1);
-            }
-          });
+          this.successCreateTransaction(response, images);
         });
+    },
+    successCreateTransaction(response,images,index) {
+      offlineService.deleteDataByKeyFromIndexedDB(imageIdb, images[index].id);
+      this.sendFormAfterImageToServer(images[index].id, response, {
+        success: () => {
+          this.getTransactions();
+          this.sendImageAndFormToServer(images, index + 1);
+        }
+      });
     },
     sendImageObject(data) {
       return {

@@ -5,16 +5,16 @@ import offlineService from "@/api/transaction-offline";
 const api = config.api.transactions;
 
 export default {
-  getTransaction(id, token) {
-    const path = api.transaction;
+  getTransactionByCategory(id, isOCR, token) {
+    const path = isOCR ? api.transaction : api.medical;
     return axios.get(`${path}/${id}`, {
       headers: {
         Authorization: token
       }
     });
   },
-  getTransactions(options, token) {
-    const path = api.transaction;
+  getTransactionsByCategory(options, isOCR, token) {
+    const path = isOCR ? api.transaction : api.medical;
     return axios.get(path, {
       params: options,
       headers: {
@@ -66,6 +66,7 @@ export default {
   },
   getViewImage(url, token) {
     const path = api.transaction;
+    console.log(`${path}/${url}`)
     return axios.get(`${path}/${url}`, {
       headers: {
         Authorization: token

@@ -35,6 +35,6 @@ export default {
   }
   },
   created () {
-    this.isComponentActive = this.$route.query.activeTab === "UserPersonalDetail" ? true : false;
+    this.isComponentActive = !(this.$route.query.activeTab === "UserPersonalDetail" );
   },
 };

@@ -3,22 +3,10 @@ import TransactionDetail from "@/views/TransactionDetail";
 import TextFilter from "@/filters/text";
 import dateFilter from "@/filters/date";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.transactions;
-
-const routes = [
-  {
-    path: "/transaction/:id",
-    name: "transaction-detail"
-  },
-  {
-    path: "/home",
-    name: "home"
-  }
-];
 
 describe("TransactionDetail.vue", () => {
   let store;
@@ -31,7 +19,7 @@ describe("TransactionDetail.vue", () => {
 
   function initializeStore() {
     const actions = {
-      getTransaction: jest.fn(),
+      getTransactionByCategory: jest.fn(),
       getViewImage: jest.fn()
     };
 
@@ -67,52 +55,151 @@ describe("TransactionDetail.vue", () => {
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
-    lv.use(VueRouter);
     lv.filter("textFormatter", TextFilter);
     lv.filter("dateFormatter", dateFilter);
     return lv;
   }
 
-  function createWrapper(store) {
-    const router = new VueRouter({ routes });
-    return shallowMount(TransactionDetail, {
+  function createWrapper(store, options) {
+    const defaultConfig = {
       store,
       localVue,
-      router,
-      stubs: ["ViewParkingDetail", "ViewFuelDetail","GlobalHeader"],
+      stubs: ["ViewParkingDetail", "ViewFuelDetail", "GlobalHeader"],
       sync: false
-    });
+    };
+    const mergeConfig = { ...options, ...defaultConfig };
+    return shallowMount(TransactionDetail, mergeConfig);
   }
 
   beforeEach(() => {
     localVue = generateLocalVue();
     store = initializeStore();
-    wrapper = createWrapper(store.store);
   });
 
-  test("route push to transaction with transactionId", () => {
-    var transactionID = {
-      id: 1
+  test("get transactionID", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "fuel"
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
     };
-    wrapper.vm.$router.push({ transactionID });
-    expect(wrapper.vm.transactionId).toBe(
-      wrapper.vm.$route.params.transactionID
-    );
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(store.actions, "getTransactionByCategory");
+    expect(spy).toHaveBeenCalled();
   });
 
   test("transactionCategory must be PARKING", () => {
-    var transactionID = {
-      id: 1
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "PARKING"
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
     };
-    wrapper.vm.$router.push({ transactionID });
+    wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.transactionCategory).toBe("Parking");
   });
 
   test("activeComponent must be ViewParkingDetail", () => {
-    var transactionID = {
-      id: 1
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "PARKING"
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
     };
-    wrapper.vm.$router.push({ transactionID });
+    wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.activeComponent).toBe("ViewParkingDetail");
+  });
+
+  test("activeComponent must be empty string", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: ""
+          },
+          params: {
+            id: 1
+          }
+        }
+      },
+      computed: {
+        transactionCategory() {
+          return null;
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    expect(wrapper.vm.activeComponent).toBe("");
+  });
+
+  test("imageExt must be png", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: ""
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    expect(wrapper.vm.imageExt).toBe("png");
+  });
+
+  test("imageExt must be empty string", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: ""
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    store.state.transaction.image=""
+    expect(wrapper.vm.imageExt).toBe("");
   });
 });

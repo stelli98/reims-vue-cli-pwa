@@ -1,13 +1,14 @@
 <template>
   <div class="transaction__card">
-    <div class="transaction__card__content" @click="moveToWithParamsId(transaction.id)">
+    <div class="transaction__card__content" @click="viewTransactionDetail(transaction.id)">
       <div class="transaction__card__left">
         <svg class="icon icon-big">
           <use
             v-bind="{
-              'xlink:href': `icons.svg#icon-${transaction.category.toLowerCase()}`
+              'xlink:href': `icons.svg#icon-${transactionCategory}`
             }"
-          />
+          >
+          </use>
         </svg>
       </div>
       <div class="transaction__card__center">

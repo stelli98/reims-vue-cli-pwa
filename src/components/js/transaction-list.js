@@ -11,11 +11,16 @@ export default {
   props: {
     transactions: Array
   },
+  data() {
+    return {
+      transactionType: ["FUEL", "PARKING", "MEDICAL"],
+      selectedTransactionType: "FUEL"
+    };
+  },
   computed: {
     isFiltering() {
       return (
         !!this.$route.query.search ||
-        !!this.$route.query.category ||
         !!this.$route.query.start ||
         !!this.$route.query.end ||
         this.$route.query.sortBy != "date"
@@ -32,8 +37,18 @@ export default {
         title: "Download Report"
       });
     },
-    deleteTransaction(){
-      this.$emit('deleteTransaction')
+    deleteTransaction() {
+      this.$emit("deleteTransaction");
+    }
+  },
+  watch: {
+    selectedTransactionType() {
+      const query = {
+        ...this.$route.query,
+        page: "1",
+        category: this.selectedTransactionType.toLowerCase()
+      };
+      this.$router.push({ query });
     }
   }
 };
