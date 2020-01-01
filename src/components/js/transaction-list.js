@@ -34,7 +34,8 @@ export default {
     downloadReport() {
       ModalBus.$emit("open", {
         component: DownloadPopUp,
-        title: "Download Report"
+        title: "Download Report",
+        type: "information"
       });
     },
     deleteTransaction() {

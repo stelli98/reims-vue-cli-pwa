@@ -45,24 +45,17 @@
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Claimed For</label>
             <select
-              v-model="medical.patient"
+              v-model="medical.patient.id"
               class="form__input form__input__select"
-              @blur="$v.medical.patient.$touch()"
             >
               <option
-                v-for="medical in userFamilies"
-                :key="medical.id"
-                :value="medical"
-                :selected="medical.patient"
-              >{{ formatfamilyNameAndRelationship(medical.name, medical.relationship) | textFormatter }}</option>
+                :key="data.id"
+                :value="data.id"
+                v-for="data in familyData"
+              >
+              {{ formatfamilyNameAndRelationship(data.name, data.relationship) | textFormatter }}
+              </option>
             </select>
-
-            <div v-if="$v.medical.patient.$error">
-              <p
-                v-if="!$v.medical.patient.required"
-                class="input__error-message"
-              >Claimed for must be filled</p>
-            </div>
           </div>
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Amount</label>
@@ -117,12 +110,5 @@
     justify-content: center;
     margin: 0 auto !important;
   }
-
-  .VueCarousel-dot-container,
-  .VueCarousel-dot,
-  .VueCarousel-dot--active {
-    margin: 0 !important;
-  }
 }
 </style>
-

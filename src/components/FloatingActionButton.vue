@@ -29,21 +29,33 @@
         </label>
       </div>
     </div>
-    <div class="FAB__action-button" @click="toggleDisplayMenu" v-if="!displayMenu">
+    <div
+      class="FAB__action-button"
+      @click="toggleDisplayMenu"
+      v-if="!displayMenu"
+    >
       <div class="action-button__icon">
         <svg class="icon icon-medium">
-          <use v-bind="{
+          <use
+            v-bind="{
               'xlink:href': `icons.svg#icon-plus`
-            }" />
+            }"
+          />
         </svg>
       </div>
     </div>
-    <div class="FAB__action-button" @click="toggleDisplayMenu" v-if="displayMenu">
+    <div
+      class="FAB__action-button"
+      @click="toggleDisplayMenu"
+      v-if="displayMenu"
+    >
       <div class="action-button__icon">
         <svg class="icon icon-medium">
-          <use v-bind="{
+          <use
+            v-bind="{
               'xlink:href': `icons.svg#icon-cancel`
-            }" />
+            }"
+          />
         </svg>
       </div>
     </div>
@@ -161,7 +173,7 @@
 
 #fuel,
 #parking,
-#medical   {
+#medical {
   position: absolute;
   width: 4rem;
   height: 4rem;

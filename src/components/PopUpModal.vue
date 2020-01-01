@@ -7,8 +7,9 @@
       @click="$emit('onClose')"
     >
       <div class="modal-dialog" :class="{ open: isOpen }" @click.stop>
-        <div class="modal-title" v-if="title">{{ title }}</div>
+        <div class="modal-title" :class="titlePopUpStyle" v-if="title">{{ title }}</div>
         <div class="modal-body">
+          <div class="modal-content" v-if="content">{{ content }}</div>
           <slot />
         </div>
       </div>
@@ -59,9 +60,20 @@
 }
 
 .modal-title {
-  background-color: $color-green;
   color: $color-white;
   padding: 1.2rem;
   font-size: 1.25rem;
+}
+
+.modal-content {
+  padding: 1.25rem;
+}
+
+.warning{
+  background-color: $color-red;
+}
+
+.information{
+  background-color: $color-green;
 }
 </style>
