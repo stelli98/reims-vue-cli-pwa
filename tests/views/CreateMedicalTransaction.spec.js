@@ -53,7 +53,8 @@ describe("CreateMedicalTransaction.vue", () => {
     };
     const getters = {
       id: state => state.id,
-      auth: state => state.auth
+      auth: state => state.auth,
+      username: state => state.username
     };
     const namespaced = true;
     return { state, getters, namespaced };
