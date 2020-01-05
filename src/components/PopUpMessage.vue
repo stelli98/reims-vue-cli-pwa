@@ -6,7 +6,6 @@
   </div>
 </template>
 
-<script src="./js/popup-message.js"></script>
 <style lang="scss" scoped>
 .popup {
   &__body {

@@ -12,7 +12,7 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "created_date",
+      sortBy: "createdAt",
       category: "FUEL"
     },
     status: "OK",
@@ -68,7 +68,7 @@ export default [
     params: {
       page: 2,
       size: 5,
-      sortBy: "created_date",
+      sortBy: "createdAt",
       category: "FUEL"
     },
     status: "OK",
@@ -120,7 +120,7 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "created_date",
+      sortBy: "createdAt",
       category: "PARKING"
     },
     status: "OK",
@@ -165,7 +165,7 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "created_date",
+      sortBy: "createdAt",
       category: "MEDICAL"
     },
     status: "OK",
