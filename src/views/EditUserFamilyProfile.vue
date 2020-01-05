@@ -61,7 +61,6 @@
   height: 100vh;
 
   &__content {
-    min-height: 78vh;
     width: 70vw;
     margin: 0 auto;
     @include respond(large-phone) {

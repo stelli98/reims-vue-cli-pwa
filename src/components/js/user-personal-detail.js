@@ -7,7 +7,10 @@ export default {
       ...mapGetters('user',['user'])
     },
     methods: {
-        ...mapActions('user',[ 'getUser'])
+        ...mapActions('user',[ 'getUser']),
+        emptyStringFieldTemplate(value){
+          return value || "-"
+        }
     },
     created () {  
       this.getUser(this.id);

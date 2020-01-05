@@ -17,7 +17,6 @@
 </template>
 
 <script src="./js/pop-up-modal.js"></script>
-
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {

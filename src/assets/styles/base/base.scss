@@ -143,11 +143,14 @@ input {
 }
 
 .bottom-navigation {
-  margin: 0;
-  width: 100vw;
-  padding: 2rem;
   font-size: 1.4rem;
+  padding: 2rem;
   border-top: solid 0.5px #eee;
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 hr {

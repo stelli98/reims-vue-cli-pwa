@@ -16,7 +16,7 @@ export default {
       return {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 10,
-        sort_by: "created_at",
+        sort_by: "createdAt",
         search: this.$route.query.search || ""
       };
     }

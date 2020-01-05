@@ -34,9 +34,10 @@ describe("UserDetail.vue", () => {
   });
 
   test("switchTab method", () => {
-    wrapper.vm.isComponentActive = true;
-    wrapper.vm.switchTab();
-    expect(wrapper.vm.isComponentActive).toBe(false);
-    expect(wrapper.vm.currentComponent).toBe("UserFamilyDetail");
+    const payload = true;
+    wrapper.vm.isComponentActive = !payload;
+    wrapper.vm.switchTab(payload);
+    expect(wrapper.vm.isComponentActive).toBe(payload);
+    expect(wrapper.vm.currentComponent).toBe("UserPersonalDetail");
   });
 });

@@ -52,14 +52,12 @@
 </template>
 
 <script src="./js/change-password-page.js"></script>
-
 <style lang="scss" scoped>
 .change-password {
   position: relative;
   height: 100vh;
 
   &__content {
-    min-height: 78vh;
     width: 70vw;
     margin: 0 auto;
     @include respond(large-phone) {

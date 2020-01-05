@@ -63,14 +63,14 @@ describe("Actions for Transactions Module", () => {
     const options = {
       page: 1,
       size: 5,
-      sortBy: "createdAt"
+      sortBy: "created_at"
     };
     const expectedValue = data.find(
       d =>
         d.url === url.transaction &&
         d.method == "GET" &&
         d.params.page === options.page &&
-        d.params.category === "fuel"
+        d.params.category === "FUEL"
     );
     api.getTransactionsByCategory.mockResolvedValue(expectedValue);
     const commit = jest.fn();

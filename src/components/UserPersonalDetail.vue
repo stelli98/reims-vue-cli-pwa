@@ -37,11 +37,11 @@
         <div class="user-personal__list">
           <div class="user-personal__box">
             <p class="title--big">License</p>
-            <span>{{user.license || ""}}</span>
+            <span>{{emptyStringFieldTemplate(user.license)}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Vehicle</p>
-            <span>{{user.vehicle || ""}}</span>
+            <span>{{emptyStringFieldTemplate(user.vehicle)}}</span>
           </div>
         </div>
       </div>
@@ -54,16 +54,13 @@
 </template>
 
 <script src="./js/user-personal-detail.js"></script>
-
 <style lang="scss" scoped>
 .user-personal {
   &__detail {
-    min-height: 65vh;
     margin: 0 1.5rem;
     @include respond(large-phone) {
       width: 50vw;
       margin: 2rem 25vw;
-      min-height: 62vh;
     }
   }
 

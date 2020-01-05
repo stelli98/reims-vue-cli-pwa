@@ -30,12 +30,12 @@ export default {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
         this.userFamily.dateOfBirth = new Date(this.userFamily.dateOfBirth).getTime();
-        this.updateUserFamily([this.id, this.userFamily]);
+        this.updateUserFamily([this.$route.params.userId, this.userFamily]);
         this.moveToPreviousPage();
       } 
     }
   },
   created() {
-    this.getUserFamilyDetailByFamilyId(this.id)
+    this.getUserFamilyDetailByFamilyId(this.$route.params.familyId)
   }
 };

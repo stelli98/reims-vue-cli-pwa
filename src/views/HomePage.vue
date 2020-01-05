@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <div class="background-dark background-dark__home" v-if="actionButtonActive"></div>
+    <div
+      class="background-dark background-dark__home"
+      v-if="actionButtonActive"
+    ></div>
     <header class="home__header">
       <div class="home__header__upper">
         <div class="home__header__upper__left">
@@ -31,7 +34,10 @@
       @openFilter="toogleFilter"
       @deleteTransaction="updateTransaction"
     />
-    <Pagination :paging="pagination" @changePage="changePage" />
+    <Pagination
+      :paging="pagination"
+      @changePage="changePage"
+    />
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>
     <FloatingActionButton
       :class="actionButtonClass"
@@ -43,7 +49,6 @@
 </template>
 
 <script src="./js/home-page.js"></script>
-
 <style lang="scss" scoped>
 .action-button-false {
   position: absolute;
@@ -54,122 +59,118 @@
 
 .action-button-true {
   position: sticky;
-  bottom: 1.5rem;
+  bottom: 1rem;
+  right: 1rem;
   z-index: 1000;
-
-  .FAB__action-button{
-    margin-right: 1rem;
-  }
-
 }
 
 .background-dark__home {
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
 
   @include respond(tab) {
-    width: 180vw;
-    height: 180vh;
+    width: 100vw;
+    height: 100vh;
   }
 }
 
 .home {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
-}
+  min-height: 90vh;
 
-.home__header {
-  display: flex;
-  background: $color-green-gradient-transparent;
-  background-size: cover;
-  background-position: center bottom;
-  flex-direction: column;
-  padding: 1.5rem 1rem 0;
-  height: 28vh;
-
-  @include respond(medium-phone) {
-    height: 40vh;
-  }
-
-  @include respond(large-phone) {
-    height: 50vh;
-  }
-
-  @include respond(tab) {
-    height: 55vh;
-  }
-
-  &__upper {
+  &__header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &__right {
+    background: $color-green-gradient-transparent;
+    background-size: cover;
+    background-position: center bottom;
+    flex-direction: column;
+    padding: 1.5rem 1rem 0;
+    height: 28vh;
+
+    @include respond(medium-phone) {
+      height: 40vh;
+    }
+
+    @include respond(large-phone) {
+      height: 50vh;
+    }
+
+    @include respond(tab) {
+      height: 55vh;
+    }
+
+    &__upper {
       display: flex;
-      color: $color-white;
-      font-size: 1rem;
-      font-family: "Nunito-Regular";
-
-      @include respond(large-phone) {
-        font-size: 1.2rem;
-      }
-
-      & > div,
-      &:not(:last-child) {
-        margin-right: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      &__right {
+        display: flex;
+        color: $color-white;
+        font-size: 1rem;
+        font-family: "Nunito-Regular";
 
         @include respond(large-phone) {
-          margin-right: 1.5rem;
+          font-size: 1.2rem;
+        }
+
+        & > div,
+        &:not(:last-child) {
+          margin-right: 1rem;
+
+          @include respond(large-phone) {
+            margin-right: 1.5rem;
+          }
+        }
+
+        & > div:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      flex-grow: 1;
+
+      @include respond(large-phone) {
+        align-items: flex-end;
+      }
+      &__container {
+        @include respond(large-phone) {
+          width: 45%;
+        }
+
+        @include respond(tab) {
+          width: 40%;
+        }
+
+        @include respond(desktop) {
+          width: 30%;
         }
       }
 
-      & > div:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  &__footer {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    flex-grow: 1;
-
-    @include respond(large-phone) {
-      align-items: flex-end;
-    }
-    &__container {
-      @include respond(large-phone) {
-        width: 45%;
+      &__section > div {
+        margin-bottom: 2rem;
       }
 
-      @include respond(tab) {
-        width: 40%;
-      }
+      &__heading {
+        color: #fff;
+        font-size: 1.6rem;
+        font-family: "Nunito-Bold";
+        margin: 2rem auto;
+        width: 92%;
+        @include respond(large-phone) {
+          width: 100%;
+        }
 
-      @include respond(desktop) {
-        width: 30%;
-      }
-    }
-
-    &__section > div {
-      margin-bottom: 2rem;
-    }
-
-    &__heading {
-      color: #fff;
-      font-size: 1.6rem;
-      font-family: "Nunito-Bold";
-      margin: 2rem auto;
-      width: 92%;
-      @include respond(large-phone) {
-        width: 100%;
-      }
-
-      @include respond(desktop) {
-        font-size: 2rem;
+        @include respond(desktop) {
+          font-size: 2rem;
+        }
       }
     }
   }

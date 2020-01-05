@@ -26,6 +26,14 @@ export default {
         this.$route.query.sortBy != "date"
       );
     }
+    // selectedTransactionType: {
+    //   set(newValue) {
+    //     this.type = newValue || this.$route.query.category.toUpperCase();
+    //   },
+    //   get() {
+    //     return this.type || this.$route.query.category.toUpperCase()
+    //   }
+    // }
   },
   methods: {
     openFilter() {
@@ -46,9 +54,12 @@ export default {
       const query = {
         ...this.$route.query,
         page: "1",
-        category: this.selectedTransactionType.toLowerCase()
+        category: this.selectedTransactionType.toUpperCase()
       };
       this.$router.push({ query });
     }
-  }
+  },
+  created () {
+    this.selectedTransactionType = this.$route.query.category.toUpperCase();
+  },
 };

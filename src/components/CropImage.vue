@@ -66,8 +66,8 @@
   height: 55vh;
 
   @include respond(small-phone) {
-    width: 65vw;
-    height: 57vh;
+    width: 70vw;
+    height: 55vh;
   }
 
   @include respond(medium-phone) {
@@ -91,7 +91,7 @@
 
   &__button {
     display: flex;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
     justify-content: space-around;
     & > div {
       display: flex;

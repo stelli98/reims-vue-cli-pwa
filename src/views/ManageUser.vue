@@ -15,7 +15,7 @@
         </div>
       </div>
       <UserList v-if="users.length" :users="users" @deleteUser="updateUser"/>
-      <Pagination :paging="pagination" @changePage="changePage" />
+      <Pagination :paging="pagination" @changePage="changePage" class="manage-user__pagination" />
     </div>
     <div class="bottom-navigation manage-user__navigation" @click="moveTo('user-create')">
       <h3 class="title--navigation">Add User</h3>
@@ -31,7 +31,6 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    min-height: 75vh;
     margin: 1.5rem 5vw;
 
     @include respond(large-phone) {

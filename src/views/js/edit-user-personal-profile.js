@@ -5,7 +5,7 @@ import CommonMixins from "@/mixins/common-mixins";
 const GlobalHeader = () => import("@/components/GlobalHeader");
 export default {
   mixins: [CommonMixins],
-  components: { Datetime , GlobalHeader},
+  components: { Datetime, GlobalHeader },
   validations: {
     user: {
       username: { required, minLength: minLength(3) },
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      userHaveVehicle: "no",
+      userHaveVehicle: null,
       genderType: ["MALE", "FEMALE"],
       divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"],
       roleType: ["USER", "ADMIN"]
@@ -36,7 +36,7 @@ export default {
   computed: {
     ...mapGetters("user", ["user"]),
     isShowingVehicleField() {
-      return this.userHaveVehicle == "yes";
+      return this.userHaveVehicle === "yes";
     },
     formatDate: {
       set(newValue) {
@@ -60,13 +60,14 @@ export default {
       }
     },
     checkUserHaveVehicle() {
-      if (!!!this.user.vehicle) {
-        this.user.license = ""
-        this.user.vehicle = ""
-      }
+      this.getUser(this.id).then(
+        () =>
+          (this.userHaveVehicle =
+            this.user.vehicle && this.user.license ? "yes" : "no")
+      );
     }
   },
   created() {
-    this.getUser(this.id).then(() => this.checkUserHaveVehicle());
+    this.checkUserHaveVehicle();
   }
 };

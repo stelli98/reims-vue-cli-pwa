@@ -85,4 +85,18 @@ describe("UserCard.vue", () => {
       expect(wrapper.emitted("deleteAnUser")).toBeTruthy();
     });
   });
+
+  test("Should be moveToUserDetail",  () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.moveToUserDetail(1);
+    expect(spy).toHaveBeenCalled();
+  });
 });
