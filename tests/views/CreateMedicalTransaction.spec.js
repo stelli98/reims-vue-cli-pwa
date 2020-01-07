@@ -48,10 +48,13 @@ describe("CreateMedicalTransaction.vue", () => {
 
   function initializeAuthStore() {
     const state = {
-      id: "1559058600"
+      id: "1559058600",
+      username: "stelli"
     };
     const getters = {
-      id: state => state.id
+      id: state => state.id,
+      auth: state => state.auth,
+      username: state => state.username
     };
     const namespaced = true;
     return { state, getters, namespaced };
@@ -59,10 +62,12 @@ describe("CreateMedicalTransaction.vue", () => {
 
   function initializeUserStore() {
     const state = {
-      userFamilies: userFamiliesData.data
+      userFamilies: userFamiliesData.data,
+      username: "ADMIN"
     };
     const getters = {
-      userFamilies: state => state.userFamilies
+      userFamilies: state => state.userFamilies,
+      username: state => state.username
     };
     const actions = {
       getUserFamilyDetailByUserId: jest.fn()

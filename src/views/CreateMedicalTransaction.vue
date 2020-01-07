@@ -81,6 +81,20 @@
             <p v-if="!$v.medical.amount.required" class="input__error-message">
               Amount must be filled
             </p>
+          <div class="form__child">
+            <label class="input__label title--medium-form" for="type">Claimed For</label>
+            <select
+              v-model="medical.patient.id"
+              class="form__input form__input__select"
+            >
+              <option
+                :key="data.id"
+                :value="data.id"
+                v-for="data in familyData"
+              >
+              {{ formatfamilyNameAndRelationship(data.name, data.relationship) | textFormatter }}
+              </option>
+            </select>
           </div>
           <p
             v-if="!$v.medical.amount.currency && $v.medical.amount.required"
@@ -128,20 +142,6 @@
     justify-content: center;
     margin: 0 auto !important;
   }
-
-<<<<<<< Updated upstream
-  .VueCarousel-dot-container,
-  .VueCarousel-dot,
-  .VueCarousel-dot--active {
-    margin: 0 !important;
-  }
 }
 </style>
 
-=======
-  &__form {
-    height: 45vh;
-  }
-}
-</style>
->>>>>>> Stashed changes

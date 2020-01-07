@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       transactionType: ["FUEL", "PARKING", "MEDICAL"],
-      selectedTransactionType: "FUEL"
+      type: "FUEL"
     };
   },
   computed: {
@@ -25,6 +25,14 @@ export default {
         !!this.$route.query.end ||
         this.$route.query.sortBy != "date"
       );
+    },
+    selectedTransactionType: {
+      set(newValue) {
+        this.type = newValue || this.$route.query.category.toUpperCase();
+      },
+      get() {
+        return this.type;
+      }
     }
     // selectedTransactionType: {
     //   set(newValue) {
@@ -42,7 +50,8 @@ export default {
     downloadReport() {
       ModalBus.$emit("open", {
         component: DownloadPopUp,
-        title: "Download Report"
+        title: "Download Report",
+        type: "information"
       });
     },
     deleteTransaction() {
