@@ -8,23 +8,27 @@ export default {
       component: "",
       title: "",
       props: null,
-      closeOnClick: true
+      closeOnClick: true,
+      content: "",
+      type: ""
     };
   },
   created() {
     ModalBus.$on(
       "open",
-      ({ component, title = "", props = null, closeOnClick = true }) => {
-        this.setUpNewComponent({ component, title, props, closeOnClick });
+      ({ component, title = "", props = null, closeOnClick = true , content, type}) => {
+        this.setUpNewComponent({ component, title, props, closeOnClick, content , type});
       }
     );
   },
   methods: {
-    setUpNewComponent({component, title, props, closeOnClick}) {
+    setUpNewComponent({component, title, props, closeOnClick, content,type}) {
       this.component = component;
       this.title = title;
       this.props = props;
       this.closeOnClick = closeOnClick;
+      this.content = content;
+      this.type = type;
     },
     handleModalClose(force = false) {
       if (!this.closeOnClick && !force) return;

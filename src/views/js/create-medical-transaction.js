@@ -30,18 +30,19 @@ export default {
   },
   data() {
     return {
+      familyOptions: [],
       medical: {
         date: "",
         title: "",
-        amount: "100",
+        amount: 100,
         attachment: "",
-        patient: ""
+        patient: { id: 0 }
       }
     };
   },
   computed: {
     ...mapGetters("user", ["userFamilies"]),
-    ...mapGetters("auth", ["id"]),
+    ...mapGetters("auth", ["username"]),
     ...mapGetters("transaction", ["images"]),
     formatDate: {
       set(newValue) {
@@ -65,7 +66,16 @@ export default {
       }
     },
     isImagesExist() {
-      this.images.length === 0 && this.moveTo("home") ;
+      this.images.length === 0 && this.moveTo("home");
+    },
+    familyData() {
+      const mySelf = {
+        name: this.username,
+        relationship: "My Self",
+        id: 0
+      };
+      this.familyOptions = this.userFamilies.concat(mySelf);
+      return this.familyOptions;
     }
   },
   methods: {
@@ -75,7 +85,10 @@ export default {
       this.$v.medical.$touch();
       if (!this.$v.medical.$invalid) {
         this.convertDateToEpoch();
+        this.medical.amount = this.convertAmountToInt();
         this.medical.attachment = this.images;
+        this.medical.patient = this.isCurrentUserIsPatient();
+        console.log(this.medical)
         this.createMedicalTransaction(this.medical);
         this.moveTo("home");
       }
@@ -83,8 +96,19 @@ export default {
     convertDateToEpoch() {
       this.medical.date = new Date(this.medical.date).getTime();
     },
+    convertAmountToInt() {
+      return typeof this.medical.amount === "string"
+        ? parseInt(this.medical.amount.split(".").join(""))
+        : this.medical.amount;
+    },
     formatfamilyNameAndRelationship(name, relationship) {
       return `${name}-${relationship}`;
+    },
+    isCurrentUserIsPatient() {
+      const id = this.medical.patient.id;
+      return id === 0
+        ? null
+        : this.familyOptions.find(family => family.id === id);
     }
   },
   created() {

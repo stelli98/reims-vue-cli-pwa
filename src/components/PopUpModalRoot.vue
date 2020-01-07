@@ -1,6 +1,6 @@
 <template>
-  <PopUpModal :isOpen="!!component" :title="title" @onClose="handleModalClose">
-    <component :is="component" @onClose="handleClose" v-bind="props" />
+  <PopUpModal :isOpen="!!component" :title="title" @onClose="handleModalClose" :content="content" :type="type">
+    <component :is="component" @onClose="handleClose" v-bind="props"/>
   </PopUpModal>
 </template>
 
