@@ -9,10 +9,13 @@ module.exports = {
       medical: `${baseUrl}/api/medicals`
     },
     users: {
-      user: `${baseUrl}/api/admin/users`,
+      family: `${baseUrl}/api/family-members`,
       report: `${baseUrl}/api/users/report`,
-      personalUser: `${baseUrl}/api/users`,
-      family: `${baseUrl}/api/family-members`
+      personalUser: `${baseUrl}/api/users`
+    },
+    admin:{
+      user: `${baseUrl}/api/admin/users`,
+      family: `${baseUrl}/api/admin/family-members`,
     },
     auth: {
       login: `${baseUrl}/api/login`,

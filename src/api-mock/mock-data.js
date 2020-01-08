@@ -379,11 +379,11 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.users.user,
+    url: api.admin.user,
     params: {
       page: 1,
       size: 10,
-      sort_by: "created_at",
+      sort_by: "createdAt",
       search: ""
     },
     status: "OK",
@@ -459,11 +459,11 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.users.user,
+    url: api.admin.user,
     params: {
       page: 2,
       size: 10,
-      sort_by: "created_at",
+      sort_by: "createdAt",
       search: ""
     },
     status: "OK",
@@ -555,7 +555,7 @@ export default [
     params: {
       page: 1,
       size: 10,
-      sort_by: "created_at",
+      sort_by: "createdAt",
       search: "ste"
     },
     status: "OK",
@@ -595,6 +595,23 @@ export default [
   {
     code: 200,
     method: "GET",
+    url: api.admin.user + "/1559058600",
+    status: "OK",
+    data: {
+      id: 1559058600,
+      username: "Munawan Sadakh",
+      gender: "MALE",
+      dateOfBirth: "2019-05-06T12:06:00.000Z",
+      role: "ADMIN",
+      division: "TECHNOLOGY",
+      license: "BL 123 AA",
+      vehicle: "Avanza Silver White",
+      created_at: 1559058410
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
     url: api.users.user + "/1559058600",
     status: "OK",
     data: {
@@ -612,7 +629,7 @@ export default [
   {
     code: 200,
     method: "GET",
-    url: api.users.family + "?user-id=1559058600",
+    url: api.admin.family + "?user-id=1559058600",
     status: "OK",
     data: [
       {
@@ -633,6 +650,18 @@ export default [
   {
     code: 200,
     method: "GET",
+    url: api.admin.family + "/92768",
+    status: "OK",
+    data: {
+      id: 92768,
+      name: "Zendaya",
+      relationship: "SPOUSE",
+      dateOfBirth: "898362000000"
+    }
+  },
+  {
+    code: 200,
+    method: "GET",
     url: api.users.family + "/92768",
     status: "OK",
     data: {
@@ -645,7 +674,7 @@ export default [
   {
     code: 200,
     method: "PUT",
-    url: api.users.user + "/1559058600",
+    url: api.admin.user + "/1559058600",
     status: "OK",
     data: {
       id: 1559058600,
