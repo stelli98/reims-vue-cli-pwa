@@ -152,7 +152,6 @@
   &__content {
     width: 65vw;
     margin: 0 auto;
-    min-height: 76vh;
     @include respond(large-phone) {
       width: 40vw;
     }

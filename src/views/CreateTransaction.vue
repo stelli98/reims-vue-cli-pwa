@@ -1,14 +1,20 @@
 <template>
   <div class="create-transaction">
-    <GlobalHeader/>
+    <GlobalHeader />
     <div class="create-transaction__order">
       <div class="create-transaction__progress">
-        <div class="create-transaction__progress-bar progress-bar-active" id="progress-bar-first"></div>
+        <div
+          class="create-transaction__progress-bar progress-bar-active"
+          id="progress-bar-first"
+        ></div>
         <div class="create-transaction__progress-text">Crop Image</div>
       </div>
       <div class="create-transaction__progress">
         <div
-          :class="`create-transaction__progress-bar ${activeSecondProgressBar || activeThirdProgressBar}`"
+          :class="
+            `create-transaction__progress-bar ${activeSecondProgressBar ||
+              activeThirdProgressBar}`
+          "
         ></div>
         <div class="create-transaction__progress-text">Filter Image</div>
       </div>

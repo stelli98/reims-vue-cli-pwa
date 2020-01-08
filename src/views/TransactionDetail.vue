@@ -33,7 +33,6 @@
 </template>
 
 <script src="./js/transaction-detail.js"></script>
-
 <style lang="scss" scoped>
 .transaction-detail {
   &__ocr-image {

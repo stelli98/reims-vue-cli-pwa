@@ -1,13 +1,31 @@
 <template>
   <div class="user-family">
     <div class="user-family__content">
-      <div class="user-family__detail" v-for="(user, index) in userFamilies" :key="index">
-        <div class="user-family__markdown" @click="toggleExpandFamilyData(index)">
-          <div class="user-family__heading" :class="{'icon-small-green': user.expanding}">
-            <h4  :class="{'active-selected': isExpandedGroup(index)}">{{user.relationship | textFormatter }}</h4>
-            <svg class="icon-small" :class="{'icon-small-green': isExpandedGroup(index)}" >
-              <use  v-bind="{
-              'xlink:href': `icons.svg#icon-${iconClass(index)}`}"/>
+      <div
+        class="user-family__detail"
+        v-for="(user, index) in userFamilies"
+        :key="index"
+      >
+        <div
+          class="user-family__markdown"
+          @click="toggleExpandFamilyData(index)"
+        >
+          <div
+            class="user-family__heading"
+            :class="{ 'icon-small-green': user.expanding }"
+          >
+            <h4 :class="{ 'active-selected': isExpandedGroup(index) }">
+              {{ user.relationship | textFormatter }}
+            </h4>
+            <svg
+              class="icon-small"
+              :class="{ 'icon-small-green': isExpandedGroup(index) }"
+            >
+              <use
+                v-bind="{
+                  'xlink:href': `icons.svg#icon-${iconClass(index)}`
+                }"
+              />
             </svg>
           </div>
           <hr />
@@ -17,16 +35,26 @@
             <div class="user-family__container">
               <div class="user-family__box">
                 <p class="title--big">Name</p>
-                <span>{{user.name}}</span>
+                <span>{{ user.name }}</span>
               </div>
               <div class="user-family__box">
                 <p class="title--big">Date of Birth</p>
-                <span>{{user.marriedDate || user.dateOfBirth}}</span>
+                <span>{{ user.marriedDate || user.dateOfBirth }}</span>
               </div>
             </div>
             <div class="user-family__action">
-              <h4 class="user-family__edit" @click="moveTo('edit-family-profile', user.id)">Edit</h4>
-              <h4 class="user-family__remove" @click="removeUserFamily(user.id)">Remove</h4>
+              <h4
+                class="user-family__edit"
+                @click="editUser('edit-family-profile', user.id)"
+              >
+                Edit
+              </h4>
+              <h4
+                class="user-family__remove"
+                @click="removeUserFamily(user.id)"
+              >
+                Remove
+              </h4>
             </div>
           </div>
         </transition>
@@ -36,20 +64,18 @@
       <div class="title--navigation" @click="moveTo('user')">Cancel</div>
       <div
         class="title--navigation"
-        :class="{'disabled' : userFamilies.length == 4 }"
+        :class="{ disabled: userFamilies.length == 4 }"
         @click.stop="addNewUserFamily"
-      >Add Family</div>
+      >
+        Add Family
+      </div>
     </div>
   </div>
 </template>
 
 <script src="./js/user-family-detail.js"></script>
-
 <style lang="scss" scoped>
 .user-family {
-  &__content {
-    min-height: 66vh;
-  }
 
   &__detail {
     margin: 1rem 1.5rem;
@@ -59,7 +85,7 @@
     }
   }
 
-  .active-selected{
+  .active-selected {
     color: $color-green;
   }
 

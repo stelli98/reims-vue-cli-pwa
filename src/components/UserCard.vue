@@ -1,6 +1,6 @@
 <template>
   <div class="user__card">
-    <div class="user__card__center" @click="moveToWithParamsId('user-detail',user.id)">
+    <div class="user__card__center" @click="moveToUserDetail(user.id)">
       <div
         class="
       title--big

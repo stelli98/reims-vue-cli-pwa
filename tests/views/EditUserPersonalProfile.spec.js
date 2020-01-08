@@ -58,7 +58,7 @@ describe("EditUserPersonalProfile.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime","GlobalHeader"],
+      stubs: ["Datetime", "GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -70,8 +70,7 @@ describe("EditUserPersonalProfile.vue", () => {
     store = initializeStore();
   });
 
-
-  test("checkUserHaveVehicle method if user doesn't have vehicle", () => {
+  test("checkUserHaveVehicle method if user doesn't have vehicle", async () => {
     const options = {
       mocks: {
         $route: {
@@ -83,12 +82,17 @@ describe("EditUserPersonalProfile.vue", () => {
     };
     store.state.user = {};
     wrapper = createWrapper(store.store, options);
-    wrapper.vm.checkUserHaveVehicle();
-    expect(wrapper.vm.user.license).toBe("");
-    expect(wrapper.vm.user.vehicle).toBe("");
+    await wrapper.vm.checkUserHaveVehicle();
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.userHaveVehicle).toBe("no");
+    });
   });
 
-  test("checkUserHaveVehicle method if user doesn't have vehicle", () => {
+  test("checkUserHaveVehicle method if user have vehicle", () => {
+    const expectedValue = {
+      license: "BL 123 AA",
+      vehicle: "Avanza"
+    }
     const options = {
       mocks: {
         $route: {
@@ -98,14 +102,11 @@ describe("EditUserPersonalProfile.vue", () => {
         }
       }
     };
-    store.state.user = {
-      license : "BL 123 AA",
-      vehicle : "Avanza" 
-    };
+    store.state.user = expectedValue;
     wrapper = createWrapper(store.store, options);
     wrapper.vm.checkUserHaveVehicle();
-    expect(wrapper.vm.user.license).not.toBe("");
-    expect(wrapper.vm.user.vehicle).not.toBe("");
+    expect(wrapper.vm.user.license).toBe(expectedValue.license);
+    expect(wrapper.vm.user.vehicle).toBe(expectedValue.vehicle);
   });
 
   test("sendEditUserForm method if user data isn't filled", () => {

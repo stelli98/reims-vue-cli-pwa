@@ -20,8 +20,8 @@ export default {
       options: {
         page: parseInt(this.$route.query.page) || 1,
         size: parseInt(this.$route.query.size) || 5,
-        sortBy: this.$route.query.sortBy || "date",
-        category: this.$route.query.category || "fuel"
+        sortBy: this.$route.query.sortBy || "createdAt",
+        category: this.$route.query.category || "FUEL"
       },
       actionButtonActive: false
     };
@@ -36,10 +36,10 @@ export default {
     },
     transactionOptions() {
       return {
-        page: this.$route.query.page,
-        size: this.$route.query.size,
+        page: parseInt(this.$route.query.page),
+        size: parseInt(this.$route.query.size),
         sortBy: this.$route.query.sortBy,
-        category: this.$route.query.category
+        category: this.$route.query.category ? this.$route.query.category.toUpperCase() : ""
       };
     }
   },
@@ -54,13 +54,14 @@ export default {
       this.showFilter = value;
     },
     updateTransaction() {
-      this.getTransactionsByCategory([this.$route.query, this.isOCR]).then(
-        () => {
-          if (this.transactions.length == 0 && this.$route.query.page != 1) {
-            this.changePage(1);
-          }
+      this.getTransactionsByCategory([
+        this.transactionOptions,
+        this.isOCR
+      ]).then(() => {
+        if (this.transactions.length == 0 && this.$route.query.page != 1) {
+          this.changePage(1);
         }
-      );
+      });
     },
     doLogout() {
       this.logout().then(() => {

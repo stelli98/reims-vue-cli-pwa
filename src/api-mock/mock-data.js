@@ -12,8 +12,8 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "date",
-      category: "fuel"
+      sortBy: "createdAt",
+      category: "FUEL"
     },
     status: "OK",
     data: [
@@ -68,224 +68,8 @@ export default [
     params: {
       page: 2,
       size: 5,
-      sortBy: "date",
-      category: "fuel"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 6,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Page 2 PP Jakarta - Bandung",
-        amount: 25000
-      },
-      {
-        id: 7,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin Town Hall",
-        amount: 25000
-      },
-      {
-        id: 8,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Bus Mini",
-        amount: 25000
-      },
-      {
-        id: 9,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Motor GI",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 2,
-      pageSize: 5,
-      totalPages: 2,
-      totalRecords: 9
-    }
-  },
-  //get transaction fuel category first page (INT-STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.transaction,
-    headers: {
-      authorization: "Bearer 123"
-    },
-    params: {
-      page: 1,
-      size: "5",
-      sortBy: "date",
-      category: "fuel"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 1,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel1 Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 2,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Thamrin - GI",
-        amount: 25000
-      },
-      {
-        id: 3,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 4,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Thamrin - GI",
-        amount: 25000
-      },
-      {
-        id: 5,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Tanggal 20",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 1,
-      pageSize: 5,
-      totalPages: 2,
-      totalRecords: 10
-    }
-  },
-  //get transaction fuel category second page (INT-STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.transaction,
-    params: {
-      page: 2,
-      size: "5",
-      sortBy: "date",
-      category: "fuel"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 6,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Page 2 PP Jakarta - Bandung",
-        amount: 25000
-      },
-      {
-        id: 7,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin Town Hall",
-        amount: 25000
-      },
-      {
-        id: 8,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Bus Mini",
-        amount: 25000
-      },
-      {
-        id: 9,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Motor GI",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 2,
-      pageSize: 5,
-      totalPages: 2,
-      totalRecords: 9
-    }
-  },
-  //get transaction fuel category first page (STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.transaction,
-    headers: {
-      authorization: "Bearer 123"
-    },
-    params: {
-      page: "1",
-      size: "5",
-      sortBy: "date",
-      category: "fuel"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 1,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel1 Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 2,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Thamrin - GI",
-        amount: 25000
-      },
-      {
-        id: 3,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 4,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Bensin PP Thamrin - GI",
-        amount: 25000
-      },
-      {
-        id: 5,
-        category: "fuel",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Fuel Tanggal 20",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 1,
-      pageSize: 5,
-      totalPages: 2,
-      totalRecords: 10
-    }
-  },
-  //get transaction fuel category second page (STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.transaction,
-    params: {
-      page: "2",
-      size: "5",
-      sortBy: "date",
-      category: "fuel"
+      sortBy: "createdAt",
+      category: "FUEL"
     },
     status: "OK",
     data: [
@@ -336,53 +120,8 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "date",
-      category: "parking"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 11,
-        category: "parking",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 12,
-        category: "parking",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 21",
-        amount: 25000
-      },
-      {
-        id: 13,
-        category: "parking",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Parkir Tanggal 22",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 1,
-      pageSize: 5,
-      totalPages: 1,
-      totalRecords: 3
-    }
-  },
-  //get transaction parking first page (STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.transaction,
-    headers: {
-      authorization: "Bearer 123"
-    },
-    params: {
-      page: "1",
-      size: "5",
-      sortBy: "date",
-      category: "parking"
+      sortBy: "createdAt",
+      category: "PARKING"
     },
     status: "OK",
     data: [
@@ -426,60 +165,8 @@ export default [
     params: {
       page: 1,
       size: 5,
-      sortBy: "date",
-      category: "medical"
-    },
-    status: "OK",
-    data: [
-      {
-        id: 14,
-        category: "medical",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Obat Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 15,
-        category: "medical",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Medical Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 16,
-        category: "medical",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Obat Tanggal 20",
-        amount: 25000
-      },
-      {
-        id: 17,
-        category: "medical",
-        date: "2019-05-06T12:06:00.000Z",
-        title: "Medical Tanggal 20",
-        amount: 25000
-      }
-    ],
-    paging: {
-      pageNumber: 1,
-      pageSize: 5,
-      totalPages: 1,
-      totalRecords: 3
-    }
-  },
-  //get transaction medical first page (STRING)
-  {
-    code: 200,
-    method: "GET",
-    url: api.transactions.medical,
-    headers: {
-      authorization: "Bearer 123"
-    },
-    params: {
-      page: "1",
-      size: "5",
-      sortBy: "date",
-      category: "medical"
+      sortBy: "createdAt",
+      category: "MEDICAL"
     },
     status: "OK",
     data: [
@@ -992,6 +679,24 @@ export default [
         id: 92768,
         name: "Zendaya",
         relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92768,
+        name: "Zendaya",
+        relationship: "SPOUSE",
+        dateOfBirth: "898362000000"
+      },
+      {
+        id: 92761,
+        name: "Andre Forbes",
+        relationship: "CHILDREN",
         dateOfBirth: "898362000000"
       },
       {

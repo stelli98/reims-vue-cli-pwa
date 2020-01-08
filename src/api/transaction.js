@@ -66,7 +66,6 @@ export default {
   },
   getViewImage(url, token) {
     const path = api.transaction;
-    console.log(`${path}/${url}`)
     return axios.get(`${path}/${url}`, {
       headers: {
         Authorization: token
@@ -77,7 +76,8 @@ export default {
     const path = api.medical;
     return axios.post(path, data, {
       headers: {
-        Authorization: token
+        Authorization: token,
+        "Content-Type": "application/json"
       }
     });
   },

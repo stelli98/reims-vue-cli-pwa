@@ -87,7 +87,7 @@ export default {
   },
   updateUserFamily(id, data, token){
     const path = api.family;
-    return axios.post(`${path}?user-id=${id}`, data, {
+    return axios.put(`${path}/${data.id}?user-id=${id}`, data, {
       headers: {
         Authorization: token
       }
@@ -95,7 +95,7 @@ export default {
   },
   deleteUserFamilyById(id, token){
     const path = api.family;
-    return axios.delete(`${path}?user-id=${id}`, {
+    return axios.delete(`${path}/${id}`, {
       headers: {
         Authorization: token
       }

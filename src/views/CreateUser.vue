@@ -188,13 +188,11 @@
 </template>
 
 <script src="./js/create-user.js"></script>
-
 <style lang="scss" scoped>
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .create-user {
   &__content {
     width: 70vw;
-    min-height: 78vh;
     margin: 0 auto;
     @include respond(large-phone) {
       width: 40vw;

@@ -5,7 +5,9 @@
     </div>
     <div class="filter-image__option">
       <div>
-        <label class="filter-image__label">Grayscale ({{ filterFunctions.grayscale }})</label>
+        <label class="filter-image__label"
+          >Grayscale ({{ filterFunctions.grayscale }})</label
+        >
         <input
           v-model="filterFunctions.grayscale"
           type="range"
@@ -17,7 +19,9 @@
         />
       </div>
       <div>
-        <label class="filter-image__label">Brightness ({{ filterFunctions.brightness }})</label>
+        <label class="filter-image__label"
+          >Brightness ({{ filterFunctions.brightness }})</label
+        >
         <input
           v-model="filterFunctions.brightness"
           type="range"
@@ -29,7 +33,9 @@
         />
       </div>
       <div>
-        <label class="filter-image__label">Contrast ({{ filterFunctions.contrast }})</label>
+        <label class="filter-image__label"
+          >Contrast ({{ filterFunctions.contrast }})</label
+        >
         <input
           v-model="filterFunctions.contrast"
           type="range"
@@ -65,6 +71,7 @@
 
     & img {
       width: 80vw;
+      height: 55vh;
 
       @include respond(medium-phone) {
         width: 25rem;
@@ -79,9 +86,14 @@
   &__option {
     display: flex;
     flex-flow: column;
-    justify-content: center;
     align-items: center;
-    margin: 1.2rem 0;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    min-height: 30vh;
+
+    & > div > label {
+      display: block;
+    }
   }
 
   &__navigation,

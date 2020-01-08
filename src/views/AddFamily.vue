@@ -73,13 +73,11 @@
 </template>
 
 <script src="./js/add-family.js"></script>
-
 <style lang="scss" scoped>
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
 .add-family {
   &__content {
     width: 65vw;
-    min-height: 78vh;
     margin: 0 auto;
     @include respond(large-phone) {
       width: 40vw;

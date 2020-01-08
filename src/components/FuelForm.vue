@@ -115,6 +115,7 @@
 
 <script src="./js/fuel-form.js"></script>
 
-<style>
+<style lang="scss">
 @import "../../node_modules/vue-datetime/dist/vue-datetime.css";
+
 </style>

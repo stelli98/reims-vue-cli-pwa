@@ -29,13 +29,13 @@ const router = new Router({
     },
     {
       path: "/home",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       component: CreateTransaction,
       children: [
         {
@@ -57,13 +57,13 @@ const router = new Router({
     },
     {
       path: "/transaction/:id",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       name: "transaction-detail",
       component: TransactionDetail
     },
     {
       path: "/users",
-      beforeEnter: checkAuthAdmin,
+      // beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
@@ -92,7 +92,7 @@ const router = new Router({
       component: EditUserPersonalProfile
     },
     {
-      path: "/users/family/:id/edit",
+      path: "/users/:userId/family/:familyId/edit",
       // beforeEnter: checkAuthUser,
       name: "edit-family-profile",
       component: EditUserFamilyProfile

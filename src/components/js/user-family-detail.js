@@ -40,6 +40,9 @@ export default {
     },
     iconClass(index) {
       return this.isExpandedGroup(index) ? "up" : "down";
+    },
+    editUser(page, familyId){
+      this.$router.push({name: page, params:{userId: this.$route.params.id, familyId: familyId}})
     }
   },
   created() {

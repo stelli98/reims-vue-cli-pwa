@@ -7,12 +7,12 @@
         <h6
           class="title--medium"
           :class="{'user-detail__tab-active' : isComponentActive }"
-          @click="switchTab"
+          @click="switchTab(true)"
         >Personal</h6>
         <h6
           class="title--medium"
           :class="{'user-detail__tab-active' : !isComponentActive }"
-          @click="switchTab"
+          @click="switchTab(false)"
         >Family</h6>
       </div>
     </div>
@@ -21,7 +21,6 @@
 </template>
 
 <script src="./js/user-detail.js"></script>
-
 <style lang="scss" scoped>
 .user-detail {
   position: relative;
@@ -31,7 +30,7 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    margin: 1.5rem 5vw 0;
+    margin: 1.2rem 5vw 0;
 
     @include respond(large-phone) {
       width: 70vw;

@@ -218,10 +218,11 @@ describe("UserFamilyDetail.vue", async () => {
     expect(spyMoveTo).not.toHaveBeenCalled();
   })
 
-  test("moveTo method if there is no param id in route", () => {
+  test("editUser method", () => {
     const params = {
       id: "1559058600"
     };
+    const familyId = "92768"
     const options = {
       mocks: {
         $router: {
@@ -234,27 +235,7 @@ describe("UserFamilyDetail.vue", async () => {
     };
     wrapper = createWrapper(store.store, options);
     const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("edit-family-profile");
-    expect(spy).toHaveBeenCalled();
-  });
-
-  test("moveTo method if there is param id in route", () => {
-    const params = {
-      id: "1559058600"
-    };
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          params
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.moveTo("edit-family-profile", "92768");
+    wrapper.vm.editUser("edit-family-profile", "92768");
     expect(spy).toHaveBeenCalled();
   });
 
@@ -276,5 +257,55 @@ describe("UserFamilyDetail.vue", async () => {
     const spy = jest.spyOn(store.actions, "deleteUserFamily")
     wrapper.vm.removeUserFamily(params.id);
     expect(spy).toHaveBeenCalled();
+  })
+
+  test("iconClass method if result up", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const index=1 ;
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        },
+        
+      },
+      methods: {
+        isExpandedGroup(index) {
+          return true
+        }
+      },
+    };
+    wrapper = createWrapper(store.store, options);
+    expect(wrapper.vm.iconClass(index)).toBe("up");
+  })
+
+  test("iconClass method if result down", ()=>{
+    const params = {
+      id: "1559058600"
+    };
+    const index=1 ;
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          params
+        },
+        
+      },
+      methods: {
+        isExpandedGroup(index) {
+          return false
+        }
+      },
+    };
+    wrapper = createWrapper(store.store, options);
+    expect(wrapper.vm.iconClass(index)).toBe("down");
   })
 });

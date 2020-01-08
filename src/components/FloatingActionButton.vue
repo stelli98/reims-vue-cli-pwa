@@ -63,7 +63,6 @@
 </template>
 
 <script src="./js/floating-action-button.js"></script>
-
 <style lang="scss" scoped>
 @mixin circleShadow($vertical) {
   box-shadow: 0 0 $vertical rgba(0, 0, 0, 0.14),

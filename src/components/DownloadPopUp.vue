@@ -45,7 +45,6 @@
 </template>
 
 <script src="./js/download-pop-up.js"></script>
-
 <style lang="scss" scoped>
 .download-popup {
   &__body {

@@ -1,6 +1,7 @@
 const baseUrl =
-  process.env.NODE_ENV === "production" ? `http://localhost:9095` : "";
-
+  process.env.NODE_ENV === "production" ? `http://192.168.43.139:9095` : "";
+  // 192.168.43.139
+  //http://localhost:9095
 module.exports = {
   api: {
     transactions: {
