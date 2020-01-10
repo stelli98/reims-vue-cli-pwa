@@ -6,7 +6,7 @@ import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
-const url = config.api.users;
+const url = config.api.admin;
 
 describe("AddFamily.vue", () => {
   let store;
@@ -58,7 +58,7 @@ describe("AddFamily.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime","GlobalHeader"],
+      stubs: ["Datetime", "GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -89,7 +89,7 @@ describe("AddFamily.vue", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("submitAddFamilyToUserForm if data is valid", () => {
+  test("submitAddFamilyToUserForm if data is valid", async () => {
     const options = {
       data() {
         return {
@@ -114,9 +114,11 @@ describe("AddFamily.vue", () => {
     wrapper = createWrapper(store.store, options);
     const spyAddFamilyToUser = jest.spyOn(store.actions, "addFamilyToUser");
     const spyMoveTo = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.submitAddFamilyToUserForm();
+    await wrapper.vm.submitAddFamilyToUserForm();
     expect(spyAddFamilyToUser).toHaveBeenCalled();
-    expect(spyMoveTo).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyMoveTo).toHaveBeenCalled();
+    });
   });
 
   test("submitAddFamilyToUserForm if data isn't valid", () => {
@@ -144,8 +146,6 @@ describe("AddFamily.vue", () => {
     expect(spyAddFamilyToUser).not.toHaveBeenCalled();
     expect(spyMoveTo).not.toHaveBeenCalled();
   });
-
-
 
   test("formatDate computed setter getter", () => {
     wrapper.setData({ formatDate: 1565419259000 });

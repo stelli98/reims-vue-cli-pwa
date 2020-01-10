@@ -6,14 +6,14 @@ import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
-const url = config.api.users;
+const url = config.api.admin;
 
 describe("EditUserPersonalProfile.vue", () => {
   let store;
   let wrapper;
   let localVue;
   const userData = data.find(
-    d => d.url === url.user + "/1559058600" && d.method == "GET"
+    d => d.url === url.family + "?user-id=1559058600" && d.method == "GET"
   );
 
   function initializeStore() {
@@ -92,7 +92,7 @@ describe("EditUserPersonalProfile.vue", () => {
     const expectedValue = {
       license: "BL 123 AA",
       vehicle: "Avanza"
-    }
+    };
     const options = {
       mocks: {
         $route: {
@@ -128,11 +128,11 @@ describe("EditUserPersonalProfile.vue", () => {
     expect(spyMoveToPreviousPage).not.toHaveBeenCalled();
   });
 
-  test("sendEditUserForm method if user data is filled", () => {
+  test("sendEditUserForm method if user data is filled", async () => {
     const options = {
       mocks: {
         $router: {
-          go: jest.fn()
+          push: jest.fn()
         },
         $route: {
           params: {
@@ -150,10 +150,12 @@ describe("EditUserPersonalProfile.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
-    const spyMoveToPreviousPage = jest.spyOn(wrapper.vm, "moveToPreviousPage");
-    wrapper.vm.sendEditUserForm();
+    const spyMoveToWithParams = jest.spyOn(wrapper.vm, "moveToWithParams");
+    await wrapper.vm.sendEditUserForm();
     expect(spyUpdateUser).toHaveBeenCalled();
-    expect(spyMoveToPreviousPage).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyMoveToWithParams).toHaveBeenCalled();
+    });
   });
 
   test("formatDate computed setter getter", () => {

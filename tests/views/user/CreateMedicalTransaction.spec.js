@@ -12,7 +12,7 @@ describe("CreateMedicalTransaction.vue", () => {
   let wrapper;
   let localVue;
   const userFamiliesData = data.find(
-    d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
+    d => d.url == url.family && d.method == "GET"
   );
 
   function initializeStore() {
@@ -70,7 +70,7 @@ describe("CreateMedicalTransaction.vue", () => {
       username: state => state.username
     };
     const actions = {
-      getUserFamilyDetailByUserId: jest.fn()
+      getUserFamily: jest.fn()
     };
     const namespaced = true;
     return { state, getters, actions, namespaced };
@@ -123,7 +123,7 @@ describe("CreateMedicalTransaction.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions.user, "getUserFamilyDetailByUserId");
+    const spy = jest.spyOn(store.actions.user, "getUserFamily");
     expect(spy).toHaveBeenCalled();
   });
 

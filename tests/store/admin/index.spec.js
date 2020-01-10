@@ -2,6 +2,9 @@ import admin from "@/store/modules/admin";
 
 const state = {
   users: [],
+  user: {},
+  pagination: {},
+  userFamilies: [],
   userFamily: {}
 };
 

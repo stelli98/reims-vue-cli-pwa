@@ -6,7 +6,7 @@ import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
 
-const url = config.api.users;
+const url = config.api.admin;
 
 describe("EditUserFamilyProfile.vue", () => {
   let store;
@@ -29,7 +29,7 @@ describe("EditUserFamilyProfile.vue", () => {
     };
     const store = new Vuex.Store({
       modules: {
-        user: {
+        admin: {
           state,
           getters,
           actions,
@@ -97,7 +97,7 @@ describe("EditUserFamilyProfile.vue", () => {
     const options = {
       mocks: {
         $router: {
-          go: jest.fn()
+          push: jest.fn()
         },
         $route: {
           params: {
@@ -108,8 +108,10 @@ describe("EditUserFamilyProfile.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
+    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
     wrapper.vm.submitEditUserFamilyForm();
     expect(spyUpdateUser).toHaveBeenCalled();
+    expect(spyRouterPush).toHaveBeenCalled();
   });
 
   test("formatDate computed setter getter", () => {

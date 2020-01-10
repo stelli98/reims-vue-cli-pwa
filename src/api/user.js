@@ -3,6 +3,14 @@ import config from "@/config";
 const api = config.api.users;
 
 export default {
+  getUserFamily(id,token){
+    const path = api.family;
+    return axios.get(`${path}/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+  },
   downloadPersonalReport(options, token) {
     const path = api.report;
     return axios.get(path, {
@@ -19,13 +27,5 @@ export default {
         Authorization: token
       }
     });
-  },
-  getFamilyDetailByUserId(id,token){
-    const path = api.family;
-    return axios.get(`${path}?user-id=${id}`, {
-      headers: {
-        Authorization: token
-      }
-    })
   }
 };

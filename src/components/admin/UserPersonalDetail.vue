@@ -17,7 +17,7 @@
           </div>
           <div class="user-personal__box">
             <p class="title--big">Date of Birth</p>
-            <span>{{user.dateOfBirth | dateFormatter}}</span>
+            <span>{{user.dateOfBirth}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Gender</p>

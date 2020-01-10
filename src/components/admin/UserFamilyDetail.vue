@@ -76,7 +76,6 @@
 <script src="./js/user-family-detail.js"></script>
 <style lang="scss" scoped>
 .user-family {
-
   &__detail {
     margin: 1rem 1.5rem;
     @include respond(large-phone) {

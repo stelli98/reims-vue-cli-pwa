@@ -15,7 +15,7 @@ describe("FuelForm.vue", () => {
     };
     const store = new Vuex.Store({
       modules: {
-        user: {
+        admin: {
           actions,
           namespaced: true
         }
@@ -40,7 +40,7 @@ describe("FuelForm.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["Datetime", "GlobalHeader"],
+      stubs: ["Datetime","CommonMixins", "GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -53,7 +53,7 @@ describe("FuelForm.vue", () => {
     wrapper = createWrapper(store.store);
   });
 
-  test("sendCreateUserForm method if user data is filled", () => {
+  test("sendCreateUserForm method if user data is not filled", () => {
     const options = {
       mocks: {
         $router: {

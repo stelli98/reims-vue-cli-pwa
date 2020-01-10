@@ -5,7 +5,7 @@ import CommonMixins from "@/mixins/common-mixins";
 const GlobalHeader = () => import("@/components/common/GlobalHeader");
 
 export default {
-  mixins: [CommonMixins],  
+  mixins: [CommonMixins],
   components: { Datetime, GlobalHeader },
   validations: {
     userFamily: {
@@ -20,22 +20,33 @@ export default {
         this.userFamily.dateOfBirth = newValue;
       },
       get() {
-        return this.userFamily.dateOfBirth ? new Date(parseInt(this.userFamily.dateOfBirth)).toISOString() : this.minDateOfBirth;
+        return this.userFamily.dateOfBirth
+          ? new Date(parseInt(this.userFamily.dateOfBirth)).toISOString()
+          : this.minDateOfBirth;
       }
     }
   },
   methods: {
-    ...mapActions("admin", ["updateUserFamily", "getUserFamilyDetailByFamilyId"]),
+    ...mapActions("admin", [
+      "updateUserFamily",
+      "getUserFamilyDetailByFamilyId"
+    ]),
     submitEditUserFamilyForm() {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
-        this.userFamily.dateOfBirth = new Date(this.userFamily.dateOfBirth).getTime();
+        this.userFamily.dateOfBirth = new Date(
+          this.userFamily.dateOfBirth
+        ).getTime();
         this.updateUserFamily([this.$route.params.userId, this.userFamily]);
-        this.moveToPreviousPage();
-      } 
+        this.$router.push({
+          name: "user-detail",
+          params: { id: this.$route.params.id },
+          query: { activeTab: "UserFamilyDetail" }
+        });
+      }
     }
   },
   created() {
-    this.getUserFamilyDetailByFamilyId(this.$route.params.familyId)
+    this.getUserFamilyDetailByFamilyId(this.$route.params.familyId);
   }
 };

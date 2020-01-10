@@ -59,7 +59,7 @@ export default {
           this.user.vehicle = "";
           this.user.license = "";
         }
-        this.updateUser(this.user).then(()=>this.moveToWithParamsId("user-detail", this.user.id));
+        this.updateUser(this.user).then(()=>this.moveToWithParams("user-detail", {id: this.user.id}));
       }
     },
     checkUserHaveVehicle() {

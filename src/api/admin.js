@@ -3,6 +3,14 @@ import config from "@/config";
 const api = config.api.admin;
 
 export default {
+  createUser(data, token) {
+    const path = api.user;
+    return axios.post(path, data, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
   getUser(id, token) {
     const path = api.user;
     return axios.get(`${path}/${id}`, {
@@ -15,14 +23,6 @@ export default {
     const path = api.user;
     return axios.get(path, {
       params: options,
-      headers: {
-        Authorization: token
-      }
-    });
-  },
-  createUser(data, token) {
-    const path = api.user;
-    return axios.post(path, data, {
       headers: {
         Authorization: token
       }
@@ -45,7 +45,7 @@ export default {
     });
   },
   getFamilyDetailByUserId(id,token){
-    const path = api.familyAdmin;
+    const path = api.family;
     return axios.get(`${path}?user-id=${id}`, {
       headers: {
         Authorization: token
@@ -53,7 +53,7 @@ export default {
     })
   }, 
   getFamilyDetailByFamilyId(id,token){
-    const path = api.familyAdmin;
+    const path = api.family;
     return axios.get(`${path}/${id}`, {
       headers: {
         Authorization: token
@@ -61,7 +61,7 @@ export default {
     })
   }, 
   addFamilyToUser(id, data, token){
-    const path = api.familyAdmin;
+    const path = api.family;
     return axios.post(`${path}?user-id=${id}`, data, {
       headers: {
         Authorization: token
@@ -69,7 +69,7 @@ export default {
     });
   },
   updateUserFamily(id, data, token){
-    const path = api.familyAdmin;
+    const path = api.family;
     return axios.put(`${path}/${data.id}?user-id=${id}`, data, {
       headers: {
         Authorization: token
@@ -77,7 +77,7 @@ export default {
     });
   },
   deleteUserFamilyById(id, token){
-    const path = api.familyAdmin;
+    const path = api.family;
     return axios.delete(`${path}/${id}`, {
       headers: {
         Authorization: token

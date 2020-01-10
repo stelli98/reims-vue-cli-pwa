@@ -7,20 +7,20 @@ const url = config.api.users;
 jest.mock("@/api/user");
 
 describe("Actions for User Module", () => {
-  test("GetUserFamilyDetailByFamilyId", async () => {
-    api.getUserFamilyDetailByFamilyId = jest.fn();
+  test("GetUserFamily", async () => {
+    api.getUserFamily = jest.fn();
     const rootState = {
       auth: {
         token: "Bearer 123"
       }
     };
     const expectedValue = data.find(
-      d => d.url === url.family + "/92768" && d.method == "GET"
+      d => d.url === url.family && d.method == "GET"
     );
-    api.getUserFamilyDetailByFamilyId.mockResolvedValue(expectedValue);
+    api.getUserFamily.mockResolvedValue(expectedValue);
     const commit = jest.fn();
     const id = 92768;
-    await actions.getUserFamilyDetailByFamilyId({ commit, rootState }, id);
+    await actions.getUserFamily({ commit, rootState }, id);
     expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
   });
 
@@ -44,7 +44,6 @@ describe("Actions for User Module", () => {
 
   test("updatePersonalProfile actions", () => {
     api.updatePersonalProfile = jest.fn();
-
     const rootState = {
       auth: {
         token: "Bearer 123"

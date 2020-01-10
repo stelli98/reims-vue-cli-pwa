@@ -6,7 +6,10 @@ const url = config.api.users;
 
 describe("user getters", () => {
   test("Get user from user module", () => {
-    const expectedValue = data.find(d => d.url == url.user + "/1559058600");
+    const expectedValue =  {
+      name: "stelli",
+      password: "stelli"
+    }
     const state = {
       user: expectedValue.data
     };
@@ -16,7 +19,7 @@ describe("user getters", () => {
 
   test("Get userFamily from user module", () => {
     const expectedValue = data.find(
-      d => d.url == url.family + "?user-id=1559058600" && d.method == "GET"
+      d => d.url == url.family && d.method == "GET"
     );
     const state = {
       userFamily: expectedValue.data

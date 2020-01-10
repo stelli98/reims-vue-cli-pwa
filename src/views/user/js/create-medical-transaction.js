@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["getUserFamilyDetailByUserId"]),
+    ...mapActions("user", ["getUserFamily"]),
     ...mapActions("transaction", ["createMedicalTransaction"]),
     submitMedicalForm() {
       this.$v.medical.$touch();
@@ -88,7 +88,6 @@ export default {
         this.medical.amount = this.convertAmountToInt();
         this.medical.attachment = this.images;
         this.medical.patient = this.isCurrentUserIsPatient();
-        console.log(this.medical)
         this.createMedicalTransaction(this.medical);
         this.moveTo("home");
       }
@@ -113,6 +112,6 @@ export default {
   },
   created() {
     this.isImagesExist;
-    this.getUserFamilyDetailByUserId("1559058600");
+    this.getUserFamily();
   }
 };

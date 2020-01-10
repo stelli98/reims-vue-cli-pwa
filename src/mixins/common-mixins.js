@@ -20,8 +20,8 @@ export default {
         moveToWithParamsRouteId(page){
             this.$router.push({name: page, params: {id: this.id}});
         },
-        moveToWithParamsId(page, id){
-            this.$router.push({name: page, params: {id: id}});
+        moveToWithParams(page, params){
+            this.$router.push({name: page, params});
         },
         moveToPreviousPage(){
             this.$router.go(-1)
