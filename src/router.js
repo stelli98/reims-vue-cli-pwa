@@ -29,7 +29,7 @@ const router = new Router({
     },
     {
       path: "/home",
-      beforeEnter: checkAuthUser,
+      // beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },

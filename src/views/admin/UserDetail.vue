@@ -1,6 +1,10 @@
 <template>
   <div class="user-detail">
-    <GlobalHeader/>
+    <div class="header manage-user__header">
+      <svg class="icon icon-small" @click="moveTo('user')">
+          <use xlink:href="icons.svg#icon-back" />
+        </svg>
+    </div>
     <div class="user-detail__content">
       <div class="heading user-detail__heading">User Profile Detail</div>
       <div class="user-detail__tab">

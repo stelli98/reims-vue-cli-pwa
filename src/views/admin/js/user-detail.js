@@ -1,5 +1,5 @@
-import UserPersonalDetail from "@/components/admin/UserPersonalDetail" ;
-import UserFamilyDetail from "@/components/admin/UserFamilyDetail" ;
+import UserPersonalDetail from "@/components/admin/UserPersonalDetail";
+import UserFamilyDetail from "@/components/admin/UserFamilyDetail";
 const GlobalHeader = () => import("@/components/common/GlobalHeader");
 
 export default {
@@ -23,18 +23,24 @@ export default {
   },
   computed: {
     currentComponent() {
-        return this.tabs[this.isComponentActive].name
+      return this.tabs[this.isComponentActive].name;
     }
   },
   methods: {
     switchTab(boolean) {
-      this.isComponentActive = boolean
-      this.$router.push({ query: {
-        activeTab : this.currentComponent
-      }});
+      this.isComponentActive = boolean;
+      this.$router.push({
+        query: {
+          activeTab: this.currentComponent
+        }
+      });
+    },
+    moveTo(page) {
+      this.$router.push({ name: page });
+    }
+  },
+  created() {
+    this.isComponentActive =
+      this.$route.query.activeTab === "UserPersonalDetail" || true;
   }
-  },
-  created () {
-    this.isComponentActive = (this.$route.query.activeTab === "UserPersonalDetail") || true;
-  },
 };
