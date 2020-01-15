@@ -9,7 +9,8 @@ function errorResponseHandler(error) {
     };
     store.dispatch("notification/addNotification", notification);
   } else {
-    return Promise.reject(error.message);
+    const message = error.message || error.errors || ""
+    return Promise.reject(message);
   }
 }
 

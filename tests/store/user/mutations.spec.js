@@ -6,9 +6,10 @@ const url = config.api.users;
 
 describe("mutations", () => {
   test("SET_USER sets state.user", () => {
-    const expectedValue = data.find(
-      d => d.url === url.user + "/1559058600" && d.method === "GET"
-    );
+    const expectedValue = {
+      name: "stelli",
+      password: "stelli"
+    }
     const state = {
       user: {}
     };
@@ -16,44 +17,10 @@ describe("mutations", () => {
     expect(state.user).toBe(expectedValue.data);
   });
 
-  test("SET_USERS sets state.user", () => {
-    const expectedValue = data.find(
-      d => d.url === url.user && d.method === "GET"
-    );
-    const state = {
-      users: []
-    };
-    mutations.SET_USERS(state, expectedValue);
-    expect(state.users).toBe(expectedValue.data);
-  });
-
-  test("SET_PAGINATION sets state.paginations", () => {
-    const expectedValue = data.find(
-      d => d.url === url.user && d.method === "GET"
-    );
-    const state = {
-      pagination: {}
-    };
-    mutations.SET_PAGINATION(state, expectedValue);
-    expect(state.pagination).toBe(expectedValue.paging);
-  });
-
-  test("SET_USER_FAMILIES sets state.userFamilies", () => {
-    const expectedValue = data.find(
-      d =>
-        d.url === url.family + "?user-id=1559058600" && d.method === "GET"
-    );
-    const state = {
-      userFamilies: []
-    };
-    mutations.SET_USER_FAMILIES(state, expectedValue);
-    expect(state.userFamilies).toBe(expectedValue.data);
-  });
-
   test("SET_USER_FAMILY sets state.userFamily", () => {
     const expectedValue = data.find(
       d =>
-        d.url === url.family + "/92768" && d.method === "GET"
+        d.url === url.family && d.method === "GET"
     );
     const state = {
       userFamily: {}

@@ -1,7 +1,7 @@
 import transactionApi from "@/api/transaction";
 import offlineService from "@/api/transaction-offline";
 import { mapActions, mapGetters } from "vuex";
-import NotificationContainer from "@/components/NotificationContainer.vue";
+import NotificationContainer from "@/components/common/NotificationContainer.vue";
 
 const imageIdb = "offlineImages";
 const formIdb = "offlineForms";

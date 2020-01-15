@@ -47,8 +47,8 @@ describe("CommonMixins", () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it("moveToWithParamsId method", () => {
-      const mixins = CommonMixins.methods.moveToWithParamsId.bind(obj)
+    it("moveToWithParams method", () => {
+      const mixins = CommonMixins.methods.moveToWithParams.bind(obj)
       const spy = jest.spyOn(obj.$router,"push")
       mixins()
       expect(spy).toHaveBeenCalled();

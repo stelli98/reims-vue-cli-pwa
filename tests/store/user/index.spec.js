@@ -1,11 +1,8 @@
 import user from "@/store/modules/user";
 
 const state = {
-  users: [],
   user: {},
-  pagination: {},
-  userFamilies:[],
-  userFamily: {}
+  userFamily: []
 };
 
 describe("user store", () => {

@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script src="./lib/syncTransactions.js" />
+<script src="./lib/syncTransactions.js"/>
 <style lang="scss">
 #app {
   position: relative;

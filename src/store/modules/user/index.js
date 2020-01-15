@@ -4,11 +4,8 @@ import getters from "./getters";
 
 const namespaced = true;
 const state = {
-  users: [],
   user: {},
-  pagination: {},
-  userFamilies: [],
-  userFamily: {}
+  userFamily: []
 };
 
 export default { state, actions, mutations, getters, namespaced };

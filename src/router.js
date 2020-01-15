@@ -1,20 +1,20 @@
 import Vue from "vue";
 import Router from "vue-router";
-import LoginPage from "./views/LoginPage";
-import HomePage from "./views/HomePage";
-import CreateTransaction from "./views/CreateTransaction";
-import TransactionDetail from "./views/TransactionDetail";
-import ManageUser from "./views/ManageUser";
-import EditUserPersonalProfile from "./views/EditUserPersonalProfile";
-import EditUserFamilyProfile from "./views/EditUserFamilyProfile";
-import ChangePasswordPage from "./views/ChangePasswordPage";
-import CropImage from "./components/CropImage";
-import FilterImage from "./components/FilterImage";
-import TransactionForm from "./components/TransactionForm";
-import CreateMedicalTransaction from "./views/CreateMedicalTransaction";
-import UserDetail from "./views/UserDetail";
-import CreateUser from "./views/CreateUser";
-import AddFamily from "./views/AddFamily";
+import LoginPage from "./views/common/LoginPage";
+import HomePage from "./views/user/HomePage";
+import CreateTransaction from "./views/user/CreateTransaction";
+import TransactionDetail from "./views/user/TransactionDetail";
+import ManageUser from "./views/admin/ManageUser";
+import EditUserPersonalProfile from "./views/admin/EditUserPersonalProfile";
+import EditUserFamilyProfile from "./views/admin/EditUserFamilyProfile";
+import ChangePasswordPage from "./views/user/ChangePasswordPage";
+import CropImage from "./components/user/CropImage";
+import FilterImage from "./components/user/FilterImage";
+import TransactionForm from "./components/user/TransactionForm";
+import CreateMedicalTransaction from "./views/user/CreateMedicalTransaction";
+import UserDetail from "./views/admin/UserDetail";
+import CreateUser from "./views/admin/CreateUser";
+import AddFamily from "./views/admin/AddFamily";
 import store from "./store";
 
 Vue.use(Router);
@@ -29,13 +29,13 @@ const router = new Router({
     },
     {
       path: "/home",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       component: CreateTransaction,
       children: [
         {
@@ -63,7 +63,7 @@ const router = new Router({
     },
     {
       path: "/users",
-      // beforeEnter: checkAuthAdmin,
+      beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
