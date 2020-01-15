@@ -40,4 +40,11 @@ describe("UserDetail.vue", () => {
     expect(wrapper.vm.isComponentActive).toBe(payload);
     expect(wrapper.vm.currentComponent).toBe("UserPersonalDetail");
   });
+
+  test("moveTo method", () => {
+    const spy = jest.spyOn(wrapper.vm.$router,"push");
+    wrapper.vm.moveTo("users");
+    expect(spy).toHaveBeenCalled();
+  });
+
 });
