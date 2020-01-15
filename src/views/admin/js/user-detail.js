@@ -40,7 +40,6 @@ export default {
     }
   },
   created() {
-    this.isComponentActive =
-      this.$route.query.activeTab === "UserPersonalDetail" || true;
+    this.isComponentActive = this.$route.query.activeTab === "UserPersonalDetail";
   }
 };

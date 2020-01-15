@@ -169,17 +169,16 @@ describe("Actions for User Module", () => {
         token: "Bearer 123"
       }
     };
-    const id = 1;
     const userFamilies = [
       {
+        id: 1,
         name: "Stelli",
         relationship: "CHILDREN",
         dateOfBirth: ""
       }
     ];
-    actions.updateUserFamily({ rootState }, [id, userFamilies]);
+    actions.updateUserFamily({ rootState }, userFamilies);
     expect(api.updateUserFamily).toHaveBeenCalledWith(
-      id,
       userFamilies,
       rootState.auth.token
     );

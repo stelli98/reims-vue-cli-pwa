@@ -68,9 +68,9 @@ export default {
       }
     });
   },
-  updateUserFamily(id, data, token){
+  updateUserFamily(data, token){
     const path = api.family;
-    return axios.put(`${path}/${data.id}?user-id=${id}`, data, {
+    return axios.put(`${path}/${data.id}`, data, {
       headers: {
         Authorization: token
       }

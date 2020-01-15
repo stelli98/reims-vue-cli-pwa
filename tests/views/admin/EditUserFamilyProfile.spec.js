@@ -68,7 +68,6 @@ describe("EditUserFamilyProfile.vue", () => {
     store = initializeStore();
   });
 
-  
   test("submitEditUserFamilyForm method if user data isn't filled", () => {
     const options = {
       mocks: {
@@ -77,13 +76,13 @@ describe("EditUserFamilyProfile.vue", () => {
         },
         $route: {
           params: {
-            id: "92768"
+            userId: "92768"
           }
-        },
+        }
       },
       computed: {
         userFamily() {
-          return {}
+          return {};
         }
       }
     };
@@ -93,7 +92,7 @@ describe("EditUserFamilyProfile.vue", () => {
     expect(spyUpdateUser).not.toHaveBeenCalled();
   });
 
-  test("submitEditUserFamilyForm method if user data is filled", () => {
+  test("submitEditUserFamilyForm method if user data is filled", async () => {
     const options = {
       mocks: {
         $router: {
@@ -101,7 +100,7 @@ describe("EditUserFamilyProfile.vue", () => {
         },
         $route: {
           params: {
-            id: "92768"
+            userId: "92768"
           }
         }
       }
@@ -109,9 +108,11 @@ describe("EditUserFamilyProfile.vue", () => {
     wrapper = createWrapper(store.store, options);
     const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
     const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.submitEditUserFamilyForm();
-    expect(spyUpdateUser).toHaveBeenCalled();
-    expect(spyRouterPush).toHaveBeenCalled();
+    await wrapper.vm.submitEditUserFamilyForm();
+    wrapper.vm.$nextTick(() => {
+      expect(spyUpdateUser).toHaveBeenCalled();
+      expect(spyRouterPush).toHaveBeenCalled();
+    });
   });
 
   test("formatDate computed setter getter", () => {

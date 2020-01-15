@@ -37,11 +37,12 @@ export default {
         this.userFamily.dateOfBirth = new Date(
           this.userFamily.dateOfBirth
         ).getTime();
-        this.updateUserFamily([this.$route.params.userId, this.userFamily]);
-        this.$router.push({
-          name: "user-detail",
-          params: { id: this.$route.params.id },
-          query: { activeTab: "UserFamilyDetail" }
+        this.updateUserFamily(this.userFamily).then(() => {
+          this.$router.push({
+            name: "user-detail",
+            params: { id: this.$route.params.userId },
+            query: { activeTab: "UserFamilyDetail" }
+          });
         });
       }
     }

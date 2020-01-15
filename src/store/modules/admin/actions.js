@@ -40,9 +40,9 @@ export default {
     const { token } = rootState.auth;
     await adminApi.addFamilyToUser(id, data, token);
   },
-  updateUserFamily: async ({ rootState }, [id, data]) => {
+  updateUserFamily: async ({ rootState }, data) => {
     const { token } = rootState.auth;
-    await adminApi.updateUserFamily(id, data, token);
+    await adminApi.updateUserFamily(data, token);
   },
   deleteUserFamily: async ({ rootState }, id) => {
     const { token } = rootState.auth;

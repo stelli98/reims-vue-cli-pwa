@@ -29,13 +29,13 @@ const router = new Router({
     },
     {
       path: "/home",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       name: "home",
       component: HomePage
     },
     {
       path: "/transaction/create/",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       component: CreateTransaction,
       children: [
         {
@@ -63,7 +63,7 @@ const router = new Router({
     },
     {
       path: "/users",
-      // beforeEnter: checkAuthAdmin,
+      beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
