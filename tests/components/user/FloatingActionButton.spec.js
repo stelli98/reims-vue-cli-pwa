@@ -13,24 +13,48 @@ describe("FloatingActionButton.vue", () => {
   let localVue;
 
   function initializeStore() {
-    const actions = {
-      setImage: jest.fn(),
-      setImages: jest.fn()
-    };
+    const auth = initializeAuthStore();
+    const transaction = initializeTransactionStore();
 
     const store = new Vuex.Store({
       modules: {
-        transaction: {
-          actions,
-          namespaced: true
-        }
+        transaction,
+        auth
       }
     });
 
     return {
       store,
-      actions
+      actions: {
+        transaction: transaction.actions
+      },
+      state: {
+        auth: auth.state
+      },
+      getters: {
+        auth: auth.getters
+      }
     };
+  }
+
+  function initializeAuthStore() {
+    const state = {
+      hasVehicle: true
+    };
+    const getters = {
+      hasVehicle: state => state.hasVehicle
+    };
+    const namespaced = true;
+    return { state, getters, namespaced };
+  }
+
+  function initializeTransactionStore() {
+    const actions = {
+      setImage: jest.fn(),
+      setImages: jest.fn()
+    };
+    const namespaced = true;
+    return { namespaced, actions };
   }
 
   function generateLocalVue() {
@@ -56,7 +80,7 @@ describe("FloatingActionButton.vue", () => {
     wrapper = createWrapper(store.store);
   });
 
-  test("methods onOCRFileChange if image Ext is correct", () => {
+  test("methods onOCRFileChange if user hasVehicle", () => {
     const options = {
       mocks: {
         $router: {
@@ -66,9 +90,7 @@ describe("FloatingActionButton.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     global.URL.createObjectURL = jest.fn();
-    const spyCheckType = jest.spyOn(wrapper.vm, "checkType");
-    const spySetImage = jest.spyOn(store.actions, "setImage");
-    const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
+    const spyUploadImage = jest.spyOn(wrapper.vm, "uploadImage");
     const e = {
       target: {
         files: [
@@ -78,13 +100,36 @@ describe("FloatingActionButton.vue", () => {
         ]
       }
     };
-    wrapper.vm.onOCRFileChange(e);
-    expect(spyCheckType).toHaveBeenCalled();
-    expect(spySetImage).toHaveBeenCalled();
-    expect(spyRoute).toHaveBeenCalled();
+    wrapper.vm.onOCRFileChange(e, "fuel");
+    expect(spyUploadImage).toHaveBeenCalled();
   });
 
-  test("methods onOCRFileChange if image Ext is false", () => {
+  test("methods onOCRFileChange if user doesn't hasVehicle", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    store.state.auth.hasVehicle = false;
+    global.URL.createObjectURL = jest.fn();
+    const spyUploadImage = jest.spyOn(wrapper.vm, "uploadImage");
+    const e = {
+      target: {
+        files: [
+          {
+            name: "image.jpg"
+          }
+        ]
+      }
+    };
+    wrapper.vm.onOCRFileChange(e, "fuel");
+    expect(spyUploadImage).not.toHaveBeenCalled();
+  });
+
+  test("methods uploadImage if image Ext is correct", () => {
     const options = {
       mocks: {
         $router: {
@@ -95,21 +140,39 @@ describe("FloatingActionButton.vue", () => {
     wrapper = createWrapper(store.store, options);
     global.URL.createObjectURL = jest.fn();
     const spyCheckType = jest.spyOn(wrapper.vm, "checkType");
-    const spySetImage = jest.spyOn(store.actions, "setImage");
+    const spySetImage = jest.spyOn(store.actions.transaction, "setImage");
     const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
-    const e = {
-      target: {
-        files: [
-          {
-            name: "image.svg"
-          }
-        ]
+    const image = {
+      name: "image.jpg"
+    };
+    wrapper.vm.uploadImage(image, "fuel");
+    expect(spyCheckType).toHaveBeenCalled();
+    expect(spySetImage).toHaveBeenCalled();
+    expect(spyRoute).toHaveBeenCalled();
+  });
+
+  test("methods uploadImage if image Ext is false", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        }
       }
     };
-    wrapper.vm.onOCRFileChange(e);
+    wrapper = createWrapper(store.store, options);
+    global.URL.createObjectURL = jest.fn();
+    const spyCheckType = jest.spyOn(wrapper.vm, "checkType");
+    const spySetImage = jest.spyOn(store.actions.transaction, "setImage");
+    const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
+    const spyShowErrorMessage = jest.spyOn(wrapper.vm, "showErrorMessage");
+    const image = {
+      name: "image.svg"
+    };
+    wrapper.vm.uploadImage(image, "fuel");
     expect(spyCheckType).toHaveBeenCalled();
     expect(spySetImage).not.toHaveBeenCalled();
     expect(spyRoute).not.toHaveBeenCalled();
+    expect(spyShowErrorMessage).toHaveBeenCalled();
   });
 
   test("methods onNonOCRFileChange if total image less than 5 and ext is correct", async done => {
@@ -134,7 +197,7 @@ describe("FloatingActionButton.vue", () => {
       wrapper.vm,
       "checkImageConsistOfWrongExtension"
     );
-    const spySetImages = jest.spyOn(store.actions, "setImages");
+    const spySetImages = jest.spyOn(store.actions.transaction, "setImages");
     const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
     const e = {
       target: {
@@ -182,7 +245,7 @@ describe("FloatingActionButton.vue", () => {
       wrapper.vm,
       "checkImageConsistOfWrongExtension"
     );
-    const spySetImages = jest.spyOn(store.actions, "setImages");
+    const spySetImages = jest.spyOn(store.actions.transaction, "setImages");
     const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
     const e = {
       target: {
@@ -230,7 +293,7 @@ describe("FloatingActionButton.vue", () => {
       wrapper.vm,
       "checkImageConsistOfWrongExtension"
     );
-    const spySetImages = jest.spyOn(store.actions, "setImages");
+    const spySetImages = jest.spyOn(store.actions.transaction, "setImages");
     const spyRoute = jest.spyOn(wrapper.vm.$router, "push");
     const e = {
       target: {
@@ -278,24 +341,24 @@ describe("FloatingActionButton.vue", () => {
   });
 
   test("checkType if image has wrong ext", () => {
-    const image = "image.svg"
-    expect(wrapper.vm.checkType(image)).toBe(false)
+    const image = "image.svg";
+    expect(wrapper.vm.checkType(image)).toBe(false);
   });
 
   test("checkType if image has correct ext", () => {
-    const image = "image.jpg"
-    expect(wrapper.vm.checkType(image)).toBe(true)
+    const image = "image.jpg";
+    expect(wrapper.vm.checkType(image)).toBe(true);
   });
 
   test("checkTotalImagesLessThanFive if total image is 6 ", () => {
-    const spy = jest.spyOn(wrapper.vm,'showErrorMessage')
-    expect(wrapper.vm.checkTotalImagesLessThanFive(6)).toBe(false)
-    expect(spy).toHaveBeenCalled()
+    const spy = jest.spyOn(wrapper.vm, "showErrorMessage");
+    expect(wrapper.vm.checkTotalImagesLessThanFive(6)).toBe(false);
+    expect(spy).toHaveBeenCalled();
   });
 
   test("checkTotalImagesLessThanFive if total image is 5 ", () => {
-    const spy = jest.spyOn(wrapper.vm,'showErrorMessage')
-    expect(wrapper.vm.checkTotalImagesLessThanFive(5)).toBe(true)
-    expect(spy).not.toHaveBeenCalled()
+    const spy = jest.spyOn(wrapper.vm, "showErrorMessage");
+    expect(wrapper.vm.checkTotalImagesLessThanFive(5)).toBe(true);
+    expect(spy).not.toHaveBeenCalled();
   });
 });

@@ -6,16 +6,20 @@ export default {
     return {
       filterFunctions: null,
       width: 0,
-      height: 0
+      height: 0,
+      isScanOCR: false
     };
   },
   computed: {
-    ...mapGetters("transaction",["image"]), 
+    ...mapGetters("transaction", ["image"]),
     filters() {
       return this.makeFilter();
     },
-    isContainingType(){
-      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
+    isContainingType() {
+      return (
+        this.$route.query.type === "fuel" ||
+        this.$route.query.type === "parking"
+      );
     }
   },
   created() {
@@ -24,10 +28,7 @@ export default {
     this.setFilterToDefault();
   },
   methods: {
-    ...mapActions("transaction", [
-      "createTransaction",
-      "setImage"
-    ]),
+    ...mapActions("transaction", ["createTransaction", "setImage"]),
     ...mapActions("notification", ["addNotification"]),
     makeFilter() {
       const filterSet = this.filterFunctions;
@@ -48,11 +49,11 @@ export default {
         contrast: 1
       };
     },
-    setFilterToDefault(){
+    setFilterToDefault() {
       this.filterFunctions = this.defaultValues();
     },
-    filterImage(){
-      this.setImage(this.generateImage())
+    filterImage() {
+      this.setImage(this.generateImage());
     },
     generateImage() {
       const canvas = document.createElement("canvas");
@@ -69,35 +70,43 @@ export default {
     },
     uploadImageOCR(resultImage) {
       const request = {
-        image: resultImage
+        attachments: [resultImage],
+        category: this.$route.query.category
       };
+      this.isScanOCR = true;
       this.createTransaction(request)
         .then(() => {
-          const notification = {
-            type: "success",
-            message: "Image has been submitted."
-          };
-          this.addNotification(notification);
+          this.uploadImageOCRFinish("success", "Image has been submitted.");
         })
         .catch(() => {
-          const notification = {
-            type: "error",
-            message:
-              "Oops ! You're offline. We will send it back as soon as you're online."
-          };
-          this.addNotification(notification);
+          this.uploadImageOCRFinish(
+            "error",
+            "Oops ! You're offline. We will send it back as soon as you're online."
+          );
         });
-      this.$router.push({ name: "create-transaction-3" , 
-      query: {...this.$route.query}});
     },
-    checkContainsImage(){
+    checkContainsImage() {
       if (!this.image && this.isContainingType) {
-        this.$router.push({ name: "create-transaction-1" , 
-        query: {...this.$route.query}});
+        this.$router.push({
+          name: "create-transaction-1",
+          query: { ...this.$route.query }
+        });
       }
     },
-    checkContainsType(){
-      this.isContainingType ? "" : this.$router.push({name: "home"})
+    checkContainsType() {
+      this.isContainingType ? "" : this.$router.push({ name: "home" });
+    },
+    uploadImageOCRFinish(type, message) {
+      this.isScanOCR = false;
+      const notification = {
+        type,
+        message
+      };
+      this.addNotification(notification);
+      this.$router.push({
+        name: "create-transaction-3",
+        query: { ...this.$route.query }
+      });
     }
   }
 };

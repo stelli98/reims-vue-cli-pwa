@@ -27,9 +27,6 @@
 <script src="./js/user-detail.js"></script>
 <style lang="scss" scoped>
 .user-detail {
-  position: relative;
-  height: 100vh;
-
   &__content {
     display: flex;
     flex-direction: column;

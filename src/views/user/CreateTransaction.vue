@@ -34,6 +34,10 @@
 
 <style lang="scss">
 .create-transaction {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
   &__order {
     display: flex;
     justify-content: center;

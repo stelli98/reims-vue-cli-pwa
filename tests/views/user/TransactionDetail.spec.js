@@ -12,43 +12,58 @@ describe("TransactionDetail.vue", () => {
   let store;
   let wrapper;
   let localVue;
-  const transactionData = data.find(d => d.url === url.transaction + "/1");
-  const imageData = data.find(
-    d => d.url === url.transaction + "/3278/12345abc"
-  );
+  const transactionData = data.find(d => d.url === url.medical + "/14");
 
   function initializeStore() {
-    const actions = {
-      getTransactionByCategory: jest.fn(),
-      getViewImage: jest.fn()
-    };
-
-    const getters = {
-      transaction: state => state.transaction,
-      viewImage: state => state.viewImage
-    };
-
-    const state = {
-      transaction: transactionData.data,
-      viewImage: imageData.data
-    };
+    const transaction = initializeTransactionStore();
+    const user = initializeUserStore();
 
     const store = new Vuex.Store({
       modules: {
-        transaction: {
-          actions,
-          state,
-          getters,
-          namespaced: true
-        }
+        user,
+        transaction
       }
     });
 
     return {
       store,
-      state,
+      state: {
+        transaction: transaction.state
+      },
+      actions: {
+        transaction: transaction.actions,
+        user: user.actions
+      },
+      getters: {
+        transaction: transaction.getters
+      }
+    };
+  }
+
+  function initializeTransactionStore() {
+    const actions = {
+      getTransactionByCategory: jest.fn()
+    };
+
+    const getters = {
+      transaction: state => state.transaction
+    };
+
+    const state = {
+      transaction: transactionData.data
+    };
+    const namespaced = true;
+    return { actions, state, getters, namespaced };
+  }
+
+  function initializeUserStore() {
+    const actions = {
+      getViewImage: jest.fn()
+    };
+    const namespaced = true;
+    return {
       actions,
-      getters
+      namespaced
     };
   }
 
@@ -57,6 +72,7 @@ describe("TransactionDetail.vue", () => {
     lv.use(Vuex);
     lv.filter("textFormatter", TextFilter);
     lv.filter("dateFormatter", dateFilter);
+    lv.filter("priceFormatter", dateFilter);
     return lv;
   }
 
@@ -76,7 +92,7 @@ describe("TransactionDetail.vue", () => {
     store = initializeStore();
   });
 
-  test("get transactionID", () => {
+  test("get transactionID", async () => {
     const options = {
       mocks: {
         $router: {
@@ -84,7 +100,7 @@ describe("TransactionDetail.vue", () => {
         },
         $route: {
           query: {
-            category: "fuel"
+            category: "medical"
           },
           params: {
             id: 1
@@ -92,12 +108,19 @@ describe("TransactionDetail.vue", () => {
         }
       }
     };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions, "getTransactionByCategory");
-    expect(spy).toHaveBeenCalled();
+    wrapper = await createWrapper(store.store, options);
+    const spyGetTransactionByCategory = jest.spyOn(
+      store.actions.transaction,
+      "getTransactionByCategory"
+    );
+    const spyGetImageList = jest.spyOn(wrapper.vm, "getImageList");
+    expect(spyGetTransactionByCategory).toHaveBeenCalled();
+    wrapper.vm.$nextTick(() => {
+      expect(spyGetImageList).toHaveBeenCalled();
+    });
   });
 
-  test("transactionCategory must be PARKING", () => {
+  test("transactionCategory must be Medical", () => {
     const options = {
       mocks: {
         $router: {
@@ -105,7 +128,7 @@ describe("TransactionDetail.vue", () => {
         },
         $route: {
           query: {
-            category: "PARKING"
+            category: "MEDICAL"
           },
           params: {
             id: 1
@@ -114,10 +137,10 @@ describe("TransactionDetail.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.transactionCategory).toBe("Parking");
+    expect(wrapper.vm.transactionCategory).toBe("Medical");
   });
 
-  test("activeComponent must be ViewParkingDetail", () => {
+  test("activeComponent must be ViewMedicalDetail", () => {
     const options = {
       mocks: {
         $router: {
@@ -125,7 +148,7 @@ describe("TransactionDetail.vue", () => {
         },
         $route: {
           query: {
-            category: "PARKING"
+            category: "MEDICAL"
           },
           params: {
             id: 1
@@ -134,10 +157,10 @@ describe("TransactionDetail.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.activeComponent).toBe("ViewParkingDetail");
+    expect(wrapper.vm.activeComponent).toBe("ViewMedicalDetail");
   });
 
-  test("activeComponent must be empty string", () => {
+  test("get Image List", () => {
     const options = {
       mocks: {
         $router: {
@@ -145,32 +168,7 @@ describe("TransactionDetail.vue", () => {
         },
         $route: {
           query: {
-            category: ""
-          },
-          params: {
-            id: 1
-          }
-        }
-      },
-      computed: {
-        transactionCategory() {
-          return null;
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.activeComponent).toBe("");
-  });
-
-  test("imageExt must be png", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: ""
+            category: "medical"
           },
           params: {
             id: 1
@@ -179,27 +177,13 @@ describe("TransactionDetail.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.imageExt).toBe("png");
-  });
-
-  test("imageExt must be empty string", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: ""
-          },
-          params: {
-            id: 1
-          }
-        }
+    const expectedResult = {
+      data: {
+        data: "image.jpg"
       }
     };
-    wrapper = createWrapper(store.store, options);
-    store.state.transaction.image=""
-    expect(wrapper.vm.imageExt).toBe("");
+    wrapper.vm.getViewImage = jest.fn().mockResolvedValue(expectedResult);
+    wrapper.vm.getImageList();
+    expect(wrapper.vm.getViewImage).toHaveBeenCalled();
   });
 });

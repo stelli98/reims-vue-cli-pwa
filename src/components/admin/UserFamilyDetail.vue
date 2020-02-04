@@ -75,7 +75,15 @@
 
 <script src="./js/user-family-detail.js"></script>
 <style lang="scss" scoped>
-.user-family {
+.user-family {  
+  min-height: 90vh;
+
+  &__content {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+  }
+
   &__detail {
     margin: 1rem 1.5rem;
     @include respond(large-phone) {

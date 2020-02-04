@@ -10,7 +10,11 @@ export default {
     fuel: {
       date: { required },
       fuelType: { required },
-      kilometer: {
+      kilometers: {
+        required,
+        minValue: minValue(1)
+      },
+      liters: {
         required,
         float(input) {
           return /^[0-9]+([.][0-9]+)?$/g.test(input);
@@ -27,13 +31,19 @@ export default {
           return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
         }
       },
-      title: { required }
+      title: { required },
+      location: { required }
     },
     amountInt: {
       minValue: minValue(100)
     }
   },
-  props: ['bus'],
+  data() {
+    return {
+      fuelTypeOptions: ["PERTALITE", "SOLAR", "PREMIUM"]
+    };
+  },
+  props: ["bus"],
   computed: {
     ...mapGetters("transaction", ["fuel"]),
     fuelAmount: {
@@ -66,17 +76,17 @@ export default {
         return this.fuel.date ? new Date(this.fuel.date).toISOString() : "";
       }
     },
-    fuelTemplate () {
+    fuelTemplate() {
       return {
         data: {
           category: "FUEL",
           date: "",
           fuelType: "",
-          kilometer: 1,
+          kilometers: 1,
+          liters: 1,
           amount: 100,
           title: "",
-          userId: "",
-          image: ""
+          location: ""
         }
       };
     }
@@ -87,7 +97,10 @@ export default {
     sendFuelForm() {
       this.$v.fuel.$touch();
       if (!this.$v.fuel.$invalid) {
-        this.convertDateToEpoch();
+        this.fuel.date = new Date(this.fuel.date).getTime();
+        this.fuel.amount = this.amountInt;
+        this.fuel.liters = parseFloat(this.fuel.liters);
+        this.fuel.kilometers = parseInt(this.fuel.kilometers);
         this.saveTransaction(this.fuel)
           .then(() => {
             const notification = {
@@ -104,15 +117,12 @@ export default {
             };
             this.addNotification(notification);
           });
-          this.setFormEmpty(this.fuelTemplate);
-          this.$router.push({name:"home"});
+        this.setFormEmpty(this.fuelTemplate);
+        this.$router.push({ name: "home" });
       }
-    },
-    convertDateToEpoch() {
-      this.fuel.date = new Date(this.fuel.date).getTime();
     }
   },
-  mounted () {
-    this.bus.$on('submitFuelForm', this.sendFuelForm);
-  },
+  mounted() {
+    this.bus.$on("submitFuelForm", this.sendFuelForm);
+  }
 };

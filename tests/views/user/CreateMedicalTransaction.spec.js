@@ -62,11 +62,11 @@ describe("CreateMedicalTransaction.vue", () => {
 
   function initializeUserStore() {
     const state = {
-      userFamilies: userFamiliesData.data,
+      userFamily: userFamiliesData.data,
       username: "ADMIN"
     };
     const getters = {
-      userFamilies: state => state.userFamilies,
+      userFamily: state => state.userFamily,
       username: state => state.username
     };
     const actions = {

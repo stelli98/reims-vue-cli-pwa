@@ -25,6 +25,7 @@
               <use xlink:href="icons.svg#icon-filter" />
             </svg>
           </div>
+          <div class="notification-circle" v-if="isFiltering"></div>
         </div>
         <div class="btn-white transaction__download" @click="downloadReport">
           <svg class="icon icon-green">
@@ -34,9 +35,10 @@
       </div>
     </div>
     <div class="transaction__list">
-      <div >
+      <div>
         <TransactionCard
-        v-for="transaction in transactions" :key="transaction.id"
+          v-for="transaction in transactions"
+          :key="transaction.id"
           :transaction="transaction"
           @deleteATransaction="deleteTransaction"
         />
@@ -60,6 +62,10 @@
     margin: 2rem 25vw;
   }
 
+  &__filter {
+    position: relative;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;
@@ -81,16 +87,13 @@
   }
 }
 .notification-circle {
-  width: 0.5rem;
-  height: 0.5rem;
-  background: white;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #49a969;
   border-radius: 100%;
   position: absolute;
-  top: 0px;
-  left: 12px;
-  @include respond(large-phone) {
-    left: 14px;
-  }
+  top: 25%;
+  right: 25%;
 }
 
 .custom-selection {
@@ -124,7 +127,7 @@
   padding: 1rem 1.5rem;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 
-  &:active{
+  &:active {
     border: solid 10px red;
   }
 }

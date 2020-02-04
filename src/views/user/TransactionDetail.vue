@@ -9,18 +9,21 @@
       <h1>
         <Center>{{ transaction.title }}</Center>
       </h1>
-      <div v-if="isOCR">
-        <img class="transaction-detail__ocr-image" :src="imageBase64" />
+      <div class="transaction-detail__box" v-if="isOCR">
+        <img
+          class="transaction-detail__ocr-image"
+          :src="imagePath(images[0])"
+        />
       </div>
-      <div v-else>
+      <div v-else class="transaction-detail__box">
         <carousel class="transaction-detail__carousel" :perPage="1">
           <slide
-            v-for="(image, index) in transaction.attachment"
+            v-for="(image, index) in images"
             :key="index"
             class="transaction-detail__slide"
           >
             <img
-              :src="image"
+              :src="imagePath(image)"
               class="transaction-detail__image"
               style="width: 250px; max-width: 100%;"
             />
@@ -39,6 +42,10 @@
     margin: 1.2rem auto;
     display: flex;
     width: 25rem;
+  }
+
+  &__box {
+    margin: 1.5rem 0;
   }
 
   &__content {
@@ -61,11 +68,6 @@
     grid-template-columns: repeat(2, 10rem);
     justify-content: space-evenly;
     grid-row-gap: 1.2rem;
-  }
-
-  &__box {
-    display: flex;
-    flex-direction: column;
   }
 
   &__image {

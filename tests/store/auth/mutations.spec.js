@@ -60,4 +60,18 @@ describe("mutations for transaction module", () => {
     mutations.SET_USERNAME(state, expectedValue.data.username);
     expect(state.username).toEqual(expectedValue.data.username);
   });
+
+  test("SET_HAS_VEHICLE sets state.hasVehicle", () => {
+    const expectedValue = data.find(
+      d => d.url === url.login && d.method === "POST"
+    );
+    const state = {
+      hasVehicle: document.cookie.replace(
+        /(?:(?:^|.*;\s*)hasVehicle\s*\=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      )
+    };
+    mutations.SET_HAS_VEHICLE(state, expectedValue.data.hasVehicle);
+    expect(state.hasVehicle).toEqual(expectedValue.data.hasVehicle);
+  });
 });

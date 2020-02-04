@@ -10,5 +10,8 @@ export default {
   },
   username(state) {
     return state.username;
+  },
+  hasVehicle(state){
+    return state.hasVehicle;
   }
 };

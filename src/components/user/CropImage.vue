@@ -79,6 +79,7 @@
 .crop-image {
   display: flex;
   flex-flow: column;
+  min-height: 85vh;
   align-items: center;
 
   &__container {
@@ -86,6 +87,7 @@
     flex-flow: column;
     justify-content: center;
     align-content: center;
+    flex: 1;
     margin: 1.5rem;
   }
 

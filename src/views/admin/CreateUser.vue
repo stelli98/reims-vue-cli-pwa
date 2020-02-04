@@ -6,7 +6,7 @@
       <form class="user-form__form">
         <div class="form__child">
           <label class="input__label title--medium-form" for="type">Username</label>
-          <input
+          <input autocomplete="off"
             v-model="user.username"
             type="username"
             name="type"
@@ -28,7 +28,7 @@
         </div>
         <div class="form__child">
           <label class="input__label title--medium-form" for="type">Password</label>
-          <input
+          <input autocomplete="off"
             v-model="user.password"
             type="password"
             name="type"
@@ -123,7 +123,7 @@
           Does the user have a vehicle ?
           <div class="form__radio">
             <span>
-              <input
+              <input autocomplete="off"
                 type="radio"
                 name="gender"
                 value="yes"
@@ -133,7 +133,7 @@
               Yes
             </span>
             <span>
-              <input
+              <input autocomplete="off"
                 type="radio"
                 name="gender"
                 value="no"
@@ -147,7 +147,7 @@
         <div v-if="isShowingVehicleField">
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Plate Number</label>
-            <input
+            <input autocomplete="off"
               v-model="user.license"
               type="username"
               name="type"
@@ -163,7 +163,7 @@
           </div>
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Vehicle Type</label>
-            <input
+            <input autocomplete="off"
               v-model="user.vehicle"
               type="username"
               name="type"

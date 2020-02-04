@@ -3,9 +3,9 @@ import config from "@/config";
 const api = config.api.users;
 
 export default {
-  getUserFamily(id,token){
+  getUserFamily(token){
     const path = api.family;
-    return axios.get(`${path}/${id}`, {
+    return axios.get(path, {
       headers: {
         Authorization: token
       }
@@ -27,5 +27,13 @@ export default {
         Authorization: token
       }
     });
-  }
+  },
+  getViewImage(url, token) {
+    const path = api.image;
+    return axios.get(`${path}?path=${url}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+  },
 };

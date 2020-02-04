@@ -72,15 +72,4 @@ describe("mutations for transaction module", () => {
     mutations.SET_PAGINATION(state, expectedValue);
     expect(state.pagination).toBe(expectedValue.paging);
   });
-
-  test("SET_VIEW_IMAGE set image from state.viewImage", () => {
-    const expectedValue = data.find(
-      d => d.url === url.transaction + "/3278/12345abc" && d.method === "GET"
-    );
-    const state = {
-      viewImage: ""
-    };
-    mutations.SET_VIEW_IMAGE(state, expectedValue);
-    expect(state.viewImage).toEqual(expectedValue.data);
-  });
 });

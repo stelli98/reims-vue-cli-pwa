@@ -141,8 +141,8 @@ describe("ParkingForm.vue", () => {
       date: "2018-05-12T17:19:06.151Z",
       amount: 100,
       title: "Title",
-      userId: "UserId-2",
-      image: "image.jpg"
+      image: "image.jpg",
+      location: "Thamrin"
     }
     const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
     const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
@@ -171,8 +171,8 @@ describe("ParkingForm.vue", () => {
       date: "2018-05-12T17:19:06.151Z",
       amount: 100,
       title: "Title",
-      userId: "UserId-2",
-      image: "image.jpg"
+      image: "image.jpg",
+      location: "Thamrin"
     }
     store.actions.transaction.saveTransaction.mockRejectedValue(() =>
       Promise.reject()

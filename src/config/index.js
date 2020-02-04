@@ -1,7 +1,5 @@
 const baseUrl =
-  process.env.NODE_ENV === "production" ? `http://192.168.43.139:9095` : "";
-  // 192.168.43.139
-  //http://localhost:9095
+  process.env.NODE_ENV === "production" ? `http://localhost:9095` : "";
 module.exports = {
   api: {
     transactions: {
@@ -11,7 +9,8 @@ module.exports = {
     users: {
       family: `${baseUrl}/api/family-members`,
       report: `${baseUrl}/api/users/report`,
-      user: `${baseUrl}/api/users`
+      user: `${baseUrl}/api/users`,
+      image: `${baseUrl}/api/users/image`
     },
     admin:{
       user: `${baseUrl}/api/admin/users`,

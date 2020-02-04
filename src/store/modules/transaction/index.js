@@ -11,24 +11,24 @@ const state = {
     date: "",
     amount: 100,
     title: "",
-    userId: "",
-    image: ""
+    location:"",
+    userId: ""
   },
   fuel: {
     category: "FUEL",
     date: "",
     fuelType: "",
-    kilometer: 1,
+    kilometers: 1,
+    liters: 0.1,
     amount: 100,
     title: "",
+    location:"",
     userId: "",
-    image: ""
   },
   transactionMedical: {},
   transactions: [],
   transaction: {},
-  pagination: {},
-  viewImage: ""
+  pagination: {}
 };
 
 export default { state, actions, mutations, getters, namespaced };

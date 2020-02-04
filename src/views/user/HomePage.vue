@@ -66,18 +66,13 @@
 
 .background-dark__home {
   width: 100vw;
-  height: 95vh;
-
-  @include respond(tab) {
-    width: 100vw;
-    height: 100vh;
-  }
+  height: 100vh;
 }
 
 .home {
   position: relative;
   width: 100vw;
-  min-height: 90vh;
+  min-height: 98vh;
 
   &__header {
     display: flex;

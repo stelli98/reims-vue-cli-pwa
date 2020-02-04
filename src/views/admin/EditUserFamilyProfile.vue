@@ -6,7 +6,7 @@
       <form class="user-form__form edit-family-profile__form">
         <div class="form__child">
           <label class="input__label title--medium-form" for="type">Name</label>
-          <input
+          <input autocomplete="off"
             v-model="userFamily.name"
             type="name"
             name="type"

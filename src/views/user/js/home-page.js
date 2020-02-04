@@ -55,7 +55,7 @@ export default {
     },
     updateTransaction() {
       this.getTransactionsByCategory([
-        this.transactionOptions,
+        {...this.$route.query, ...this.options},
         this.isOCR
       ]).then(() => {
         if (this.transactions.length == 0 && this.$route.query.page != 1) {

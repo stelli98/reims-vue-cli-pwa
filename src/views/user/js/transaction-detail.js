@@ -1,6 +1,8 @@
 const ViewFuelDetail = () => import("@/components/user/ViewFuelDetail.vue");
-const ViewParkingDetail = () => import("@/components/user/ViewParkingDetail.vue");
-const ViewMedicalDetail = () => import("@/components/user/ViewMedicalDetail.vue");
+const ViewParkingDetail = () =>
+  import("@/components/user/ViewParkingDetail.vue");
+const ViewMedicalDetail = () =>
+  import("@/components/user/ViewMedicalDetail.vue");
 const GlobalHeader = () => import("@/components/common/GlobalHeader");
 
 import { Carousel, Slide } from "vue-carousel";
@@ -17,13 +19,14 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      images: []
     };
   },
   computed: {
-    ...mapGetters("transaction", ["transaction", "viewImage"]),
+    ...mapGetters("transaction", ["transaction"]),
     isOCR() {
-      return this.transactionCategory != "medical";
+      return this.transactionCategory.toLowerCase() != "medical";
     },
     transactionId() {
       return this.$route.params.id;
@@ -36,25 +39,31 @@ export default {
         ? `View${this.transactionCategory}Detail`
         : "";
     },
-    imageExt() {
-      return this.transaction.image ? this.transaction.image.split(".")[1] : "";
-    },
-    imagePath() {
-      return this.transaction.image ? this.transaction.image.split(".")[0] : "";
-    },
-    imageBase64() {
-      return `data:image/${this.imageExt};base64,${this.viewImage}`;
-    },
-    transactionDate(){
+    transactionDate() {
       return this.$options.filters.dateFormatter(this.transaction.date);
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransactionByCategory", "getViewImage"])
+    ...mapActions("transaction", ["getTransactionByCategory"]),
+    ...mapActions("user", ["getViewImage"]),
+    getImageList() {
+      let requests = this.transaction.attachments.map(image => {
+        return this.getViewImage(image).then(response =>{
+          response.data.data
+        });
+      });
+
+      Promise.all(requests).then(response => {
+        this.images = response;
+      });
+    },
+    imagePath(image) {
+      return `data:image/png;base64,${image}`;
+    }
   },
   mounted() {
-    this.getTransactionByCategory(this.transactionId).then(() => {
-      this.getViewImage(this.imagePath);
+    this.getTransactionByCategory([this.transactionId, this.isOCR]).then(() => {
+      this.getImageList();
       this.isLoading = true;
     });
   }

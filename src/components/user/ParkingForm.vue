@@ -4,7 +4,7 @@
       <label class="input__label title--medium-form" for="type">
         Title
       </label>
-      <input
+      <input autocomplete="off"
         v-model="parking.title"
         type="text"
         name="type"
@@ -36,13 +36,30 @@
     </div>
     <div class="form__child">
       <label class="input__label title--medium-form" for="type">
+        Location
+      </label>
+      <input autocomplete="off"
+        v-model="parking.location"
+        type="text"
+        name="type"
+        class="form__input"
+        @blur="$v.parking.location.$touch()"
+      />
+      <div v-if="$v.parking.location.$error">
+        <p v-if="!$v.parking.location.required" class="input__error-message">
+          Location must be filled
+        </p>
+      </div>
+    </div>
+    <div class="form__child">
+      <label class="input__label title--medium-form" for="type">
         Amount
       </label>
       <div class="form__currency">
         <p class="form__currency__symbol">
           Rp.
         </p>
-        <input
+        <input autocomplete="off"
           v-model="parkingAmount"
           type="text"
           name="type"

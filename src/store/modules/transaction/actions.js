@@ -7,6 +7,9 @@ export default {
   setImages({ commit }, img) {
     commit("SET_IMAGES", img);
   },
+  setFormEmpty({commit}, data){
+    commit("SET_OCR_RESULT", data);
+  },
   createTransaction: async ({ commit, rootState }, image) => {
     const { token } = rootState.auth;
     const { data } = await transactionApi.createTransaction(image, token);
@@ -36,14 +39,9 @@ export default {
     const { data } = await transactionApi.saveTransaction(transaction, token);
     return data;
   },
-  deleteTransaction: async ({ rootState }, id) => {
+  deleteTransaction: async ({ rootState }, [id, isOCR]) => {
     const { token } = rootState.auth;
-    await transactionApi.deleteTransaction(id, token);
-  },
-  getViewImage: async ({ commit, rootState }, link) => {
-    const { token } = rootState.auth;
-    const { data } = await transactionApi.getViewImage(link, token);
-    commit("SET_VIEW_IMAGE", data);
+    await transactionApi.deleteTransaction(id,isOCR, token);
   },
   createMedicalTransaction: async ({ rootState }, data) => {
     const { token } = rootState.auth;

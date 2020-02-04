@@ -6,6 +6,11 @@ import config from "@/config";
 const url = config.api.transactions;
 const image = "image.jpg";
 const id = 1;
+const rootState = {
+  auth: {
+    token: "Bearer 123"
+  }
+};
 jest.mock("@/api/transaction");
 
 describe("Actions for Transactions Module", () => {
@@ -13,6 +18,24 @@ describe("Actions for Transactions Module", () => {
     const commit = jest.fn();
     actions.setImage({ commit }, image);
     expect(commit).toHaveBeenCalledWith("SET_IMAGE", image);
+  });
+
+  test("set form empty for transaction", () => {
+    const commit = jest.fn();
+    const fuelData = {
+      data: {
+        category: "FUEL",
+        date: "",
+        fuelType: "",
+        kilometers: 1,
+        liters: 1,
+        amount: 100,
+        title: "",
+        location: ""
+      }
+    };
+    actions.setFormEmpty({ commit }, fuelData);
+    expect(commit).toHaveBeenCalledWith("SET_OCR_RESULT", fuelData);
   });
 
   test("set images for transaction", () => {
@@ -45,15 +68,10 @@ describe("Actions for Transactions Module", () => {
     const expectedValue = data.find(
       d => d.url === url.transaction + "/1" && d.method == "GET"
     );
-    const isOCR = true
+    const isOCR = true;
     api.getTransactionByCategory.mockResolvedValue(expectedValue);
     const commit = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
-    await actions.getTransactionByCategory({ commit, rootState }, [id,isOCR]);
+    await actions.getTransactionByCategory({ commit, rootState }, [id, isOCR]);
     expect(commit).toHaveBeenCalledWith("SET_TRANSACTION", expectedValue.data);
   });
 
@@ -74,12 +92,10 @@ describe("Actions for Transactions Module", () => {
     );
     api.getTransactionsByCategory.mockResolvedValue(expectedValue);
     const commit = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
-    await actions.getTransactionsByCategory({ commit, rootState }, [options,isOCR]);
+    await actions.getTransactionsByCategory({ commit, rootState }, [
+      options,
+      isOCR
+    ]);
     expect(commit).toHaveBeenCalledWith("SET_TRANSACTIONS", expectedValue.data);
     expect(commit).toHaveBeenCalledWith("SET_PAGINATION", expectedValue.data);
   });
@@ -89,11 +105,6 @@ describe("Actions for Transactions Module", () => {
       d => d.url === url.transaction && d.method == "PUT"
     );
     api.saveTransaction = jest.fn().mockResolvedValue(expectedValue);
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
     const transaction = {
       id: 500000026,
       image:
@@ -115,37 +126,15 @@ describe("Actions for Transactions Module", () => {
     );
   });
 
-  test("delete transaction", () => {
+  test("delete transaction", async () => {
+    const isOCR = true;
     api.deleteTransaction = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
-    actions.deleteTransaction({ rootState }, id);
+    await actions.deleteTransaction({ rootState }, [id, isOCR]);
     expect(api.deleteTransaction).toHaveBeenCalledWith(
       id,
+      isOCR,
       rootState.auth.token
     );
-  });
-
-  test("getViewImage action", async () => {
-    api.getViewImage = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
-
-    const expectedValue = data.find(
-      d => d.url === url.transaction + "/3278/12345abc" && d.method == "GET"
-    );
-    const link = "3278/12345abc";
-    const commit = jest.fn();
-
-    api.getViewImage.mockResolvedValue(expectedValue);
-    await actions.getViewImage({ commit, rootState }, link);
-    expect(commit).toHaveBeenCalledWith("SET_VIEW_IMAGE", expectedValue.data);
   });
 
   test("createMedicalTransaction", async () => {
@@ -153,11 +142,6 @@ describe("Actions for Transactions Module", () => {
       d => d.url === url.medical && d.method == "POST"
     );
     api.createMedicalTransaction = jest.fn().mockResolvedValue(expectedValue);
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
     const medical = {
       date: "2019-08-13T11:27:50.000Z",
       title: "Ibu Sakit",

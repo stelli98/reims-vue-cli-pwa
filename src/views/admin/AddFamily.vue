@@ -7,7 +7,7 @@
         <div class="add-family">
           <div class="form__child">
             <label class="input__label title--medium-form" for="type">Name</label>
-            <input
+            <input autocomplete="off"
               v-model="family.name"
               type="name"
               name="type"

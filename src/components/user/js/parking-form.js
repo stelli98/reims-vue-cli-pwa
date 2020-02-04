@@ -17,7 +17,8 @@ export default {
           return /^\$?([0-9]{1,3}.([0-9]{3}.)*[0-9]{3}|[0-9]+)$/g.test(value);
         }
       },
-      title: { required }
+      title: { required },
+      location: {required}
     },
     amountInt: {
       minValue: minValue(100)
@@ -64,8 +65,7 @@ export default {
           date: "",
           amount: 100,
           title: "",
-          userId: "",
-          image: ""
+          location:""
         }
       };
     },

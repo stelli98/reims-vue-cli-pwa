@@ -5,8 +5,8 @@ export default {
   data() {
     return {
       options: this.emptyOptions(),
-      sortByOptions: ["date", "category", "title"],
-      categoryOptions: ["FUEL", "PARKING"]
+      sortByOptions: ["date", "title"],
+      categoryOptions: ["FUEL", "PARKING","MEDICAL"]
     };
   },
   computed: {
@@ -59,7 +59,7 @@ export default {
       return {
         search: "",
         sortBy: "date",
-        category: "",
+        category: "FUEL",
         start: "",
         end: ""
       };

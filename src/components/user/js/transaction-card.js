@@ -15,13 +15,18 @@ export default {
       );
     },
     transactionCategory() {
-      return this.transaction.category.toLowerCase();
+      return this.$route.query.category
+        ? this.$route.query.category.toLowerCase()
+        : "";
+    },
+    isOCR() {
+      return this.transactionCategory != "medical";
     }
   },
   methods: {
     ...mapActions("transaction", ["deleteTransaction"]),
     removeTransaction(id) {
-      this.deleteTransaction(id).then(() => {
+      this.deleteTransaction([id, this.isOCR]).then(() => {
         this.$emit("deleteATransaction");
       });
     },

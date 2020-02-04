@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["userFamilies"]),
+    ...mapGetters("user", ["userFamily"]),
     ...mapGetters("auth", ["username"]),
     ...mapGetters("transaction", ["images"]),
     formatDate: {
@@ -74,7 +74,7 @@ export default {
         relationship: "My Self",
         id: 0
       };
-      this.familyOptions = this.userFamilies.concat(mySelf);
+      this.familyOptions = this.userFamily.concat(mySelf);
       return this.familyOptions;
     }
   },
@@ -86,7 +86,7 @@ export default {
       if (!this.$v.medical.$invalid) {
         this.convertDateToEpoch();
         this.medical.amount = this.convertAmountToInt();
-        this.medical.attachment = this.images;
+        this.medical.attachments = this.images;
         this.medical.patient = this.isCurrentUserIsPatient();
         this.createMedicalTransaction(this.medical);
         this.moveTo("home");

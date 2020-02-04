@@ -19,8 +19,5 @@ export default {
   },
   SET_PAGINATION(state, { paging }) {
     state.pagination = paging;
-  },
-  SET_VIEW_IMAGE(state, { data }) {
-    state.viewImage = data;
   }
 };
