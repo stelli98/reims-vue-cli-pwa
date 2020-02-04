@@ -56,13 +56,19 @@ export default {
   },
   methods: {
     ...mapActions("user", ["downloadPersonalReport"]),
+    firstDateOfMonth(month, year) {
+      return new Date(year, month, 1).getTime();
+    },
+    lastDateOfMonth(month, year) {
+      return new Date(year, month + 1, 0).getTime();
+    },
     downloadReport() {
       this.downloadPersonalReport({
-        type: this.selectedTransactionType,
-        month: this.selectedMonth,
-        year: this.selectedYear
+        type: this.selectedTransactionType.toLowerCase(),
+        start: this.firstDateOfMonth(this.currentMonth, this.selectedYear),
+        end: this.lastDateOfMonth(this.currentMonth, this.selectedYear)
       });
-      this.$emit('onClose')
+      this.$emit("onClose");
     }
   }
 };

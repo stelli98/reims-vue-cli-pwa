@@ -1,4 +1,4 @@
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { ModalBus } from "@/components/common/js/event-bus.js";
 const PopUpMessage = () => import("@/components/common/PopUpMessage.vue");
 
@@ -6,6 +6,8 @@ const WRONG_EXT =
   "We only accept .jpg, .jpeg, .png ext. Please reupload receipt";
 const TOO_MANY_IMAGES =
   "You only can insert up to 5 images. Please reupload again.";
+const NO_VEHICLE =
+  "There is no vehicle registered under your name. Please ask admin to register your vehicle";
 export default {
   components: {
     PopUpMessage
@@ -16,6 +18,9 @@ export default {
       windowFileReader: new FileReader()
     };
   },
+  computed: {
+    ...mapGetters("auth", ["hasVehicle"])
+  },
   methods: {
     ...mapActions("transaction", ["setImages", "setImage"]),
     toggleDisplayMenu() {
@@ -23,13 +28,11 @@ export default {
       this.$emit("isActionButtonActive", this.displayMenu);
     },
     onOCRFileChange(e, type) {
-      const image = e.target.files[0];
-      if (this.checkType(image.name)) {
-        const file = URL.createObjectURL(image);
-        this.setImage(file);
-        this.$router.push({ name: "create-transaction-1", query: { type } });
+      if (this.hasVehicle || this.hasVehicle === 'true') {
+        const image = e.target.files[0];
+        this.uploadImage(image, type);
       } else {
-        this.showErrorMessage(WRONG_EXT);
+        this.showErrorMessage(NO_VEHICLE);
       }
     },
     onNonOCRFileChange(e) {
@@ -49,6 +52,15 @@ export default {
             this.$router.push({ name: "create-medical" });
           }, 500);
         }
+      }
+    },
+    uploadImage(image, category) {
+      if (this.checkType(image.name)) {
+        const file = URL.createObjectURL(image);
+        this.setImage(file);
+        this.$router.push({ name: "create-transaction-1", query: { category } });
+      } else {
+        this.showErrorMessage(WRONG_EXT);
       }
     },
     checkType(fileFullName) {

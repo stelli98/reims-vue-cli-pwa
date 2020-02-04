@@ -81,6 +81,29 @@ describe("TransactionList.vue", () => {
     expect(wrapper.emitted("deleteTransaction")).toBeTruthy();
   });
 
+  test("viewTransactionDetail", () => {
+    const routerParam = {
+      name: "transaction-detail",
+      params: { id: 1 }
+    };
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "fuel"
+          }
+        }
+      }
+    };
+    wrapper = createWrapper(options);
+    const spy = jest.spyOn(wrapper.vm.$router, "push");
+    wrapper.vm.viewTransactionDetail(routerParam.params.id);
+    expect(spy).toHaveBeenCalledWith(routerParam);
+  });
+
   test("selectedTransactionType watch", () => {
     const options = {
       mocks: {
@@ -109,13 +132,13 @@ describe("TransactionList.vue", () => {
         $route: {
           query: {
             search: "fuel monas",
-            category: "fuel"
+            category: "FUEL"
           }
         }
       }
     };
     wrapper = createWrapper(options);
-    expect(wrapper.vm.isFiltering).toBe(true)
+    expect(wrapper.vm.isFiltering).toBe(true);
   });
 
   test("isFiltering if filter search is off", () => {
@@ -123,13 +146,36 @@ describe("TransactionList.vue", () => {
       mocks: {
         $route: {
           query: {
-            category: "fuel",
+            category: "FUEL",
             sortBy: "date"
           }
         }
       }
     };
     wrapper = createWrapper(options);
-    expect(wrapper.vm.isFiltering).toBe(false)
+    expect(wrapper.vm.isFiltering).toBe(false);
+  });
+
+  test("route query category change update", () => {
+    const options = {
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "fuel"
+          }
+        },
+        selectedTransactionType() {
+          return "fuel";
+        }
+      }
+    };
+    wrapper = createWrapper(options);
+    wrapper.vm.$route.query.category = "parking";
+    setTimeout(() => {
+      expect(wrapper.vm.type).toBe("parking");
+    }, 0);
   });
 });

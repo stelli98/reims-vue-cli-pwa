@@ -1,5 +1,5 @@
 [{
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target" : { "namespace": "android_app", "package_name": "com.example.reims_twa",
-                 "sha256_cert_fingerprints": ["95:C8:8B:77:93:3D:B6:7A:3D:2D:53:C0:C9:CF:38:DD:B7:4B:75:7E:8E:05:16:55:4B:B0:A3:9E:CC:97:1E:CF"] }
+                 "sha256_cert_fingerprints": ["DD:F4:A0:BA:00:CD:80:52:61:48:AE:C1:77:9C:80:B8:C3:33:5D:7E:DB:F0:49:09:FD:C6:37:41:8A:72:5C:27"] }
   }]

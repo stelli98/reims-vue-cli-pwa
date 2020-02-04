@@ -5,6 +5,7 @@
         Title
       </label>
       <input
+        autocomplete="off"
         v-model="fuel.title"
         type="text"
         name="type"
@@ -36,15 +37,41 @@
     </div>
     <div class="form__child">
       <label class="input__label title--medium-form" for="type">
-        Fuel Type
+        Location
       </label>
       <input
-        v-model="fuel.fuelType"
+        autocomplete="off"
+        v-model="fuel.location"
         type="text"
         name="type"
         class="form__input"
-        @blur="$v.fuel.fuelType.$touch()"
+        @blur="$v.fuel.location.$touch()"
       />
+      <div v-if="$v.fuel.location.$error">
+        <p v-if="!$v.fuel.location.required" class="input__error-message">
+          Location must be filled
+        </p>
+      </div>
+    </div>
+    <div class="form__child">
+      <label class="input__label title--medium-form" for="type">
+        Fuel Type
+      </label>
+
+      <select
+        v-model="fuel.fuelType"
+        class="form__input form__input__select"
+        @blur="$v.fuel.fuelType.$touch()"
+      >
+        <option
+          v-for="option in fuelTypeOptions"
+          :key="option"
+          :value="option"
+          :selected="fuel.fuelType"
+        >
+          {{ option | textFormatter }}
+        </option>
+      </select>
       <div v-if="$v.fuel.fuelType.$error">
         <p v-if="!$v.fuel.fuelType.required" class="input__error-message">
           Fuel Type must be filled
@@ -56,29 +83,53 @@
         Kilometer
       </label>
       <input
-        v-model="fuel.kilometer"
+        autocomplete="off"
+        v-model="fuel.kilometers"
         type="text"
         name="type"
         class="form__input"
         placeholder=" ex: 1.000, 30.000, 300"
-        @blur="$v.fuel.kilometer.$touch()"
+        @blur="$v.fuel.kilometers.$touch()"
       />
-      <p
-        v-if="!$v.fuel.kilometer.float && $v.fuel.kilometer.required"
-        class="input__error-message"
-      >
-        Kilometer must be decimal ex: 100.34, 1.34, 1.00, 1
-      </p>
-      <p v-if="!$v.fuel.kilometer.required" class="input__error-message">
+      <p v-if="!$v.fuel.kilometers.required" class="input__error-message">
         Kilometer must be filled
       </p>
+      <p
+        v-if="!$v.fuel.kilometers.minValue && $v.fuel.kilometers.float"
+        class="input__error-message"
+      >
+        Kilometer must more than 0.01
+      </p>
     </div>
-    <p
-      v-if="!$v.fuel.kilometer.minValue && $v.fuel.kilometer.float"
-      class="input__error-message"
-    >
-      Kilometer must more than 0.01
-    </p>
+    <div class="form__child">
+      <label class="input__label title--medium-form" for="type">
+        Liters
+      </label>
+      <input
+        autocomplete="off"
+        v-model="fuel.liters"
+        type="text"
+        name="type"
+        class="form__input"
+        placeholder=" ex: 1.000, 30.000, 300"
+        @blur="$v.fuel.liters.$touch()"
+      />
+      <p
+        v-if="!$v.fuel.liters.float && $v.fuel.liters.required"
+        class="input__error-message"
+      >
+        Liters must be decimal ex: 100.34, 1.34, 1.00, 1
+      </p>
+      <p v-if="!$v.fuel.liters.required" class="input__error-message">
+        Liters must be filled
+      </p>
+      <p
+        v-if="!$v.fuel.liters.minValue && $v.fuel.liters.float"
+        class="input__error-message"
+      >
+        Liters must more than 0.01
+      </p>
+    </div>
     <div class="form__child">
       <label class="input__label title--medium-form" for="type">
         Amount
@@ -88,6 +139,7 @@
           Rp.
         </p>
         <input
+          autocomplete="off"
           v-model="fuelAmount"
           type="text"
           name="type"

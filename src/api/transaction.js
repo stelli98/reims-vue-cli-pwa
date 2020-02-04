@@ -28,7 +28,8 @@ export default {
       return axios
         .post(path, data, {
           headers: {
-            Authorization: token
+            Authorization: token,
+            "Content-Type": "application/json"
           },
           errorHandle: false
         })
@@ -56,17 +57,9 @@ export default {
       return offlineService.storeFormOffline(data);
     }
   },
-  deleteTransaction(id, token) {
-    const path = api.transaction;
+  deleteTransaction(id, isOCR ,token) {
+    const path = isOCR ? api.transaction : api.medical;
     return axios.delete(`${path}/${id}`, {
-      headers: {
-        Authorization: token
-      }
-    });
-  },
-  getViewImage(url, token) {
-    const path = api.transaction;
-    return axios.get(`${path}/${url}`, {
       headers: {
         Authorization: token
       }

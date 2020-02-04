@@ -50,7 +50,7 @@ describe("SortFilter.vue", () => {
     const options = {
       search: "",
       sortBy: "date",
-      category: "",
+      category: "FUEL",
       start: 1565419259000,
       end: 1565592059000,
       page: 1
@@ -74,7 +74,7 @@ describe("SortFilter.vue", () => {
     const options = {
       search: "",
       sortBy: "date",
-      category: "",
+      category: "FUEL",
       start: "",
       end: ""
     };
@@ -86,7 +86,7 @@ describe("SortFilter.vue", () => {
     const options = {
       search: "",
       sortBy: "date",
-      category: "",
+      category: "FUEL",
       start: "",
       end: ""
     };

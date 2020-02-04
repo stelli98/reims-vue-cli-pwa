@@ -4,16 +4,16 @@ import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 const url = config.api.users;
+const rootState = {
+  auth: {
+    token: "Bearer 123"
+  }
+};
 jest.mock("@/api/user");
 
 describe("Actions for User Module", () => {
   test("GetUserFamily", async () => {
     api.getUserFamily = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
     const expectedValue = data.find(
       d => d.url === url.family && d.method == "GET"
     );
@@ -26,11 +26,6 @@ describe("Actions for User Module", () => {
 
   test("downloadPersonalReport actions", () => {
     api.downloadPersonalReport = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
     const options = {
       start: 1565096633000,
       end: 1565442233000
@@ -44,11 +39,6 @@ describe("Actions for User Module", () => {
 
   test("updatePersonalProfile actions", () => {
     api.updatePersonalProfile = jest.fn();
-    const rootState = {
-      auth: {
-        token: "Bearer 123"
-      }
-    };
     const user = {
       username: "stelli",
       password: "stelli123"
@@ -60,4 +50,13 @@ describe("Actions for User Module", () => {
     );
   });
 
+  test("getViewImage actions", () => {
+    api.getViewImage = jest.fn();
+    const link = "storage/image.jpg";
+    actions.getViewImage({ rootState }, link);
+    expect(api.getViewImage).toHaveBeenCalledWith(
+      link,
+      rootState.auth.token
+    );
+  });
 });

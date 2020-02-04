@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       transactionType: ["FUEL", "PARKING", "MEDICAL"],
-      type: "FUEL"
+      type: this.$route.query.category || "FUEL"
     };
   },
   computed: {
@@ -23,7 +23,8 @@ export default {
         !!this.$route.query.search ||
         !!this.$route.query.start ||
         !!this.$route.query.end ||
-        this.$route.query.sortBy != "date"
+        this.$route.query.sortBy != "date" ||
+        this.$route.query.category != "FUEL"
       );
     },
     selectedTransactionType: {
@@ -34,14 +35,6 @@ export default {
         return this.type;
       }
     }
-    // selectedTransactionType: {
-    //   set(newValue) {
-    //     this.type = newValue || this.$route.query.category.toUpperCase();
-    //   },
-    //   get() {
-    //     return this.type || this.$route.query.category.toUpperCase()
-    //   }
-    // }
   },
   methods: {
     openFilter() {
@@ -56,6 +49,12 @@ export default {
     },
     deleteTransaction() {
       this.$emit("deleteTransaction");
+    },
+    viewTransactionDetail(id) {
+      this.$router.push({
+        name: "transaction-detail",
+        params: { id: id }
+      });
     }
   },
   watch: {
@@ -66,9 +65,9 @@ export default {
         category: this.selectedTransactionType.toUpperCase()
       };
       this.$router.push({ query });
+    },
+    "$route.query.category"() {
+      this.type = this.$route.query.category;
     }
-  },
-  created () {
-    this.selectedTransactionType = this.$route.query.category.toUpperCase();
-  },
+  }
 };

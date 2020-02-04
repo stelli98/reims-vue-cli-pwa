@@ -23,7 +23,6 @@
         </div>
       </div>
     </div>
-
     <div
       class="transaction__card__right"
       @click="removeTransaction(transaction.id)"

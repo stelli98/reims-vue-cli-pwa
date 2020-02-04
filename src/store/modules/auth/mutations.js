@@ -18,5 +18,9 @@ export default {
   SET_USERNAME(state, username) {
     document.cookie = `username=${username};expires=${expires}`;
     state.username = username;
+  }, 
+  SET_HAS_VEHICLE(state, hasVehicle) {
+    document.cookie = `hasVehicle=${hasVehicle};expires=${expires}`;
+    state.hasVehicle = hasVehicle;
   }
 };

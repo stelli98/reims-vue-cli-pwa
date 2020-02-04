@@ -40,7 +40,9 @@ describe("EditUserFamilyProfile.vue", () => {
 
     return {
       store,
-      actions
+      actions,
+      getters,
+      state
     };
   }
 
@@ -68,28 +70,24 @@ describe("EditUserFamilyProfile.vue", () => {
     store = initializeStore();
   });
 
-  test("submitEditUserFamilyForm method if user data isn't filled", () => {
+
+  test("formatDate computed setter getter", () => {
     const options = {
       mocks: {
         $router: {
-          go: jest.fn()
+          push: jest.fn()
         },
         $route: {
           params: {
             userId: "92768"
           }
         }
-      },
-      computed: {
-        userFamily() {
-          return {};
-        }
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
-    wrapper.vm.submitEditUserFamilyForm();
-    expect(spyUpdateUser).not.toHaveBeenCalled();
+    wrapper.setData({ formatDate: 1565419259000 });
+    expect(wrapper.vm.userFamily.dateOfBirth).toBe(1565419259000)
+    expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z");
   });
 
   test("submitEditUserFamilyForm method if user data is filled", async () => {
@@ -115,8 +113,28 @@ describe("EditUserFamilyProfile.vue", () => {
     });
   });
 
-  test("formatDate computed setter getter", () => {
-    wrapper.setData({ formatDate: 1565419259000 });
-    expect(wrapper.vm.formatDate).toBe("2019-08-10T06:40:59.000Z");
+  test("submitEditUserFamilyForm method if user data isn't filled", () => {
+    const options = {
+      mocks: {
+        $router: {
+          go: jest.fn()
+        },
+        $route: {
+          params: {
+            userId: "92768"
+          }
+        }
+      },
+      computed: {
+        userFamily() {
+          return {};
+        }
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyUpdateUser = jest.spyOn(store.actions, "updateUserFamily");
+    wrapper.vm.submitEditUserFamilyForm();
+    expect(spyUpdateUser).not.toHaveBeenCalled();
   });
+
 });

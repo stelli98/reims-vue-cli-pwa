@@ -17,7 +17,7 @@
             <label class="input__label title--medium-form" for="type">
               Keyword Search
             </label>
-            <input
+            <input autocomplete="off"
               v-model="options.search"
               type="text"
               name="type"

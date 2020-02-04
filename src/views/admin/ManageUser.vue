@@ -27,9 +27,12 @@
 
 <style lang="scss">
 .manage-user {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   &__content {
-    display: flex;
-    flex-direction: column;
+    flex: 1;
     width: 90vw;
     margin: 1.5rem 5vw;
 

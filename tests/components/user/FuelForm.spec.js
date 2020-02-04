@@ -93,13 +93,6 @@ describe("FuelForm.vue", () => {
     wrapper = createWrapper(store.store);
   });
 
-  test("reformat convertDateToEpoch", () => {
-
-    wrapper.vm.fuel.date = "2019-08-13T10:26:49.000Z";
-    wrapper.vm.convertDateToEpoch();
-    expect(wrapper.vm.fuel.date).toBe(1565692009000);
-  });
-
   test("fuelAmount computed setter getter", () => {
     wrapper.setData({ fuelAmount: 20000 });
     expect(wrapper.vm.fuelAmount).toBe("20.000");
@@ -116,11 +109,11 @@ describe("FuelForm.vue", () => {
         category: "FUEL",
         date: "",
         fuelType: "",
-        kilometer: 1,
+        kilometers: 1,
+        liters: 1,
         amount: 100,
         title: "",
-        userId: "",
-        image: ""
+        location: ""
       }
     }
     expect(wrapper.vm.fuelTemplate).toEqual(expectedValue)
@@ -139,17 +132,17 @@ describe("FuelForm.vue", () => {
       category: "FUEL",
       date: 123,
       fuelType: "A",
-      kilometer: 1,
+      kilometers: 1,
       amount: 100,
-      title: "AA"
+      title: "AA",
+      location:"Thamrin",
+      liters: 100
     }
-    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
     const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
     const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
     const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
     await wrapper.vm.sendFuelForm()
     wrapper.vm.$nextTick(()=>{
-      expect(spyConvertDateToEpoch).toHaveBeenCalled()
       expect(spySaveTransaction).toHaveBeenCalled()
       expect(spyAddNotification).toHaveBeenCalled()
       expect(spySetFormEmpty).toHaveBeenCalled()
@@ -169,15 +162,15 @@ describe("FuelForm.vue", () => {
       category: "FUEL",
       date: 123,
       fuelType: "A",
-      kilometer: 1,
+      kilometers: 1,
       amount: 100,
-      title: "AA"
+      title: "AA",
+      location:"Thamrin",
+      liters: 100
     }
     store.actions.transaction.saveTransaction.mockRejectedValue(() =>
       Promise.reject()
     );
-
-    const spyConvertDateToEpoch = jest.spyOn(wrapper.vm, "convertDateToEpoch");
     const spySaveTransaction = jest.spyOn(store.actions.transaction, "saveTransaction")
     const spyAddNotification = jest.spyOn(store.actions.notification, "addNotification")
     const spySetFormEmpty = jest.spyOn(wrapper.vm , "setFormEmpty")
@@ -186,7 +179,6 @@ describe("FuelForm.vue", () => {
       await wrapper.vm.sendFuelForm() 
     }catch{
       wrapper.vm.$nextTick(()=>{
-        expect(spyConvertDateToEpoch).toHaveBeenCalled()
         expect(spySaveTransaction).toHaveBeenCalled()
         expect(spyAddNotification).toHaveBeenCalled()
         expect(spySetFormEmpty).toHaveBeenCalled()
