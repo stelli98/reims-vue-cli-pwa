@@ -147,7 +147,7 @@ describe("TransactionList.vue", () => {
         $route: {
           query: {
             category: "FUEL",
-            sortBy: "date"
+            sortBy: "createdAt"
           }
         }
       }
@@ -164,18 +164,18 @@ describe("TransactionList.vue", () => {
         },
         $route: {
           query: {
-            category: "fuel"
+            category: "FUEL"
           }
         },
         selectedTransactionType() {
-          return "fuel";
+          return "FUEL";
         }
       }
     };
     wrapper = createWrapper(options);
-    wrapper.vm.$route.query.category = "parking";
+    wrapper.vm.$route.query.category = "PARKING";
     setTimeout(() => {
-      expect(wrapper.vm.type).toBe("parking");
+      expect(wrapper.vm.type).toBe("PARKING");
     }, 0);
   });
 });

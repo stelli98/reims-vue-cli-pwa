@@ -52,6 +52,19 @@ export default {
         this.yearOptions.push(this.limitYear++);
       }
       return this.yearOptions;
+    },
+    payload() {
+      return {
+        type: this.selectedTransactionType.toLowerCase(),
+        start: this.firstDateOfMonth(
+          this.selectedMonthInt(this.selectedMonth),
+          this.selectedYear
+        ),
+        end: this.lastDateOfMonth(
+          this.selectedMonthInt(this.selectedMonth),
+          this.selectedYear
+        )
+      };
     }
   },
   methods: {
@@ -62,11 +75,18 @@ export default {
     lastDateOfMonth(month, year) {
       return new Date(year, month + 1, 0).getTime();
     },
+    selectedMonthInt(selectedMonthName) {
+      return this.monthsName.findIndex(month => selectedMonthName === month);
+    },
     downloadReport() {
-      this.downloadPersonalReport({
-        type: this.selectedTransactionType.toLowerCase(),
-        start: this.firstDateOfMonth(this.currentMonth, this.selectedYear),
-        end: this.lastDateOfMonth(this.currentMonth, this.selectedYear)
+      this.downloadPersonalReport(this.payload).then(response => {
+        const base64File = `data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${response.data.data}`;
+        const dummyLink = document.createElement("a");
+        dummyLink.href = base64File;
+        dummyLink.download = `${this.$options.filters.textFormatter(
+          this.payload.type
+        )}-${this.selectedMonth}-${this.selectedYear}.xlsx`;
+        dummyLink.click();
       });
       this.$emit("onClose");
     }

@@ -13,6 +13,12 @@ describe("TransactionDetail.vue", () => {
   let wrapper;
   let localVue;
   const transactionData = data.find(d => d.url === url.medical + "/14");
+  const response = {
+    data: {
+      code: 200,
+      data: "image1.jpg"
+    }
+  };
 
   function initializeStore() {
     const transaction = initializeTransactionStore();
@@ -76,15 +82,31 @@ describe("TransactionDetail.vue", () => {
     return lv;
   }
 
-  function createWrapper(store, options) {
-    const defaultConfig = {
+  function createWrapper(store) {
+    return shallowMount(TransactionDetail, {
       store,
       localVue,
-      stubs: ["ViewParkingDetail", "ViewFuelDetail", "GlobalHeader"],
-      sync: false
-    };
-    const mergeConfig = { ...options, ...defaultConfig };
-    return shallowMount(TransactionDetail, mergeConfig);
+      stubs: [
+        "ViewParkingDetail",
+        "ViewFuelDetail",
+        "ViewMedicalDetail",
+        "GlobalHeader"
+      ],
+      sync: false,
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          query: {
+            category: "MEDICAL"
+          },
+          params: {
+            id: 1
+          }
+        }
+      }
+    });
   }
 
   beforeEach(() => {
@@ -92,98 +114,56 @@ describe("TransactionDetail.vue", () => {
     store = initializeStore();
   });
 
-  test("get transactionID", async () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: "medical"
-          },
-          params: {
-            id: 1
-          }
-        }
-      }
-    };
-    wrapper = await createWrapper(store.store, options);
-    const spyGetTransactionByCategory = jest.spyOn(
-      store.actions.transaction,
-      "getTransactionByCategory"
-    );
-    const spyGetImageList = jest.spyOn(wrapper.vm, "getImageList");
-    expect(spyGetTransactionByCategory).toHaveBeenCalled();
-    wrapper.vm.$nextTick(() => {
-      expect(spyGetImageList).toHaveBeenCalled();
-    });
-  });
-
   test("transactionCategory must be Medical", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: "MEDICAL"
-          },
-          params: {
-            id: 1
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getImageList = jest
+      .fn()
+      .mockResolvedValue(Promise.resolve(response));
     expect(wrapper.vm.transactionCategory).toBe("Medical");
   });
 
   test("activeComponent must be ViewMedicalDetail", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: "MEDICAL"
-          },
-          params: {
-            id: 1
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getImageList = jest
+      .fn()
+      .mockResolvedValue(Promise.resolve(response));
     expect(wrapper.vm.activeComponent).toBe("ViewMedicalDetail");
   });
 
-  test("get Image List", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          query: {
-            category: "medical"
-          },
-          params: {
-            id: 1
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const expectedResult = {
-      data: {
-        data: "image.jpg"
-      }
-    };
-    wrapper.vm.getViewImage = jest.fn().mockResolvedValue(expectedResult);
-    wrapper.vm.getImageList();
-    expect(wrapper.vm.getViewImage).toHaveBeenCalled();
+  test("imagePath method", () => {
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getImageList = jest
+      .fn()
+      .mockResolvedValue(Promise.resolve(response));
+    const image = "iv9B0123";
+    expect(wrapper.vm.imagePath(image)).toBe(`data:image/png;base64,${image}`);
+  });
+
+  test("get Image List", async () => {
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getViewImage = jest.fn().mockResolvedValue(response);
+    wrapper.vm.checkStatus = jest.fn().mockResolvedValue(response);
+    await wrapper.vm.getImageList();
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.getViewImage).toHaveBeenCalled();
+      expect(wrapper.vm.checkStatus).toHaveBeenCalled();
+    });
+  });
+
+  test("checkStatus method success", () => {
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getImageList = jest
+      .fn()
+      .mockResolvedValue(Promise.resolve(response));
+    expect(wrapper.vm.checkStatus(response)).toEqual(Promise.resolve(response.data.data));
+  });
+
+  test("checkStatus method error", () => {
+    response.data.code = 500;
+    wrapper = createWrapper(store.store);
+    wrapper.vm.getImageList = jest
+      .fn()
+      .mockResolvedValue(Promise.resolve(response));
+    expect(wrapper.vm.checkStatus(response)).toEqual(Promise.reject(new Error("Error")));
   });
 });

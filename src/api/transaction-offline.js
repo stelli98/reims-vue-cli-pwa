@@ -5,12 +5,14 @@ const formIdb = "offlineForms";
 
 export default {
   storeImageOffline(data) {
-    if (data.image) {
+    if (data.attachments) {
       const request = {
         id: Date.now(),
         userId: store.state.auth.id,
-        image: data.image
+        attachments: data.attachments, 
+        category: data.category
       };
+      console.log('request image', request)
       this.storeToIndexedDB(imageIdb, request);
       this.throwError();
     }
@@ -18,11 +20,13 @@ export default {
   async storeFormOffline(form) {
     if (!form.id) {
       const id = await this.getLastIndexIDFromIndexedDB(imageIdb);
+      console.log('id form', id)
       const data = {
         id: id,
         ...form,
         userId: store.state.auth.id
       };
+      console.log('request form', data)
       this.storeToIndexedDB(formIdb, data);
       this.throwError();
     }
@@ -32,6 +36,8 @@ export default {
   },
   async storeToIndexedDB(storeName, data) {
     try {
+      console.log('before idb store name', storeName);
+      console.log('before idb store data', data);
       await idbs.saveData(storeName, data);
     } catch (e) {
       alert(e);

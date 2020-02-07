@@ -9,8 +9,8 @@ export default {
   },
   methods: {
     changePageTo(pageToGo) {
-      this.currentPage = pageToGo;
-      this.$emit("changePage", parseInt(this.currentPage));
+      this.currentPage = parseInt(pageToGo);
+      this.$emit("changePage", this.currentPage);
     }
   },
   watch: {

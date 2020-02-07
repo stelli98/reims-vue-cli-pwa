@@ -83,7 +83,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -129,7 +129,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -157,7 +157,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -184,7 +184,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -210,7 +210,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -236,7 +236,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -262,7 +262,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -289,7 +289,7 @@ describe("CropImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }

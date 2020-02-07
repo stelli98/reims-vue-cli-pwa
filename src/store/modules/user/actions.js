@@ -8,7 +8,7 @@ export default {
   },
   downloadPersonalReport: ({ rootState }, options) => {
     const { token } = rootState.auth;
-    userApi.downloadPersonalReport(options, token);
+    return userApi.downloadPersonalReport(options, token);
   },
   updatePersonalProfile: async ({ rootState }, data) => {
     const { token } = rootState.auth;
@@ -18,5 +18,5 @@ export default {
   getViewImage: async ({ rootState }, link) => {
     const { token } = rootState.auth;
     return await userApi.getViewImage(link, token);
-  },
+  }
 };

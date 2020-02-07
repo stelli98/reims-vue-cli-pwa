@@ -307,10 +307,10 @@ describe("SyncTransactions Lib", () => {
     const data = {
       id: 1,
       userId: 123,
-      image: "image.jpg"
+      attachments: ["image.jpg"]
     };
     const expectedValue = {
-      image: "image.jpg"
+      attachments: ["image.jpg"]
     };
     expect(wrapper.vm.sendImageObject(data)).toEqual(expectedValue);
   });
@@ -337,10 +337,10 @@ describe("SyncTransactions Lib", () => {
 
   test("successCreateTransaction method", () => {
     offlineService.deleteDataByKeyFromIndexedDB = jest.fn();
-    wrapper.vm.sendFormAfterImageToServer = jest.fn(function(a,b,c){
-      c.success()
+    wrapper.vm.sendFormAfterImageToServer = jest.fn(function(a, b, c) {
+      c.success();
     });
-  
+
     wrapper.vm.successCreateTransaction(forms[0], images, 0);
     expect(offlineService.deleteDataByKeyFromIndexedDB).toHaveBeenCalled();
     expect(wrapper.vm.sendFormAfterImageToServer).toHaveBeenCalled();

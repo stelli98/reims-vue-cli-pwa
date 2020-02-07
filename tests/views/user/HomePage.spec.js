@@ -166,28 +166,6 @@ describe("HomePage.vue", () => {
     expect(spyRouterPush).toHaveBeenCalled();
   });
 
-  test("methods download", () => {
-    const options = {
-      mocks: {
-        $route: {
-          query: {
-            page: 1,
-            size: 5,
-            sortBy: "date",
-            category: "fuel"
-          }
-        },
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions.user, "downloadPersonalReport");
-    wrapper.vm.download();
-    expect(spy).toHaveBeenCalled();
-  });
-
   test("methods toggleActionButton", () => {
     const options = {
       mocks: {

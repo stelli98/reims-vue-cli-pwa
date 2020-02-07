@@ -12,9 +12,9 @@
         <div class="home__header__upper__right">
           <div
             class="home__header__nav__password"
-            @click="moveTo('edit-profile')"
+          @click="moveTo('change-password')"
           >
-            Edit Profile
+            Change Password
           </div>
           <div class="home__header__nav__logout" @click="doLogout">
             Logout

@@ -99,7 +99,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -116,7 +116,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       },
@@ -138,7 +138,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -158,7 +158,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -178,7 +178,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -219,7 +219,7 @@ describe("TransactionForm.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       },

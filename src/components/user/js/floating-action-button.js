@@ -28,7 +28,7 @@ export default {
       this.$emit("isActionButtonActive", this.displayMenu);
     },
     onOCRFileChange(e, type) {
-      if (this.hasVehicle || this.hasVehicle === 'true') {
+      if (this.hasVehicle || this.hasVehicle === "true") {
         const image = e.target.files[0];
         this.uploadImage(image, type);
       } else {
@@ -58,7 +58,10 @@ export default {
       if (this.checkType(image.name)) {
         const file = URL.createObjectURL(image);
         this.setImage(file);
-        this.$router.push({ name: "create-transaction-1", query: { category } });
+        this.$router.push({
+          name: "create-transaction-1",
+          query: { category }
+        });
       } else {
         this.showErrorMessage(WRONG_EXT);
       }

@@ -1,19 +1,53 @@
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
+
 if (workbox) {
-  // adjust log level for displaying workbox logs
-  workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
+  // workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
 
-  // apply precaching. In the built version, the precacheManifest will
-  // be imported using importScripts (as is workbox itself) and we can
-  // precache this. This is all we need for precaching
-  workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+  workbox.precaching.precacheAndRoute(self.__precacheManifest);
 
-  // Make sure to return a specific response for all navigation requests.
-  // Since we have a SPA here, this should be index.html always.
-  // https://stackoverflow.com/questions/49963982/vue-router-history-mode-with-pwa-in-offline-mode
-  workbox.routing.registerNavigationRoute("/index.html");
+  // workbox.routing.registerNavigationRoute("/index.html");
 
   workbox.routing.registerRoute(
     new RegExp("/api"),
     new workbox.strategies.NetworkOnly()
   );
+
+  // const bgSyncPlugin = new workbox.backgroundSync.Plugin("medicalsOffline", {
+  //   maxRetentionTime: 24 * 60 // Retry for max of 24 Hours
+  // });
+
+  // workbox.routing.registerRoute(
+  //   new RegExp("/api/medicals"),
+  //   workbox.strategies.networkOnly({
+  //     plugins: [bgSyncPlugin]
+  //   }),
+  //   "POST"
+  // );
+
+  const showNotification = () => {
+    self.registration.showNotification('Background sync success!', {
+      body: '🎉`🎉`🎉`'
+    });
+  };
+
+  const bgSyncPlugin = new workbox.backgroundSync.Plugin(
+    'medicalsOffline',
+    {
+      callbacks: {
+        queueDidReplay: showNotification
+        // other types of callbacks could go here
+      }
+    }
+  );
+
+  const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin],
+  });
+
+  workbox.routing.registerRoute(
+    new RegExp("/api/medicals"),
+    networkWithBackgroundSync,
+    'POST'
+  );
+
 }

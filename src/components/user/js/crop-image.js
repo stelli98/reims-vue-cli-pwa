@@ -14,7 +14,7 @@ export default {
   computed: {
     ...mapGetters("transaction", ["image"]),
     isContainingType(){
-      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
+      return this.$route.query.category  === "FUEL" || this.$route.query.category  === "PARKING"
     }
   },
   methods: {

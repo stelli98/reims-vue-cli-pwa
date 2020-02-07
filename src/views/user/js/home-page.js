@@ -39,13 +39,14 @@ export default {
         page: parseInt(this.$route.query.page),
         size: parseInt(this.$route.query.size),
         sortBy: this.$route.query.sortBy,
-        category: this.$route.query.category ? this.$route.query.category.toUpperCase() : ""
+        category: this.$route.query.category
+          ? this.$route.query.category.toUpperCase()
+          : ""
       };
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransactionsByCategory"]),
-    ...mapActions("user", ["downloadPersonalReport"]),
+    ...mapActions("transaction", ["getTransactionsByCategory"]), 
     ...mapActions("auth", ["logout"]),
     changePage(page) {
       this.$router.push({ query: { ...this.$route.query, page: page } });
@@ -55,7 +56,7 @@ export default {
     },
     updateTransaction() {
       this.getTransactionsByCategory([
-        {...this.$route.query, ...this.options},
+        { ...this.options, ...this.$route.query },
         this.isOCR
       ]).then(() => {
         if (this.transactions.length == 0 && this.$route.query.page != 1) {
@@ -67,9 +68,6 @@ export default {
       this.logout().then(() => {
         this.$router.push({ name: "login" });
       });
-    },
-    download() {
-      this.downloadPersonalReport(this.$route.query);
     },
     toggleActionButton(value) {
       this.actionButtonActive = value;

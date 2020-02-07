@@ -36,13 +36,13 @@ export default {
   computed: {
     ...mapGetters("transaction", ["image"]),
     currentComponent() {
-      return this.$route.query.type.toUpperCase();
+      return this.$route.query.category;
     },
     isSwitchOn() {
       return this.currentComponent ? this.tabs[this.currentComponent].show : "";
     },
     isContainingType(){
-      return this.$route.query.type  === "fuel" || this.$route.query.type  === "parking"
+      return this.$route.query.category  === "FUEL" || this.$route.query.category  === "PARKING"
     }
   },
   created() {
