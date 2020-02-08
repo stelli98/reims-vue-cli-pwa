@@ -5,7 +5,7 @@ const GlobalHeader = () => import("@/components/common/GlobalHeader");
 
 export default {
   mixins: [CommonMixins],
-  components: {GlobalHeader},
+  components: { GlobalHeader },
   validations: {
     user: {
       password: { required, minLength: minLength(6) },
@@ -25,7 +25,13 @@ export default {
     submitChangePasswordForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
-        this.changePassword(this.userId, this.user);
+        const payload = [
+          this.$route.query.role,
+          {
+            password: this.user.password
+          }
+        ];
+        this.changePassword(payload);
         this.moveTo("user-detail");
       }
     }

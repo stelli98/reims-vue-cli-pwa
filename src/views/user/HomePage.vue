@@ -12,7 +12,7 @@
         <div class="home__header__upper__right">
           <div
             class="home__header__nav__password"
-          @click="moveTo('change-password')"
+            @click="moveToWithQuery('change-password', { role: 'user' })"
           >
             Change Password
           </div>
@@ -34,13 +34,10 @@
       @openFilter="toogleFilter"
       @deleteTransaction="updateTransaction"
     />
-    <Pagination
-      :paging="pagination"
-      @changePage="changePage"
-    />
+    <Pagination :paging="pagination" @changePage="changePage" />
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>
     <FloatingActionButton
-      :class="actionButtonClass"
+      class="action-button"
       @isActionButtonActive="toggleActionButton"
       v-if="!showFilter"
     >
@@ -50,15 +47,8 @@
 
 <script src="./js/home-page.js"></script>
 <style lang="scss" scoped>
-.action-button-false {
+.action-button {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1000;
-}
-
-.action-button-true {
-  position: sticky;
   bottom: 1rem;
   right: 1rem;
   z-index: 1000;

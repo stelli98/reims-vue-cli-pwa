@@ -16,7 +16,7 @@ export default {
     ...mapActions("transaction", ["setImage"]),
     moveTo() {
       this.deleteDataFromIDB();
-      this.$router.push({ name: "home" });
+      this.$router.push({ name: "home", query: {category: this.$route.query.category} });
     },
     deleteDataFromIDB() {
       try {

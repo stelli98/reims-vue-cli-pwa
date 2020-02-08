@@ -33,12 +33,12 @@ export default {
     },
     changePage(toPage) {
       this.options.page = parseInt(toPage);
-      this.$router.push({ name: "user", query: this.options });
+      this.moveToWithQuery("user", this.options);
       this.getUsers(this.options);
     },
     submitSearch(event) {
       this.options.search = event.target.value;
-      this.$router.push({ name: "user", query: this.options });
+      this.moveToWithQuery("user", this.options);
       this.getUsers(this.options);
     },
     doLogout() {

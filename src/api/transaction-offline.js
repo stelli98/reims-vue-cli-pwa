@@ -7,26 +7,26 @@ export default {
   storeImageOffline(data) {
     if (data.attachments) {
       const request = {
-        id: Date.now(),
+        id: setId(data),
         userId: store.state.auth.id,
         attachments: data.attachments, 
         category: data.category
       };
-      console.log('request image', request)
       this.storeToIndexedDB(imageIdb, request);
       this.throwError();
     }
   },
+  setId(data){
+    return data.id ? data.id :  Date.now();
+  },
   async storeFormOffline(form) {
     if (!form.id) {
       const id = await this.getLastIndexIDFromIndexedDB(imageIdb);
-      console.log('id form', id)
       const data = {
         id: id,
         ...form,
         userId: store.state.auth.id
       };
-      console.log('request form', data)
       this.storeToIndexedDB(formIdb, data);
       this.throwError();
     }
@@ -36,8 +36,6 @@ export default {
   },
   async storeToIndexedDB(storeName, data) {
     try {
-      console.log('before idb store name', storeName);
-      console.log('before idb store data', data);
       await idbs.saveData(storeName, data);
     } catch (e) {
       alert(e);

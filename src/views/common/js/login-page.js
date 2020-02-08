@@ -28,12 +28,20 @@ export default {
   computed: mapGetters("auth", ["role"]),
   methods: {
     ...mapActions("auth", ["login"]),
+    ...mapActions("user", ["getVehicleData", "getUserFamily"]),
     submitLoginForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.login(this.user).then(() => {
           this.$router.push({ name: access[this.role] });
+          this.getUserData();
         });
+      }
+    },
+    getUserData() {
+      if (this.role === "USER") {
+        this.getVehicleData();
+        this.getUserFamily();
       }
     }
   }

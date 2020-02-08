@@ -19,7 +19,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["hasVehicle"])
+    ...mapGetters("user", ["hasVehicle"])
   },
   methods: {
     ...mapActions("transaction", ["setImages", "setImage"]),

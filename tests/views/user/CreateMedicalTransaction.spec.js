@@ -36,7 +36,6 @@ describe("CreateMedicalTransaction.vue", () => {
       },
       actions: {
         transaction: transaction.actions,
-        user: user.actions
       },
       getters: {
         transaction: transaction.getters,
@@ -69,11 +68,8 @@ describe("CreateMedicalTransaction.vue", () => {
       userFamily: state => state.userFamily,
       username: state => state.username
     };
-    const actions = {
-      getUserFamily: jest.fn()
-    };
     const namespaced = true;
-    return { state, getters, actions, namespaced };
+    return { state, getters, namespaced };
   }
 
   function initializeTransactionStore() {
@@ -113,20 +109,7 @@ describe("CreateMedicalTransaction.vue", () => {
     localVue = generateLocalVue();
     store = initializeStore();
   });
-
-  test("if images exist", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions.user, "getUserFamily");
-    expect(spy).toHaveBeenCalled();
-  });
-
+  
   test("medicalAmount computed setter getter", () => {
     wrapper = createWrapper(store.store);
     wrapper.setData({ medicalAmount: 20000 });

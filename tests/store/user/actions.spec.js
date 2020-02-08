@@ -37,14 +37,14 @@ describe("Actions for User Module", () => {
     );
   });
 
-  test("updatePersonalProfile actions", () => {
-    api.updatePersonalProfile = jest.fn();
+  test("changePassword actions", () => {
+    api.changePassword = jest.fn();
     const user = {
       username: "stelli",
       password: "stelli123"
     };
-    actions.updatePersonalProfile({ rootState }, user);
-    expect(api.updatePersonalProfile).toHaveBeenCalledWith(
+    actions.changePassword({ rootState }, user);
+    expect(api.changePassword).toHaveBeenCalledWith(
       user,
       rootState.auth.token
     );

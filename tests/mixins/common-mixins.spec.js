@@ -4,6 +4,9 @@ import CommonMixins from "@/mixins/common-mixins";
     $route : {
       params:{
         id
+      },
+      query:{
+        role: "user"
       }
     },
     $router:{
@@ -48,6 +51,13 @@ describe("CommonMixins", () => {
     });
 
     it("moveToWithParams method", () => {
+      const mixins = CommonMixins.methods.moveToWithParams.bind(obj)
+      const spy = jest.spyOn(obj.$router,"push")
+      mixins()
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it("moveToWithQuery method", () => {
       const mixins = CommonMixins.methods.moveToWithParams.bind(obj)
       const spy = jest.spyOn(obj.$router,"push")
       mixins()

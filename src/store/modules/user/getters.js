@@ -3,6 +3,9 @@ export default {
     return state.user;
   },
   userFamily(state){
-    return state.userFamily;
+    return JSON.parse(state.userFamily);
+  },
+  hasVehicle(state){
+    return state.hasVehicle;
   }
 };

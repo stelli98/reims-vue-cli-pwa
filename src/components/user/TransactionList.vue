@@ -106,7 +106,6 @@
     color: $color-white;
     font-size: 1.5rem;
     pointer-events: none;
-    z-index: 2;
   }
 }
 

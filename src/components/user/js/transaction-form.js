@@ -62,7 +62,7 @@ export default {
       this.isContainingType ? "" : this.moveTo('home')
     },
     reUploadImage(){
-      this.$router.push({name:"create-transaction-1", query:{...this.$route.query}})
+      this.moveToWithQuery("create-transaction-1", {...this.$route.query})
     }
   }
 };

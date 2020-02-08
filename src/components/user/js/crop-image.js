@@ -13,8 +13,11 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["image"]),
-    isContainingType(){
-      return this.$route.query.category  === "FUEL" || this.$route.query.category  === "PARKING"
+    isContainingType() {
+      return (
+        this.$route.query.category === "FUEL" ||
+        this.$route.query.category === "PARKING"
+      );
     }
   },
   methods: {
@@ -38,11 +41,10 @@ export default {
     },
     moveToFilterImage() {
       this.setImage(this.generateImage());
-      this.$router.push({ name: "create-transaction-2" , 
-      query: {...this.$route.query}});
+      this.moveToWithQuery("create-transaction-2", { ...this.$route.query });
     },
-    checkContainsType(){
-      this.isContainingType ? "" : this.$router.push({name: "home"})
+    checkContainsType() {
+      this.isContainingType ? "" : this.moveTo("home");
     }
   },
   created() {

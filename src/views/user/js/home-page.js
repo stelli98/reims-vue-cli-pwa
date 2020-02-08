@@ -28,9 +28,6 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["transactions", "pagination"]),
-    actionButtonClass() {
-      return `action-button action-button-${this.transactions.length == 5}`;
-    },
     isOCR() {
       return this.$route.query.category.toLowerCase() != "medical";
     },
@@ -46,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("transaction", ["getTransactionsByCategory"]), 
+    ...mapActions("transaction", ["getTransactionsByCategory"]),
     ...mapActions("auth", ["logout"]),
     changePage(page) {
       this.$router.push({ query: { ...this.$route.query, page: page } });
@@ -66,7 +63,7 @@ export default {
     },
     doLogout() {
       this.logout().then(() => {
-        this.$router.push({ name: "login" });
+        this.moveTo("login");
       });
     },
     toggleActionButton(value) {

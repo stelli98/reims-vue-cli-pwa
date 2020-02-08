@@ -79,7 +79,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["getUserFamily"]),
     ...mapActions("transaction", ["createMedicalTransaction"]),
     submitMedicalForm() {
       this.$v.medical.$touch();
@@ -89,7 +88,7 @@ export default {
         this.medical.attachments = this.images;
         this.medical.patient = this.isCurrentUserIsPatient();
         this.createMedicalTransaction(this.medical);
-        this.moveTo("home");
+        this.moveToWithQuery("home", { category: "MEDICAL" });
       }
     },
     convertDateToEpoch() {
@@ -112,6 +111,5 @@ export default {
   },
   created() {
     this.isImagesExist;
-    this.getUserFamily();
   }
 };
