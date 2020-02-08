@@ -37,7 +37,7 @@ describe("CreateTransaction.vue", () => {
     const defaultConfig = {
       store,
       localVue,
-      stubs: ["router-view","GlobalHeader"],
+      stubs: ["router-view", "GlobalHeader"],
       sync: false
     };
     const mergeConfig = { ...options, ...defaultConfig };
@@ -97,22 +97,25 @@ describe("CreateTransaction.vue", () => {
     expect(wrapper.vm.activeThirdProgressBar).toBe("progress-bar-active");
   });
 
-  test("moveTo method", ()=>{
+  test("moveTo method", () => {
     const options = {
-        mocks: {
-          $router: {
-            push : jest.fn()
-          },
-          $route: {
-            name: "create-transaction-3"
+      mocks: {
+        $router: {
+          push: jest.fn()
+        },
+        $route: {
+          name: "create-transaction-3",
+          query: {
+            category: "FUEL"
           }
         }
-      };
-      wrapper = createWrapper(store.store, options);
-      const spyRouter = jest.spyOn(wrapper.vm.$router, 'push')
-      const spyDeleteDataFromIDB = jest.spyOn(wrapper.vm, 'deleteDataFromIDB')
-      wrapper.vm.moveTo()
-      expect(spyDeleteDataFromIDB).toHaveBeenCalled();
-      expect(spyRouter).toHaveBeenCalled();
-  })
+      }
+    };
+    wrapper = createWrapper(store.store, options);
+    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
+    const spyDeleteDataFromIDB = jest.spyOn(wrapper.vm, "deleteDataFromIDB");
+    wrapper.vm.moveTo();
+    expect(spyDeleteDataFromIDB).toHaveBeenCalled();
+    expect(spyRouter).toHaveBeenCalled();
+  });
 });

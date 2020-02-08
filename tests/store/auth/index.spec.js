@@ -16,10 +16,6 @@ const state = {
   username: document.cookie.replace(
     /(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/,
     "$1"
-  ),
-  hasVehicle: document.cookie.replace(
-    /(?:(?:^|.*;\s*)hasVehicle\s*\=\s*([^;]*).*$)|^.*$/,
-    "$1"
   )
 };
 

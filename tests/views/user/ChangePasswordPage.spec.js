@@ -78,7 +78,12 @@ describe("FuelForm.vue", () => {
           push: jest.fn()
         },
         $route: {
-          params: {id : '1559058600'}
+          params: { 
+            id: "1559058600" 
+          },
+          query: {
+            role: "user"
+          }
         }
       }
     };

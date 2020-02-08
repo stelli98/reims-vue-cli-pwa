@@ -33,8 +33,8 @@ export default {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.login(this.user).then(() => {
-          this.$router.push({ name: access[this.role] });
           this.getUserData();
+          this.$router.push({ name: access[this.role] });
         });
       }
     },

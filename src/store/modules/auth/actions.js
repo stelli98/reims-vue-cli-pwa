@@ -16,8 +16,5 @@ export default {
     commit("SET_TOKEN", "");
     commit("SET_USERNAME", "");
     commit("SET_HAS_VEHICLE", "");
-  },
-  updateToken: ({ commit }, token) => {
-    commit("SET_TOKEN", token);
   }
 };

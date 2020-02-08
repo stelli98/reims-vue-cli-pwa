@@ -25,7 +25,19 @@ describe("mutations", () => {
     const state = {
       userFamily: {}
     };
-    mutations.SET_USER_FAMILY(state, expectedValue);
-    expect(state.userFamily).toBe(expectedValue.data);
+    mutations.SET_USER_FAMILY(state, JSON.stringify(expectedValue.data));
+    expect(state.userFamily).toBe(JSON.stringify(expectedValue.data));
+  });
+
+  test("SET_HAS_VEHICLE sets state.hasVehicle", () => {
+    const expectedValue = false;
+    const state = {
+      hasVehicle: document.cookie.replace(
+        /(?:(?:^|.*;\s*)hasVehicle\s*\=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      )
+    };
+    mutations.SET_HAS_VEHICLE(state, expectedValue);
+    expect(state.hasVehicle).toEqual(expectedValue);
   });
 });
