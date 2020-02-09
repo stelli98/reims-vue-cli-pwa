@@ -39,7 +39,7 @@
               </div>
               <div class="user-family__box">
                 <p class="title--big">Date of Birth</p>
-                <span>{{ user.marriedDate || user.dateOfBirth }}</span>
+                <span>{{ Date.parse(user.dateOfBirth) | dateFormatter  }}</span>
               </div>
             </div>
             <div class="user-family__action">

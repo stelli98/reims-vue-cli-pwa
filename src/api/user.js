@@ -2,6 +2,7 @@ import axios from "axios";
 import config from "@/config";
 const api = config.api.users;
 
+
 export default {
   getUserPersonalData(token) {
     const path = api.user;
@@ -37,7 +38,7 @@ export default {
     });
   },
   changePassword(role, data, token) {
-    const path = role === "admin" ? config.api.admin.user : api.user;
+    const path = role === "admin" ? config.api.admin.changePassword : api.changePassword;
     return axios.put(path, data, {
       headers: {
         Authorization: token

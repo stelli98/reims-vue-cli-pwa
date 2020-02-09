@@ -5,7 +5,7 @@
       <div class="heading change-password__heading">Change Password</div>
       <form class="user-form__form">
         <div class="form__child">
-          <label class="input__label title--medium-form" for="type">Password</label>
+          <label class="input__label title--medium-form" for="type">New Password</label>
           <input
             v-model="user.password"
             type="password"

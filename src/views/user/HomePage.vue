@@ -9,13 +9,19 @@
         <div class="home__header__upper__left">
           <img src="@/assets/images/logo.png" class="logo__small" />
         </div>
-        <div class="home__header__upper__right">
+        <div class="home__header__upper__right"><div
+            class="home__header__nav__password"
+            @click="moveTo('sync-draft')"
+          >
+            Draft
+          </div>
           <div
             class="home__header__nav__password"
             @click="moveToWithQuery('change-password', { role: 'user' })"
           >
             Change Password
           </div>
+          
           <div class="home__header__nav__logout" @click="doLogout">
             Logout
           </div>

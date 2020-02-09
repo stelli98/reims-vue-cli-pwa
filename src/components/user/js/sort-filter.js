@@ -64,17 +64,14 @@ export default {
           ? new Date(this.options.end).getTime()
           : "";
         this.options.page = 1;
-        this.$router.push({ query: { ...this.$route.query, ...this.options } });
+        this.$router.push({ query: {  ...this.options,...this.$route.query } });
         this.closeFilterForm();
       }
     },
     emptyOptions() {
       return {
         search: "",
-        sortBy: {
-          name: "Created At",
-          value: "createdAt"
-        },
+        sortBy:  "createdAt",
         category: "FUEL",
         start: "",
         end: ""
@@ -93,7 +90,7 @@ export default {
     }
   },
   created() {
-    this.options = { ...this.options, ...this.$route.query };
+    this.options = {  ...this.$route.query, ...this.options };
     this.convertDateToISOString();
   }
 };

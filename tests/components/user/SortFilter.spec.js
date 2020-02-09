@@ -49,10 +49,7 @@ describe("SortFilter.vue", () => {
     wrapper.vm.applyFilter();
     const options = {
       search: "",
-      sortBy: {
-        name: "Created At",
-        value: "createdAt"
-      },
+      sortBy: "createdAt",
       category: "FUEL",
       start: 1565419259000,
       end: 1565592059000,
@@ -76,10 +73,7 @@ describe("SortFilter.vue", () => {
     wrapper.vm.emptyOptions();
     const options = {
       search: "",
-      sortBy: {
-        name: "Created At",
-        value: "createdAt"
-      },
+      sortBy: "createdAt",
       category: "FUEL",
       start: "",
       end: ""
@@ -91,10 +85,7 @@ describe("SortFilter.vue", () => {
     wrapper.vm.resetFilter();
     const options = {
       search: "",
-      sortBy: {
-        name: "Created At",
-        value: "createdAt"
-      },
+      sortBy: "createdAt",
       category: "FUEL",
       start: "",
       end: ""

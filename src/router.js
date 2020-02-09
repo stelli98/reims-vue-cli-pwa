@@ -15,6 +15,7 @@ import CreateMedicalTransaction from "./views/user/CreateMedicalTransaction";
 import UserDetail from "./views/admin/UserDetail";
 import CreateUser from "./views/admin/CreateUser";
 import AddFamily from "./views/admin/AddFamily";
+import SyncDraft from "./views/user/SyncDraft";
 import store from "./store";
 
 Vue.use(Router);
@@ -63,7 +64,7 @@ const router = new Router({
     },
     {
       path: "/users",
-      beforeEnter: checkAuthAdmin,
+      // beforeEnter: checkAuthAdmin,
       name: "user",
       component: ManageUser
     },
@@ -101,6 +102,11 @@ const router = new Router({
       path: "/change-password",
       name: "change-password",
       component: ChangePasswordPage
+    },
+    {
+      path: "/sync-draft",
+      name: "sync-draft",
+      component: SyncDraft
     },
     {
       path: "/transaction/non-ocr/medical",

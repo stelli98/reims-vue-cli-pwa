@@ -7,17 +7,17 @@ export default {
   storeImageOffline(data) {
     if (data.attachments) {
       const request = {
-        id: setId(data),
+        id: this.setId(data),
         userId: store.state.auth.id,
-        attachments: data.attachments, 
+        attachments: data.attachments,
         category: data.category
       };
       this.storeToIndexedDB(imageIdb, request);
       this.throwError();
     }
   },
-  setId(data){
-    return data.id ? data.id :  Date.now();
+  setId(data) {
+    return data.id ? data.id : Date.now();
   },
   async storeFormOffline(form) {
     if (!form.id) {
@@ -47,6 +47,29 @@ export default {
   async getAllDataFromIndexedDB(storeName) {
     return await idbs.getAllData(storeName);
   },
+  async getBsyncMedicalData() {
+    return await idbs.getBsyncMedicalData(
+      "workbox-background-sync",
+      "requests"
+    );
+  },
+  async getMedicalData() {
+    const finalResults = [];
+    const requests = await this.getBsyncMedicalData();
+    if (requests.length > 0) {
+      requests.map(request => {
+        var blob = new Blob([request.storableRequest.requestInit.body], {
+          type: "application/json"
+        });
+        const fr = new FileReader();
+        fr.onload = function() {
+          finalResults.push(JSON.parse(this.result));
+        };
+        fr.readAsText(blob);
+      });
+    }
+    return finalResults;
+  },
   async deleteDataByKeyFromIndexedDB(storeName, key) {
     return await idbs.deleteDataByKey(storeName, key);
   },
@@ -58,5 +81,10 @@ export default {
   },
   async findDataByKeyFromIndexedDB(storeName, key) {
     return await idbs.findDatabyKey(storeName, key);
+  },
+  async deleteAllIDBDatabase() {
+    await indexedDB.databases().then(dbs => {
+      dbs.map(db => idbs.deleteIDBDatabase(db.name));
+    });
   }
 };

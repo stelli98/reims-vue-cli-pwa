@@ -5,6 +5,7 @@ const FloatingActionButton = () =>
   import("@/components/user/FloatingActionButton.vue");
 import { mapActions, mapGetters } from "vuex";
 import CommonMixins from "@/mixins/common-mixins";
+import offlineService from "@/api/transaction-offline";
 
 export default {
   mixins: [CommonMixins],
@@ -64,6 +65,7 @@ export default {
     doLogout() {
       this.logout().then(() => {
         this.moveTo("login");
+        offlineService.deleteAllIDBDatabase();
       });
     },
     toggleActionButton(value) {

@@ -1,4 +1,4 @@
-import { openDb } from "idb";
+import { openDb, deleteDb } from "idb";
 
 const dbPromise = () => {
   if (!("indexedDB" in window)) {
@@ -22,6 +22,17 @@ const dbPromise = () => {
   });
 };
 
+const getBsyncMedicalData = async (dbName, storeName) => {
+  try {
+    const db = await openDb(dbName, 1);
+    const tx = db.transaction(storeName, "readonly");
+    const store = tx.objectStore(storeName);
+    return store.getAll();
+  } catch (error) {
+    return error;
+  }
+};
+
 const getAllData = async storeName => {
   try {
     const db = await dbPromise();
@@ -38,7 +49,7 @@ const saveData = async (storeName, data) => {
     const db = await dbPromise();
     const tx = db.transaction(storeName, "readwrite");
     const store = tx.objectStore(storeName);
-    console.log('data idb', data)
+    console.log("data idb", data);
     store.put(data);
     return tx.complete;
   } catch (error) {
@@ -109,11 +120,21 @@ const deleteDataByKey = async (storeName, key) => {
   }
 };
 
+const deleteIDBDatabase = async dbName => {
+  try {
+    await deleteDb(dbName);
+  } catch (error) {
+    return error;
+  }
+};
+
 export default {
   findDatabyKey,
   getAllData,
   saveData,
   getLastIndexData,
   deleteAllData,
-  deleteDataByKey
+  deleteDataByKey,
+  deleteIDBDatabase,
+  getBsyncMedicalData
 };

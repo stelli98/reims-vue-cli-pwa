@@ -615,46 +615,18 @@ export default [
         id: 92768,
         name: "Zendaya",
         relationship: "SPOUSE",
-        dateOfBirth: "898362000000"
+        dateOfBirth: "1998-09-09"
       },
       {
         id: 92761,
         name: "Andre Forbes",
         relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
+        dateOfBirth: "2008-01-29"
       },{
         id: 92769,
         name: "Zendaya",
         relationship: "SPOUSE",
-        dateOfBirth: "898362000000"
-      },
-      {
-        id: 92780,
-        name: "Andre Forbes",
-        relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
-      },{
-        id: 92781,
-        name: "Zendaya",
-        relationship: "SPOUSE",
-        dateOfBirth: "898362000000"
-      },
-      {
-        id: 92782,
-        name: "Andre Forbes",
-        relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
-      },{
-        id: 92783,
-        name: "Zendaya",
-        relationship: "SPOUSE",
-        dateOfBirth: "898362000000"
-      },
-      {
-        id: 92784,
-        name: "Andre Forbes",
-        relationship: "CHILDREN",
-        dateOfBirth: "898362000000"
+        dateOfBirth: "2010-10-10"
       }
     ],
     success: true
