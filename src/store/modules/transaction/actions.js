@@ -7,7 +7,7 @@ export default {
   setImages({ commit }, img) {
     commit("SET_IMAGES", img);
   },
-  setFormEmpty({commit}, data){
+  setFormEmpty({ commit }, data) {
     commit("SET_OCR_RESULT", data);
   },
   createTransaction: async ({ commit, rootState }, image) => {
@@ -24,7 +24,10 @@ export default {
     );
     commit("SET_TRANSACTION", data);
   },
-  getTransactionsByCategory: async ({ commit, rootState },[options, isOCR]) => {
+  getTransactionsByCategory: async (
+    { commit, rootState },
+    [options, isOCR]
+  ) => {
     const { token } = rootState.auth;
     const { data } = await transactionApi.getTransactionsByCategory(
       options,
@@ -41,10 +44,11 @@ export default {
   },
   deleteTransaction: async ({ rootState }, [id, isOCR]) => {
     const { token } = rootState.auth;
-    await transactionApi.deleteTransaction(id,isOCR, token);
+    await transactionApi.deleteTransaction(id, isOCR, token);
   },
-  createMedicalTransaction: async ({ rootState }, data) => {
+  createMedicalTransaction: async ({ rootState }, medical) => {
     const { token } = rootState.auth;
-    await transactionApi.createMedicalTransaction(data, token);
+    const { data } = await transactionApi.createMedicalTransaction(medical, token);
+    return data;
   }
 };

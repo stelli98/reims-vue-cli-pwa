@@ -28,7 +28,7 @@
         </div>
          <div class="form__child">
           <label class="input__label title--medium-form" for="type">Role</label>
-          <p>{{user.role}}</p>
+          <p>{{user.role | textFormatter}}</p>
         </div>
         <div class="form__child">
           <label class="input__label title--medium-form" for="date">Date of Birth</label>
@@ -168,6 +168,7 @@
   }
 
   &__navigation {
+    position: sticky !important;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

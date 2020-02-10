@@ -144,28 +144,6 @@ describe("HomePage.vue", () => {
     expect(wrapper.vm.showFilter).toBe(true);
   });
 
-  test("methods changePage", () => {
-    const options = {
-      mocks: {
-        $route: {
-          query: {
-            page: 1,
-            size: 5,
-            sortBy: "date",
-            category: "fuel"
-          }
-        },
-        $router: {
-          push: jest.fn()
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spyRouterPush = jest.spyOn(wrapper.vm.$router, "push");
-    wrapper.vm.changePage(2);
-    expect(spyRouterPush).toHaveBeenCalled();
-  });
-
   test("methods toggleActionButton", () => {
     const options = {
       mocks: {

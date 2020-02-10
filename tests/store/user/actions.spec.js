@@ -14,7 +14,9 @@ jest.mock("@/api/user");
 describe("Actions for User Module", () => {
   test("getVehicleData actions", async () => {
     api.getUserPersonalData = jest.fn();
-    const expectedValue = data.find(d => d.url === url.user);
+    const expectedValue = {
+      data: data.find(d => d.url === url.user)
+    };
     api.getUserPersonalData.mockResolvedValue(expectedValue);
     const commit = jest.fn();
     await actions.getVehicleData({ commit, rootState });

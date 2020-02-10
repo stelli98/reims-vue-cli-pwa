@@ -64,21 +64,28 @@ export default {
           ? new Date(this.options.end).getTime()
           : "";
         this.options.page = 1;
-        this.$router.push({ query: {  ...this.options,...this.$route.query } });
+        console.log({ ...this.$route.query, ...this.options });
+        this.$router.push({ query: { ...this.$route.query, ...this.options } });
         this.closeFilterForm();
       }
     },
     emptyOptions() {
       return {
         search: "",
-        sortBy:  "createdAt",
-        category: "FUEL",
+        sortBy: this.$route.query.sortBy || "createdAt",
+        category: this.$route.query.category || "FUEL",
         start: "",
         end: ""
       };
     },
     resetFilter() {
-      this.options = this.emptyOptions();
+      this.options = {
+        search: "",
+        sortBy: "createdAt",
+        category: "FUEL",
+        start: "",
+        end: ""
+      };
     },
     convertDateToISOString() {
       this.options.start = this.options.start
@@ -90,7 +97,7 @@ export default {
     }
   },
   created() {
-    this.options = {  ...this.$route.query, ...this.options };
+    this.options = { ...this.options, ...this.$route.query };
     this.convertDateToISOString();
   }
 };

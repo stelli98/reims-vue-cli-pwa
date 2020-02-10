@@ -77,11 +77,4 @@ describe("SyncDraft.vue", () => {
       expect(wrapper.vm.transactions).toStrictEqual(expectedResult);
     });
   });
-
-  test("transactionCategory", () => {
-    const category = "FUEL";
-    expect(wrapper.vm.transactionCategory(category)).toEqual(
-      category.toLowerCase()
-    );
-  });
 });

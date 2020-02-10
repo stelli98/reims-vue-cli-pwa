@@ -9,8 +9,9 @@ export default {
   },
   methods: {
     changePageTo(pageToGo) {
-      this.currentPage = parseInt(pageToGo);
-      this.$emit("changePage", this.currentPage);
+      this.$router.push({
+        query: { ...this.$route.query, page: parseInt(pageToGo) }
+      });
     }
   },
   watch: {

@@ -40,7 +40,7 @@
       @openFilter="toogleFilter"
       @deleteTransaction="updateTransaction"
     />
-    <Pagination :paging="pagination" @changePage="changePage" />
+    <Pagination :paging="pagination"/>
     <SortFilter v-show="showFilter" @closeFilter="toogleFilter"> </SortFilter>
     <FloatingActionButton
       class="action-button"

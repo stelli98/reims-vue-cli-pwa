@@ -2,11 +2,19 @@
   <div class="sync-draft">
     <GlobalHeader />
     <div class="sync-draft__list">
-      <SyncDraftCard
-        v-for="(transaction,index) in transactions"
-        :key="index"
-        :transaction="transaction"
-      />
+      <div v-if="transactions.length > 0">
+        <div class="heading sync-draft__heading">Transaction Draft List</div>
+        <SyncDraftCard
+          v-for="(transaction, index) in transactions"
+          :key="index"
+          :transaction="transaction"
+        />
+      </div>
+      <div v-else>
+        <center>
+          <h3>No Data Available</h3>
+        </center>
+      </div>
     </div>
   </div>
 </template>

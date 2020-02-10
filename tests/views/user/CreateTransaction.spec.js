@@ -84,38 +84,4 @@ describe("CreateTransaction.vue", () => {
     wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.activeThirdProgressBar).toBe("");
   });
-
-  test("activeThirdProgressBar if router consist create-transaction-3", () => {
-    const options = {
-      mocks: {
-        $route: {
-          name: "create-transaction-3"
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.activeThirdProgressBar).toBe("progress-bar-active");
-  });
-
-  test("moveTo method", () => {
-    const options = {
-      mocks: {
-        $router: {
-          push: jest.fn()
-        },
-        $route: {
-          name: "create-transaction-3",
-          query: {
-            category: "FUEL"
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spyRouter = jest.spyOn(wrapper.vm.$router, "push");
-    const spyDeleteDataFromIDB = jest.spyOn(wrapper.vm, "deleteDataFromIDB");
-    wrapper.vm.moveTo();
-    expect(spyDeleteDataFromIDB).toHaveBeenCalled();
-    expect(spyRouter).toHaveBeenCalled();
-  });
 });

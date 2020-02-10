@@ -95,7 +95,7 @@ export default {
             this.addNotification(notification);
           });
           this.setFormEmpty(this.parkingTemplate);
-          this.$router.push({name:"home"});
+          this.$router.push({ name: "home" , query:{category:"PARKING"}});
       }
     },
     reformatPrice() {

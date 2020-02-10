@@ -4,7 +4,7 @@ export default {
   getVehicleData: async ({ commit, rootState }) => {
     const { token } = rootState.auth;
     const { data } = await userApi.getUserPersonalData(token);
-    commit("SET_HAS_VEHICLE", !!data.vehicle && !!data.license);
+    commit("SET_HAS_VEHICLE", !!data.data.vehicle && !!data.data.license);
   },
   getUserFamily: async ({ commit, rootState }) => {
     const { token } = rootState.auth;
