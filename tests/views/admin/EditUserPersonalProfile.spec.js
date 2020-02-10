@@ -150,7 +150,7 @@ describe("EditUserPersonalProfile.vue", () => {
     };
     wrapper = createWrapper(store.store, options);
     const spyUpdateUser = jest.spyOn(store.actions, "updateUser");
-    const spyMoveToWithParams = jest.spyOn(wrapper.vm, "moveToWithParams");
+    const spyMoveToWithParams = jest.spyOn(wrapper.vm.$router, "push");
     await wrapper.vm.sendEditUserForm();
     expect(spyUpdateUser).toHaveBeenCalled();
     wrapper.vm.$nextTick(() => {

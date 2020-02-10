@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "dev-nomock": "NODE_ENV=nomock && vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit --no-cache --coverage"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.19.1",

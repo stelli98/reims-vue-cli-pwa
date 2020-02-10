@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import TransactionDetail from "@/views/user/TransactionDetail";
 import TextFilter from "@/filters/text";
 import dateFilter from "@/filters/date";
+import priceFilter from "@/filters/price";
 import Vuex from "vuex";
 import data from "@/api-mock/mock-data";
 import config from "@/config";
@@ -78,7 +79,7 @@ describe("TransactionDetail.vue", () => {
     lv.use(Vuex);
     lv.filter("textFormatter", TextFilter);
     lv.filter("dateFormatter", dateFilter);
-    lv.filter("priceFormatter", dateFilter);
+    lv.filter("priceFormatter", priceFilter);
     return lv;
   }
 
@@ -155,7 +156,9 @@ describe("TransactionDetail.vue", () => {
     wrapper.vm.getImageList = jest
       .fn()
       .mockResolvedValue(Promise.resolve(response));
-    expect(wrapper.vm.checkStatus(response)).toEqual(Promise.resolve(response.data.data));
+    expect(wrapper.vm.checkStatus(response)).toEqual(
+      Promise.resolve(response.data.data)
+    );
   });
 
   test("checkStatus method error", () => {
@@ -164,6 +167,8 @@ describe("TransactionDetail.vue", () => {
     wrapper.vm.getImageList = jest
       .fn()
       .mockResolvedValue(Promise.resolve(response));
-    expect(wrapper.vm.checkStatus(response)).toEqual(Promise.reject(new Error("Error")));
+    expect(wrapper.vm.checkStatus(response)).toEqual(
+      Promise.reject(new Error("Error"))
+    );
   });
 });

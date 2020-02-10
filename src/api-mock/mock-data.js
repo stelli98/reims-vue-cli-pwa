@@ -708,7 +708,7 @@ export default [
         title: "Istri Demam",
         date: "2020-01-01",
         amount: 1000000,
-        attachment: [
+        attachments: [
           "92769/lqeigbhqohjgpoq313019504185.jpg",
           "92769/1gr2hbo23gbfo12332r5m5.jpg"
         ],

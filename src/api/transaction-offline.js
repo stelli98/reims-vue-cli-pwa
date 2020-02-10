@@ -63,11 +63,13 @@ export default {
         });
         const fr = new FileReader();
         fr.onload = function() {
+          console.log('on load', JSON.parse(this.result))
           finalResults.push(JSON.parse(this.result));
         };
         fr.readAsText(blob);
       });
     }
+    console.log('finalResult', finalResults)
     return finalResults;
   },
   async deleteDataByKeyFromIndexedDB(storeName, key) {

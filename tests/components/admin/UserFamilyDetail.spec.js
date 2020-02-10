@@ -7,7 +7,7 @@ import data from "@/api-mock/mock-data";
 import config from "@/config";
 
 let url = config.api.admin;
-describe("UserFamilyDetail.vue", async () => {
+describe("UserFamilyDetail.vue", () => {
   let store;
   let localVue;
   let wrapper;
@@ -109,8 +109,7 @@ describe("UserFamilyDetail.vue", async () => {
     expect(wrapper.vm.expandedGroup.indexOf(2)).toEqual(1);
   });
 
-
-  test("disabledAddFamilyButton computed if userFamily length below 4", ()=>{
+  test("disabledAddFamilyButton computed if userFamily length below 4", () => {
     const params = {
       id: "1559058600"
     };
@@ -125,11 +124,10 @@ describe("UserFamilyDetail.vue", async () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    expect( wrapper.vm.disabledAddFamilyButton).toBe(false);
-  })
+    expect(wrapper.vm.disabledAddFamilyButton).toBe(false);
+  });
 
-
-  test("disabledAddFamilyButton computed if userFamily length equal 4", ()=>{
+  test("disabledAddFamilyButton computed if userFamily length equal 4", () => {
     const params = {
       id: "1559058600"
     };
@@ -168,12 +166,12 @@ describe("UserFamilyDetail.vue", async () => {
         relationship: "CHILDREN",
         dateOfBirth: "898362000000"
       }
-    ] 
+    ];
     wrapper = createWrapper(store.store, options);
-    expect( wrapper.vm.disabledAddFamilyButton).toBe(true);
-  })
+    expect(wrapper.vm.disabledAddFamilyButton).toBe(true);
+  });
 
-  test("addNewUserFamily method if userFamily length below 4", ()=>{
+  test("addNewUserFamily method if userFamily length below 4", () => {
     const params = {
       id: "1559058600"
     };
@@ -191,9 +189,9 @@ describe("UserFamilyDetail.vue", async () => {
     const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
     wrapper.vm.addNewUserFamily();
     expect(spyMoveTo).toHaveBeenCalled();
-  })
+  });
 
-  test("addNewUserFamily method if userFamily length already 4", ()=>{
+  test("addNewUserFamily method if userFamily length already 4", () => {
     const params = {
       id: "1559058600"
     };
@@ -216,13 +214,13 @@ describe("UserFamilyDetail.vue", async () => {
     const spyMoveTo = jest.spyOn(wrapper.vm, "moveTo");
     wrapper.vm.addNewUserFamily();
     expect(spyMoveTo).not.toHaveBeenCalled();
-  })
+  });
 
   test("editUser method", () => {
     const params = {
       id: "1559058600"
     };
-    const familyId = "92768"
+    const familyId = "92768";
     const options = {
       mocks: {
         $router: {
@@ -239,7 +237,7 @@ describe("UserFamilyDetail.vue", async () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("removeUserFamily method", ()=>{
+  test("removeUserFamily method", () => {
     const params = {
       id: "1559058600"
     };
@@ -254,16 +252,16 @@ describe("UserFamilyDetail.vue", async () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    const spy = jest.spyOn(store.actions, "deleteUserFamily")
+    const spy = jest.spyOn(store.actions, "deleteUserFamily");
     wrapper.vm.removeUserFamily(params.id);
     expect(spy).toHaveBeenCalled();
-  })
+  });
 
-  test("iconClass method if result up", ()=>{
+  test("iconClass method if result up", () => {
     const params = {
       id: "1559058600"
     };
-    const index=1 ;
+    const index = 1;
     const options = {
       mocks: {
         $router: {
@@ -271,24 +269,23 @@ describe("UserFamilyDetail.vue", async () => {
         },
         $route: {
           params
-        },
-        
+        }
       },
       methods: {
         isExpandedGroup(index) {
-          return true
+          return true;
         }
-      },
+      }
     };
     wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.iconClass(index)).toBe("up");
-  })
+  });
 
-  test("iconClass method if result down", ()=>{
+  test("iconClass method if result down", () => {
     const params = {
       id: "1559058600"
     };
-    const index=1 ;
+    const index = 1;
     const options = {
       mocks: {
         $router: {
@@ -296,16 +293,15 @@ describe("UserFamilyDetail.vue", async () => {
         },
         $route: {
           params
-        },
-        
+        }
       },
       methods: {
         isExpandedGroup(index) {
-          return false
+          return false;
         }
-      },
+      }
     };
     wrapper = createWrapper(store.store, options);
     expect(wrapper.vm.iconClass(index)).toBe("down");
-  })
+  });
 });

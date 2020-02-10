@@ -159,7 +159,7 @@ describe("CreateMedicalTransaction.vue", () => {
       date: "2019-08-13T11:27:50.000Z",
       title: "Ibu Sakit",
       amount: "10000",
-      attachment: ["image.jpg"],
+      attachments: ["image.jpg"],
       patient: {
         id: 92761,
         name: "Andre Forbes",

@@ -34,8 +34,8 @@ export default {
       medical: {
         date: "",
         title: "",
+        attachments: [],
         amount: 100,
-        attachment: "",
         patient: { id: 0 }
       }
     };
