@@ -17,8 +17,6 @@ export default {
     }
   },
   setId(data) {
-    console.log(data);
-    console.log(data.id ? data.id : Date.now());
     return data.id ? data.id : Date.now();
   },
   async storeFormOffline(form) {
