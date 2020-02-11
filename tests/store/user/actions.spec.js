@@ -12,6 +12,17 @@ const rootState = {
 jest.mock("@/api/user");
 
 describe("Actions for User Module", () => {
+  test("getVehicleData actions", async () => {
+    api.getUserPersonalData = jest.fn();
+    const expectedValue = {
+      data: data.find(d => d.url === url.user)
+    };
+    api.getUserPersonalData.mockResolvedValue(expectedValue);
+    const commit = jest.fn();
+    await actions.getVehicleData({ commit, rootState });
+    expect(commit).toHaveBeenCalledWith("SET_HAS_VEHICLE", false);
+  });
+
   test("GetUserFamily", async () => {
     api.getUserFamily = jest.fn();
     const expectedValue = data.find(
@@ -19,9 +30,11 @@ describe("Actions for User Module", () => {
     );
     api.getUserFamily.mockResolvedValue(expectedValue);
     const commit = jest.fn();
-    const id = 92768;
-    await actions.getUserFamily({ commit, rootState }, id);
-    expect(commit).toHaveBeenCalledWith("SET_USER_FAMILY", expectedValue.data);
+    await actions.getUserFamily({ commit, rootState });
+    expect(commit).toHaveBeenCalledWith(
+      "SET_USER_FAMILY",
+      JSON.stringify(expectedValue.data.data)
+    );
   });
 
   test("downloadPersonalReport actions", () => {
@@ -37,15 +50,14 @@ describe("Actions for User Module", () => {
     );
   });
 
-  test("updatePersonalProfile actions", () => {
-    api.updatePersonalProfile = jest.fn();
-    const user = {
-      username: "stelli",
-      password: "stelli123"
-    };
-    actions.updatePersonalProfile({ rootState }, user);
-    expect(api.updatePersonalProfile).toHaveBeenCalledWith(
-      user,
+  test("changePassword actions", () => {
+    api.changePassword = jest.fn();
+    const newPassword = "stelli123";
+    const role = "user";
+    actions.changePassword({ rootState }, [role, newPassword]);
+    expect(api.changePassword).toHaveBeenCalledWith(
+      role,
+      newPassword,
       rootState.auth.token
     );
   });
@@ -54,9 +66,6 @@ describe("Actions for User Module", () => {
     api.getViewImage = jest.fn();
     const link = "storage/image.jpg";
     actions.getViewImage({ rootState }, link);
-    expect(api.getViewImage).toHaveBeenCalledWith(
-      link,
-      rootState.auth.token
-    );
+    expect(api.getViewImage).toHaveBeenCalledWith(link, rootState.auth.token);
   });
 });

@@ -34,12 +34,12 @@
               class="form__input form__input__select"
             >
               <option
-                v-for="option in sortByOptions"
-                :key="option"
-                :value="option"
+                v-for="(option,index) in sortByOptions"
+                :key="index"
+                :value="option.value"
                 :selected="options.sortBy"
               >
-                {{ option | textFormatter }}
+                {{ option.name | textFormatter }}
               </option>
             </select>
           </div>

@@ -1,4 +1,4 @@
-import { openDb } from "idb";
+import { openDb, deleteDb } from "idb";
 
 const dbPromise = () => {
   if (!("indexedDB" in window)) {
@@ -7,13 +7,30 @@ const dbPromise = () => {
 
   return openDb("ReimsDB", 1, upgradeDb => {
     if (!upgradeDb.objectStoreNames.contains("offlineImages")) {
-      upgradeDb.createObjectStore("offlineImages", { keyPath: "id" });
+      upgradeDb.createObjectStore("offlineImages", {
+        keyPath: "id",
+        autoIncrement: true
+      });
     }
 
     if (!upgradeDb.objectStoreNames.contains("offlineForms")) {
-      upgradeDb.createObjectStore("offlineForms", { keyPath: "id" });
+      upgradeDb.createObjectStore("offlineForms", {
+        keyPath: "id",
+        autoIncrement: true
+      });
     }
   });
+};
+
+const getBsyncMedicalData = async (dbName, storeName) => {
+  try {
+    const db = await openDb(dbName, 1);
+    const tx = db.transaction(storeName, "readonly");
+    const store = tx.objectStore(storeName);
+    return store.getAll();
+  } catch (error) {
+    return error;
+  }
 };
 
 const getAllData = async storeName => {
@@ -102,11 +119,21 @@ const deleteDataByKey = async (storeName, key) => {
   }
 };
 
+const deleteIDBDatabase = async dbName => {
+  try {
+    await deleteDb(dbName);
+  } catch (error) {
+    return error;
+  }
+};
+
 export default {
   findDatabyKey,
   getAllData,
   saveData,
   getLastIndexData,
   deleteAllData,
-  deleteDataByKey
+  deleteDataByKey,
+  deleteIDBDatabase,
+  getBsyncMedicalData
 };

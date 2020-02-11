@@ -6,7 +6,7 @@
     </div>
     <div class="transaction-detail__box">
       <h3>Patient Birthdate</h3>
-      <p>{{ transaction.patient.dateOfBirth | dateFormatter }}</p>
+      <p>{{ Date.parse(transaction.patient.dateOfBirth) | dateFormatter}}</p>
     </div>
     <div class="transaction-detail__box">
       <h3>Age</h3>

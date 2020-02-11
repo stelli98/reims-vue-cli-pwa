@@ -11,21 +11,37 @@
           <svg class="icon-green">
             <use xlink:href="icons.svg#icon-search" />
           </svg>
-          <input type="text" placeholder="search by name" @keyup="submitSearch" />
+          <input
+            type="text"
+            placeholder="search by name"
+            @keyup="submitSearch"
+          />
         </div>
       </div>
-      <UserList v-if="users.length" :users="users" @deleteUser="updateUser"/>
-      <Pagination :paging="pagination" @changePage="changePage" class="manage-user__pagination" />
+      <UserList v-if="users.length" :users="users" @deleteUser="updateUser" />
+      <Pagination
+        :paging="pagination"
+        @changePage="changePage"
+        class="manage-user__pagination"
+      />
     </div>
-    <div class="bottom-navigation manage-user__navigation" @click="moveTo('user-create')">
-      <h3 class="title--navigation">Add User</h3>
+    <div class="bottom-navigation manage-user__navigation">
+      <div
+        class="title--navigation"
+        @click="moveToWithQuery('change-password', { role: 'admin' })"
+      >
+        Change Password
+      </div>
+      <div class="title--navigation" @click="moveTo('user-create')">
+        Add User
+      </div>
     </div>
   </div>
 </template>
 
 <script src="./js/manage-user.js"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .manage-user {
   display: flex;
   flex-direction: column;
@@ -75,7 +91,7 @@
   &__navigation > div {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 }
 </style>

@@ -15,6 +15,7 @@ import CreateMedicalTransaction from "./views/user/CreateMedicalTransaction";
 import UserDetail from "./views/admin/UserDetail";
 import CreateUser from "./views/admin/CreateUser";
 import AddFamily from "./views/admin/AddFamily";
+import SyncDraft from "./views/user/SyncDraft";
 import store from "./store";
 
 Vue.use(Router);
@@ -39,27 +40,39 @@ const router = new Router({
       component: CreateTransaction,
       children: [
         {
-          path: '1',
+          path: "1",
           name: "create-transaction-1",
           component: CropImage
         },
         {
-          path: '2',
+          path: "2",
           name: "create-transaction-2",
           component: FilterImage
         },
         {
-          path: '3',
+          path: "3",
           name: "create-transaction-3",
           component: TransactionForm
         }
       ]
     },
     {
+      path: "/transaction/non-ocr/medical",
+      beforeEnter: checkAuthUser,
+      name: "create-medical",
+      component: CreateMedicalTransaction
+    },
+    {
       path: "/transaction/:id",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthUser,
       name: "transaction-detail",
       component: TransactionDetail
+    },
+    {
+      path: "/sync-draft",
+      beforeEnter: checkAuthUser,
+      name: "sync-draft",
+      component: SyncDraft
     },
     {
       path: "/users",
@@ -69,44 +82,38 @@ const router = new Router({
     },
     {
       path: "/users/create",
-      // beforeEnter: checkAuthAdmin,
+      beforeEnter: checkAuthAdmin,
       name: "user-create",
       component: CreateUser
     },
     {
       path: "/users/family/:id/add",
-      // beforeEnter: checkAuthAdmin,
+      beforeEnter: checkAuthAdmin,
       name: "add-family",
       component: AddFamily
     },
     {
       path: "/users/:id",
-      // beforeEnter: checkAuthAdmin,
+      beforeEnter: checkAuthAdmin,
       name: "user-detail",
       component: UserDetail
     },
     {
       path: "/users/personal/:id/edit",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthAdmin,
       name: "edit-personal-profile",
       component: EditUserPersonalProfile
     },
     {
       path: "/users/:userId/family/:familyId/edit",
-      // beforeEnter: checkAuthUser,
+      beforeEnter: checkAuthAdmin,
       name: "edit-family-profile",
       component: EditUserFamilyProfile
     },
     {
-      path: "/users/:id/change-password",
+      path: "/change-password",
       name: "change-password",
       component: ChangePasswordPage
-    },
-    {
-      path: "/transaction/non-ocr/medical",
-      // beforeEnter: checkAuthUser,
-      name: "create-medical",
-      component: CreateMedicalTransaction
     },
     {
       path: "*",
@@ -115,7 +122,7 @@ const router = new Router({
   ]
 });
 
-function checkAuthUser (to, from, next) {
+function checkAuthUser(to, from, next) {
   if (!!store.state.auth.token && store.state.auth.role === "USER") {
     next();
   } else {
@@ -128,7 +135,7 @@ function checkAuthUser (to, from, next) {
   }
 }
 
-function checkAuthAdmin (to, from, next) {
+function checkAuthAdmin(to, from, next) {
   if (!!store.state.auth.token && store.state.auth.role === "ADMIN") {
     next();
   } else {

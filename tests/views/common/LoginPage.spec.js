@@ -25,9 +25,21 @@ describe("LoginPage.vue", () => {
   let localVue;
   const userData = data.find(d => d.url === url.login && d.method == "POST");
 
-  function initializeStore() {
+  function initializeUserStore() {
     const actions = {
-      login: jest.fn()
+      getVehicleData: jest.fn(),
+      getUserFamily: jest.fn()
+    };
+
+    return {
+      actions,
+      namespaced: true
+    };
+  }
+
+  function initializeAuthStore() {
+    const actions = {
+      login: jest.fn().mockResolvedValue(Promise.resolve("success"))
     };
 
     const state = {
@@ -38,22 +50,37 @@ describe("LoginPage.vue", () => {
       role: state => state.role
     };
 
+    return {
+      state,
+      actions,
+      getters,
+      namespaced: true
+    };
+  }
+
+  function initializeStore() {
+    const auth = initializeAuthStore();
+    const user = initializeUserStore();
     const store = new Vuex.Store({
       modules: {
-        auth: {
-          actions,
-          state,
-          getters,
-          namespaced: true
-        }
+        auth,
+        user,
+        namespaced: true
       }
     });
 
     return {
       store,
-      state,
-      actions,
-      getters
+      state: {
+        auth: auth.state
+      },
+      actions: {
+        auth: auth.actions,
+        user: user.actions
+      },
+      getters: {
+        auth: auth.state
+      }
     };
   }
 
@@ -86,12 +113,17 @@ describe("LoginPage.vue", () => {
       username: "Hefriza Munaf",
       password: "1234567"
     };
-    wrapper.vm.access = {
-      ADMIN: "user",
-      USER: "home"
-    };
-    const spy = jest.spyOn(store.actions, "login");
+    const spyActionsLogin = jest.spyOn(store.actions.auth, "login");
     wrapper.vm.submitLoginForm();
-    expect(spy).toHaveBeenCalled();
+    expect(spyActionsLogin).toHaveBeenCalled();
+  });
+
+  test("getUserData method", () => {
+    store.state.auth.role = "USER";
+    const spyGetVehicleData = jest.spyOn(store.actions.user, "getVehicleData");
+    const spyGetUserFamily = jest.spyOn(store.actions.user, "getUserFamily");
+    wrapper.vm.getUserData();
+    expect(spyGetVehicleData).toHaveBeenCalled();
+    expect(spyGetUserFamily).toHaveBeenCalled();
   });
 });

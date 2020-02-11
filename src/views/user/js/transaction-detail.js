@@ -46,19 +46,24 @@ export default {
   methods: {
     ...mapActions("transaction", ["getTransactionByCategory"]),
     ...mapActions("user", ["getViewImage"]),
-    getImageList() {
-      let requests = this.transaction.attachments.map(image => {
-        return this.getViewImage(image).then(response =>{
-          response.data.data
-        });
-      });
-
-      Promise.all(requests).then(response => {
-        this.images = response;
-      });
-    },
     imagePath(image) {
       return `data:image/png;base64,${image}`;
+    },
+    getImageList() {
+      Promise.all(
+        this.transaction.attachments.map(image => {
+          this.getViewImage(image)
+            .then(response => this.checkStatus(response))
+            .then(data => this.images.push(data));
+        })
+      );
+    },
+    checkStatus(response) {
+      if (response.data.code == 200) {
+        return Promise.resolve(response.data.data);
+      } else {
+        return Promise.reject(new Error("Error"));
+      }
     }
   },
   mounted() {

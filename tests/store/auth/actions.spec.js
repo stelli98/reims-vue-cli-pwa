@@ -25,7 +25,6 @@ describe("Actions for Auth Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_ROLE", expectedValue.data.role);
     expect(commit).toHaveBeenCalledWith("SET_ID", expectedValue.data.id);
     expect(commit).toHaveBeenCalledWith("SET_USERNAME", expectedValue.data.username);
-    expect(commit).toHaveBeenCalledWith("SET_HAS_VEHICLE", true);
   });
 
   test("logout", async () => {
@@ -41,13 +40,6 @@ describe("Actions for Auth Module", () => {
     expect(commit).toHaveBeenCalledWith("SET_ROLE", "");
     expect(commit).toHaveBeenCalledWith("SET_ID", "");
     expect(commit).toHaveBeenCalledWith("SET_USERNAME", "");
-    expect(commit).toHaveBeenCalledWith("SET_HAS_VEHICLE", "");
   });
 
-  test("update token", () => {
-    const commit = jest.fn();
-    const token = `Bearer 321`;
-    actions.updateToken({ commit }, token);
-    expect(commit).toHaveBeenCalledWith("SET_TOKEN", token);
-  });
 });

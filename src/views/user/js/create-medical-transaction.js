@@ -34,8 +34,8 @@ export default {
       medical: {
         date: "",
         title: "",
+        attachments: [],
         amount: 100,
-        attachment: "",
         patient: { id: 0 }
       }
     };
@@ -79,8 +79,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["getUserFamily"]),
     ...mapActions("transaction", ["createMedicalTransaction"]),
+    ...mapActions("notification", ["addNotification"]),
     submitMedicalForm() {
       this.$v.medical.$touch();
       if (!this.$v.medical.$invalid) {
@@ -88,8 +88,22 @@ export default {
         this.medical.amount = this.convertAmountToInt();
         this.medical.attachments = this.images;
         this.medical.patient = this.isCurrentUserIsPatient();
-        this.createMedicalTransaction(this.medical);
-        this.moveTo("home");
+        this.createMedicalTransaction(this.medical).then(() => {
+          const notification = {
+            type: "success",
+            message: "Medical form has been submitted."
+          };
+          this.addNotification(notification);
+        })
+        .catch(() => {
+          const notification = {
+            type: "error",
+            message:
+              "Oops ! You're offline. We will send it back as soon as you're online."
+          };
+          this.addNotification(notification);
+        });
+        this.moveToWithQuery("home", { category: "MEDICAL" });
       }
     },
     convertDateToEpoch() {
@@ -112,6 +126,5 @@ export default {
   },
   created() {
     this.isImagesExist;
-    this.getUserFamily();
   }
 };

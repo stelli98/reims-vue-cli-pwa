@@ -7,13 +7,15 @@ module.exports = {
       medical: `${baseUrl}/api/medicals`
     },
     users: {
+      user: `${baseUrl}/api/users`,
+      changePassword: `${baseUrl}/api/users/changepassword`,
       family: `${baseUrl}/api/family-members`,
       report: `${baseUrl}/api/users/report`,
-      user: `${baseUrl}/api/users`,
       image: `${baseUrl}/api/users/image`
     },
     admin:{
       user: `${baseUrl}/api/admin/users`,
+      changePassword: `${baseUrl}/api/admin/users/changepassword`,
       family: `${baseUrl}/api/admin/family-members`,
     },
     auth: {

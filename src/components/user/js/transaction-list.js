@@ -23,7 +23,7 @@ export default {
         !!this.$route.query.search ||
         !!this.$route.query.start ||
         !!this.$route.query.end ||
-        this.$route.query.sortBy != "date" ||
+        this.$route.query.sortBy != "createdAt" ||
         this.$route.query.category != "FUEL"
       );
     },

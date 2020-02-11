@@ -115,7 +115,7 @@ describe("FilterImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -145,7 +145,7 @@ describe("FilterImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -181,7 +181,7 @@ describe("FilterImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -216,7 +216,7 @@ describe("FilterImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }
@@ -237,7 +237,7 @@ describe("FilterImage.vue", () => {
             },
             $route: {
               query: {
-                type: "fuel"
+                category: "FUEL"
               }
             }
           }
@@ -258,7 +258,7 @@ describe("FilterImage.vue", () => {
         },
         $route: {
           query: {
-            type: "fuel"
+            category: "FUEL"
           }
         }
       }

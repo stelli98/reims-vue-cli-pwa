@@ -75,15 +75,11 @@ export default {
     sendCreateUserForm() {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
-        this.user.dateOfBirth = this.convertDateToDDMMYYY(this.user.dateOfBirth);
+        this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
         this.createUser(this.user).then(() => {
           this.moveTo("user");
         });
       }
-    },
-    convertDateToDDMMYYY(epoch){
-        const date = new Date(epoch)
-        return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     }
   }
 };

@@ -34,9 +34,9 @@ export default {
     submitEditUserFamilyForm() {
       this.$v.userFamily.$touch();
       if (!this.$v.userFamily.$invalid) {
-        this.userFamily.dateOfBirth = this.convertDateToDDMMYYY(
+        this.userFamily.dateOfBirth = new Date(
           this.userFamily.dateOfBirth
-        );
+        ).getTime();
         this.updateUserFamily(this.userFamily).then(() => {
           this.$router.push({
             name: "user-detail",
@@ -45,10 +45,6 @@ export default {
           });
         });
       }
-    },
-    convertDateToDDMMYYY(epoch) {
-      const date = new Date(epoch);
-      return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     }
   },
   created() {

@@ -90,10 +90,12 @@ export default {
       transactionApi
         .createTransaction(this.sendImageObject(images[index]), this.token)
         .then(response => {
-          this.successCreateTransaction(response, images);
+          if (response) {
+            this.successCreateTransaction(response, images, index);
+          }
         });
     },
-    successCreateTransaction(response,images,index) {
+    successCreateTransaction(response, images, index) {
       offlineService.deleteDataByKeyFromIndexedDB(imageIdb, images[index].id);
       this.sendFormAfterImageToServer(images[index].id, response, {
         success: () => {
@@ -104,7 +106,9 @@ export default {
     },
     sendImageObject(data) {
       return {
-        image: data.image
+        id: data.id,
+        attachments: data.attachments,
+        category: data.category
       };
     },
     async findFormByImageID(id) {
@@ -112,7 +116,7 @@ export default {
     },
     async sendFormAfterImageToServer(formId, response, { success }) {
       const form = await this.findFormByImageID(formId);
-      form.image = response.data.data.image;
+      form.attachments = response.data.data.attachments;
       transactionApi.saveTransaction(form, this.token).then(response => {
         offlineService.deleteDataByKeyFromIndexedDB(formIdb, formId);
         this.addSuccessImageNotification();

@@ -1,19 +1,27 @@
 if (workbox) {
-  // adjust log level for displaying workbox logs
-  workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
+  workbox.precaching.precacheAndRoute(self.__precacheManifest);
 
-  // apply precaching. In the built version, the precacheManifest will
-  // be imported using importScripts (as is workbox itself) and we can
-  // precache this. This is all we need for precaching
-  workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
-
-  // Make sure to return a specific response for all navigation requests.
-  // Since we have a SPA here, this should be index.html always.
-  // https://stackoverflow.com/questions/49963982/vue-router-history-mode-with-pwa-in-offline-mode
   workbox.routing.registerNavigationRoute("/index.html");
 
-  workbox.routing.registerRoute(
-    new RegExp("/api"),
-    new workbox.strategies.NetworkOnly()
+  const queue = new workbox.backgroundSync.Queue("offlineMedicals", {
+    maxRetentionTime: 30  // Retry for max of unit of minutes
+  });
+
+  const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
+    plugins: [
+      {
+        fetchDidFail: async ({ request }) => {
+          await queue.addRequest(request);
+        }
+      }
+    ]
+  });
+
+  const addEventRoute = new workbox.routing.Route(
+    ({ url }) => url.pathname === "/api/medicals",
+    networkWithBackgroundSync,
+    "POST"
   );
+
+  workbox.routing.registerRoute(addEventRoute);
 }

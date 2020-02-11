@@ -17,7 +17,7 @@
           </div>
           <div class="user-personal__box">
             <p class="title--big">Date of Birth</p>
-            <span>{{user.dateOfBirth}}</span>
+            <span>{{Date.parse(user.dateOfBirth) | dateFormatter}}</span>
           </div>
           <div class="user-personal__box">
             <p class="title--big">Gender</p>
@@ -47,7 +47,6 @@
       </div>
     </div>
     <div class="bottom-navigation user-personal__navigation">
-      <div class="title--navigation" @click="moveToWithParamsRouteId('change-password')">Change Password</div>
       <div class="title--navigation" @click="moveToWithParamsRouteId('edit-personal-profile')">Edit Profile</div>
     </div>
   </div>

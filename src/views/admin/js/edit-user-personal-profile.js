@@ -9,7 +9,6 @@ export default {
   validations: {
     user: {
       username: { required, minLength: minLength(3) },
-      role: { required },
       dateOfBirth: { required },
       gender: { required },
       division: { required },
@@ -29,8 +28,7 @@ export default {
     return {
       userHaveVehicle: null,
       genderType: ["MALE", "FEMALE"],
-      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"],
-      roleType: ["USER", "ADMIN"]
+      divisionType: ["TECHNOLOGY", "FINANCE", "HUMAN RESOURCE"]
     };
   },
   computed: {
@@ -55,11 +53,17 @@ export default {
       this.$v.user.$touch();
       if (!this.$v.user.$invalid) {
         this.user.dateOfBirth = new Date(this.user.dateOfBirth).getTime();
-        if(!this.isShowingVehicleField){
+        if (!this.isShowingVehicleField) {
           this.user.vehicle = "";
           this.user.license = "";
         }
-        this.updateUser(this.user).then(()=>this.moveToWithParams("user-detail", {id: this.user.id}));
+        this.updateUser(this.user).then(() =>
+          this.$router.push({
+            name: "user-detail",
+            params: { id: this.user.id },
+            query: { activeTab: "UserPersonalDetail" }
+          })
+        );
       }
     },
     checkUserHaveVehicle() {

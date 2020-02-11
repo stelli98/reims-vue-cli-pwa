@@ -70,6 +70,9 @@
 }
 
 .FAB {
+
+  z-index: 1000;
+  
   &__action-button,
   &__mini-action-button {
     cursor: pointer;

@@ -22,9 +22,17 @@ describe("user getters", () => {
       d => d.url == url.family && d.method == "GET"
     );
     const state = {
-      userFamily: expectedValue.data
+      userFamily: JSON.stringify(expectedValue.data)
     };
     const userFamily = getters.userFamily(state);
-    expect(userFamily).toBe(state.userFamily);
+    expect(userFamily).toEqual(JSON.parse(state.userFamily));
+  });
+
+  test("Get hasVehicle from auth module", () => {
+    const state = {
+      hasVehicle: false
+    };
+    const hasVehicle = getters.hasVehicle(state);
+    expect(hasVehicle).toBe(state.hasVehicle);
   });
 });

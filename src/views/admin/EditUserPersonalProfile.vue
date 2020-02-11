@@ -28,21 +28,7 @@
         </div>
          <div class="form__child">
           <label class="input__label title--medium-form" for="type">Role</label>
-          <select
-            v-model="user.role"
-            class="form__input form__input__select"
-            @blur="$v.user.role.$touch()"
-          >
-            <option
-              v-for="role in roleType"
-              :key="role"
-              :value="role"
-              :selected="user.role"
-            >{{ role | textFormatter }}</option>
-          </select>
-          <div v-if="$v.user.role.$error">
-            <p v-if="!$v.user.role.required" class="input__error-message">Role must be filled</p>
-          </div>
+          <p>{{user.role | textFormatter}}</p>
         </div>
         <div class="form__child">
           <label class="input__label title--medium-form" for="date">Date of Birth</label>
@@ -182,6 +168,7 @@
   }
 
   &__navigation {
+    position: sticky !important;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

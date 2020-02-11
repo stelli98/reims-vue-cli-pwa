@@ -13,13 +13,13 @@ describe("FloatingActionButton.vue", () => {
   let localVue;
 
   function initializeStore() {
-    const auth = initializeAuthStore();
+    const user = initializeUserStore();
     const transaction = initializeTransactionStore();
 
     const store = new Vuex.Store({
       modules: {
         transaction,
-        auth
+        user
       }
     });
 
@@ -29,15 +29,15 @@ describe("FloatingActionButton.vue", () => {
         transaction: transaction.actions
       },
       state: {
-        auth: auth.state
+        user: user.state
       },
       getters: {
-        auth: auth.getters
+        user: user.getters
       }
     };
   }
 
-  function initializeAuthStore() {
+  function initializeUserStore() {
     const state = {
       hasVehicle: true
     };
@@ -113,7 +113,7 @@ describe("FloatingActionButton.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    store.state.auth.hasVehicle = false;
+    store.state.user.hasVehicle = false;
     global.URL.createObjectURL = jest.fn();
     const spyUploadImage = jest.spyOn(wrapper.vm, "uploadImage");
     const e = {

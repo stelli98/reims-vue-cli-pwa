@@ -1,14 +1,22 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import DownloadPopUp from "@/components/common/DownloadPopUp";
 import Vuex from "vuex";
+import TextFilter from "@/filters/text";
 
 describe("DownloadPopUp.vue", () => {
   let store;
   let wrapper;
   let localVue;
+  const response = {
+    data: {
+      data: "iV91iop"
+    }
+  };
+
   function generateLocalVue() {
     const lv = createLocalVue();
     lv.use(Vuex);
+    lv.filter("textFormatter", TextFilter);
     return lv;
   }
 
@@ -24,7 +32,7 @@ describe("DownloadPopUp.vue", () => {
 
   function initializeStore() {
     const actions = {
-      downloadPersonalReport: jest.fn()
+      downloadPersonalReport: jest.fn().mockResolvedValue(response)
     };
 
     const store = new Vuex.Store({
@@ -47,29 +55,17 @@ describe("DownloadPopUp.vue", () => {
     store = initializeStore();
   });
 
-  test("downloadReport method", () => {
-    const options = {
-      mocks: {
-        computed: {
-          selectedTransactionType() {
-            return "FUEL";
-          },
-          selectedMonth() {
-            return "March";
-          },
-          selectedYear() {
-            return 2019;
-          }
-        }
-      }
-    };
-    wrapper = createWrapper(store.store, options);
-    const spyStore = jest.spyOn(store.actions, "downloadPersonalReport");
-    wrapper.vm.downloadReport();
-    expect(spyStore).toHaveBeenCalled();
+  test("download Report method", async done => {
+    wrapper = createWrapper(store.store);
+    await wrapper.vm.downloadReport();
+    wrapper.vm.$nextTick(() => {
+      expect(store.actions.downloadPersonalReport).toHaveBeenCalled();
+      done();
+    });
   });
 
   test("selectedMonth computed", () => {
+    wrapper = createWrapper(store.store);
     const monthMarch = "March";
     wrapper.setData({ selectedMonth: monthMarch });
     expect(wrapper.vm.selectedMonth).toBe(monthMarch);
@@ -101,7 +97,9 @@ describe("DownloadPopUp.vue", () => {
     ];
     const expectedValue = new Date().getMonth();
     wrapper = createWrapper(store.store, options);
-    expect(wrapper.vm.months[wrapper.vm.months.length-1]).toEqual(monthsData[expectedValue]);
+    expect(wrapper.vm.months[wrapper.vm.months.length - 1]).toEqual(
+      monthsData[expectedValue]
+    );
   });
 
   test("selectedMonth computed if selectedYear is before the current year", () => {
@@ -115,7 +113,7 @@ describe("DownloadPopUp.vue", () => {
       }
     };
     wrapper = createWrapper(store.store, options);
-    wrapper.vm.selectedYear = 2017
+    wrapper.vm.selectedYear = 2017;
     expect(wrapper.vm.months).toEqual(wrapper.vm.monthsName);
   });
 });

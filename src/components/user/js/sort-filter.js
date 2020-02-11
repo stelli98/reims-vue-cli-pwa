@@ -5,8 +5,21 @@ export default {
   data() {
     return {
       options: this.emptyOptions(),
-      sortByOptions: ["date", "title"],
-      categoryOptions: ["FUEL", "PARKING","MEDICAL"]
+      sortByOptions: [
+        {
+          name: "Date",
+          value: "date"
+        },
+        {
+          name: "Title",
+          value: "title"
+        },
+        {
+          name: "Created At",
+          value: "createdAt"
+        }
+      ],
+      categoryOptions: ["FUEL", "PARKING", "MEDICAL"]
     };
   },
   computed: {
@@ -51,6 +64,7 @@ export default {
           ? new Date(this.options.end).getTime()
           : "";
         this.options.page = 1;
+        console.log({ ...this.$route.query, ...this.options });
         this.$router.push({ query: { ...this.$route.query, ...this.options } });
         this.closeFilterForm();
       }
@@ -58,14 +72,20 @@ export default {
     emptyOptions() {
       return {
         search: "",
-        sortBy: "date",
-        category: "FUEL",
+        sortBy: this.$route.query.sortBy || "createdAt",
+        category: this.$route.query.category || "FUEL",
         start: "",
         end: ""
       };
     },
     resetFilter() {
-      this.options = this.emptyOptions();
+      this.options = {
+        search: "",
+        sortBy: "createdAt",
+        category: "FUEL",
+        start: "",
+        end: ""
+      };
     },
     convertDateToISOString() {
       this.options.start = this.options.start

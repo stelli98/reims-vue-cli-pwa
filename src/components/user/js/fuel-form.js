@@ -118,7 +118,7 @@ export default {
             this.addNotification(notification);
           });
         this.setFormEmpty(this.fuelTemplate);
-        this.$router.push({ name: "home" });
+        this.$router.push({ name: "home" , query:{category:"FUEL"}});
       }
     }
   },

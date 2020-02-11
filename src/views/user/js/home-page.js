@@ -5,6 +5,7 @@ const FloatingActionButton = () =>
   import("@/components/user/FloatingActionButton.vue");
 import { mapActions, mapGetters } from "vuex";
 import CommonMixins from "@/mixins/common-mixins";
+import offlineService from "@/api/transaction-offline";
 
 export default {
   mixins: [CommonMixins],
@@ -28,9 +29,6 @@ export default {
   },
   computed: {
     ...mapGetters("transaction", ["transactions", "pagination"]),
-    actionButtonClass() {
-      return `action-button action-button-${this.transactions.length == 5}`;
-    },
     isOCR() {
       return this.$route.query.category.toLowerCase() != "medical";
     },
@@ -39,13 +37,14 @@ export default {
         page: parseInt(this.$route.query.page),
         size: parseInt(this.$route.query.size),
         sortBy: this.$route.query.sortBy,
-        category: this.$route.query.category ? this.$route.query.category.toUpperCase() : ""
+        category: this.$route.query.category
+          ? this.$route.query.category.toUpperCase()
+          : ""
       };
     }
   },
   methods: {
     ...mapActions("transaction", ["getTransactionsByCategory"]),
-    ...mapActions("user", ["downloadPersonalReport"]),
     ...mapActions("auth", ["logout"]),
     changePage(page) {
       this.$router.push({ query: { ...this.$route.query, page: page } });
@@ -55,7 +54,7 @@ export default {
     },
     updateTransaction() {
       this.getTransactionsByCategory([
-        {...this.$route.query, ...this.options},
+        { ...this.options, ...this.$route.query },
         this.isOCR
       ]).then(() => {
         if (this.transactions.length == 0 && this.$route.query.page != 1) {
@@ -65,11 +64,9 @@ export default {
     },
     doLogout() {
       this.logout().then(() => {
-        this.$router.push({ name: "login" });
+        this.moveTo("login");
+        offlineService.deleteAllIDBDatabase();
       });
-    },
-    download() {
-      this.downloadPersonalReport(this.$route.query);
     },
     toggleActionButton(value) {
       this.actionButtonActive = value;

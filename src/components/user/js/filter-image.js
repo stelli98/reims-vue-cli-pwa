@@ -17,8 +17,8 @@ export default {
     },
     isContainingType() {
       return (
-        this.$route.query.type === "fuel" ||
-        this.$route.query.type === "parking"
+        this.$route.query.category === "FUEL" ||
+        this.$route.query.category === "PARKING"
       );
     }
   },

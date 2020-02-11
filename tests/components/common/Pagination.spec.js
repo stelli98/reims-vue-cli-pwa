@@ -37,12 +37,12 @@ describe("Pagination.vue", () => {
     wrapper = createWrapper();
   });
 
-  test("Emit changePage changePageTo method", () => {
-    wrapper.vm.changePageTo(2);
-    expect(wrapper.emitted().changePage).toEqual([[2]]);
+  test("changePageTo method", () => {
+    wrapper.vm.changePageTo("2");
+    expect(wrapper.vm.$route.query.page).toBe(2)
   });
 
-  test("Emit changePage changePageTo method", () => {
+  test("watcher", () => {
     wrapper.vm.$router.push({ query: { page: 4 } });
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.currentPage).toBe(4);

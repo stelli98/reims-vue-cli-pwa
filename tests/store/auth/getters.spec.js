@@ -37,12 +37,4 @@ describe("Auth getters", () => {
     const token = getters.token(state);
     expect(token).toBe(state.token);
   });
-
-  test("Get hasVehicle from auth module", () => {
-    const state = {
-      hasVehicle: expectedValue.data.hasVehicle
-    };
-    const hasVehicle = getters.hasVehicle(state);
-    expect(hasVehicle).toBe(state.hasVehicle);
-  });
 });
