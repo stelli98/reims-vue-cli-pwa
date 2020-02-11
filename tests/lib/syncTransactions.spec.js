@@ -307,9 +307,12 @@ describe("SyncTransactions Lib", () => {
     const data = {
       id: 1,
       userId: 123,
+      category: "FUEL",
       attachments: ["image.jpg"]
     };
     const expectedValue = {
+      id: 1,
+      category: "FUEL",
       attachments: ["image.jpg"]
     };
     expect(wrapper.vm.sendImageObject(data)).toEqual(expectedValue);

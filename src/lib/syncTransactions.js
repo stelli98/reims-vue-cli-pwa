@@ -90,7 +90,9 @@ export default {
       transactionApi
         .createTransaction(this.sendImageObject(images[index]), this.token)
         .then(response => {
-          this.successCreateTransaction(response, images, index);
+          if (response) {
+            this.successCreateTransaction(response, images, index);
+          }
         });
     },
     successCreateTransaction(response, images, index) {
@@ -104,6 +106,7 @@ export default {
     },
     sendImageObject(data) {
       return {
+        id: data.id,
         attachments: data.attachments,
         category: data.category
       };

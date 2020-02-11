@@ -49,7 +49,6 @@ const saveData = async (storeName, data) => {
     const db = await dbPromise();
     const tx = db.transaction(storeName, "readwrite");
     const store = tx.objectStore(storeName);
-    console.log("data idb", data);
     store.put(data);
     return tx.complete;
   } catch (error) {

@@ -21,7 +21,7 @@
         onfocus="this.size=2;"
         onblur="this.size=1;"
         onchange="this.size=1; this.blur();"
-        @click="changePageTo(currentPage)"
+        @change="changePageTo(currentPage)"
       >
         <option
           :selected="currentPage"
