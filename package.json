@@ -7,7 +7,8 @@
     "dev-nomock": "NODE_ENV=nomock && vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --no-cache",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi "
   },
   "dependencies": {
     "axios": "^0.19.1",

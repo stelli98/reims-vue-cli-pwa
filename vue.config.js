@@ -28,7 +28,14 @@ module.exports = {
         },
         devServer: {
           hot: false,
-          port: 8100
+          port: 8100,
+          proxy: {
+            '^/api': {
+              target: 'http://localhost:9095',
+              ws: true,
+              changeOrigin: true
+            }
+          }
         }
       };
     }

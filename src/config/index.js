@@ -1,26 +1,25 @@
-const baseUrl =
-  process.env.NODE_ENV === "production" ? `http://localhost:9095` : "";
+
 module.exports = {
   api: {
     transactions: {
-      transaction: `${baseUrl}/api/transactions`,
-      medical: `${baseUrl}/api/medicals`
+      transaction: `/api/transactions`,
+      medical: `/api/medicals`
     },
     users: {
-      user: `${baseUrl}/api/users`,
-      changePassword: `${baseUrl}/api/users/changepassword`,
-      family: `${baseUrl}/api/family-members`,
-      report: `${baseUrl}/api/users/report`,
-      image: `${baseUrl}/api/users/image`
+      user: `/api/users`,
+      changePassword: `/api/users/changepassword`,
+      family: `/api/family-members`,
+      report: `/api/users/report`,
+      image: `/api/users/image`
     },
     admin:{
-      user: `${baseUrl}/api/admin/users`,
-      changePassword: `${baseUrl}/api/admin/users/changepassword`,
-      family: `${baseUrl}/api/admin/family-members`,
+      user: `/api/admin/users`,
+      changePassword: `/api/admin/users/changepassword`,
+      family: `/api/admin/family-members`,
     },
     auth: {
-      login: `${baseUrl}/api/login`,
-      logout: `${baseUrl}/api/logout`
+      login: `/api/login`,
+      logout: `/api/logout`
     }
   }
 };
